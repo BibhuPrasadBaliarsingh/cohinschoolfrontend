@@ -1,0 +1,202 @@
+:root {
+  --navy: #0B1C2C;
+  --gold: #C9A227;
+}
+
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background-color: #FDFBF7;
+  color: #0B1C2C;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 0;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #F0EBE0;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C9A227;
+  border-radius: 4px;
+}
+
+/* Glass effect */
+.glass {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-dark {
+  background: rgba(11, 28, 44, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(201, 162, 39, 0.2);
+}
+
+/* Hero gradient overlay */
+.hero-overlay {
+  background: linear-gradient(135deg, rgba(11, 28, 44, 0.88) 0%, rgba(11, 28, 44, 0.65) 50%, rgba(11, 28, 44, 0.4) 100%);
+}
+
+/* Magnetic button feel */
+.btn-premium {
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.btn-premium::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, transparent 50%);
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+
+.btn-premium:hover::before {
+  opacity: 1;
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px -8px rgba(201, 162, 39, 0.45);
+}
+
+/* Card hover lift */
+.card-lift {
+  transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-lift:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 50px -12px rgba(11, 28, 44, 0.18);
+}
+
+/* Section divider */
+.section-divider {
+  height: 1px;
+  background: linear-gradient(90deg, transparent, #C9A227, transparent);
+}
+
+/* Pipeline step */
+.pipeline-step {
+  position: relative;
+}
+
+.pipeline-step::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  right: -20px;
+  width: 40px;
+  height: 2px;
+  background: #C9A227;
+  transform: translateY(-50%);
+}
+
+.pipeline-step:last-child::after {
+  display: none;
+}
+
+/* Chatbot */
+.chatbot-window {
+  box-shadow: 0 25px 60px -15px rgba(11, 28, 44, 0.35);
+}
+
+/* Navbar scroll */
+.nav-scrolled {
+  background: rgba(11, 28, 44, 0.95) !important;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Modal */
+.modal-backdrop {
+  background: rgba(5, 13, 22, 0.75);
+  backdrop-filter: blur(8px);
+}
+
+/* Custom range for fee calculator */
+input[type=range] {
+  -webkit-appearance: none;
+  height: 6px;
+  background: #E8E4D9;
+  border-radius: 3px;
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background: #C9A227;
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(201, 162, 39, 0.4);
+}
+
+/* Dashboard mock styles */
+.dashboard-card {
+  background: linear-gradient(145deg, #ffffff 0%, #f8f6f1 100%);
+  border: 1px solid rgba(201, 162, 39, 0.12);
+}
+
+/* Animated underline */
+.nav-link {
+  position: relative;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #C9A227;
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%;
+}
+
+/* Loading spinner for chatbot */
+.typing-dot {
+  animation: typing 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.typing-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+@keyframes typing {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.6);
+    opacity: 0.4;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>EduCRM Pro | Advanced School CRM Module</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: { 50: '#eff6ff', 100: '#dbeafe', 200: '#bfdbfe', 300: '#93c5fd', 400: '#60a5fa', 500: '#3b82f6', 600: '#2563eb', 700: '#1d4ed8', 800: '#1e40af', 900: '#1e3a8a' },
+            accent: { 500: '#10b981', 600: '#059669' },
+            surface: { 50: '#f8fafc', 100: '#f1f5f9', 200: '#e2e8f0', 800: '#1e293b', 900: '#0f172a' }
+          },
+          fontFamily: { sans: ['Inter', 'system-ui', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .sidebar-link.active { background: linear-gradient(90deg, #2563eb 0%, #3b82f6 100%); color: white; box-shadow: 0 4px 14px rgba(37,99,235,0.35); }
+    .kanban-card { transition: all 0.2s ease; }
+    .kanban-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgb(0 0 0 / 0.1); }
+    .stat-card { transition: transform 0.2s; }
+    .stat-card:hover { transform: translateY(-3px); }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+    .fade-in { animation: fadeIn 0.35s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+    .badge-pulse { animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.6; } }
+
+    /* ========== MOBILE SIDEBAR ========== */
+    #sidebar {
+      transition: transform 0.3s ease-in-out;
+    }
+    @media (max-width: 1023px) {
+      #sidebar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        z-index: 50;
+        transform: translateX(-100%);
+        width: 280px !important;
+      }
+      #sidebar.open {
+        transform: translateX(0);
+      }
+      #sidebar-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0,0,0,0.45);
+        z-index: 40;
+      }
+      #sidebar-overlay.show {
+        display: block;
+      }
+    }
+    @media (min-width: 1024px) {
+      #sidebar {
+        position: relative;
+        transform: none !important;
+      }
+      #sidebar-overlay {
+        display: none !important;
+      }
+    }
+
+    /* Prevent body scroll when sidebar open on mobile */
+    body.sidebar-open {
+      overflow: hidden;
+    }
+
+    /* Better table handling on mobile */
+    .table-wrapper {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .table-wrapper table {
+      min-width: 640px;
+    }
+
+    /* Hide less critical header elements on very small screens */
+    @media (max-width: 640px) {
+      .hide-xs { display: none !important; }
+    }
+  </style>
+</head>
+<body class="bg-surface-100 text-slate-800 antialiased">
+  <!-- Mobile Sidebar Overlay -->
+  <div id="sidebar-overlay" onclick="closeSidebar()"></div>
+
+  <div class="flex h-screen overflow-hidden">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 bg-surface-900 text-white flex flex-col shrink-0">
+      <div class="p-5 border-b border-slate-700 flex items-center justify-between">
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 flex items-center justify-center shadow-lg">
+            <i class="fas fa-graduation-cap text-lg"></i>
+          </div>
+          <div>
+            <h1 class="font-bold text-lg tracking-tight">EduCRM Pro</h1>
+            <p class="text-xs text-slate-400">School CRM Module</p>
+          </div>
+        </div>
+        <!-- Close button (mobile only) -->
+        <button onclick="closeSidebar()" class="lg:hidden p-2 rounded-lg hover:bg-slate-800 text-slate-400">
+          <i class="fas fa-times text-lg"></i>
+        </button>
+      </div>
+      <nav class="flex-1 p-3 space-y-1 overflow-y-auto">
+        <button onclick="showSection('dashboard', this)" class="sidebar-link active w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all hover:bg-slate-800">
+          <i class="fas fa-chart-pie w-5 text-center"></i> Dashboard
+        </button>
+        <button onclick="showSection('leads', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 transition-all hover:bg-slate-800">
+          <i class="fas fa-user-plus w-5 text-center"></i> Inquiries & Leads
+          <span class="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">12</span>
+        </button>
+        <button onclick="showSection('pipeline', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 transition-all hover:bg-slate-800">
+          <i class="fas fa-project-diagram w-5 text-center"></i> Admissions Pipeline
+        </button>
+        <button onclick="showSection('students', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 transition-all hover:bg-slate-800">
+          <i class="fas fa-users w-5 text-center"></i> Students
+        </button>
+        <button onclick="showSection('parents', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 transition-all hover:bg-slate-800">
+          <i class="fas fa-user-friends w-5 text-center"></i> Parent CRM
+        </button>
+        <button onclick="showSection('comms', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 transition-all hover:bg-slate-800">
+          <i class="fas fa-comments w-5 text-center"></i> Communications
+        </button>
+        <button onclick="showSection('marketing', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 transition-all hover:bg-slate-800">
+          <i class="fas fa-bullhorn w-5 text-center"></i> Marketing
+        </button>
+        <button onclick="showSection('reports', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 transition-all hover:bg-slate-800">
+          <i class="fas fa-chart-bar w-5 text-center"></i> Reports & Analytics
+        </button>
+        <div class="pt-4 mt-4 border-t border-slate-700">
+          <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider mb-2">Automation</p>
+          <button onclick="showSection('automation', this)" class="sidebar-link w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-300 transition-all hover:bg-slate-800">
+            <i class="fas fa-robot w-5 text-center"></i> Rules & Workflows
+          </button>
+        </div>
+      </nav>
+      <div class="p-4 border-t border-slate-700 space-y-3">
+        <a href="../../index.html" class="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-slate-300 hover:bg-slate-800 hover:text-white transition">
+          <i class="fas fa-arrow-left w-5 text-center"></i> Back to School Website
+        </a>
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-primary-600 flex items-center justify-center text-sm font-bold">HK</div>
+          <div class="flex-1 min-w-0">
+            <p class="text-sm font-medium truncate">Hemanta K. Nayak</p>
+            <p class="text-xs text-slate-400">Admin • Director</p>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="flex-1 flex flex-col overflow-hidden min-w-0">
+      <!-- Top Bar -->
+      <header class="bg-white border-b border-slate-200 px-3 sm:px-4 lg:px-6 py-3 flex items-center justify-between shrink-0 gap-2">
+        <div class="flex items-center gap-2 sm:gap-3 min-w-0">
+          <!-- Hamburger (mobile only) -->
+          <button onclick="toggleSidebar()" class="lg:hidden p-2.5 rounded-xl hover:bg-slate-100 text-slate-600 shrink-0">
+            <i class="fas fa-bars text-lg"></i>
+          </button>
+          <div class="min-w-0">
+            <h2 id="pageTitle" class="text-base sm:text-lg lg:text-xl font-bold text-slate-800 truncate">Dashboard</h2>
+          </div>
+          <span class="hidden sm:flex text-xs bg-green-100 text-green-700 px-2.5 py-1 rounded-full font-medium items-center gap-1 shrink-0">
+            <span class="w-1.5 h-1.5 bg-green-500 rounded-full badge-pulse"></span> Live
+          </span>
+        </div>
+        <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+          <!-- Search - full on larger, icon only on mobile -->
+          <div class="relative hidden md:block">
+            <input type="text" placeholder="Search leads, students..." class="pl-10 pr-4 py-2 w-48 lg:w-64 xl:w-72 text-sm border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent bg-slate-50" />
+            <i class="fas fa-search absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+          </div>
+          <button class="md:hidden p-2.5 rounded-xl hover:bg-slate-100 transition" title="Search">
+            <i class="fas fa-search text-slate-600"></i>
+          </button>
+          <button class="relative p-2.5 rounded-xl hover:bg-slate-100 transition">
+            <i class="fas fa-bell text-slate-600"></i>
+            <span class="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
+          </button>
+          <button onclick="openNewLeadModal()" class="bg-primary-600 hover:bg-primary-700 text-white px-3 sm:px-4 py-2 rounded-xl text-sm font-semibold flex items-center gap-1.5 sm:gap-2 shadow-sm transition">
+            <i class="fas fa-plus"></i>
+            <span class="hidden sm:inline">New Inquiry</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Content Area -->
+      <main class="flex-1 overflow-y-auto p-3 sm:p-4 lg:p-6">
+        <!-- DASHBOARD -->
+        <section id="section-dashboard" class="fade-in space-y-4 sm:space-y-6">
+          <!-- Stats -->
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-5">
+            <div class="stat-card bg-white rounded-2xl p-4 sm:p-5 border border-slate-100 shadow-sm">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs sm:text-sm text-slate-500 font-medium">New Inquiries</p>
+                  <p class="text-2xl sm:text-3xl font-bold mt-1 text-slate-800">148</p>
+                  <p class="text-xs text-green-600 mt-1.5 sm:mt-2 font-medium"><i class="fas fa-arrow-up"></i> 18% vs last month</p>
+                </div>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-blue-50 flex items-center justify-center text-primary-600 shrink-0">
+                  <i class="fas fa-inbox text-lg sm:text-xl"></i>
+                </div>
+              </div>
+            </div>
+            <div class="stat-card bg-white rounded-2xl p-4 sm:p-5 border border-slate-100 shadow-sm">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs sm:text-sm text-slate-500 font-medium">Admissions Confirmed</p>
+                  <p class="text-2xl sm:text-3xl font-bold mt-1 text-slate-800">67</p>
+                  <p class="text-xs text-green-600 mt-1.5 sm:mt-2 font-medium"><i class="fas fa-arrow-up"></i> 12% conversion</p>
+                </div>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-emerald-50 flex items-center justify-center text-emerald-600 shrink-0">
+                  <i class="fas fa-check-circle text-lg sm:text-xl"></i>
+                </div>
+              </div>
+            </div>
+            <div class="stat-card bg-white rounded-2xl p-4 sm:p-5 border border-slate-100 shadow-sm">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs sm:text-sm text-slate-500 font-medium">Pending Follow-ups</p>
+                  <p class="text-2xl sm:text-3xl font-bold mt-1 text-slate-800">29</p>
+                  <p class="text-xs text-amber-600 mt-1.5 sm:mt-2 font-medium"><i class="fas fa-clock"></i> 8 overdue</p>
+                </div>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600 shrink-0">
+                  <i class="fas fa-phone-alt text-lg sm:text-xl"></i>
+                </div>
+              </div>
+            </div>
+            <div class="stat-card bg-white rounded-2xl p-4 sm:p-5 border border-slate-100 shadow-sm">
+              <div class="flex items-start justify-between">
+                <div>
+                  <p class="text-xs sm:text-sm text-slate-500 font-medium">Revenue (Admissions)</p>
+                  <p class="text-2xl sm:text-3xl font-bold mt-1 text-slate-800">₹42.8L</p>
+                  <p class="text-xs text-green-600 mt-1.5 sm:mt-2 font-medium"><i class="fas fa-arrow-up"></i> Target 78%</p>
+                </div>
+                <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-violet-50 flex items-center justify-center text-violet-600 shrink-0">
+                  <i class="fas fa-rupee-sign text-lg sm:text-xl"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-6">
+            <!-- Conversion Funnel -->
+            <div class="lg:col-span-2 bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 sm:mb-5">
+                <h3 class="font-bold text-slate-800 text-sm sm:text-base">Admission Conversion Funnel</h3>
+                <select class="text-xs sm:text-sm border border-slate-200 rounded-lg px-2.5 py-1.5 bg-slate-50 w-full sm:w-auto">
+                  <option>This Academic Year</option>
+                  <option>Last 30 Days</option>
+                  <option>Last Quarter</option>
+                </select>
+              </div>
+              <div class="relative" style="height: 220px;">
+                <canvas id="funnelChart"></canvas>
+              </div>
+            </div>
+
+            <!-- Source Breakdown -->
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
+              <h3 class="font-bold text-slate-800 mb-4 sm:mb-5 text-sm sm:text-base">Inquiry Sources</h3>
+              <div class="relative" style="height: 180px;">
+                <canvas id="sourceChart"></canvas>
+              </div>
+              <div class="mt-4 space-y-2 text-sm">
+                <div class="flex justify-between"><span class="text-slate-500">Website</span><span class="font-semibold">42%</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">WhatsApp / Social</span><span class="font-semibold">28%</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Walk-ins</span><span class="font-semibold">18%</span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Referrals</span><span class="font-semibold">12%</span></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recent Activity + Upcoming -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
+              <h3 class="font-bold text-slate-800 mb-4 text-sm sm:text-base">Recent Activity</h3>
+              <div class="space-y-4">
+                <div class="flex gap-3">
+                  <div class="w-9 h-9 rounded-full bg-blue-100 flex items-center justify-center text-primary-600 shrink-0"><i class="fas fa-user-plus text-sm"></i></div>
+                  <div class="min-w-0">
+                    <p class="text-sm font-medium">New inquiry from <span class="text-primary-600">Priya Sharma</span> (Class 6)</p>
+                    <p class="text-xs text-slate-400">Website form • 12 min ago • Auto-assigned to Counselor Ananya</p>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <div class="w-9 h-9 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 shrink-0"><i class="fas fa-check text-sm"></i></div>
+                  <div class="min-w-0">
+                    <p class="text-sm font-medium">Admission confirmed — <span class="text-primary-600">Arjun Patel</span></p>
+                    <p class="text-xs text-slate-400">Fee paid ₹45,000 • Student record created • 1 hr ago</p>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <div class="w-9 h-9 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 shrink-0"><i class="fas fa-phone text-sm"></i></div>
+                  <div class="min-w-0">
+                    <p class="text-sm font-medium">Follow-up reminder sent for <span class="text-primary-600">Campus Visit</span></p>
+                    <p class="text-xs text-slate-400">Parent: Mr. Rakesh Mehta • WhatsApp delivered • 2 hrs ago</p>
+                  </div>
+                </div>
+                <div class="flex gap-3">
+                  <div class="w-9 h-9 rounded-full bg-violet-100 flex items-center justify-center text-violet-600 shrink-0"><i class="fas fa-file-alt text-sm"></i></div>
+                  <div class="min-w-0">
+                    <p class="text-sm font-medium">Documents verified for <span class="text-primary-600">Sneha Das</span></p>
+                    <p class="text-xs text-slate-400">Birth certificate + previous marksheet • Ready for fee</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
+              <h3 class="font-bold text-slate-800 mb-4 text-sm sm:text-base">Today’s Schedule</h3>
+              <div class="space-y-3">
+                <div class="flex items-center gap-3 sm:gap-4 p-3 rounded-xl bg-blue-50 border border-blue-100">
+                  <div class="text-center min-w-[45px] sm:min-w-[50px]">
+                    <p class="text-xs text-slate-500">10:00</p>
+                    <p class="text-sm font-bold text-primary-700">AM</p>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold">Counseling Session</p>
+                    <p class="text-xs text-slate-500 truncate">Rohan Gupta (Class 8) • Parents + Counselor</p>
+                  </div>
+                  <span class="text-xs bg-blue-200 text-blue-800 px-2 py-1 rounded-lg shrink-0">Confirmed</span>
+                </div>
+                <div class="flex items-center gap-3 sm:gap-4 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                  <div class="text-center min-w-[45px] sm:min-w-[50px]">
+                    <p class="text-xs text-slate-500">12:30</p>
+                    <p class="text-sm font-bold text-slate-700">PM</p>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold">Campus Tour</p>
+                    <p class="text-xs text-slate-500 truncate">3 families scheduled • Lab & Sports complex</p>
+                  </div>
+                  <span class="text-xs bg-slate-200 text-slate-700 px-2 py-1 rounded-lg shrink-0">Upcoming</span>
+                </div>
+                <div class="flex items-center gap-3 sm:gap-4 p-3 rounded-xl bg-slate-50 border border-slate-100">
+                  <div class="text-center min-w-[45px] sm:min-w-[50px]">
+                    <p class="text-xs text-slate-500">03:00</p>
+                    <p class="text-sm font-bold text-slate-700">PM</p>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <p class="text-sm font-semibold">Document Verification</p>
+                    <p class="text-xs text-slate-500 truncate">Ananya Sahoo • Transfer certificate pending</p>
+                  </div>
+                  <span class="text-xs bg-amber-100 text-amber-700 px-2 py-1 rounded-lg shrink-0">Pending</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- LEADS -->
+        <section id="section-leads" class="hidden fade-in space-y-4 sm:space-y-5">
+          <div class="flex flex-col sm:flex-row sm:flex-wrap items-stretch sm:items-center justify-between gap-3">
+            <div class="flex gap-2 overflow-x-auto pb-1 -mx-1 px-1">
+              <button class="px-3 py-1.5 text-sm rounded-lg bg-primary-600 text-white font-medium whitespace-nowrap">All (148)</button>
+              <button class="px-3 py-1.5 text-sm rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 whitespace-nowrap">New (24)</button>
+              <button class="px-3 py-1.5 text-sm rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 whitespace-nowrap">Hot (11)</button>
+              <button class="px-3 py-1.5 text-sm rounded-lg bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 whitespace-nowrap">Follow-up (29)</button>
+            </div>
+            <div class="flex gap-2">
+              <select class="text-sm border border-slate-200 rounded-lg px-3 py-1.5 bg-white flex-1 sm:flex-none">
+                <option>All Sources</option>
+                <option>Website</option>
+                <option>WhatsApp</option>
+                <option>Walk-in</option>
+                <option>Social Media</option>
+              </select>
+              <select class="text-sm border border-slate-200 rounded-lg px-3 py-1.5 bg-white flex-1 sm:flex-none">
+                <option>All Counselors</option>
+                <option>Ananya Das</option>
+                <option>Rahul Mohanty</option>
+                <option>Smita Panda</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+            <div class="table-wrapper">
+              <table class="w-full text-sm">
+                <thead class="bg-slate-50 text-slate-500 text-left">
+                  <tr>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Lead / Parent</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Class</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Source</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Counselor</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Stage</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Last Contact</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Actions</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <div class="font-semibold text-slate-800">Priya Sharma</div>
+                      <div class="text-xs text-slate-400">+91 98765 43210 • Mother</div>
+                    </td>
+                    <td class="px-4 sm:px-5 py-3.5">Class 6</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2 py-0.5 bg-blue-50 text-blue-700 rounded text-xs font-medium">Website</span></td>
+                    <td class="px-4 sm:px-5 py-3.5">Ananya Das</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2.5 py-1 bg-amber-100 text-amber-800 rounded-full text-xs font-medium">Call / Follow-up</span></td>
+                    <td class="px-4 sm:px-5 py-3.5 text-slate-500">12 min ago</td>
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <button class="text-primary-600 hover:text-primary-800 mr-2" title="Call"><i class="fas fa-phone"></i></button>
+                      <button class="text-green-600 hover:text-green-800 mr-2" title="WhatsApp"><i class="fab fa-whatsapp"></i></button>
+                      <button class="text-slate-500 hover:text-slate-700" title="View"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <div class="font-semibold text-slate-800">Rakesh Mehta</div>
+                      <div class="text-xs text-slate-400">+91 91234 56789 • Father</div>
+                    </td>
+                    <td class="px-4 sm:px-5 py-3.5">Class 9</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2 py-0.5 bg-green-50 text-green-700 rounded text-xs font-medium">WhatsApp</span></td>
+                    <td class="px-4 sm:px-5 py-3.5">Rahul Mohanty</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2.5 py-1 bg-blue-100 text-blue-800 rounded-full text-xs font-medium">Campus Visit</span></td>
+                    <td class="px-4 sm:px-5 py-3.5 text-slate-500">2 hrs ago</td>
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <button class="text-primary-600 hover:text-primary-800 mr-2"><i class="fas fa-phone"></i></button>
+                      <button class="text-green-600 hover:text-green-800 mr-2"><i class="fab fa-whatsapp"></i></button>
+                      <button class="text-slate-500 hover:text-slate-700"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <div class="font-semibold text-slate-800">Sunita Pattnaik</div>
+                      <div class="text-xs text-slate-400">+91 94370 11223 • Mother</div>
+                    </td>
+                    <td class="px-4 sm:px-5 py-3.5">Class 3</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2 py-0.5 bg-violet-50 text-violet-700 rounded text-xs font-medium">Walk-in</span></td>
+                    <td class="px-4 sm:px-5 py-3.5">Smita Panda</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2.5 py-1 bg-purple-100 text-purple-800 rounded-full text-xs font-medium">Document Verification</span></td>
+                    <td class="px-4 sm:px-5 py-3.5 text-slate-500">Yesterday</td>
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <button class="text-primary-600 hover:text-primary-800 mr-2"><i class="fas fa-phone"></i></button>
+                      <button class="text-green-600 hover:text-green-800 mr-2"><i class="fab fa-whatsapp"></i></button>
+                      <button class="text-slate-500 hover:text-slate-700"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <div class="font-semibold text-slate-800">Amit Behera</div>
+                      <div class="text-xs text-slate-400">+91 89845 66778 • Father</div>
+                    </td>
+                    <td class="px-4 sm:px-5 py-3.5">Class 11 (Science)</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2 py-0.5 bg-pink-50 text-pink-700 rounded text-xs font-medium">Instagram</span></td>
+                    <td class="px-4 sm:px-5 py-3.5">Ananya Das</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2.5 py-1 bg-emerald-100 text-emerald-800 rounded-full text-xs font-medium">Fee Payment</span></td>
+                    <td class="px-4 sm:px-5 py-3.5 text-slate-500">3 hrs ago</td>
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <button class="text-primary-600 hover:text-primary-800 mr-2"><i class="fas fa-phone"></i></button>
+                      <button class="text-green-600 hover:text-green-800 mr-2"><i class="fab fa-whatsapp"></i></button>
+                      <button class="text-slate-500 hover:text-slate-700"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <div class="font-semibold text-slate-800">Laxmi Mohapatra</div>
+                      <div class="text-xs text-slate-400">+91 97760 33445 • Mother</div>
+                    </td>
+                    <td class="px-4 sm:px-5 py-3.5">Nursery</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2 py-0.5 bg-blue-50 text-blue-700 rounded text-xs font-medium">Website</span></td>
+                    <td class="px-4 sm:px-5 py-3.5">Smita Panda</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2.5 py-1 bg-slate-100 text-slate-700 rounded-full text-xs font-medium">Lead Created</span></td>
+                    <td class="px-4 sm:px-5 py-3.5 text-slate-500">Just now</td>
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <button class="text-primary-600 hover:text-primary-800 mr-2"><i class="fas fa-phone"></i></button>
+                      <button class="text-green-600 hover:text-green-800 mr-2"><i class="fab fa-whatsapp"></i></button>
+                      <button class="text-slate-500 hover:text-slate-700"><i class="fas fa-eye"></i></button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- PIPELINE (Kanban) -->
+        <section id="section-pipeline" class="hidden fade-in">
+          <div class="flex gap-3 sm:gap-4 overflow-x-auto pb-4 -mx-1 px-1">
+            <!-- Stage 1 -->
+            <div class="min-w-[260px] sm:min-w-[280px] bg-slate-50 rounded-2xl border border-slate-200 shrink-0">
+              <div class="p-3 border-b border-slate-200 flex items-center justify-between">
+                <h4 class="font-semibold text-sm text-slate-700">Lead Created</h4>
+                <span class="bg-slate-200 text-slate-700 text-xs font-bold px-2 py-0.5 rounded-full">5</span>
+              </div>
+              <div class="p-3 space-y-3 max-h-[60vh] sm:max-h-[65vh] overflow-y-auto">
+                <div class="kanban-card bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm cursor-pointer">
+                  <div class="flex justify-between items-start">
+                    <p class="font-semibold text-sm">Laxmi Mohapatra</p>
+                    <span class="text-xs text-slate-400">Nursery</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1">Website • Just now</p>
+                  <div class="mt-2 flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs flex items-center justify-center font-bold">SP</div>
+                    <span class="text-xs text-slate-400">Smita</span>
+                  </div>
+                </div>
+                <div class="kanban-card bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm cursor-pointer">
+                  <div class="flex justify-between items-start">
+                    <p class="font-semibold text-sm">Deepak Rout</p>
+                    <span class="text-xs text-slate-400">Class 5</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1">Referral • 1 hr ago</p>
+                  <div class="mt-2 flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs flex items-center justify-center font-bold">AD</div>
+                    <span class="text-xs text-slate-400">Ananya</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Stage 2 -->
+            <div class="min-w-[260px] sm:min-w-[280px] bg-slate-50 rounded-2xl border border-slate-200 shrink-0">
+              <div class="p-3 border-b border-slate-200 flex items-center justify-between">
+                <h4 class="font-semibold text-sm text-slate-700">Counselor Assigned</h4>
+                <span class="bg-blue-100 text-blue-700 text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+              </div>
+              <div class="p-3 space-y-3 max-h-[60vh] sm:max-h-[65vh] overflow-y-auto">
+                <div class="kanban-card bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm cursor-pointer">
+                  <div class="flex justify-between items-start">
+                    <p class="font-semibold text-sm">Kiran Sahoo</p>
+                    <span class="text-xs text-slate-400">Class 7</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1">WhatsApp • 40 min ago</p>
+                  <div class="mt-2 flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs flex items-center justify-center font-bold">RM</div>
+                    <span class="text-xs text-slate-400">Rahul</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Stage 3 -->
+            <div class="min-w-[260px] sm:min-w-[280px] bg-slate-50 rounded-2xl border border-slate-200 shrink-0">
+              <div class="p-3 border-b border-slate-200 flex items-center justify-between">
+                <h4 class="font-semibold text-sm text-slate-700">Call / Follow-up</h4>
+                <span class="bg-amber-100 text-amber-700 text-xs font-bold px-2 py-0.5 rounded-full">7</span>
+              </div>
+              <div class="p-3 space-y-3 max-h-[60vh] sm:max-h-[65vh] overflow-y-auto">
+                <div class="kanban-card bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm cursor-pointer border-l-4 border-l-amber-400">
+                  <div class="flex justify-between items-start">
+                    <p class="font-semibold text-sm">Priya Sharma</p>
+                    <span class="text-xs text-slate-400">Class 6</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1">Website • Next call today</p>
+                  <div class="mt-2 flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs flex items-center justify-center font-bold">AD</div>
+                    <span class="text-xs text-slate-400">Ananya</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Stage 4 -->
+            <div class="min-w-[260px] sm:min-w-[280px] bg-slate-50 rounded-2xl border border-slate-200 shrink-0">
+              <div class="p-3 border-b border-slate-200 flex items-center justify-between">
+                <h4 class="font-semibold text-sm text-slate-700">Campus Visit</h4>
+                <span class="bg-indigo-100 text-indigo-700 text-xs font-bold px-2 py-0.5 rounded-full">4</span>
+              </div>
+              <div class="p-3 space-y-3 max-h-[60vh] sm:max-h-[65vh] overflow-y-auto">
+                <div class="kanban-card bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm cursor-pointer">
+                  <div class="flex justify-between items-start">
+                    <p class="font-semibold text-sm">Rakesh Mehta</p>
+                    <span class="text-xs text-slate-400">Class 9</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1">Scheduled: Today 12:30</p>
+                  <div class="mt-2 flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs flex items-center justify-center font-bold">RM</div>
+                    <span class="text-xs text-slate-400">Rahul</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Stage 5 -->
+            <div class="min-w-[260px] sm:min-w-[280px] bg-slate-50 rounded-2xl border border-slate-200 shrink-0">
+              <div class="p-3 border-b border-slate-200 flex items-center justify-between">
+                <h4 class="font-semibold text-sm text-slate-700">Document Verification</h4>
+                <span class="bg-purple-100 text-purple-700 text-xs font-bold px-2 py-0.5 rounded-full">3</span>
+              </div>
+              <div class="p-3 space-y-3 max-h-[60vh] sm:max-h-[65vh] overflow-y-auto">
+                <div class="kanban-card bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm cursor-pointer">
+                  <div class="flex justify-between items-start">
+                    <p class="font-semibold text-sm">Sunita Pattnaik</p>
+                    <span class="text-xs text-slate-400">Class 3</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1">2 docs pending</p>
+                  <div class="mt-2 flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs flex items-center justify-center font-bold">SP</div>
+                    <span class="text-xs text-slate-400">Smita</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Stage 6 -->
+            <div class="min-w-[260px] sm:min-w-[280px] bg-slate-50 rounded-2xl border border-slate-200 shrink-0">
+              <div class="p-3 border-b border-slate-200 flex items-center justify-between">
+                <h4 class="font-semibold text-sm text-slate-700">Fee Payment</h4>
+                <span class="bg-emerald-100 text-emerald-700 text-xs font-bold px-2 py-0.5 rounded-full">2</span>
+              </div>
+              <div class="p-3 space-y-3 max-h-[60vh] sm:max-h-[65vh] overflow-y-auto">
+                <div class="kanban-card bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm cursor-pointer border-l-4 border-l-emerald-400">
+                  <div class="flex justify-between items-start">
+                    <p class="font-semibold text-sm">Amit Behera</p>
+                    <span class="text-xs text-slate-400">Class 11</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1">Invoice sent • ₹52,000</p>
+                  <div class="mt-2 flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-primary-100 text-primary-700 text-xs flex items-center justify-center font-bold">AD</div>
+                    <span class="text-xs text-slate-400">Ananya</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- Stage 7 -->
+            <div class="min-w-[260px] sm:min-w-[280px] bg-slate-50 rounded-2xl border border-slate-200 shrink-0">
+              <div class="p-3 border-b border-slate-200 flex items-center justify-between">
+                <h4 class="font-semibold text-sm text-slate-700">Admission Confirmed</h4>
+                <span class="bg-green-100 text-green-700 text-xs font-bold px-2 py-0.5 rounded-full">67</span>
+              </div>
+              <div class="p-3 space-y-3 max-h-[60vh] sm:max-h-[65vh] overflow-y-auto">
+                <div class="kanban-card bg-white p-3.5 rounded-xl border border-slate-100 shadow-sm cursor-pointer">
+                  <div class="flex justify-between items-start">
+                    <p class="font-semibold text-sm">Arjun Patel</p>
+                    <span class="text-xs text-slate-400">Class 4</span>
+                  </div>
+                  <p class="text-xs text-slate-500 mt-1">Confirmed today</p>
+                  <div class="mt-2 flex items-center gap-2">
+                    <div class="w-6 h-6 rounded-full bg-emerald-100 text-emerald-700 text-xs flex items-center justify-center font-bold">✓</div>
+                    <span class="text-xs text-emerald-600">Student created</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- STUDENTS -->
+        <section id="section-students" class="hidden fade-in space-y-4 sm:space-y-5">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm text-center">
+              <p class="text-xl sm:text-2xl font-bold text-slate-800">1,284</p>
+              <p class="text-xs text-slate-500 mt-1">Total Students</p>
+            </div>
+            <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm text-center">
+              <p class="text-xl sm:text-2xl font-bold text-emerald-600">96.4%</p>
+              <p class="text-xs text-slate-500 mt-1">Avg Attendance</p>
+            </div>
+            <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm text-center">
+              <p class="text-xl sm:text-2xl font-bold text-primary-600">42</p>
+              <p class="text-xs text-slate-500 mt-1">New This Year</p>
+            </div>
+            <div class="bg-white rounded-xl p-4 border border-slate-100 shadow-sm text-center">
+              <p class="text-xl sm:text-2xl font-bold text-amber-600">18</p>
+              <p class="text-xs text-slate-500 mt-1">At-Risk (Academics)</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+            <div class="table-wrapper">
+              <table class="w-full text-sm">
+                <thead class="bg-slate-50 text-slate-500 text-left">
+                  <tr>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Student</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Class / Section</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Parent Contact</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Attendance</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Last Academic</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-bold text-sm">AP</div>
+                        <div>
+                          <div class="font-semibold">Arjun Patel</div>
+                          <div class="text-xs text-slate-400">STU-2026-0842</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 sm:px-5 py-3.5">Class 4 • A</td>
+                    <td class="px-4 sm:px-5 py-3.5">+91 98765 11223</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="text-emerald-600 font-medium">98%</span></td>
+                    <td class="px-4 sm:px-5 py-3.5">A+</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2 py-0.5 bg-green-100 text-green-700 rounded-full text-xs">Active</span></td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-pink-100 text-pink-700 flex items-center justify-center font-bold text-sm">SD</div>
+                        <div>
+                          <div class="font-semibold">Sneha Das</div>
+                          <div class="text-xs text-slate-400">STU-2025-0611</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 sm:px-5 py-3.5">Class 8 • B</td>
+                    <td class="px-4 sm:px-5 py-3.5">+91 94370 99887</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="text-emerald-600 font-medium">95%</span></td>
+                    <td class="px-4 sm:px-5 py-3.5">A</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2 py-0.5 bg-green-100 text-green-700 rounded-full text-xs">Active</span></td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 sm:px-5 py-3.5">
+                      <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 rounded-full bg-amber-100 text-amber-700 flex items-center justify-center font-bold text-sm">RG</div>
+                        <div>
+                          <div class="font-semibold">Rohan Gupta</div>
+                          <div class="text-xs text-slate-400">STU-2024-0309</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="px-4 sm:px-5 py-3.5">Class 8 • A</td>
+                    <td class="px-4 sm:px-5 py-3.5">+91 91234 55667</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="text-amber-600 font-medium">82%</span></td>
+                    <td class="px-4 sm:px-5 py-3.5">B+</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2 py-0.5 bg-amber-100 text-amber-700 rounded-full text-xs">Monitor</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- PARENTS -->
+        <section id="section-parents" class="hidden fade-in space-y-4 sm:space-y-5">
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
+            <h3 class="font-bold text-base sm:text-lg mb-3 sm:mb-4">Parent Relationship Hub</h3>
+            <p class="text-slate-600 text-sm mb-4 sm:mb-6">Send targeted updates, collect feedback, and maintain strong parent engagement across SMS, Email & WhatsApp.</p>
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
+              <div class="border border-slate-200 rounded-xl p-4 sm:p-5 hover:border-primary-300 hover:shadow-md transition cursor-pointer">
+                <div class="w-10 h-10 rounded-lg bg-green-100 text-green-600 flex items-center justify-center mb-3"><i class="fab fa-whatsapp text-xl"></i></div>
+                <h4 class="font-semibold">WhatsApp Broadcast</h4>
+                <p class="text-xs text-slate-500 mt-1">Instant delivery • Templates ready</p>
+              </div>
+              <div class="border border-slate-200 rounded-xl p-4 sm:p-5 hover:border-primary-300 hover:shadow-md transition cursor-pointer">
+                <div class="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center mb-3"><i class="fas fa-envelope text-xl"></i></div>
+                <h4 class="font-semibold">Email Campaigns</h4>
+                <p class="text-xs text-slate-500 mt-1">Newsletters • Event invites</p>
+              </div>
+              <div class="border border-slate-200 rounded-xl p-4 sm:p-5 hover:border-primary-300 hover:shadow-md transition cursor-pointer">
+                <div class="w-10 h-10 rounded-lg bg-violet-100 text-violet-600 flex items-center justify-center mb-3"><i class="fas fa-comment-dots text-xl"></i></div>
+                <h4 class="font-semibold">Feedback & Surveys</h4>
+                <p class="text-xs text-slate-500 mt-1">Collect & respond to concerns</p>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
+            <h3 class="font-bold mb-4 text-sm sm:text-base">Recent Parent Interactions</h3>
+            <div class="space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-slate-50 rounded-xl">
+                <div>
+                  <p class="text-sm font-medium">Fee reminder sent to 214 parents</p>
+                  <p class="text-xs text-slate-400">WhatsApp + SMS • Yesterday 9:00 AM</p>
+                </div>
+                <span class="text-xs text-emerald-600 font-medium">98% delivered</span>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 bg-slate-50 rounded-xl">
+                <div>
+                  <p class="text-sm font-medium">PTM invitation – Class 6 to 8</p>
+                  <p class="text-xs text-slate-400">Email • 2 days ago</p>
+                </div>
+                <span class="text-xs text-primary-600 font-medium">62 opens</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- COMMUNICATIONS -->
+        <section id="section-comms" class="hidden fade-in space-y-4 sm:space-y-5">
+          <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+            <div class="bg-white rounded-xl p-3 sm:p-4 border border-slate-100 shadow-sm">
+              <div class="flex items-center gap-2 sm:gap-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-red-50 text-red-500 flex items-center justify-center shrink-0"><i class="fas fa-rupee-sign"></i></div>
+                <div class="min-w-0">
+                  <p class="text-xs sm:text-sm font-semibold truncate">Fee Reminders</p>
+                  <p class="text-xs text-slate-500">Automated • Due dates</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-xl p-3 sm:p-4 border border-slate-100 shadow-sm">
+              <div class="flex items-center gap-2 sm:gap-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-blue-50 text-blue-500 flex items-center justify-center shrink-0"><i class="fas fa-calendar-alt"></i></div>
+                <div class="min-w-0">
+                  <p class="text-xs sm:text-sm font-semibold truncate">Holiday Alerts</p>
+                  <p class="text-xs text-slate-500">Instant broadcast</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-xl p-3 sm:p-4 border border-slate-100 shadow-sm">
+              <div class="flex items-center gap-2 sm:gap-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-pink-50 text-pink-500 flex items-center justify-center shrink-0"><i class="fas fa-birthday-cake"></i></div>
+                <div class="min-w-0">
+                  <p class="text-xs sm:text-sm font-semibold truncate">Birthday Wishes</p>
+                  <p class="text-xs text-slate-500">Auto on birthday</p>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-xl p-3 sm:p-4 border border-slate-100 shadow-sm">
+              <div class="flex items-center gap-2 sm:gap-3">
+                <div class="w-9 h-9 sm:w-10 sm:h-10 rounded-lg bg-orange-50 text-orange-500 flex items-center justify-center shrink-0"><i class="fas fa-exclamation-triangle"></i></div>
+                <div class="min-w-0">
+                  <p class="text-xs sm:text-sm font-semibold truncate">Emergency</p>
+                  <p class="text-xs text-slate-500">Priority channel</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
+            <div class="flex items-center justify-between mb-4 sm:mb-5">
+              <h3 class="font-bold text-sm sm:text-base">Message Templates</h3>
+              <button class="text-sm text-primary-600 font-medium hover:underline">+ Create Template</button>
+            </div>
+            <div class="space-y-3">
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-4 border border-slate-100 rounded-xl hover:bg-slate-50">
+                <div class="min-w-0">
+                  <p class="font-medium text-sm">Admission Inquiry Acknowledgement</p>
+                  <p class="text-xs text-slate-400 mt-0.5">WhatsApp • “Thank you for your interest in [School]. Our counselor will contact you shortly…”</p>
+                </div>
+                <button class="text-xs bg-primary-50 text-primary-700 px-3 py-1.5 rounded-lg font-medium self-start sm:self-auto shrink-0">Use</button>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-4 border border-slate-100 rounded-xl hover:bg-slate-50">
+                <div class="min-w-0">
+                  <p class="font-medium text-sm">Campus Visit Confirmation</p>
+                  <p class="text-xs text-slate-400 mt-0.5">SMS + WhatsApp • “Your campus visit is confirmed for [Date] at [Time]…”</p>
+                </div>
+                <button class="text-xs bg-primary-50 text-primary-700 px-3 py-1.5 rounded-lg font-medium self-start sm:self-auto shrink-0">Use</button>
+              </div>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 sm:p-4 border border-slate-100 rounded-xl hover:bg-slate-50">
+                <div class="min-w-0">
+                  <p class="font-medium text-sm">Fee Due Reminder</p>
+                  <p class="text-xs text-slate-400 mt-0.5">Auto • “Dear Parent, fee of ₹[Amount] is due on [Date]…”</p>
+                </div>
+                <button class="text-xs bg-primary-50 text-primary-700 px-3 py-1.5 rounded-lg font-medium self-start sm:self-auto shrink-0">Use</button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- MARKETING -->
+        <section id="section-marketing" class="hidden fade-in space-y-4 sm:space-y-5">
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-5">
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
+              <p class="text-sm text-slate-500">Active Campaigns</p>
+              <p class="text-2xl sm:text-3xl font-bold mt-1">4</p>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
+              <p class="text-sm text-slate-500">Inquiries Generated</p>
+              <p class="text-2xl sm:text-3xl font-bold mt-1">89</p>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
+              <p class="text-sm text-slate-500">Avg. Cost per Inquiry</p>
+              <p class="text-2xl sm:text-3xl font-bold mt-1">₹186</p>
+            </div>
+          </div>
+          <div class="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+            <div class="table-wrapper">
+              <table class="w-full text-sm">
+                <thead class="bg-slate-50 text-slate-500 text-left">
+                  <tr>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Campaign</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Channel</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Inquiries</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Enrolled</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Conversion</th>
+                    <th class="px-4 sm:px-5 py-3 font-semibold">Status</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100">
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 sm:px-5 py-3.5 font-medium">Summer Admission Drive 2026</td>
+                    <td class="px-4 sm:px-5 py-3.5">Facebook + Instagram Ads</td>
+                    <td class="px-4 sm:px-5 py-3.5">41</td>
+                    <td class="px-4 sm:px-5 py-3.5">9</td>
+                    <td class="px-4 sm:px-5 py-3.5 text-emerald-600 font-medium">22%</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2 py-0.5 bg-green-100 text-green-700 rounded-full text-xs">Running</span></td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 sm:px-5 py-3.5 font-medium">Open House – July</td>
+                    <td class="px-4 sm:px-5 py-3.5">WhatsApp + SMS</td>
+                    <td class="px-4 sm:px-5 py-3.5">27</td>
+                    <td class="px-4 sm:px-5 py-3.5">11</td>
+                    <td class="px-4 sm:px-5 py-3.5 text-emerald-600 font-medium">41%</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2 py-0.5 bg-slate-100 text-slate-600 rounded-full text-xs">Completed</span></td>
+                  </tr>
+                  <tr class="hover:bg-slate-50">
+                    <td class="px-4 sm:px-5 py-3.5 font-medium">Referral Reward Program</td>
+                    <td class="px-4 sm:px-5 py-3.5">Parent Network</td>
+                    <td class="px-4 sm:px-5 py-3.5">18</td>
+                    <td class="px-4 sm:px-5 py-3.5">7</td>
+                    <td class="px-4 sm:px-5 py-3.5 text-emerald-600 font-medium">39%</td>
+                    <td class="px-4 sm:px-5 py-3.5"><span class="px-2 py-0.5 bg-green-100 text-green-700 rounded-full text-xs">Running</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <!-- REPORTS -->
+        <section id="section-reports" class="hidden fade-in space-y-4 sm:space-y-6">
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
+              <h3 class="font-bold mb-4 text-sm sm:text-base">Monthly Inquiries vs Admissions</h3>
+              <div class="relative" style="height: 220px;">
+                <canvas id="monthlyChart"></canvas>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
+              <h3 class="font-bold mb-4 text-sm sm:text-base">Key Metrics Snapshot</h3>
+              <div class="space-y-4">
+                <div>
+                  <div class="flex justify-between text-sm mb-1"><span>Inquiry → Enrollment Conversion</span><span class="font-bold">45.3%</span></div>
+                  <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-primary-500 rounded-full" style="width:45.3%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1"><span>Counselor Response SLA (under 2 hrs)</span><span class="font-bold">91%</span></div>
+                  <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-emerald-500 rounded-full" style="width:91%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1"><span>Document Completion Rate</span><span class="font-bold">78%</span></div>
+                  <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-amber-500 rounded-full" style="width:78%"></div></div>
+                </div>
+                <div>
+                  <div class="flex justify-between text-sm mb-1"><span>Student Retention (YoY)</span><span class="font-bold">94.2%</span></div>
+                  <div class="h-2.5 bg-slate-100 rounded-full overflow-hidden"><div class="h-full bg-violet-500 rounded-full" style="width:94.2%"></div></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- AUTOMATION -->
+        <section id="section-automation" class="hidden fade-in space-y-4 sm:space-y-5">
+          <div class="bg-gradient-to-r from-primary-600 to-primary-800 rounded-2xl p-4 sm:p-6 text-white">
+            <h3 class="text-lg sm:text-xl font-bold">Smart Automation Rules</h3>
+            <p class="text-primary-100 text-sm mt-1">The system automatically captures inquiries, assigns counselors, notifies parents, and creates follow-up tasks.</p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3 sm:gap-5">
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
+              <div class="flex items-start gap-3 sm:gap-4">
+                <div class="w-10 h-10 rounded-xl bg-blue-100 text-primary-600 flex items-center justify-center shrink-0"><i class="fas fa-bolt"></i></div>
+                <div>
+                  <h4 class="font-semibold text-sm sm:text-base">New Inquiry Capture</h4>
+                  <p class="text-sm text-slate-500 mt-1">When a form is submitted (website / social / walk-in) → Create Lead + Assign Counselor (round-robin) + Send instant WhatsApp/Email to parent.</p>
+                  <span class="inline-block mt-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
+              <div class="flex items-start gap-3 sm:gap-4">
+                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-600 flex items-center justify-center shrink-0"><i class="fas fa-clock"></i></div>
+                <div>
+                  <h4 class="font-semibold text-sm sm:text-base">Follow-up Reminders</h4>
+                  <p class="text-sm text-slate-500 mt-1">If no activity for 24 hours in “Call / Follow-up” stage → Create task + Notify counselor + Optional auto-message to parent.</p>
+                  <span class="inline-block mt-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
+              <div class="flex items-start gap-3 sm:gap-4">
+                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-600 flex items-center justify-center shrink-0"><i class="fas fa-check-double"></i></div>
+                <div>
+                  <h4 class="font-semibold text-sm sm:text-base">Admission → Student Record</h4>
+                  <p class="text-sm text-slate-500 mt-1">When stage reaches “Admission Confirmed” + fee marked paid → Auto-create Student Profile + Welcome message to parent + Assign class section.</p>
+                  <span class="inline-block mt-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Active</span>
+                </div>
+              </div>
+            </div>
+            <div class="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-5">
+              <div class="flex items-start gap-3 sm:gap-4">
+                <div class="w-10 h-10 rounded-xl bg-violet-100 text-violet-600 flex items-center justify-center shrink-0"><i class="fas fa-birthday-cake"></i></div>
+                <div>
+                  <h4 class="font-semibold text-sm sm:text-base">Birthday & Milestone Wishes</h4>
+                  <p class="text-sm text-slate-500 mt-1">Daily job checks student/parent birthdays and sends personalized WhatsApp / Email wishes automatically.</p>
+                  <span class="inline-block mt-2 text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full">Active</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- New Lead Modal -->
+  <div id="newLeadModal" class="fixed inset-0 bg-black/40 z-50 hidden items-center justify-center p-3 sm:p-4">
+    <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+      <div class="px-4 sm:px-6 py-4 border-b border-slate-100 flex items-center justify-between sticky top-0 bg-white">
+        <h3 class="font-bold text-base sm:text-lg">Capture New Inquiry</h3>
+        <button onclick="closeNewLeadModal()" class="text-slate-400 hover:text-slate-600 p-1"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="p-4 sm:p-6 space-y-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-medium text-slate-500">Parent / Guardian Name</label>
+            <input type="text" class="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary-500 outline-none" placeholder="Full name" />
+          </div>
+          <div>
+            <label class="text-xs font-medium text-slate-500">Phone</label>
+            <input type="tel" class="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary-500 outline-none" placeholder="+91" />
+          </div>
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-500">Email (optional)</label>
+          <input type="email" class="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary-500 outline-none" placeholder="email@example.com" />
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="text-xs font-medium text-slate-500">Class Seeking</label>
+            <select class="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary-500 outline-none">
+              <option>Nursery</option>
+              <option>Class 1-5</option>
+              <option>Class 6-8</option>
+              <option>Class 9-10</option>
+              <option>Class 11-12</option>
+            </select>
+          </div>
+          <div>
+            <label class="text-xs font-medium text-slate-500">Source</label>
+            <select class="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary-500 outline-none">
+              <option>Website</option>
+              <option>WhatsApp</option>
+              <option>Walk-in</option>
+              <option>Social Media</option>
+              <option>Referral</option>
+              <option>Phone Call</option>
+            </select>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs font-medium text-slate-500">Notes</label>
+          <textarea rows="2" class="mt-1 w-full border border-slate-200 rounded-lg px-3 py-2.5 text-sm focus:ring-2 focus:ring-primary-500 outline-none" placeholder="Any special requirements..."></textarea>
+        </div>
+      </div>
+      <div class="px-4 sm:px-6 py-4 bg-slate-50 flex flex-col-reverse sm:flex-row justify-end gap-2 sm:gap-3 sticky bottom-0">
+        <button onclick="closeNewLeadModal()" class="px-4 py-2.5 text-sm font-medium text-slate-600 hover:bg-slate-200 rounded-lg">Cancel</button>
+        <button onclick="closeNewLeadModal()" class="px-5 py-2.5 text-sm font-semibold bg-primary-600 hover:bg-primary-700 text-white rounded-lg shadow-sm">Create Lead & Notify</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Navigation
+    const titles = {
+      dashboard: 'Dashboard',
+      leads: 'Inquiries & Leads',
+      pipeline: 'Admissions Pipeline',
+      students: 'Student Relationship Management',
+      parents: 'Parent Relationship Management',
+      comms: 'Communications Center',
+      marketing: 'Marketing Campaigns',
+      reports: 'Reports & Analytics',
+      automation: 'Automation Rules & Workflows'
+    };
+
+    function showSection(id, btn) {
+      document.querySelectorAll('main > section').forEach(s => s.classList.add('hidden'));
+      const el = document.getElementById('section-' + id);
+      if (el) {
+        el.classList.remove('hidden');
+        el.classList.add('fade-in');
+      }
+      document.getElementById('pageTitle').textContent = titles[id] || id;
+      
+      // Update active state
+      document.querySelectorAll('.sidebar-link').forEach(link => {
+        link.classList.remove('active');
+        link.classList.add('text-slate-300');
+      });
+      if (btn) {
+        btn.classList.add('active');
+        btn.classList.remove('text-slate-300');
+      }
+      
+      // Close sidebar on mobile after navigation
+      if (window.innerWidth < 1024) {
+        closeSidebar();
+      }
+    }
+
+    function toggleSidebar() {
+      const sidebar = document.getElementById('sidebar');
+      const overlay = document.getElementById('sidebar-overlay');
+      sidebar.classList.toggle('open');
+      overlay.classList.toggle('show');
+      document.body.classList.toggle('sidebar-open');
+    }
+
+    function closeSidebar() {
+      document.getElementById('sidebar').classList.remove('open');
+      document.getElementById('sidebar-overlay').classList.remove('show');
+      document.body.classList.remove('sidebar-open');
+    }
+
+    function openNewLeadModal() {
+      document.getElementById('newLeadModal').classList.remove('hidden');
+      document.getElementById('newLeadModal').classList.add('flex');
+    }
+    function closeNewLeadModal() {
+      document.getElementById('newLeadModal').classList.add('hidden');
+      document.getElementById('newLeadModal').classList.remove('flex');
+    }
+
+    // Close sidebar on resize to desktop
+    window.addEventListener('resize', () => {
+      if (window.innerWidth >= 1024) {
+        closeSidebar();
+      }
+    });
+
+    // Charts
+    const funnelCtx = document.getElementById('funnelChart');
+    if (funnelCtx) {
+      new Chart(funnelCtx, {
+        type: 'bar',
+        data: {
+          labels: ['Inquiries', 'Counselor Assigned', 'Follow-up Done', 'Campus Visit', 'Docs Verified', 'Fee Paid', 'Admitted'],
+          datasets: [{
+            label: 'Count',
+            data: [148, 132, 98, 71, 54, 49, 67],
+            backgroundColor: ['#93c5fd', '#60a5fa', '#3b82f6', '#2563eb', '#1d4ed8', '#1e40af', '#10b981'],
+            borderRadius: 6
+          }]
+        },
+        options: {
+          indexAxis: 'y',
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          scales: { x: { beginAtZero: true, grid: { display: false } }, y: { grid: { display: false } } }
+        }
+      });
+    }
+
+    const sourceCtx = document.getElementById('sourceChart');
+    if (sourceCtx) {
+      new Chart(sourceCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Website', 'WhatsApp/Social', 'Walk-ins', 'Referrals'],
+          datasets: [{
+            data: [42, 28, 18, 12],
+            backgroundColor: ['#3b82f6', '#10b981', '#8b5cf6', '#f59e0b'],
+            borderWidth: 0
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { display: false } },
+          cutout: '65%'
+        }
+      });
+    }
+
+    const monthlyCtx = document.getElementById('monthlyChart');
+    if (monthlyCtx) {
+      new Chart(monthlyCtx, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+          datasets: [
+            {
+              label: 'Inquiries',
+              data: [42, 38, 55, 61, 48, 72, 148],
+              borderColor: '#3b82f6',
+              backgroundColor: 'rgba(59,130,246,0.1)',
+              fill: true,
+              tension: 0.35
+            },
+            {
+              label: 'Admissions',
+              data: [12, 15, 19, 22, 18, 28, 67],
+              borderColor: '#10b981',
+              backgroundColor: 'rgba(16,185,129,0.1)',
+              fill: true,
+              tension: 0.35
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: { legend: { position: 'top' } },
+          scales: { y: { beginAtZero: true } }
+        }
+      });
+    }
+  </script>
+</body>
+</html>

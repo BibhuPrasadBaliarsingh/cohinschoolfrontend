@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cohen International School | Excellence Through Harmony | Best CBSE School in Bhubaneswar</title>
+    <meta name="description"
+      content="Cohen International School - Premium CBSE International School near IIT Bhubaneswar. Holistic education, Integrated IIT-JEE & NEET, AI & Robotics, Smart Campus with full ERP + CRM + AI ecosystem." />
+    <meta name="keywords"
+      content="Cohen International School, Best CBSE School Bhubaneswar, Jatani, IIT-JEE, NEET, Boarding School Odisha" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="apple-touch-icon" href="/logo.png" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet" />
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              navy: {
+                950: '#050d16',
+                900: '#0B1C2C',
+                800: '#12283A',
+                700: '#1A3A4A',
+                600: '#234B5C',
+              },
+              gold: {
+                400: '#E8C547',
+                500: '#C9A227',
+                600: '#A8861F',
+              },
+              cream: {
+                50: '#FDFBF7',
+                100: '#F8F6F1',
+                200: '#F0EBE0',
+              }
+            },
+            fontFamily: {
+              display: ['Playfair Display', 'serif'],
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            animation: {
+              'float': 'float 6s ease-in-out infinite',
+              'pulse-soft': 'pulse-soft 3s ease-in-out infinite',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-12px)' },
+              },
+              'pulse-soft': {
+                '0%, 100%': { opacity: '1' },
+                '50%': { opacity: '0.7' },
+              }
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-cream-50 text-navy-900 overflow-x-hidden">
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
