@@ -469,21 +469,12 @@ export default function Modals({
           </div>
 
           <form className="p-5 sm:p-6 space-y-4" onSubmit={handleLoginSubmit}>
-            <div className="bg-gold-500/10 border border-gold-500/30 p-3 rounded-2xl text-[11px] text-white/80">
-              <p className="flex items-center gap-2 font-semibold text-gold-400 mb-1.5">
-                <KeyRound className="w-3.5 h-3.5 flex-shrink-0" /> Demo Credentials (pre-filled)
-              </p>
-              <p>
-                ID: <span className="text-white font-mono">{p.demoId}</span> &nbsp;•&nbsp; Password: <span className="text-white font-mono">{p.demoPass}</span>
-              </p>
-            </div>
-
             <div>
               <label className="text-xs font-semibold text-white/90 block mb-1">{p.idLabel} *</label>
               <input
                 required
                 type="text"
-                defaultValue={p.demoId}
+                placeholder="Enter authorized user ID / email"
                 className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder-white/40 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400/60"
               />
             </div>
@@ -492,7 +483,7 @@ export default function Modals({
               <input
                 required
                 type="password"
-                defaultValue={p.demoPass}
+                placeholder="Enter password"
                 className="w-full px-4 py-3 rounded-xl bg-white/10 border border-white/15 text-white placeholder-white/40 text-sm focus:outline-none focus:ring-2 focus:ring-gold-400/60"
               />
             </div>
