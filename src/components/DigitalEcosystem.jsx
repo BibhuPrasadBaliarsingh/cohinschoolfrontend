@@ -25,10 +25,10 @@ export default function DigitalEcosystem({ openModule }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-16 reveal">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/20 border border-gold-500/30 text-gold-400 text-xs font-medium tracking-wider uppercase mb-6">
+          {/* <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/20 border border-gold-500/30 text-gold-400 text-xs font-medium tracking-wider uppercase mb-6">
             <Zap className="w-3.5 h-3.5" />
             Powered by Briskode Technology
-          </div>
+          </div> */}
           <h2 className="font-display text-4xl lg:text-5xl text-white mb-4">Complete Digital Ecosystem</h2>
           <p className="text-white/60 max-w-3xl mx-auto text-lg">
             Not just a website — an integrated School ERP + Admission CRM + HRMS + AI-powered platform that transforms every stakeholder experience.

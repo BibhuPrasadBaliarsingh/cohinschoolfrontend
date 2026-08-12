@@ -1,6 +1,6 @@
-import React from 'react';
-import { Target, Compass, Quote, ArrowRight } from 'lucide-react';
-import AnimatedCounter from './AnimatedCounter';
+import React from "react";
+import { Target, Compass, Quote, ArrowRight } from "lucide-react";
+import AnimatedCounter from "./AnimatedCounter";
 
 export default function About({ openChairmanModal }) {
   return (
@@ -10,21 +10,31 @@ export default function About({ openChairmanModal }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="reveal">
-            <p className="text-gold-600 font-medium tracking-widest uppercase text-sm mb-3">About the School</p>
+            <p className="text-gold-600 font-medium tracking-widest uppercase text-sm mb-3">
+              About the School
+            </p>
             <h2 className="font-display text-4xl lg:text-5xl text-navy-900 leading-tight mb-6">
-              A Temple of Learning<br />
-              <span className="italic text-navy-700">Next to IIT Bhubaneswar</span>
+              A Temple of Learning
+              <br />
+              <span className="italic text-navy-700">
+                Next to IIT Bhubaneswar
+              </span>
             </h2>
             <p className="text-navy-700/80 text-lg leading-relaxed mb-6">
-              Cohen International School (CIS) is a unique CBSE Senior Secondary school spread over 10 acres of lush
-              greenery at the foothills of Barunei Hills, Jatani. Founded in 2015 by visionary educationists, it stands as
-              a beacon of holistic, career-oriented education in Odisha.
+              Cohen International School (CIS) is a unique CBSE Senior Secondary
+              school spread over 10 acres of lush greenery at the foothills of
+              Barunei Hills, Jatani. Founded in 2015 by visionary educationists,
+              it stands as a beacon of holistic, career-oriented education in
+              Odisha.
             </p>
             <p className="text-navy-700/80 leading-relaxed mb-8">
-              Our pedagogy — <strong>Collaborative, Instrumental & Self-Paced (CIS)</strong> — transforms classrooms into
-              vibrant learning spaces. From Nursery to Class XII, students experience Project-Based Learning, Design
-              Thinking, Cambridge English, Artificial Intelligence, Coding & Robotics, alongside integrated coaching for
-              IIT-JEE and NEET at no extra cost.
+              Our pedagogy —{" "}
+              <strong>Collaborative, Instrumental & Self-Paced (CIS)</strong> —
+              transforms classrooms into vibrant learning spaces. From Nursery
+              to Class XII, students experience Project-Based Learning, Design
+              Thinking, Cambridge English, Artificial Intelligence, Coding &
+              Robotics, alongside integrated coaching for IIT-JEE and NEET at no
+              extra cost.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
@@ -35,7 +45,8 @@ export default function About({ openChairmanModal }) {
                 <div>
                   <p className="font-semibold text-navy-900">Vision</p>
                   <p className="text-sm text-navy-700/70 mt-1">
-                    World-class academics that help every child pursue dreams in academics, arts, sports or management.
+                    World-class academics that help every child pursue dreams in
+                    academics, arts, sports or management.
                   </p>
                 </div>
               </div>
@@ -46,18 +57,29 @@ export default function About({ openChairmanModal }) {
                 <div>
                   <p className="font-semibold text-navy-900">Mission</p>
                   <p className="text-sm text-navy-700/70 mt-1">
-                    Know, Learn & Outshine — empowering students with holistic growth and global citizenship.
+                    Know, Learn & Outshine — empowering students with holistic
+                    growth and global citizenship.
                   </p>
                 </div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-3">
-              <span className="px-4 py-2 rounded-full bg-navy-900 text-white text-sm font-medium">CBSE Affiliated (#1530280)</span>
-              <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">Subhadra Charitable Trust</span>
-              <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">10 Acre Campus</span>
-              <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">Boarding Available</span>
-              <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">AI & Aerospace</span>
+              <span className="px-4 py-2 rounded-full bg-navy-900 text-white text-sm font-medium">
+                CBSE Affiliated (#1530280)
+              </span>
+              <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">
+                Subhadra Charitable Trust
+              </span>
+              <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">
+                10 Acre Campus
+              </span>
+              <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">
+                Boarding Available
+              </span>
+              <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">
+                AI & Aerospace
+              </span>
             </div>
           </div>
 
@@ -73,15 +95,22 @@ export default function About({ openChairmanModal }) {
                 <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-400 text-xs font-medium mb-3">
                   <Quote className="w-3.5 h-3.5" /> Founder Chairman's Vision
                 </div>
-                <h3 className="font-display text-2xl lg:text-3xl text-white mb-2">Chairman’s Message</h3>
+                <h3 className="font-display text-2xl lg:text-3xl text-white mb-2">
+                  Chairman’s Message
+                </h3>
                 <p className="text-white/80 text-sm leading-relaxed mb-4 italic">
-                  “Cohen International School is built as a temple of learning where curiosity is nurtured, values are
-                  instilled, and every student is empowered to lead.”
+                  “Cohen International School is built as a temple of learning
+                  where curiosity is nurtured, values are instilled, and every
+                  student is empowered to lead.”
                 </p>
                 <div className="flex items-center justify-between">
                   <div>
-                    <p className="text-gold-400 text-sm font-semibold">— Er. Jyoti Ranjan Tripathy</p>
-                    <p className="text-white/60 text-xs">Alumnus, IIT Kharagpur | Founder Chairman, CIS</p>
+                    <p className="text-gold-400 text-sm font-semibold">
+                      — Er. Jyoti Ranjan Tripathy
+                    </p>
+                    <p className="text-white/60 text-xs">
+                      Alumnus, IIT Kharagpur | Founder Chairman, CIS
+                    </p>
                   </div>
                   <button
                     onClick={openChairmanModal}
@@ -98,7 +127,46 @@ export default function About({ openChairmanModal }) {
               <span className="font-display text-3xl text-navy-900 font-bold">
                 <AnimatedCounter end={10} suffix="+" duration={1800} />
               </span>
-              <span className="text-navy-900 text-xs font-medium text-center leading-tight px-2">Years of Excellence</span>
+              <span className="text-navy-900 text-xs font-medium text-center leading-tight px-2">
+                Years of Excellence
+              </span>
+            </div>
+            {/* Stats */}
+            <div className="mt-16 rounded-[2rem] bg-gold-500/10 border border-gold-400/30 p-6 shadow-2xl backdrop-blur-xl reveal">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                <div className="text-center sm:text-left">
+                  <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
+                    <AnimatedCounter end={10} suffix="+" duration={2000} />
+                  </p>
+                  <p className="text-navy-950/80 text-sm mt-1">
+                    Acre Green Campus
+                  </p>
+                </div>
+                <div className="text-center sm:text-left">
+                  <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
+                    <AnimatedCounter end={1} prefix="#" duration={1500} />
+                  </p>
+                  <p className="text-navy-950/80 text-sm mt-1">
+                    CBSE in Bhubaneswar
+                  </p>
+                </div>
+                <div className="text-center sm:text-left">
+                  <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
+                    <AnimatedCounter start={2000} end={2015} duration={2200} />
+                  </p>
+                  <p className="text-navy-950/80 text-sm mt-1">
+                    Year of Foundation
+                  </p>
+                </div>
+                <div className="text-center sm:text-left">
+                  <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
+                    <AnimatedCounter end={100} suffix="%" duration={2000} />
+                  </p>
+                  <p className="text-navy-950/80 text-sm mt-1">
+                    Smart Digital Ecosystem
+                  </p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

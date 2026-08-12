@@ -1,17 +1,18 @@
-import React from 'react';
-import PageWrapper from '../components/PageWrapper';
-import Hero from '../components/Hero';
-import About from '../components/About';
-import WhyChoose from '../components/WhyChoose';
-import Academics from '../components/Academics';
-import Facilities from '../components/Facilities';
-import Admissions from '../components/Admissions';
-import DigitalEcosystem from '../components/DigitalEcosystem';
-import PortalsPreview from '../components/PortalsPreview';
-import Gallery from '../components/Gallery';
-import Testimonials from '../components/Testimonials';
-import Careers from '../components/Careers';
-import Contact from '../components/Contact';
+import React from "react";
+import PageWrapper from "../components/PageWrapper";
+import Hero from "../components/Hero";
+import About from "../components/About";
+import WhyChoose from "../components/WhyChoose";
+import Academics from "../components/Academics";
+import Facilities from "../components/Facilities";
+import Admissions from "../components/Admissions";
+import DigitalEcosystem from "../components/DigitalEcosystem";
+import PortalsPreview from "../components/PortalsPreview";
+import MediaCarousel from "../components/MediaCarousel";
+import Gallery from "../components/Gallery";
+import Testimonials from "../components/Testimonials";
+import Careers from "../components/Careers";
+import Contact from "../components/Contact";
 
 export default function HomePage({
   openAdmissionModal,
@@ -21,7 +22,7 @@ export default function HomePage({
   openModule,
   openPortalFrame,
   openCareerModal,
-  openChatbot
+  openChatbot,
 }) {
   return (
     <PageWrapper>
@@ -35,7 +36,7 @@ export default function HomePage({
       <Facilities openDedicatedTopic={openDedicatedTopic} />
       <Admissions openAdmissionModal={openAdmissionModal} />
       <DigitalEcosystem openModule={openModule} />
-      <PortalsPreview openPortalFrame={openPortalFrame} />
+      {/* <PortalsPreview openPortalFrame={openPortalFrame} /> */}
       <Gallery />
       <Testimonials />
       <Careers openCareerModal={openCareerModal} />
