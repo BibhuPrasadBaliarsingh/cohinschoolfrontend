@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { useNavigate, useLocation, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import React, { useState } from "react";
+import { useNavigate, useLocation, Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 import {
   LogIn,
   UserCheck,
@@ -12,78 +12,81 @@ import {
   EyeOff,
   Sparkles,
   ArrowRight,
-  AlertCircle
-} from 'lucide-react';
+  AlertCircle,
+} from "lucide-react";
 
 const rolesConfig = [
   {
-    id: 'parent',
-    title: 'Parent Portal',
-    badge: 'ParentConnect',
-    email: 'parent@cohen.edu.in',
-    password: 'parent123',
+    id: "parent",
+    title: "Parent Portal",
+    badge: "ParentConnect",
+    email: "parent@cohen.edu.in",
+    password: "parent123",
     icon: Users,
-    color: 'from-rose-500/20 to-gold-500/10',
-    description: 'Track child performance, attendance, report cards & online fees'
+    color: "from-rose-500/20 to-gold-500/10",
+    description:
+      "Track child performance, attendance, report cards & online fees",
   },
   {
-    id: 'student',
-    title: 'Student Portal',
-    badge: 'EduLearn Hub',
-    email: 'student@cohen.edu.in',
-    password: 'student123',
+    id: "student",
+    title: "Student Portal",
+    badge: "EduLearn Hub",
+    email: "student@cohen.edu.in",
+    password: "student123",
     icon: GraduationCap,
-    color: 'from-blue-500/20 to-indigo-500/10',
-    description: 'Access digital classes, AI study tutor, homework & timetable'
+    color: "from-blue-500/20 to-indigo-500/10",
+    description: "Access digital classes, AI study tutor, homework & timetable",
   },
   {
-    id: 'teacher',
-    title: 'Teacher Portal',
-    badge: 'TeachFlow',
-    email: 'teacher@cohen.edu.in',
-    password: 'teacher123',
+    id: "teacher",
+    title: "Teacher Portal",
+    badge: "TeachFlow",
+    email: "teacher@cohen.edu.in",
+    password: "teacher123",
     icon: BookOpen,
-    color: 'from-emerald-500/20 to-teal-500/10',
-    description: 'Manage gradebook, lesson plans, class logs & student queries'
+    color: "from-emerald-500/20 to-teal-500/10",
+    description: "Manage gradebook, lesson plans, class logs & student queries",
   },
   {
-    id: 'principal',
-    title: 'Principal Desk',
-    badge: 'Executive',
-    email: 'principal@cohen.edu.in',
-    password: 'principal123',
+    id: "principal",
+    title: "Principal Desk",
+    badge: "Executive",
+    email: "principal@cohen.edu.in",
+    password: "principal123",
     icon: UserCheck,
-    color: 'from-amber-500/20 to-gold-500/10',
-    description: 'Academic oversight, staff performance & institutional policy'
+    color: "from-amber-500/20 to-gold-500/10",
+    description: "Academic oversight, staff performance & institutional policy",
   },
   {
-    id: 'admin',
-    title: 'Super Admin',
-    badge: 'Governance',
-    email: 'admin@cohen.edu.in',
-    password: 'admin123',
+    id: "admin",
+    title: "Super Admin",
+    badge: "Governance",
+    email: "admin@cohen.edu.in",
+    password: "admin123",
     icon: Shield,
-    color: 'from-purple-500/20 to-pink-500/10',
-    description: 'Full ERP/CRM system administration, audit logs & user management'
-  }
+    color: "from-purple-500/20 to-pink-500/10",
+    description:
+      "Full ERP/CRM system administration, audit logs & user management",
+  },
 ];
 
 export default function LoginPage() {
-  const [selectedRole, setSelectedRole] = useState('parent');
-  const [email, setEmail] = useState('parent@cohen.edu.in');
-  const [password, setPassword] = useState('parent123');
+  const [selectedRole, setSelectedRole] = useState("parent");
+  const [email, setEmail] = useState("parent@cohen.edu.in");
+  const [password, setPassword] = useState("parent123");
   const [showPassword, setShowPassword] = useState(false);
-  const [formError, setFormError] = useState('');
+  const [formError, setFormError] = useState("");
 
   const { login, loading } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
 
-  const currentRoleObj = rolesConfig.find((r) => r.id === selectedRole) || rolesConfig[0];
+  const currentRoleObj =
+    rolesConfig.find((r) => r.id === selectedRole) || rolesConfig[0];
 
   const handleRoleSelect = (roleId) => {
     setSelectedRole(roleId);
-    setFormError('');
+    setFormError("");
     const target = rolesConfig.find((r) => r.id === roleId);
     if (target) {
       setEmail(target.email);
@@ -97,16 +100,16 @@ export default function LoginPage() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setFormError('');
+    setFormError("");
 
     if (!email || !password) {
-      setFormError('Please enter both email and password');
+      setFormError("Please enter both email and password");
       return;
     }
 
     try {
       const loggedUser = await login(email, password);
-      
+
       // Navigate to intended page or role dashboard
       const from = location.state?.from?.pathname;
       if (from) {
@@ -114,26 +117,26 @@ export default function LoginPage() {
       } else {
         // Navigate according to database assigned user role
         switch (loggedUser.role) {
-          case 'admin':
-            navigate('/admin/dashboard', { replace: true });
+          case "admin":
+            navigate("/admin/dashboard", { replace: true });
             break;
-          case 'principal':
-            navigate('/principal/dashboard', { replace: true });
+          case "principal":
+            navigate("/principal/dashboard", { replace: true });
             break;
-          case 'teacher':
-            navigate('/teacher/dashboard', { replace: true });
+          case "teacher":
+            navigate("/teacher/dashboard", { replace: true });
             break;
-          case 'student':
-            navigate('/student/dashboard', { replace: true });
+          case "student":
+            navigate("/student/dashboard", { replace: true });
             break;
-          case 'parent':
+          case "parent":
           default:
-            navigate('/parent/dashboard', { replace: true });
+            navigate("/parent/dashboard", { replace: true });
             break;
         }
       }
     } catch (err) {
-      setFormError(err.message || 'Login failed. Please check credentials.');
+      setFormError(err.message || "Login failed. Please check credentials.");
     }
   };
 
@@ -146,7 +149,11 @@ export default function LoginPage() {
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center relative z-10">
         <Link to="/" className="inline-block mb-4">
           <div className="bg-white/95 p-3 rounded-2xl shadow-xl border border-white/20 inline-block">
-            <img src="/logo.png" alt="Cohen Logo" className="h-12 w-auto object-contain mx-auto" />
+            <img
+              src="/logo.png"
+              alt="Cohen Logo"
+              className="h-12 w-auto object-contain mx-auto"
+            />
           </div>
         </Link>
         <h2 className="font-display text-3xl font-extrabold text-white">
@@ -158,48 +165,9 @@ export default function LoginPage() {
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-2xl relative z-10 px-4">
-        {/* Role Switcher Tabs */}
-        <div className="grid grid-cols-2 sm:grid-cols-5 gap-2 mb-6">
-          {rolesConfig.map((role) => {
-            const Icon = role.icon;
-            const active = selectedRole === role.id;
-            return (
-              <button
-                key={role.id}
-                type="button"
-                onClick={() => handleRoleSelect(role.id)}
-                className={`p-3 rounded-2xl border backdrop-blur-md transition-all flex flex-col items-center justify-center text-center ${
-                  active
-                    ? 'bg-gold-500 text-navy-950 border-gold-400 font-bold shadow-[0_5px_20px_rgba(201,162,39,0.3)] scale-105'
-                    : 'bg-white/5 border-white/10 text-white/70 hover:bg-white/10 hover:text-white'
-                }`}
-              >
-                <Icon className={`w-5 h-5 mb-1.5 ${active ? 'text-navy-950' : 'text-gold-400'}`} />
-                <span className="text-xs font-semibold leading-tight">{role.title.split(' ')[0]}</span>
-              </button>
-            );
-          })}
-        </div>
-
         {/* Main Card */}
         <div className="bg-gradient-to-b from-white/15 to-white/5 border border-white/20 backdrop-blur-xl py-8 px-6 sm:px-10 shadow-2xl rounded-3xl">
           {/* Active Role Header */}
-          <div className="flex items-center justify-between pb-6 mb-6 border-b border-white/10">
-            <div>
-              <span className="px-3 py-1 rounded-full bg-gold-500/20 text-gold-300 text-xs font-bold uppercase tracking-wider mb-1 inline-block">
-                {currentRoleObj.badge}
-              </span>
-              <h3 className="font-display text-2xl font-bold text-white">
-                {currentRoleObj.title} Sign In
-              </h3>
-              <p className="text-xs text-white/60 mt-1">
-                {currentRoleObj.description}
-              </p>
-            </div>
-            <div className="w-12 h-12 rounded-2xl bg-gold-500/20 border border-gold-400/30 flex items-center justify-center text-gold-400">
-              <currentRoleObj.icon className="w-6 h-6" />
-            </div>
-          </div>
 
           {/* Form Error Alert */}
           {formError && (
@@ -231,7 +199,7 @@ export default function LoginPage() {
               </label>
               <div className="relative">
                 <input
-                  type={showPassword ? 'text' : 'password'}
+                  type={showPassword ? "text" : "password"}
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
@@ -243,17 +211,34 @@ export default function LoginPage() {
                   onClick={() => setShowPassword(!showPassword)}
                   className="absolute right-4 top-1/2 -translate-y-1/2 text-white/50 hover:text-gold-400 transition"
                 >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                  {showPassword ? (
+                    <EyeOff className="w-5 h-5" />
+                  ) : (
+                    <Eye className="w-5 h-5" />
+                  )}
                 </button>
               </div>
             </div>
 
             <div className="flex items-center justify-between text-xs pt-1">
               <label className="flex items-center gap-2 text-white/70 cursor-pointer">
-                <input type="checkbox" defaultChecked className="rounded border-white/20 bg-white/10 text-gold-500 focus:ring-0" />
+                <input
+                  type="checkbox"
+                  defaultChecked
+                  className="rounded border-white/20 bg-white/10 text-gold-500 focus:ring-0"
+                />
                 <span>Remember Session</span>
               </label>
-              <a href="#forgot" onClick={(e) => { e.preventDefault(); alert('Please contact system administrator or IT helpdesk at info@coheninternationalschool.com to reset password.'); }} className="text-gold-400 hover:underline">
+              <a
+                href="#forgot"
+                onClick={(e) => {
+                  e.preventDefault();
+                  alert(
+                    "Please contact system administrator or IT helpdesk at info@coheninternationalschool.com to reset password.",
+                  );
+                }}
+                className="text-gold-400 hover:underline"
+              >
                 Forgot Password?
               </a>
             </div>
@@ -267,79 +252,11 @@ export default function LoginPage() {
                 <span>Authenticating Credentials...</span>
               ) : (
                 <>
-                  <LogIn className="w-5 h-5" /> Sign In to {currentRoleObj.badge}
+                  <LogIn className="w-5 h-5" /> Sign In
                 </>
               )}
             </button>
           </form>
-
-          {/* Demo Login Quick Switcher */}
-          <div className="mt-8 pt-6 border-t border-white/10">
-            <p className="text-xs font-semibold text-gold-400 uppercase tracking-wider mb-3 text-center">
-              ⚡ Quick Demo 1-Click Credentials
-            </p>
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs">
-              <button
-                type="button"
-                onClick={() => fillDemoCredentials('parent')}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-gold-500/20 border border-white/10 hover:border-gold-400 text-left transition flex items-center gap-2"
-              >
-                <Users className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                <div className="truncate">
-                  <p className="font-bold text-white leading-tight">Parent Demo</p>
-                  <p className="text-[10px] text-white/50 truncate">parent@cohen.edu.in</p>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => fillDemoCredentials('student')}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-gold-500/20 border border-white/10 hover:border-gold-400 text-left transition flex items-center gap-2"
-              >
-                <GraduationCap className="w-4 h-4 text-blue-400 flex-shrink-0" />
-                <div className="truncate">
-                  <p className="font-bold text-white leading-tight">Student Demo</p>
-                  <p className="text-[10px] text-white/50 truncate">student@cohen.edu.in</p>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => fillDemoCredentials('teacher')}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-gold-500/20 border border-white/10 hover:border-gold-400 text-left transition flex items-center gap-2"
-              >
-                <BookOpen className="w-4 h-4 text-emerald-400 flex-shrink-0" />
-                <div className="truncate">
-                  <p className="font-bold text-white leading-tight">Teacher Demo</p>
-                  <p className="text-[10px] text-white/50 truncate">teacher@cohen.edu.in</p>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => fillDemoCredentials('principal')}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-gold-500/20 border border-white/10 hover:border-gold-400 text-left transition flex items-center gap-2"
-              >
-                <UserCheck className="w-4 h-4 text-amber-400 flex-shrink-0" />
-                <div className="truncate">
-                  <p className="font-bold text-white leading-tight">Principal Demo</p>
-                  <p className="text-[10px] text-white/50 truncate">principal@cohen.edu.in</p>
-                </div>
-              </button>
-
-              <button
-                type="button"
-                onClick={() => fillDemoCredentials('admin')}
-                className="p-2.5 rounded-xl bg-white/5 hover:bg-gold-500/20 border border-white/10 hover:border-gold-400 text-left transition flex items-center gap-2 col-span-2 sm:col-span-1"
-              >
-                <Shield className="w-4 h-4 text-purple-400 flex-shrink-0" />
-                <div className="truncate">
-                  <p className="font-bold text-white leading-tight">Super Admin</p>
-                  <p className="text-[10px] text-white/50 truncate">admin@cohen.edu.in</p>
-                </div>
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
