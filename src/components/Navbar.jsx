@@ -19,24 +19,21 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
   }, []);
 
   const navLinkClass = ({ isActive }) =>
-    `nav-link text-sm font-medium transition ${
-      isActive ? 'text-gold-400 font-semibold active' : 'text-white/90 hover:text-gold-400'
+    `nav-link text-sm font-medium transition ${isActive ? 'text-gold-400 font-semibold active' : 'text-white/90 hover:text-gold-400'
     }`;
 
   const mobileNavLinkClass = ({ isActive }) =>
-    `block py-2 text-base font-medium transition ${
-      isActive ? 'text-gold-400 font-bold active' : 'text-white hover:text-gold-400'
+    `block py-2 text-base font-medium transition ${isActive ? 'text-gold-400 font-bold active' : 'text-white hover:text-gold-400'
     }`;
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-navy-950/95 backdrop-blur-xl border-b border-gold-500/20 shadow-2xl' : 'bg-transparent'}`}>
       {/* Top Notification Bar */}
       <div
-        className={`bg-navy-950/90 backdrop-blur-md text-white/80 border-b border-white/10 text-xs transition-all duration-300 transform origin-top overflow-hidden ${
-          scrolled ? 'max-h-0 opacity-0 -translate-y-full py-0 border-transparent pointer-events-none' : 'max-h-24 opacity-100 translate-y-0 py-1.5'
-        }`}
+        className={`bg-navy-950/90 backdrop-blur-md text-white/80 border-b border-white/10 text-xs transition-all duration-300 transform origin-top overflow-hidden ${scrolled ? 'max-h-0 opacity-0 -translate-y-full py-0 border-transparent pointer-events-none' : 'max-h-24 opacity-100 translate-y-0 py-1.5'
+          }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between flex-wrap gap-2">
+        <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-4">
             <span className="flex items-center gap-1 text-gold-400 font-medium">
               <Phone className="w-3 h-3 flex-shrink-0" />
@@ -77,7 +74,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
       </div>
 
       <nav id="navbar" className="transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12">
           <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-16 sm:h-18' : 'h-20 sm:h-22'}`}>
             {/* Logo */}
             <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center group">
@@ -110,6 +107,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
               <NavLink to="/careers" className={navLinkClass}>
                 Careers
               </NavLink>
+             
               <NavLink to="/contact" className={navLinkClass}>
                 Contact
               </NavLink>

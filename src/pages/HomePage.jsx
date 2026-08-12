@@ -13,6 +13,8 @@ import Gallery from "../components/Gallery";
 import Testimonials from "../components/Testimonials";
 import Careers from "../components/Careers";
 import Contact from "../components/Contact";
+import NewsAnnouncements from "../components/NewsAnnouncements";
+import AdmissionBanner from "../components/AdmissionBanner";
 
 export default function HomePage({
   openAdmissionModal,
@@ -30,13 +32,15 @@ export default function HomePage({
         openAdmissionModal={openAdmissionModal}
         openVirtualTour={openVirtualTour}
       />
+      <AdmissionBanner openAdmissionModal={openAdmissionModal} />
+      <NewsAnnouncements openAdmissionModal={openAdmissionModal} />
       <About openChairmanModal={openChairmanModal} />
       <WhyChoose openDedicatedTopic={openDedicatedTopic} />
       <Academics />
       <Facilities openDedicatedTopic={openDedicatedTopic} />
       <Admissions openAdmissionModal={openAdmissionModal} />
       <DigitalEcosystem openModule={openModule} />
-      {/* <PortalsPreview openPortalFrame={openPortalFrame} /> */}
+      <PortalsPreview openPortalFrame={openPortalFrame} />
       <Gallery />
       <Testimonials />
       <Careers openCareerModal={openCareerModal} />

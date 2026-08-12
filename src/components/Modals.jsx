@@ -454,11 +454,10 @@ export default function Modals({
                   type="button"
                   onClick={() => openLoginModal(key)}
                   title={t.title}
-                  className={`flex flex-col items-center gap-1.5 p-2.5 rounded-xl border transition ${
-                    active
+                  className={`flex flex-col items-center gap-1.5 p-2.5 rounded-xl border transition ${active
                       ? `bg-${t.color}-500/20 border-${t.color}-400/60`
                       : 'bg-white/5 border-white/10 hover:border-white/25 hover:bg-white/10'
-                  }`}
+                    }`}
                 >
                   <span className={`text-[10px] font-semibold ${active ? 'text-gold-400 font-bold' : 'text-white/70'} leading-tight text-center`}>
                     {t.title.replace(' Portal', '')}
@@ -537,8 +536,7 @@ export default function Modals({
     const handleSubmit = (e) => {
       e.preventDefault();
       alert(
-        `Thank you! Your ${
-          isRegister ? 'Registration' : 'Application'
+        `Thank you! Your ${isRegister ? 'Registration' : 'Application'
         } details have been captured in the Admission CRM. An admission counsellor will reach out to you within 24 hours.`
       );
       closeModal();
@@ -814,9 +812,8 @@ export default function Modals({
                   <button
                     key={pk}
                     onClick={() => openPortalFrame(pk)}
-                    className={`px-2.5 py-1 text-xs text-white hover:bg-white/10 rounded-lg font-medium transition capitalize ${
-                      key === pk ? 'bg-gold-500 text-navy-900 font-bold' : ''
-                    }`}
+                    className={`px-2.5 py-1 text-xs text-white hover:bg-white/10 rounded-lg font-medium transition capitalize ${key === pk ? 'bg-gold-500 text-navy-900 font-bold' : ''
+                      }`}
                   >
                     {pk}
                   </button>

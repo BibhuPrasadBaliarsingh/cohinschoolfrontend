@@ -99,7 +99,7 @@ export default function LoginPage() {
 
   return (
     <div className="min-h-screen bg-[#050D16] flex flex-col justify-between relative overflow-hidden font-sans text-white selection:bg-gold-500 selection:text-navy-950">
-      
+
       {/* Background Animated Glowing Meshes & Rays */}
       <div className="absolute top-0 left-0 right-0 h-full overflow-hidden pointer-events-none z-0">
         <div className="absolute -top-32 left-1/4 w-[650px] h-[650px] bg-gradient-to-br from-gold-500/20 via-amber-500/10 to-transparent rounded-full blur-[140px] animate-pulse-soft" />
@@ -138,10 +138,10 @@ export default function LoginPage() {
       {/* Main Hatke Split Layout Container */}
       <main className="flex-1 relative z-10 flex items-center justify-center px-4 py-8 sm:px-6 lg:px-12 my-auto">
         <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-          
+
           {/* LEFT SIDE: Brand Heritage Emblem Spotlight (Desktop Column) */}
           <div className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
-            
+
             {/* Glowing Golden Shield Crest Banner */}
             <div className="relative group">
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-gold-400 via-amber-500 to-gold-600 opacity-60 blur-lg group-hover:opacity-100 transition duration-500" />
@@ -202,7 +202,7 @@ export default function LoginPage() {
           {/* RIGHT SIDE: Interactive Cyber-Regal Login Card */}
           <div className="lg:col-span-6 w-full max-w-md mx-auto">
             <div className="relative rounded-3xl bg-gradient-to-b from-white/15 via-white/10 to-white/5 backdrop-blur-2xl border border-white/20 p-6 sm:p-8 shadow-2xl shadow-navy-950/90">
-              
+
               {/* Glowing Top Beam */}
               <div className="absolute top-0 inset-x-10 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent rounded-full" />
 
@@ -225,7 +225,7 @@ export default function LoginPage() {
 
               {/* Direct Login Form */}
               <form className="space-y-4" onSubmit={handleSubmit}>
-                
+
                 {/* Email Field */}
                 <div>
                   <label className="block text-xs font-semibold text-white/90 uppercase tracking-wider mb-1.5">
