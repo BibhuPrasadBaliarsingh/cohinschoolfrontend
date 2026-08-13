@@ -22,6 +22,7 @@ import SmartCampusPage from './pages/SmartCampusPage';
 import PortalsPage from './pages/PortalsPage';
 import CareersPage from './pages/CareersPage';
 import ContactPage from './pages/ContactPage';
+import TermsPage from './pages/TermsPage';
 
 import LoginPage from './pages/LoginPage';
 import UnauthorizedPage from './pages/UnauthorizedPage';
@@ -137,6 +138,8 @@ function AnimatedRoutes({
         path="/contact"
         element={<ContactPage openChatbot={openChatbot} />}
       />
+      <Route path="/terms" element={<TermsPage />} />
+      <Route path="/terms-and-conditions" element={<TermsPage />} />
 
       {/* Authentication & Authorization Routes */}
       <Route path="/login" element={<LoginPage />} />

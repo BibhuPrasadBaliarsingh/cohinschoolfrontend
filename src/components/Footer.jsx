@@ -61,6 +61,11 @@ export default function Footer() {
                 </a>
               </li>
               <li>
+                <Link to="/terms" className="hover:text-gold-400 transition">
+                  Terms & Conditions
+                </Link>
+              </li>
+              <li>
                 <Link to="/careers" className="text-gold-400 font-medium hover:underline transition flex items-center gap-1.5">
                   <Briefcase className="w-3.5 h-3.5" /> Careers @ CIS
                 </Link>
@@ -134,7 +139,13 @@ export default function Footer() {
         <div className="section-divider mb-8"></div>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm">
-          <p>© 2026 Cohen International School. All rights reserved. CBSE Affiliation No: 1530280.</p>
+          <div className="flex items-center gap-3 flex-wrap justify-center md:justify-start">
+            <p>© 2026 Cohen International School. All rights reserved. CBSE Affiliation No: 1530280.</p>
+            <span className="hidden md:inline text-white/20">•</span>
+            <Link to="/terms" className="text-white/60 hover:text-gold-400 transition underline decoration-white/20 underline-offset-4">
+              Terms & Conditions
+            </Link>
+          </div>
           <p className="text-white/40">
             Digital Ecosystem by <a href="https://briskodetechnology.com/" target="_blank" rel="noreferrer" className="text-gold-500 font-semibold hover:underline">Briskode Technology Pvt. Ltd.</a>
           </p>
