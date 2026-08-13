@@ -1,4 +1,9 @@
 import React, { useState } from "react";
+import img3605 from "../assets/DSC03605.JPG";
+import img3671 from "../assets/DSC03671.JPG";
+import img3612 from "../assets/DSC03612.JPG";
+import img3604 from "../assets/DSC03604.JPG";
+import img3620 from "../assets/DSC03620.JPG";
 import {
   Calendar,
   PlusCircle,
@@ -30,7 +35,7 @@ const defaultEventsData = [
     studentName: "Aryasmman Pradhan",
     rank: "AIR 314 (Odisha State Rank-2)",
     category: "JEE Advanced Result",
-    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=800&auto=format&fit=crop",
+    image: img3671,
     posterBadge: "2-Yr School Integrated Program",
     summary:
       "Master Aryasmman Pradhan scores All India Rank 314 & Odisha State Rank 2 in JEE (Advanced) 2026 examination under Cohen Vidwan Integrated Program.",
@@ -47,7 +52,7 @@ const defaultEventsData = [
     studentName: "Bhavesh Patra",
     rank: "AIR 29 (Odisha State Rank-1)",
     category: "JEE Advanced Result",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=800&auto=format&fit=crop",
+    image: img3605,
     posterBadge: "2-Yr School Integrated Program",
     summary:
       "Master Bhavesh Patra creates history by securing All India Rank 29 & Odisha State Rank 1 in JEE (Advanced) 2026.",
@@ -64,7 +69,7 @@ const defaultEventsData = [
     studentName: "Bhavesh Patra & Aryasmman Pradhan",
     rank: "State Rank 1 & State Rank 3",
     category: "JEE Main Result",
-    image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=800&auto=format&fit=crop",
+    image: img3612,
     posterBadge: "First Time in Odisha 100%ile",
     summary:
       "Historical landmark achievement: CIS students secure 100 NTA percentile score in JEE Main 2026 Session 1.",
@@ -81,7 +86,7 @@ const defaultEventsData = [
     studentName: "CIS Admissions Directorate",
     rank: "Integrated IIT-JEE | NEET | IISER | Olympiads",
     category: "Admissions",
-    image: "https://images.unsplash.com/photo-1571171637578-41bc2dd41cd2?q=80&w=800&auto=format&fit=crop",
+    image: img3604,
     posterBadge: "Session 2026-27 Intake",
     summary:
       "Registrations open for Day Boarding & Residential Hostels with integrated competitive coaching.",
@@ -134,7 +139,7 @@ export default function NewsAnnouncements({ openAdmissionModal }) {
       category: deployCategory,
       image:
         deployImage ||
-        "https://images.unsplash.com/photo-1546410531-bb4caa6b424d?q=80&w=800&auto=format&fit=crop",
+        img3620,
       posterBadge: deployBadge || "Official Circular",
       summary: deploySummary,
       fullNotice: deployFullNotice || deploySummary,

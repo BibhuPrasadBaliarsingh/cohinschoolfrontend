@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ArrowRight, Sparkles, ChevronLeft, ChevronRight } from "lucide-react";
+import img3620 from "../assets/DSC03620.JPG";
 
 const partnerSlides = [
   {
@@ -41,44 +42,44 @@ export default function AdmissionBanner({ openAdmissionModal }) {
   const currentPartner = partnerSlides[activePartnerIndex];
 
   return (
-    <div className="w-full relative z-30 -mt-10 sm:-mt-14 mb-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto space-y-8">
+    <div className="w-full relative z-30 pt-6 pb-4 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-6xl mx-auto space-y-6">
         
-        {/* 1. FLOATING GREEN ADMISSION BANNER */}
-        <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-emerald-500/30 flex flex-col md:flex-row items-stretch bg-[#38A169] group hover:shadow-emerald-600/30 transition-all duration-300">
+        {/* 1. COMPACT SLIM ADMISSION BANNER */}
+        <div className="relative rounded-2xl overflow-hidden shadow-xl border border-emerald-500/30 flex flex-col md:flex-row items-stretch group hover:shadow-emerald-700/30 transition-all duration-300">
           
-          {/* Left Student Image Container */}
-          <div className="md:w-5/12 relative min-h-[160px] sm:min-h-[180px] bg-navy-950 overflow-hidden">
+          {/* Left Student Image Container - Sleek height */}
+          <div className="md:w-4/12 relative min-h-[110px] sm:min-h-[130px] max-h-[140px] bg-navy-950 overflow-hidden">
             <img
-              src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=800&auto=format&fit=crop"
+              src={img3620}
               alt="Happy Students - Cohen International School"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#38A169]/80 hidden md:block" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#2E7D32]/80 hidden md:block" />
           </div>
 
-          {/* Middle Green Text Container */}
-          <div className="md:w-5/12 bg-[#38A169] p-6 sm:p-8 flex flex-col justify-center text-white">
-            <div className="flex items-center gap-2 text-emerald-100 text-xs font-bold uppercase tracking-wider mb-1">
-              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
-              <span>Nursery to Class XI Admissions</span>
+          {/* Middle Text Container — Slim & punchy */}
+          <div className="md:w-6/12 px-5 py-3.5 sm:px-6 sm:py-4 flex flex-col justify-center text-white" style={{ background: "linear-gradient(135deg, #2E7D32 0%, #38A169 60%, #4CAF50 100%)" }}>
+            <div className="flex items-center gap-1.5 text-emerald-100 text-[11px] font-bold uppercase tracking-wider mb-0.5">
+              <Sparkles className="w-3 h-3 text-amber-300" />
+              <span>Nursery to Class XI Admissions Open</span>
             </div>
-            <h3 className="font-serif text-2xl sm:text-3xl font-extrabold text-white leading-tight">
-              Admission Going on
+            <h3 className="font-serif text-xl sm:text-2xl font-extrabold text-white leading-tight">
+              Admissions Going On 2026–27
             </h3>
-            <p className="text-xs text-white/90 mt-1 font-medium hidden sm:block">
-              Integrated IIT-JEE, NEET &amp; CBSE Board Curriculum 2026–27
+            <p className="text-[11px] sm:text-xs text-white/90 mt-1 font-medium truncate">
+              Integrated IIT-JEE, NEET & CBSE Board • Residential & Day Scholar
             </p>
           </div>
 
-          {/* Right Darker Green Action Button Area */}
-          <div className="md:w-2/12 bg-[#2E7D32] hover:bg-[#256628] transition-colors p-6 flex items-center justify-center cursor-pointer border-t md:border-t-0 md:border-l border-white/20">
+          {/* Right CTA — Slim single action block */}
+          <div className="md:w-2/12 hover:brightness-110 transition-all px-4 py-3 flex items-center justify-center cursor-pointer border-t md:border-t-0 md:border-l border-white/20" style={{ background: "#1B5E20" }}>
             <button
               onClick={() => openAdmissionModal?.()}
-              className="w-full h-full flex items-center justify-center gap-2 text-white font-bold text-base sm:text-lg group-hover:scale-105 transition-transform"
+              className="w-full flex items-center justify-center gap-2 text-white font-bold text-sm sm:text-base group-hover:scale-105 transition-transform"
             >
-              <span>Apply Now</span>
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              <span className="whitespace-nowrap">Apply Now</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-amber-300 flex-shrink-0" />
             </button>
           </div>
 

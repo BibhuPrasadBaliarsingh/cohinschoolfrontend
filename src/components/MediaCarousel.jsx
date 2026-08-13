@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight, PlayCircle } from "lucide-react";
+import img3604 from "../assets/DSC03604.JPG";
+import img3612 from "../assets/DSC03612.JPG";
+import img3624 from "../assets/DSC03624.JPG";
 
 const defaultSlides = [
   {
@@ -8,21 +11,21 @@ const defaultSlides = [
     subtitle: "A glimpse into smart classrooms, labs and green spaces.",
     type: "video",
     src: "https://www.w3schools.com/html/mov_bbb.mp4",
-    poster: "/campus-tour.jpg",
+    poster: img3612,
   },
   {
     id: 2,
     title: "STEM and Robotics",
     subtitle: "Hands-on learning with AI, robotics and labs.",
     type: "image",
-    src: "https://images.unsplash.com/photo-1518779582530-6dd72560c526?q=80&w=1920&auto=format&fit=crop",
+    src: img3624,
   },
   {
     id: 3,
     title: "Sports & Wellness",
     subtitle: "Balanced growth through sports, yoga and outdoor learning.",
     type: "image",
-    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?q=80&w=1920&auto=format&fit=crop",
+    src: img3604,
   },
 ];
 

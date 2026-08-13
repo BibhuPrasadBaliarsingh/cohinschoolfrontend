@@ -1,5 +1,14 @@
 import React from 'react';
 import { Tv, FlaskConical, Trophy, ArrowRight } from 'lucide-react';
+import img3611 from '../assets/DSC03611.JPG';
+import img3613 from '../assets/DSC03613.JPG';
+import img3616 from '../assets/DSC03616.JPG';
+import img3620 from '../assets/DSC03620.JPG';
+import img3622 from '../assets/DSC03622.JPG';
+import img3625 from '../assets/DSC03625.JPG';
+import img3653 from '../assets/DSC03653.JPG';
+import img3660 from '../assets/DSC03660.JPG';
+import img3684 from '../assets/DSC03684.JPG';
 
 export default function Facilities({ openDedicatedTopic }) {
   return (
@@ -19,7 +28,7 @@ export default function Facilities({ openDedicatedTopic }) {
             className="card-lift cursor-pointer group relative h-72 rounded-3xl overflow-hidden shadow-lg border border-cream-300 reveal"
           >
             <img
-              src="https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop"
+              src={img3611}
               alt="Smart Digital Classroom"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
@@ -41,7 +50,7 @@ export default function Facilities({ openDedicatedTopic }) {
             className="card-lift cursor-pointer group relative h-72 rounded-3xl overflow-hidden shadow-lg border border-cream-300 reveal"
           >
             <img
-              src="https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1200&auto=format&fit=crop"
+              src={img3613}
               alt="Science & Robotics Laboratories"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
@@ -63,7 +72,7 @@ export default function Facilities({ openDedicatedTopic }) {
             className="card-lift cursor-pointer group relative h-72 rounded-3xl overflow-hidden shadow-lg border border-cream-300 reveal"
           >
             <img
-              src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1200&auto=format&fit=crop"
+              src={img3622}
               alt="Sports Complex & Playgrounds"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
@@ -85,7 +94,7 @@ export default function Facilities({ openDedicatedTopic }) {
             className="card-lift cursor-pointer group relative h-72 rounded-3xl overflow-hidden shadow-lg border border-cream-300 reveal"
           >
             <img
-              src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?q=80&w=1200&auto=format&fit=crop"
+              src={img3625}
               alt="Digital Library"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
@@ -104,7 +113,7 @@ export default function Facilities({ openDedicatedTopic }) {
             className="card-lift cursor-pointer group relative h-72 rounded-3xl overflow-hidden shadow-lg border border-cream-300 reveal"
           >
             <img
-              src="https://images.unsplash.com/photo-1555854877-bab0e564b8d5?q=80&w=1200&auto=format&fit=crop"
+              src={img3653}
               alt="Residential Hostels"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
@@ -123,7 +132,7 @@ export default function Facilities({ openDedicatedTopic }) {
             className="card-lift cursor-pointer group relative h-72 rounded-3xl overflow-hidden shadow-lg border border-cream-300 reveal"
           >
             <img
-              src="https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop"
+              src={img3616}
               alt="AI & Computer Coding Studio"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
@@ -142,7 +151,7 @@ export default function Facilities({ openDedicatedTopic }) {
             className="card-lift cursor-pointer group relative h-72 rounded-3xl overflow-hidden shadow-lg border border-cream-300 reveal"
           >
             <img
-              src="https://images.unsplash.com/photo-1475721027785-f74eccf877e2?q=80&w=1200&auto=format&fit=crop"
+              src={img3660}
               alt="AC Auditorium"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
@@ -161,7 +170,7 @@ export default function Facilities({ openDedicatedTopic }) {
             className="card-lift cursor-pointer group relative h-72 rounded-3xl overflow-hidden shadow-lg border border-cream-300 reveal"
           >
             <img
-              src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?q=80&w=1200&auto=format&fit=crop"
+              src={img3620}
               alt="Health & Wellness"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
@@ -180,7 +189,7 @@ export default function Facilities({ openDedicatedTopic }) {
             className="card-lift cursor-pointer group relative h-72 rounded-3xl overflow-hidden shadow-lg border border-cream-300 reveal"
           >
             <img
-              src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=1200&auto=format&fit=crop"
+              src={img3684}
               alt="High Security Campus"
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />

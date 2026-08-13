@@ -1,5 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import img3604 from "../assets/DSC03604.JPG";
+import img3611 from "../assets/DSC03611.JPG";
+import img3612 from "../assets/DSC03612.JPG";
+import img3616 from "../assets/DSC03616.JPG";
+import img3622 from "../assets/DSC03622.JPG";
+import img3671 from "../assets/DSC03671.JPG";
+import img3681 from "../assets/DSC03681.JPG";
+import img3684 from "../assets/DSC03684.JPG";
 import {
   X,
   LogIn,
@@ -243,8 +251,7 @@ const topicData = {
     title: "Academic Programs & Integrated JEE/NEET",
     tag: "Curriculum & Pedagogy",
     badge: "CBSE + Vidwan Classes",
-    image:
-      "https://images.unsplash.com/photo-1509062522246-3755977927d7?q=80&w=1200&auto=format&fit=crop",
+    image: img3681,
     intro:
       "At Cohen International School, academics is structured as an integrated journey from Nursery to Class XII. We combine CBSE excellence with Vidwan Classes competitive mentorship.",
     sections: [
@@ -270,8 +277,7 @@ const topicData = {
     title: "Smart Classrooms & AI Robotics Labs",
     tag: "Digital Learning Environment",
     badge: "Interactive AI Pods",
-    image:
-      "https://images.unsplash.com/photo-1577896851231-70ef18881754?q=80&w=1200&auto=format&fit=crop",
+    image: img3684,
     intro:
       "Every classroom at CIS is equipped with high-definition interactive touch panels, digital 3D models, and high-speed internet, bringing abstract concepts to vivid life.",
     sections: [
@@ -297,8 +303,7 @@ const topicData = {
     title: "10-Acre Campus Infrastructure & Sports",
     tag: "World-Class Amenities",
     badge: "Barunei Hills Location",
-    image:
-      "https://images.unsplash.com/photo-1574629810360-7efbbe195018?q=80&w=1200&auto=format&fit=crop",
+    image: img3622,
     intro:
       "Spread across 10 lush green acres near IIT Bhubaneswar, CIS offers a pollution-free, tranquil environment built for mental focus, sports, and holistic development.",
     sections: [
@@ -324,8 +329,7 @@ const topicData = {
     title: "Admissions, Eligibility & Fee Guidance",
     tag: "Session 2026–27",
     badge: "Scholarships Available",
-    image:
-      "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop",
+    image: img3671,
     intro:
       "Admissions are open for Nursery to Class XI. We seek curious, motivated students eager to learn in an integrated academic ecosystem.",
     sections: [
@@ -351,8 +355,7 @@ const topicData = {
     title: "Smart Campus ERP + CRM + AI Ecosystem",
     tag: "Digital Transformation",
     badge: "Powered by Briskode",
-    image:
-      "https://images.unsplash.com/photo-1531482615713-2afd69097998?q=80&w=1200&auto=format&fit=crop",
+    image: img3616,
     intro:
       "Partnered with Briskode Technology, CIS operates a 100% paperless digital administration with real-time sync across parents, teachers, and management.",
     sections: [
@@ -378,8 +381,7 @@ const topicData = {
     title: "Careers & Faculty Growth at CIS",
     tag: "Join Our Team",
     badge: "Free On-Campus Housing",
-    image:
-      "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=1200&auto=format&fit=crop",
+    image: img3611,
     intro:
       "We attract the brightest educators, researchers, and coaches in India by offering top-tier remuneration, campus housing, research grants, and career progression.",
     sections: [
@@ -609,43 +611,75 @@ export default function Modals({
 
     return (
       <div
-        className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop"
+        className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 modal-backdrop"
         onClick={closeModal}
       >
         <div
-          className="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-cream-200"
+          className="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl"
+          style={{ border: "1.5px solid rgba(201,162,39,0.25)" }}
           onClick={(e) => e.stopPropagation()}
         >
-          <div className="sticky top-0 bg-navy-900 px-6 py-5 flex items-center justify-between rounded-t-3xl border-b border-white/10 z-10">
-            <div className="flex items-center gap-3">
-              <div className="bg-white px-2.5 py-1 rounded-xl shadow">
-                <img
-                  src="/logo.png"
-                  alt="Cohen Logo"
-                  className="h-7 w-auto object-contain"
-                />
-              </div>
-              <div>
-                <h3 className="font-display text-xl text-white font-semibold">
-                  {title}
-                </h3>
-                <p className="text-xs text-gold-400 font-normal">{subtitle}</p>
+          {/* ── Premium hero header with campus photo ── */}
+          <div className="relative h-44 sm:h-52 rounded-t-3xl overflow-hidden">
+            <img
+              src={img3671}
+              alt="Cohen International School Campus"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: "center 40%" }}
+            />
+            {/* Dark gradient overlay */}
+            <div style={{
+              position: "absolute", inset: 0,
+              background: "linear-gradient(to top, rgba(7,15,26,0.95) 0%, rgba(7,15,26,0.55) 55%, rgba(7,15,26,0.25) 100%)"
+            }} />
+            {/* Badge at top-left */}
+            <div className="absolute top-4 left-4">
+              <div className="bg-white/95 backdrop-blur px-2.5 py-1.5 rounded-xl shadow-lg flex items-center gap-2">
+                <img src="/logo.png" alt="Cohen Logo" className="h-7 w-auto object-contain" />
               </div>
             </div>
+            {/* Close button at top-right */}
             <button
               onClick={closeModal}
-              className="text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10 transition"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur flex items-center justify-center text-white transition"
             >
-              <X className="w-6 h-6" />
+              <X className="w-5 h-5" />
             </button>
+            {/* Year badge */}
+            <div className="absolute top-4 left-1/2 -translate-x-1/2">
+              <span style={{
+                background: "linear-gradient(135deg,#C9A227,#E8C547)",
+                color: "#0B1C2C",
+                padding: "4px 16px",
+                borderRadius: "999px",
+                fontSize: "0.68rem",
+                fontWeight: 800,
+                letterSpacing: "0.09em",
+                textTransform: "uppercase",
+              }}>
+                Admissions 2026–27
+              </span>
+            </div>
+            {/* Title text over image at bottom */}
+            <div className="absolute bottom-0 left-0 right-0 px-6 pb-5">
+              <h3 className="font-display text-xl sm:text-2xl text-white font-bold leading-tight">
+                {title}
+              </h3>
+              <p className="text-xs sm:text-sm text-white/70 mt-1">{subtitle}</p>
+            </div>
           </div>
 
           <form className="p-6 md:p-8 space-y-6" onSubmit={handleSubmit}>
-            <div className="bg-gold-500/10 border border-gold-500/30 p-4 rounded-2xl flex items-center gap-3 text-xs text-navy-800">
-              <ShieldCheck className="w-5 h-5 text-gold-600 flex-shrink-0" />
-              <span>
-                CBSE Senior Secondary School • Integrated IIT-JEE & NEET
-                Coaching Included • 10-Acre Green Campus
+            <div style={{
+              background: "linear-gradient(135deg, rgba(201,162,39,0.08) 0%, rgba(201,162,39,0.04) 100%)",
+              border: "1px solid rgba(201,162,39,0.3)",
+              padding: "14px 16px", borderRadius: "16px",
+              display: "flex", alignItems: "center", gap: "12px",
+              fontSize: "0.75rem", color: "#0B1C2C",
+            }}>
+              <ShieldCheck style={{ width: 20, height: 20, color: "#C9A227", flexShrink: 0 }} />
+              <span style={{ fontWeight: 500 }}>
+                CBSE Senior Secondary School • Integrated IIT-JEE &amp; NEET Coaching • 10-Acre Green Campus, Bhubaneswar
               </span>
             </div>
 
