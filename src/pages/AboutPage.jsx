@@ -18,6 +18,45 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
 
       <About openChairmanModal={openChairmanModal} />
 
+      <section className="py-14 sm:py-16 lg:py-20 bg-[#efefef]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-12 items-center">
+            <div className="w-full bg-[#56d0d3] rounded-sm overflow-hidden shadow-[0_18px_45px_rgba(15,23,42,0.12)] min-h-[320px] sm:min-h-[420px] lg:min-h-[560px]">
+              <img
+                src="https://coheninternationalschool.com/assets/img/pages/Untitled%20design%20(2)1749641119.jpg"
+                alt="Chairman portrait"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+
+            <div className="flex flex-col justify-center">
+              <p className="text-[#2d7d55] font-medium text-xl sm:text-2xl lg:text-3xl font-display leading-none">
+                From
+              </p>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-[4rem] leading-[0.95] text-navy-900 mt-2">
+                Chairman's Desk
+              </h2>
+
+              <p className="mt-6 text-base sm:text-lg leading-relaxed text-navy-700/80 max-w-xl">
+                CIS is a unique school, which is a temple of learning and a stepping stone to every kid's dreams. Our first step paves the road to our destination and hence, beginnings do matter a lot. My humble beginning with a passion to learn, courage to face obstacles, “never say never” attitude laid the foundation for my life’s principles and my vision.
+              </p>
+
+              <p className="mt-4 text-base sm:text-lg leading-relaxed text-navy-700/80 max-w-xl">
+                As a kid, I always felt that the need to have an educational institution that not only offers world-class academics, but also helps students pursue their dreams, whether it is in academics or art or sports or management. CIS is the brainchild of my vision and the relentless efforts of like-minded people. I urge you all to pay a visit to our lovely campus...
+              </p>
+
+              <button
+                onClick={openChairmanModal}
+                className="mt-8 inline-flex items-center justify-between gap-4 w-full max-w-[260px] rounded-lg bg-[#2e9e4b] px-6 py-4 text-left text-white shadow-[0_10px_25px_rgba(46,158,75,0.28)] hover:bg-[#288d43] transition-colors duration-200"
+              >
+                <span className="font-semibold text-lg">Know more</span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white/15 text-xl leading-none">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Core Pedagogy Section */}
       <section className="py-20 bg-cream-100 border-t border-cream-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

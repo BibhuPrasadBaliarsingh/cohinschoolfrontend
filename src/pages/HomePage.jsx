@@ -7,7 +7,6 @@ import Academics from "../components/Academics";
 import Facilities from "../components/Facilities";
 import Admissions from "../components/Admissions";
 import DigitalEcosystem from "../components/DigitalEcosystem";
-import PortalsPreview from "../components/PortalsPreview";
 import MediaCarousel from "../components/MediaCarousel";
 import Gallery from "../components/Gallery";
 import Testimonials from "../components/Testimonials";
@@ -40,7 +39,6 @@ export default function HomePage({
       <Facilities openDedicatedTopic={openDedicatedTopic} />
       <Admissions openAdmissionModal={openAdmissionModal} />
       <DigitalEcosystem openModule={openModule} />
-      <PortalsPreview openPortalFrame={openPortalFrame} />
       <Gallery />
       <Testimonials />
       <Careers openCareerModal={openCareerModal} />

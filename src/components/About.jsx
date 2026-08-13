@@ -2,6 +2,24 @@ import React from "react";
 import { Target, Compass, Quote, ArrowRight } from "lucide-react";
 import AnimatedCounter from "./AnimatedCounter";
 
+const talks = [
+  {
+    id: 1,
+    image:
+      "https://coheninternationalschool.com/assets/img/cohen-talk/talk_1750239612.jpg",
+  },
+  {
+    id: 2,
+    image:
+      "https://coheninternationalschool.com/assets/img/cohen-talk/talk_1703569676.jpeg",
+  },
+  {
+    id: 3,
+    image:
+      "https://coheninternationalschool.com/assets/img/cohen-talk/talk_1785073874.jpeg",
+  },
+];
+
 export default function About({ openChairmanModal }) {
   return (
     <section id="about" className="py-24 lg:py-32 relative overflow-hidden">
@@ -168,6 +186,31 @@ export default function About({ openChairmanModal }) {
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-20 lg:mt-24">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h3 className="font-display text-4xl sm:text-5xl lg:text-6xl text-navy-900 text-center mb-10 lg:mb-14">
+            Cohen-Talks
+          </h3>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 items-stretch">
+            {talks.map((talk) => (
+              <article
+                key={talk.id}
+                className="group relative overflow-hidden rounded-[20px] border border-slate-200 bg-white shadow-[0_14px_35px_rgba(15,23,42,0.08)]"
+              >
+                <div className="aspect-square w-full overflow-hidden">
+                  <img
+                    src={talk.image}
+                    alt="Cohen Talks"
+                    className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              </article>
+            ))}
           </div>
         </div>
       </div>
