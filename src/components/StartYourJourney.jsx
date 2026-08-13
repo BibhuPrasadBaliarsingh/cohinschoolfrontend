@@ -67,7 +67,8 @@ export default function StartYourJourney() {
             {/* Download Brochure Split Button */}
             <div className="mt-8 flex items-center">
               <a
-                href="https://drive.google.com/file/d/1gQa9u2EHouQNeoMaA7HTFnNi7pBrRwDt/view"
+                href="/brocher.pdf"
+                download="brocher.pdf"
                 target="_blank"
                 rel="noreferrer"
                 className="group inline-flex items-stretch rounded-xl overflow-hidden shadow-xl border border-emerald-600/30 transition-all duration-300 hover:scale-[1.03] hover:shadow-2xl"

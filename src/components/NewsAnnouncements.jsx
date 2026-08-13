@@ -1,9 +1,16 @@
 import React, { useState } from "react";
 import img3605 from "../assets/DSC03605.JPG";
-import img3671 from "../assets/DSC03671.JPG";
-import img3612 from "../assets/DSC03612.JPG";
+import img3611 from "../assets/DSC03611.JPG";
 import img3604 from "../assets/DSC03604.JPG";
 import img3620 from "../assets/DSC03620.JPG";
+import img3625 from "../assets/DSC03625.JPG";
+import img3681 from "../assets/DSC03681.JPG";
+import img3684 from "../assets/DSC03684.JPG";
+import officialLogo from "../assets/cohen_official_logo.png";
+import officialBanner1 from "../assets/cohen_official_img_2.jpg";
+import officialBanner2 from "../assets/cohen_official_img_3.jpg";
+import officialBanner3 from "../assets/cohen_official_img_4.jpg";
+
 import {
   Calendar,
   PlusCircle,
@@ -31,54 +38,93 @@ const defaultEventsData = [
     day: "26",
     month: "July",
     year: "2026",
-    title: "JEE (Advanced) 2026 : Odisha State Rank 2",
-    studentName: "Aryasmman Pradhan",
-    rank: "AIR 314 (Odisha State Rank-2)",
+    title: "JEE (Advanced) 2026 : Odisha State Rank 1",
+    studentName: "Bhavesh Patra",
+    rank: "AIR 29 (Odisha State Rank 1)",
     category: "JEE Advanced Result",
-    image: img3671,
-    posterBadge: "2-Yr School Integrated Program",
+    image: img3605,
+    fallbackUrl: officialLogo,
+    posterBadge: "AIR 29 • State Rank 1",
     summary:
-      "Master Aryasmman Pradhan scores All India Rank 314 & Odisha State Rank 2 in JEE (Advanced) 2026 examination under Cohen Vidwan Integrated Program.",
+      "Master Bhavesh Patra creates history by securing All India Rank 29 & Odisha State Rank 1 in JEE (Advanced) 2026 under the Cohen Vidwan Integrated Program.",
     fullNotice:
-      "Cohen International School proudly congratulates Aryasmman Pradhan for achieving AIR 314 and Odisha State Rank 2 in JEE (Advanced) 2026. Enrolled in the 2-Year School Integrated Coaching Program, Aryasmman attributes his success to regular mock tests, 1-on-1 faculty mentorship, and state-of-the-art campus learning environment.",
-    pdfUrl: "https://www.cbse.gov.in/cbsesite/documents/circular_result.pdf"
+      "Cohen International School proudly congratulates Bhavesh Patra for achieving AIR 29 and Odisha State Rank 1 in JEE (Advanced) 2026. Enrolled in the 2-Year School Integrated Coaching Program, Bhavesh demonstrated extraordinary analytical mastery, problem-solving skills, and dedication under 1-on-1 faculty mentorship.",
+    pdfUrl: "https://drive.google.com/file/d/1gQa9u2EHouQNeoMaA7HTFnNi7pBrRwDt/view"
   },
   {
     id: "evt-002",
     day: "26",
     month: "July",
     year: "2026",
-    title: "JEE (Advanced) 2026 : Odisha State Rank 1",
-    studentName: "Bhavesh Patra",
-    rank: "AIR 29 (Odisha State Rank-1)",
+    title: "JEE (Advanced) 2026 : Odisha State Rank 2",
+    studentName: "Aryasmman Pradhan",
+    rank: "AIR 314 (Odisha State Rank 2)",
     category: "JEE Advanced Result",
-    image: img3605,
-    posterBadge: "2-Yr School Integrated Program",
+    image: img3611,
+    fallbackUrl: officialLogo,
+    posterBadge: "AIR 314 • State Rank 2",
     summary:
-      "Master Bhavesh Patra creates history by securing All India Rank 29 & Odisha State Rank 1 in JEE (Advanced) 2026.",
+      "Master Aryasmman Pradhan scores All India Rank 314 & Odisha State Rank 2 in JEE (Advanced) 2026 examination under Cohen Vidwan Integrated Program.",
     fullNotice:
-      "Bhavesh Patra has topped the state of Odisha with All India Rank 29 in JEE (Advanced) 2026. As a student of the Cohen Vidwan Integrated Batch, Bhavesh demonstrated outstanding analytical mastery and dedication.",
-    pdfUrl: "https://www.cbse.gov.in/cbsesite/documents/circular_result.pdf"
+      "Cohen International School proudly congratulates Aryasmman Pradhan for achieving AIR 314 and Odisha State Rank 2 in JEE (Advanced) 2026. As a student of the Cohen Vidwan Integrated Batch, Aryasmman attributes his success to regular mock tests, 1-on-1 faculty mentorship, and state-of-the-art campus learning environment.",
+    pdfUrl: "https://drive.google.com/file/d/1gQa9u2EHouQNeoMaA7HTFnNi7pBrRwDt/view"
   },
   {
     id: "evt-003",
-    day: "16",
-    month: "February",
+    day: "14",
+    month: "August",
     year: "2026",
-    title: "JEE Main 2026 Success - 100%ile Result",
-    studentName: "Bhavesh Patra & Aryasmman Pradhan",
-    rank: "State Rank 1 & State Rank 3",
-    category: "JEE Main Result",
-    image: img3612,
-    posterBadge: "First Time in Odisha 100%ile",
+    title: "SAIMUN 2026 & KIIT International MUN Honors",
+    studentName: "CIS Delegation Team",
+    rank: "Best Delegation & Diplomacy Awards",
+    category: "Academic Events",
+    image: officialBanner1,
+    fallbackUrl: officialLogo,
+    posterBadge: "Model United Nations 2026",
     summary:
-      "Historical landmark achievement: CIS students secure 100 NTA percentile score in JEE Main 2026 Session 1.",
+      "CIS Model United Nations delegates achieve outstanding honors and diplomacy awards at SAIMUN 2026 and KIIT International MUN.",
     fullNotice:
-      "For the first time in Odisha, Cohen International School integrated batch students Bhavesh Patra and Aryasmman Pradhan achieved 100%ile NTA scores in JEE Main 2026.",
+      "The student delegation from Cohen International School showcased remarkable debate skills, policy analysis, and resolution drafting at SAIMUN 2026 and the 13th KIIT International School Model UN, bringing home top honors and diplomatic commendations.",
     pdfUrl: "#"
   },
   {
     id: "evt-004",
+    day: "20",
+    month: "February",
+    year: "2026",
+    title: "2nd Edition COHEN Edu-Conclave 2.0 Summit",
+    studentName: "Research & STEM Directorate",
+    rank: "National Innovation Forum",
+    category: "Academic Events",
+    image: officialBanner2,
+    fallbackUrl: officialLogo,
+    posterBadge: "Edu-Conclave 2.0 Summit",
+    summary:
+      "Annual research and scientific conclave bringing together renowned scientists, educators, and young student innovators at CIS campus.",
+    fullNotice:
+      "The 2nd Edition of COHEN Edu-Conclave 2.0 brought together eminent academicians, scientists, and student researchers to showcase cutting-edge science projects, aerospace models, and interactive AI demonstrations.",
+    pdfUrl: "https://drive.google.com/file/d/1ZEhZZBteZk5CJUki4epbHZPXR84jeucv/view"
+  },
+  {
+    id: "evt-005",
+    day: "05",
+    month: "March",
+    year: "2026",
+    title: "ISRO-Inspired Aerospace & Drone Tech Launch",
+    studentName: "CIS Innovation Hub",
+    rank: "First in Odisha Aerospace Lab",
+    category: "Academic Events",
+    image: img3684,
+    fallbackUrl: officialLogo,
+    posterBadge: "Aerospace & Satellite Lab",
+    summary:
+      "Official launch of Odisha's pioneer school-level Aerospace & Satellite Engineering Program with interactive drone simulation labs.",
+    fullNotice:
+      "Cohen International School launches the first-of-its-kind Aerospace & Drone Technology curriculum in Odisha. Students gain hands-on experience in aerodynamics, satellite propulsion, rocket model building, and autonomous drone flight controllers.",
+    pdfUrl: "https://coheninternationalschool.com/aerospace"
+  },
+  {
+    id: "evt-006",
     day: "10",
     month: "August",
     year: "2026",
@@ -86,7 +132,8 @@ const defaultEventsData = [
     studentName: "CIS Admissions Directorate",
     rank: "Integrated IIT-JEE | NEET | IISER | Olympiads",
     category: "Admissions",
-    image: img3604,
+    image: officialBanner3,
+    fallbackUrl: officialLogo,
     posterBadge: "Session 2026-27 Intake",
     summary:
       "Registrations open for Day Boarding & Residential Hostels with integrated competitive coaching.",
@@ -208,6 +255,9 @@ export default function NewsAnnouncements({ openAdmissionModal }) {
                 <img
                   src={item.image}
                   alt={item.title}
+                  onError={(e) => {
+                    e.currentTarget.src = item.fallbackUrl || "https://coheninternationalschool.com/assets/img/logo/logo.png";
+                  }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
                 

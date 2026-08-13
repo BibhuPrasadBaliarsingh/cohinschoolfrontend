@@ -1,5 +1,5 @@
 import React from "react";
-import { Target, Compass, Quote, ArrowRight } from "lucide-react";
+import { Target, Compass, Quote, ArrowRight, Download } from "lucide-react";
 import AnimatedCounter from "./AnimatedCounter";
 
 const talks = [
@@ -82,7 +82,17 @@ export default function About({ openChairmanModal }) {
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-3">
+            <div className="flex flex-wrap items-center gap-3">
+              <a
+                href="/brocher.pdf"
+                download="brocher.pdf"
+                target="_blank"
+                rel="noreferrer"
+                className="px-5 py-2.5 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-md hover:scale-105 transition flex items-center gap-2"
+              >
+                <Download className="w-4 h-4" />
+                <span>Download Brochure</span>
+              </a>
               <span className="px-4 py-2 rounded-full bg-navy-900 text-white text-sm font-medium">
                 CBSE Affiliated (#1530280)
               </span>
@@ -94,9 +104,6 @@ export default function About({ openChairmanModal }) {
               </span>
               <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">
                 Boarding Available
-              </span>
-              <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">
-                AI & Aerospace
               </span>
             </div>
           </div>
