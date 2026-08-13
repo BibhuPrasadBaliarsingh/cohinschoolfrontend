@@ -86,12 +86,12 @@ export default function AdmissionBanner({ openAdmissionModal }) {
 
         {/* 2. AUTOMATIC PARTNERSHIP CAROUSEL (Cambridge, IIT Madras, CBSE & AI Robotics) */}
         <div className="flex justify-center">
-          <div className="relative w-full max-w-2xl bg-white dark:bg-navy-950 border-2 border-navy-900 dark:border-gold-500/40 rounded-2xl p-4 sm:p-5 shadow-xl transition-all">
+          <div className="relative w-full max-w-2xl bg-[#090D16] border-2 border-[#54461B] rounded-2xl p-5 sm:p-6 shadow-2xl transition-all">
             
             {/* Prev/Next Carousel Arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-white/10 dark:hover:bg-white/20 text-navy-900 dark:text-white transition z-10"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#162032] hover:bg-[#202E46] text-white/90 transition flex items-center justify-center z-10 border border-white/10"
               aria-label="Previous Partner"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -99,34 +99,33 @@ export default function AdmissionBanner({ openAdmissionModal }) {
 
             <button
               onClick={handleNext}
-              className="absolute right-2 top-1/2 -translate-y-1/2 p-1.5 rounded-full bg-gray-100 hover:bg-gray-200 dark:bg-white/10 dark:hover:bg-white/20 text-navy-900 dark:text-white transition z-10"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#162032] hover:bg-[#202E46] text-white/90 transition flex items-center justify-center z-10 border border-white/10"
               aria-label="Next Partner"
             >
               <ChevronRight className="w-4 h-4" />
             </button>
 
             {/* SLIDE CONTENT AREA */}
-            <div className="px-8 flex items-center justify-center min-h-[64px]">
+            <div className="px-8 flex items-center justify-center min-h-[90px]">
               
               {/* SLIDE 1: CAMBRIDGE */}
               {currentPartner.type === "cambridge" && (
-                <div className="flex items-center justify-center w-full gap-4 sm:gap-6 flex-wrap animate-fadeIn">
-                  <div className="flex items-center gap-3">
-                    
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-amber-500/50 shadow-md flex items-center justify-center p-0.5 overflow-hidden flex-shrink-0">
+                <div className="flex flex-col items-center justify-center w-full gap-3 animate-fadeIn">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-[#D4AF37] shadow-md flex items-center justify-center p-1 overflow-hidden flex-shrink-0">
                       <img
-                      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaEraxQx1v-Lh1VjgS42JWliHK4qq8h7jY0xkfkNS6qFqRkrYDxFimRXk&s=10"
-                      alt="Cambridge Assessment English Logo"
-                      className="h-12 sm:h-16 w-auto object-contain flex-shrink-0 bg-white p-1 rounded-xl border border-gray-200 shadow-sm"
-                    />
+                        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaEraxQx1v-Lh1VjgS42JWliHK4qq8h7jY0xkfkNS6qFqRkrYDxFimRXk&s=10"
+                        alt="Cambridge Assessment English Logo"
+                        className="w-full h-full object-contain"
+                      />
                     </div>
                     <div className="text-left">
-                      <span className="font-serif text-lg sm:text-2xl font-bold text-[#A6192E] dark:text-rose-400 block leading-none">
+                      <h4 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#F45B69] leading-none tracking-tight">
                         CAMBRIDGE
-                      </span>
-                      <span className="text-xs font-bold text-gray-700 dark:text-white/80 block mt-0.5 tracking-tight">
+                      </h4>
+                      <p className="font-sans text-xs sm:text-sm font-extrabold text-white tracking-tight mt-1">
                         English Educational Partner
-                      </span>
+                      </p>
                     </div>
                   </div>
 
@@ -134,33 +133,32 @@ export default function AdmissionBanner({ openAdmissionModal }) {
                   <div className="bg-white px-3.5 py-2 rounded-xl border border-gray-200 flex items-center shadow-sm">
                     <img src="/logo.png" alt="Cohen Logo" className="h-10 sm:h-12 w-auto object-contain" />
                   </div>
-                  
                 </div>
               )}
 
               {/* SLIDE 2: IIT MADRAS SCHOOLCONNECT */}
               {currentPartner.type === "iit-madras" && (
-                <div className="flex items-center justify-center w-full gap-4 sm:gap-6 flex-wrap animate-fadeIn">
-                  <div className="flex items-center gap-3">
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-amber-500/50 shadow-md flex items-center justify-center p-0.5 overflow-hidden flex-shrink-0">
+                <div className="flex flex-col items-center justify-center w-full gap-3 animate-fadeIn">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-[#D4AF37] shadow-md flex items-center justify-center p-1 overflow-hidden flex-shrink-0">
                       <img
                         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb1FYrHxMuDS9yjiKKMOuYXa-oBc5i8wswHhen_16K9CT85ATq_GgBVnA&s=10"
                         alt="IIT Madras Emblem Logo"
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                       />
                     </div>
                     <div className="text-left">
-                      <h4 className="font-serif text-2xl sm:text-3xl font-black text-[#B22222] dark:text-rose-400 leading-none">
+                      <h4 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#F45B69] leading-none tracking-tight">
                         IIT Madras
                       </h4>
-                      <p className="font-sans text-xs sm:text-sm font-extrabold text-[#1F2937] dark:text-white tracking-tight mt-1">
+                      <p className="font-sans text-xs sm:text-sm font-extrabold text-white tracking-tight mt-1">
                         SchoolConnect program
                       </p>
                     </div>
                   </div>
 
-                  {/* Yellow Oval Pill Badge: "Partner With Cohen International school" */}
-                  <div className="bg-[#D4E157] text-[#1E3A8A] font-extrabold text-xs sm:text-sm px-4 py-1.5 rounded-full border border-[#9E9D24] shadow-sm flex items-center gap-1">
+                  {/* Lime-Yellow Oval Pill Badge */}
+                  <div className="bg-[#D4E157] text-[#1E3A8A] font-extrabold text-xs sm:text-sm px-5 py-1.5 rounded-full border border-[#9E9D24] shadow-sm flex items-center gap-1 mt-0.5">
                     <span>Partner With Cohen International school</span>
                   </div>
                 </div>
@@ -168,46 +166,46 @@ export default function AdmissionBanner({ openAdmissionModal }) {
 
               {/* SLIDE 3: CBSE VIDWAN */}
               {currentPartner.type === "cbse-vidwan" && (
-                <div className="flex items-center justify-between w-full flex-wrap gap-4 animate-fadeIn">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-navy-900 text-gold-400 flex items-center justify-center rounded-xl font-bold text-sm shadow border border-gold-400/40">
+                <div className="flex flex-col items-center justify-center w-full gap-3 animate-fadeIn">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-navy-900 text-gold-400 flex items-center justify-center rounded-full font-bold text-sm shadow-md border-2 border-[#D4AF37]">
                       CIS
                     </div>
                     <div className="text-left">
-                      <span className="font-serif text-base sm:text-lg font-bold text-navy-900 dark:text-white block leading-none">
-                        Vidwan Coaching Partner
-                      </span>
-                      <span className="text-[11px] font-semibold text-emerald-600 dark:text-emerald-400 block mt-0.5">
+                      <h4 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#F45B69] leading-none tracking-tight">
+                        Vidwan Partner
+                      </h4>
+                      <p className="font-sans text-xs sm:text-sm font-extrabold text-white tracking-tight mt-1">
                         Integrated IIT-JEE &amp; NEET Prep
-                      </span>
+                      </p>
                     </div>
                   </div>
 
-                  <div className="bg-emerald-500/10 text-emerald-700 dark:text-emerald-300 font-bold text-xs px-3.5 py-1.5 rounded-full border border-emerald-500/30">
-                    CBSE Board Affiliated
+                  <div className="bg-[#D4E157] text-[#1E3A8A] font-extrabold text-xs sm:text-sm px-5 py-1.5 rounded-full border border-[#9E9D24] shadow-sm flex items-center gap-1 mt-0.5">
+                    <span>CBSE Board Affiliated Coaching</span>
                   </div>
                 </div>
               )}
 
               {/* SLIDE 4: STEM AI & ROBOTICS */}
               {currentPartner.type === "ai-robotics" && (
-                <div className="flex items-center justify-between w-full flex-wrap gap-4 animate-fadeIn">
-                  <div className="flex items-center gap-3">
-                    <div className="w-10 h-10 bg-blue-600 text-white flex items-center justify-center rounded-xl font-bold text-sm shadow">
+                <div className="flex flex-col items-center justify-center w-full gap-3 animate-fadeIn">
+                  <div className="flex items-center gap-3.5">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-blue-600 text-white flex items-center justify-center rounded-full font-bold text-sm shadow-md border-2 border-[#D4AF37]">
                       AI
                     </div>
                     <div className="text-left">
-                      <span className="font-serif text-base sm:text-lg font-bold text-blue-600 dark:text-blue-400 block leading-none">
-                        STEM AI &amp; Robotics Studio
-                      </span>
-                      <span className="text-[11px] font-semibold text-gray-600 dark:text-white/70 block mt-0.5">
+                      <h4 className="font-serif text-2xl sm:text-3xl font-extrabold text-[#F45B69] leading-none tracking-tight">
+                        STEM &amp; AI Studio
+                      </h4>
+                      <p className="font-sans text-xs sm:text-sm font-extrabold text-white tracking-tight mt-1">
                         Future Tech Academy Certification
-                      </span>
+                      </p>
                     </div>
                   </div>
 
-                  <div className="bg-blue-500/10 text-blue-600 dark:text-blue-300 font-bold text-xs px-3.5 py-1.5 rounded-full border border-blue-500/30">
-                    10-Acre Smart Campus
+                  <div className="bg-[#D4E157] text-[#1E3A8A] font-extrabold text-xs sm:text-sm px-5 py-1.5 rounded-full border border-[#9E9D24] shadow-sm flex items-center gap-1 mt-0.5">
+                    <span>10-Acre Smart Campus Facilities</span>
                   </div>
                 </div>
               )}
@@ -215,13 +213,13 @@ export default function AdmissionBanner({ openAdmissionModal }) {
             </div>
 
             {/* Bottom Dots Indicator */}
-            <div className="flex justify-center items-center gap-1.5 mt-2">
+            <div className="flex justify-center items-center gap-2 mt-4">
               {partnerSlides.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setActivePartnerIndex(index)}
-                  className={`h-1.5 rounded-full transition-all ${
-                    index === activePartnerIndex ? "w-6 bg-gold-500" : "w-1.5 bg-gray-300 dark:bg-white/30"
+                  className={`h-2 rounded-full transition-all ${
+                    index === activePartnerIndex ? "w-7 bg-[#D4E157]" : "w-2 bg-gray-600"
                   }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />

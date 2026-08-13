@@ -2,6 +2,7 @@ import React from 'react';
 import PageWrapper from '../components/PageWrapper';
 import HeaderBanner from '../components/HeaderBanner';
 import About from '../components/About';
+import StartYourJourney from '../components/StartYourJourney';
 import { Target, Compass, Award, BookOpen, Users, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -15,6 +16,8 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
         breadcrumb="About Us"
         bgImage="/images/about_banner.png"
       />
+
+      <StartYourJourney />
 
       <About openChairmanModal={openChairmanModal} />
 
