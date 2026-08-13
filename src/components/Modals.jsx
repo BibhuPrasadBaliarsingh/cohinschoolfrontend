@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   X,
   LogIn,
@@ -403,23 +404,27 @@ const topicData = {
 };
 
 const portalRoutes = {
-  parent: { title: "ParentConnect Portal", url: "/portals/parent/index.html" },
+  parent: { title: "ParentConnect Guardian Portal", path: "/parent/dashboard", role: "parent" },
   student: {
     title: "EduLearn Student Hub",
-    url: "/portals/student/index.html",
+    path: "/student/dashboard",
+    role: "student"
   },
   teacher: {
-    title: "TeachFlow Teacher Portal",
-    url: "/portals/teacher/index.html",
+    title: "TeachFlow Faculty Portal",
+    path: "/teacher/dashboard",
+    role: "teacher"
   },
-  crm: { title: "EduCRM Pro Admission Portal", url: "/portals/crm/index.html" },
+  crm: { title: "EduCRM Pro Admission Portal", path: "/admin/dashboard", role: "admin" },
   hostel: {
     title: "HostelFlow Management System",
-    url: "/portals/hostel/index.html",
+    path: "/admin/dashboard",
+    role: "admin"
   },
   transport: {
     title: "RouteSafe Transport System",
-    url: "/portals/transport/index.html",
+    path: "/admin/dashboard",
+    role: "admin"
   },
 };
 
@@ -946,14 +951,13 @@ export default function Modals({
                 ))}
               </div>
 
-              <a
-                href={portal.url}
-                target="_blank"
-                rel="noreferrer"
+              <Link
+                to={portal.path}
+                onClick={closeModal}
                 className="px-3 py-1.5 bg-gold-500 text-navy-900 rounded-xl text-xs font-bold hover:bg-gold-400 transition flex items-center gap-1"
               >
-                Open Full Screen <ExternalLink className="w-3.5 h-3.5" />
-              </a>
+                Open Dashboard <ExternalLink className="w-3.5 h-3.5" />
+              </Link>
 
               <button
                 onClick={closeModal}
@@ -964,13 +968,34 @@ export default function Modals({
             </div>
           </div>
 
-          {/* Live Iframe */}
-          <div className="flex-1 w-full bg-white relative">
-            <iframe
-              src={portal.url}
-              title={portal.title}
-              className="w-full h-full border-0"
-            ></iframe>
+          {/* Native React Portal Live View */}
+          <div className="flex-1 w-full bg-navy-950 p-6 sm:p-10 text-white overflow-y-auto flex flex-col items-center justify-center text-center">
+            <div className="max-w-md mx-auto space-y-5">
+              <div className="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-500/30 flex items-center justify-center text-gold-400 text-3xl mx-auto shadow-xl">
+                🛡
+              </div>
+              <h4 className="font-display text-2xl sm:text-3xl font-extrabold text-white">
+                {portal.title}
+              </h4>
+              <p className="text-white/70 text-sm leading-relaxed">
+                You are viewing the interactive Single Sign-On portal demo. Click below to log in or launch the full-screen role-based React dashboard.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center pt-2">
+                <button
+                  onClick={() => openLoginModal(key)}
+                  className="px-6 py-3 rounded-xl bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-sm transition shadow-lg"
+                >
+                  Log In to {key.toUpperCase()} Desk
+                </button>
+                <Link
+                  to={portal.path}
+                  onClick={closeModal}
+                  className="px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-semibold text-sm border border-white/20 transition"
+                >
+                  Direct Dashboard View
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </div>

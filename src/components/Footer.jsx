@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
 import {
   Briefcase,
   Heart,
@@ -13,7 +14,30 @@ import {
   MapPin
 } from 'lucide-react';
 
-export default function Footer() {
+export default function Footer({ openLoginModal, openPortalFrame }) {
+  const navigate = useNavigate();
+  const { user, isAuthenticated } = useAuth();
+
+  const handlePortalClick = (roleKey) => {
+    if (!isAuthenticated) {
+      // BEFORE LOGIN: Open login page or modal
+      if (openLoginModal) {
+        openLoginModal(roleKey);
+      } else {
+        navigate('/login', { state: { role: roleKey } });
+      }
+    } else {
+      // AFTER LOGIN: Navigate directly to the portal dashboard
+      const targetRole =
+        roleKey === 'crm' || roleKey === 'hostel' || roleKey === 'transport'
+          ? 'admin'
+          : roleKey;
+
+      const userRole = user?.role || targetRole;
+      navigate(`/${userRole}/dashboard`);
+    }
+  };
+
   return (
     <footer className="bg-navy-950 text-white/60 py-16 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -74,37 +98,61 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-white font-semibold mb-4 text-base tracking-wide">Direct Portals</h4>
+            <h4 className="text-white font-semibold mb-4 text-base tracking-wide">Portals</h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <a href="/portals/parent/index.html" target="_blank" rel="noreferrer" className="hover:text-gold-400 transition flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => handlePortalClick("parent")}
+                  className="hover:text-gold-400 transition flex items-center gap-1.5 cursor-pointer text-left text-white/70 hover:text-white"
+                >
                   <Heart className="w-3.5 h-3.5 text-rose-400" /> Parent Portal
-                </a>
+                </button>
               </li>
               <li>
-                <a href="/portals/student/index.html" target="_blank" rel="noreferrer" className="hover:text-gold-400 transition flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => handlePortalClick("student")}
+                  className="hover:text-gold-400 transition flex items-center gap-1.5 cursor-pointer text-left text-white/70 hover:text-white"
+                >
                   <GraduationCap className="w-3.5 h-3.5 text-blue-400" /> Student Portal
-                </a>
+                </button>
               </li>
               <li>
-                <a href="/portals/teacher/index.html" target="_blank" rel="noreferrer" className="hover:text-gold-400 transition flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => handlePortalClick("teacher")}
+                  className="hover:text-gold-400 transition flex items-center gap-1.5 cursor-pointer text-left text-white/70 hover:text-white"
+                >
                   <BookOpen className="w-3.5 h-3.5 text-emerald-400" /> Teacher Portal
-                </a>
+                </button>
               </li>
               <li>
-                <a href="/portals/crm/index.html" target="_blank" rel="noreferrer" className="hover:text-gold-400 transition flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => handlePortalClick("crm")}
+                  className="hover:text-gold-400 transition flex items-center gap-1.5 cursor-pointer text-left text-white/70 hover:text-white"
+                >
                   <Shield className="w-3.5 h-3.5 text-violet-400" /> Admission CRM
-                </a>
+                </button>
               </li>
               <li>
-                <a href="/portals/hostel/index.html" target="_blank" rel="noreferrer" className="hover:text-gold-400 transition flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => handlePortalClick("hostel")}
+                  className="hover:text-gold-400 transition flex items-center gap-1.5 cursor-pointer text-left text-white/70 hover:text-white"
+                >
                   <Home className="w-3.5 h-3.5 text-amber-400" /> Hostel Management
-                </a>
+                </button>
               </li>
               <li>
-                <a href="/portals/transport/index.html" target="_blank" rel="noreferrer" className="hover:text-gold-400 transition flex items-center gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => handlePortalClick("transport")}
+                  className="hover:text-gold-400 transition flex items-center gap-1.5 cursor-pointer text-left text-white/70 hover:text-white"
+                >
                   <Bus className="w-3.5 h-3.5 text-sky-400" /> Transport TMS
-                </a>
+                </button>
               </li>
             </ul>
           </div>
