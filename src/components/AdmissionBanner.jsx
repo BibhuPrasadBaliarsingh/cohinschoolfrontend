@@ -44,10 +44,10 @@ export default function AdmissionBanner({ openAdmissionModal }) {
   return (
     <div className="w-full relative z-30 pt-6 pb-4 px-4 sm:px-6 lg:px-8">
       <div className="max-w-6xl mx-auto space-y-6">
-        
+
         {/* 1. COMPACT SLIM ADMISSION BANNER */}
-        <div className="relative rounded-2xl overflow-hidden shadow-xl border border-emerald-500/30 flex flex-col md:flex-row items-stretch group hover:shadow-emerald-700/30 transition-all duration-300">
-          
+        <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gold-500/40 flex flex-col md:flex-row items-stretch group hover:shadow-gold-500/20 transition-all duration-300">
+
           {/* Left Student Image Container - Sleek height */}
           <div className="md:w-4/12 relative min-h-[110px] sm:min-h-[130px] max-h-[140px] bg-navy-950 overflow-hidden">
             <img
@@ -55,31 +55,31 @@ export default function AdmissionBanner({ openAdmissionModal }) {
               alt="Happy Students - Cohen International School"
               className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#2E7D32]/80 hidden md:block" />
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-transparent to-[#0B1C2C] hidden md:block" />
           </div>
 
-          {/* Middle Text Container — Slim & punchy */}
-          <div className="md:w-6/12 px-5 py-3.5 sm:px-6 sm:py-4 flex flex-col justify-center text-white" style={{ background: "linear-gradient(135deg, #2E7D32 0%, #38A169 60%, #4CAF50 100%)" }}>
-            <div className="flex items-center gap-1.5 text-emerald-100 text-[11px] font-bold uppercase tracking-wider mb-0.5">
-              <Sparkles className="w-3 h-3 text-amber-300" />
-              <span>Nursery to Class XI Admissions Open</span>
+          {/* Middle Text Container — Deep Navy & Gold Gradient matching Logo */}
+          <div className="md:w-6/12 px-5 py-3.5 sm:px-6 sm:py-4 flex flex-col justify-center text-white" style={{ background: "linear-gradient(135deg, #0B1C2C 0%, #162E44 60%, #071422 100%)" }}>
+            <div className="flex items-center gap-1.5 text-gold-400 text-[11px] font-bold uppercase tracking-wider mb-0.5">
+              <Sparkles className="w-3.5 h-3.5 text-gold-400" />
+              <span>Nursery to Class XII Admissions Open</span>
             </div>
             <h3 className="font-serif text-xl sm:text-2xl font-extrabold text-white leading-tight">
-              Admissions Going On 2026–27
+              Admissions Going On <span className="text-gold-400">2026–27</span>
             </h3>
-            <p className="text-[11px] sm:text-xs text-white/90 mt-1 font-medium truncate">
+            <p className="text-[11px] sm:text-xs text-white/80 mt-1 font-medium truncate">
               Integrated IIT-JEE, NEET & CBSE Board • Residential & Day Scholar
             </p>
           </div>
 
-          {/* Right CTA — Slim single action block */}
-          <div className="md:w-2/12 hover:brightness-110 transition-all px-4 py-3 flex items-center justify-center cursor-pointer border-t md:border-t-0 md:border-l border-white/20" style={{ background: "#1B5E20" }}>
+          {/* Right CTA — Metallic Gold Accent Button matching Header Logo style */}
+          <div className="md:w-2/12 hover:brightness-110 transition-all px-4 py-3 flex items-center justify-center cursor-pointer border-t md:border-t-0 md:border-l border-gold-500/30" style={{ background: "linear-gradient(135deg, #C9A227 0%, #E8C547 100%)" }}>
             <button
               onClick={() => openAdmissionModal?.()}
-              className="w-full flex items-center justify-center gap-2 text-white font-bold text-sm sm:text-base group-hover:scale-105 transition-transform"
+              className="w-full flex items-center justify-center gap-2 text-navy-950 font-extrabold text-sm sm:text-base group-hover:scale-105 transition-transform"
             >
               <span className="whitespace-nowrap">Apply Now</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-amber-300 flex-shrink-0" />
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-navy-950 flex-shrink-0" />
             </button>
           </div>
 
@@ -87,12 +87,12 @@ export default function AdmissionBanner({ openAdmissionModal }) {
 
         {/* 2. AUTOMATIC PARTNERSHIP CAROUSEL (Cambridge, IIT Madras, CBSE & AI Robotics) */}
         <div className="flex justify-center">
-          <div className="relative w-full max-w-2xl bg-[#090D16] border-2 border-[#54461B] rounded-2xl p-5 sm:p-6 shadow-2xl transition-all">
-            
+          <div className="relative w-full max-w-2xl bg-[#0B1C2C] border-2 border-gold-500/30 rounded-2xl p-5 sm:p-6 shadow-2xl transition-all">
+
             {/* Prev/Next Carousel Arrows */}
             <button
               onClick={handlePrev}
-              className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#162032] hover:bg-[#202E46] text-white/90 transition flex items-center justify-center z-10 border border-white/10"
+              className="absolute left-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-navy-950/80 hover:bg-gold-500 hover:text-navy-950 text-white transition flex items-center justify-center z-10 border border-gold-500/30 shadow-lg"
               aria-label="Previous Partner"
             >
               <ChevronLeft className="w-4 h-4" />
@@ -100,7 +100,7 @@ export default function AdmissionBanner({ openAdmissionModal }) {
 
             <button
               onClick={handleNext}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-[#162032] hover:bg-[#202E46] text-white/90 transition flex items-center justify-center z-10 border border-white/10"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-navy-950/80 hover:bg-gold-500 hover:text-navy-950 text-white transition flex items-center justify-center z-10 border border-gold-500/30 shadow-lg"
               aria-label="Next Partner"
             >
               <ChevronRight className="w-4 h-4" />
@@ -108,7 +108,7 @@ export default function AdmissionBanner({ openAdmissionModal }) {
 
             {/* SLIDE CONTENT AREA */}
             <div className="px-8 flex items-center justify-center min-h-[90px]">
-              
+
               {/* SLIDE 1: CAMBRIDGE */}
               {currentPartner.type === "cambridge" && (
                 <div className="flex flex-col items-center justify-center w-full gap-3 animate-fadeIn">
@@ -158,8 +158,8 @@ export default function AdmissionBanner({ openAdmissionModal }) {
                     </div>
                   </div>
 
-                  {/* Lime-Yellow Oval Pill Badge */}
-                  <div className="bg-[#D4E157] text-[#1E3A8A] font-extrabold text-xs sm:text-sm px-5 py-1.5 rounded-full border border-[#9E9D24] shadow-sm flex items-center gap-1 mt-0.5">
+                  {/* Gold Badge */}
+                  <div className="bg-gold-400 text-navy-950 font-extrabold text-xs sm:text-sm px-5 py-1.5 rounded-full border border-gold-300 shadow-sm flex items-center gap-1 mt-0.5">
                     <span>Partner With Cohen International school</span>
                   </div>
                 </div>
@@ -182,7 +182,7 @@ export default function AdmissionBanner({ openAdmissionModal }) {
                     </div>
                   </div>
 
-                  <div className="bg-[#D4E157] text-[#1E3A8A] font-extrabold text-xs sm:text-sm px-5 py-1.5 rounded-full border border-[#9E9D24] shadow-sm flex items-center gap-1 mt-0.5">
+                  <div className="bg-gold-400 text-navy-950 font-extrabold text-xs sm:text-sm px-5 py-1.5 rounded-full border border-gold-300 shadow-sm flex items-center gap-1 mt-0.5">
                     <span>CBSE Board Affiliated Coaching</span>
                   </div>
                 </div>
@@ -192,7 +192,7 @@ export default function AdmissionBanner({ openAdmissionModal }) {
               {currentPartner.type === "ai-robotics" && (
                 <div className="flex flex-col items-center justify-center w-full gap-3 animate-fadeIn">
                   <div className="flex items-center gap-3.5">
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-blue-600 text-white flex items-center justify-center rounded-full font-bold text-sm shadow-md border-2 border-[#D4AF37]">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 bg-navy-900 text-gold-400 flex items-center justify-center rounded-full font-bold text-sm shadow-md border-2 border-[#D4AF37]">
                       AI
                     </div>
                     <div className="text-left">
@@ -205,7 +205,7 @@ export default function AdmissionBanner({ openAdmissionModal }) {
                     </div>
                   </div>
 
-                  <div className="bg-[#D4E157] text-[#1E3A8A] font-extrabold text-xs sm:text-sm px-5 py-1.5 rounded-full border border-[#9E9D24] shadow-sm flex items-center gap-1 mt-0.5">
+                  <div className="bg-gold-400 text-navy-950 font-extrabold text-xs sm:text-sm px-5 py-1.5 rounded-full border border-gold-300 shadow-sm flex items-center gap-1 mt-0.5">
                     <span>10-Acre Smart Campus Facilities</span>
                   </div>
                 </div>
@@ -219,9 +219,8 @@ export default function AdmissionBanner({ openAdmissionModal }) {
                 <button
                   key={index}
                   onClick={() => setActivePartnerIndex(index)}
-                  className={`h-2 rounded-full transition-all ${
-                    index === activePartnerIndex ? "w-7 bg-[#D4E157]" : "w-2 bg-gray-600"
-                  }`}
+                  className={`h-2 rounded-full transition-all ${index === activePartnerIndex ? "w-7 bg-gold-400" : "w-2 bg-white/30"
+                    }`}
                   aria-label={`Go to slide ${index + 1}`}
                 />
               ))}

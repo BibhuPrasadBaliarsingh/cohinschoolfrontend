@@ -51,10 +51,10 @@ const heroSlides = [
 ];
 
 const stats = [
-  { Icon: Award,    value: 2018, suffix: "",     label: "Founded" },
-  { Icon: Users,    value: 1200, suffix: "+",    label: "Students" },
-  { Icon: BookOpen, value: 40,   suffix: "+",    label: "Expert Faculty" },
-  { Icon: MapPin,   value: 10,   suffix: " Ac",  label: "Green Campus" },
+  { Icon: Award, value: 2018, suffix: "", label: "Founded" },
+  { Icon: Users, value: 1200, suffix: "+", label: "Students" },
+  { Icon: BookOpen, value: 40, suffix: "+", label: "Expert Faculty" },
+  { Icon: MapPin, value: 10, suffix: " Ac", label: "Green Campus" },
 ];
 
 function useCountUp(target, duration, active) {
@@ -90,7 +90,7 @@ function StatItem({ stat, animate }) {
       backdropFilter: "blur(10px)",
       transition: "all 0.3s ease",
     }}
-    className="hero-stat-card"
+      className="hero-stat-card"
     >
       <div style={{
         width: 48, height: 48, borderRadius: "14px",

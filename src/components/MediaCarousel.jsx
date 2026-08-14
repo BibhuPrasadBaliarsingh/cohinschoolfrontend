@@ -89,9 +89,8 @@ export default function MediaCarousel({ slides = defaultSlides }) {
                 key={slide.id}
                 type="button"
                 onClick={() => setActiveIndex(index)}
-                className={`h-2.5 w-2.5 rounded-full transition ${
-                  index === activeIndex ? "bg-gold-400" : "bg-white/30"
-                }`}
+                className={`h-2.5 w-2.5 rounded-full transition ${index === activeIndex ? "bg-gold-400" : "bg-white/30"
+                  }`}
                 aria-label={`Go to slide ${index + 1}`}
               />
             ))}
@@ -141,11 +140,10 @@ export default function MediaCarousel({ slides = defaultSlides }) {
                     key={slide.id}
                     type="button"
                     onClick={() => setActiveIndex(index)}
-                    className={`rounded-3xl border px-4 py-4 text-left transition ${
-                      index === activeIndex
-                        ? "border-gold-400 bg-gold-500/10 text-white"
-                        : "border-white/10 bg-white/5 text-white/70 hover:bg-white/10"
-                    }`}
+                    className={`rounded-3xl border px-4 py-4 text-left transition ${index === activeIndex
+                      ? "border-gold-400 bg-gold-500/10 text-white"
+                      : "border-white/10 bg-white/5 text-white/70 hover:bg-white/10"
+                      }`}
                   >
                     <p className="font-semibold">{slide.title}</p>
                     <p className="text-sm mt-1 text-white/60">{slide.type}</p>

@@ -68,7 +68,7 @@ export default function Testimonials() {
 
   return (
     <section className="py-20 sm:py-24 bg-gradient-to-b from-slate-900 via-navy-950 to-slate-900 text-white relative overflow-hidden border-t border-gold-500/20">
-      
+
       {/* Background Glow */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-gold-500/10 rounded-full blur-3xl pointer-events-none"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
