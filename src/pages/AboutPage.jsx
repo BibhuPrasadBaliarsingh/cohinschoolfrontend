@@ -26,7 +26,7 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-12 items-center">
             <div className="w-full bg-[#56d0d3] rounded-sm overflow-hidden shadow-[0_18px_45px_rgba(15,23,42,0.12)] min-h-[320px] sm:min-h-[420px] lg:min-h-[560px]">
               <img
-                src="https://coheninternationalschool.com/assets/img/pages/Untitled%20design%20(2)1749641119.jpg"
+                src="/images/about_chairman.jpg"
                 alt="Chairman portrait"
                 className="w-full h-full object-cover object-center"
               />

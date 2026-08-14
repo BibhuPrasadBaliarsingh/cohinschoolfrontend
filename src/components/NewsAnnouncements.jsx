@@ -256,7 +256,7 @@ export default function NewsAnnouncements({ openAdmissionModal }) {
                   src={item.image}
                   alt={item.title}
                   onError={(e) => {
-                    e.currentTarget.src = item.fallbackUrl || "https://coheninternationalschool.com/assets/img/logo/logo.png";
+                    e.currentTarget.src = item.fallbackUrl || "/logo.png";
                   }}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

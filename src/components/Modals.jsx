@@ -1069,7 +1069,7 @@ export default function Modals({
           <div className="p-6 md:p-8 space-y-6 text-navy-800">
             <div className="flex flex-col md:flex-row gap-6 items-center bg-cream-100 p-6 rounded-2xl border border-cream-200">
               <img
-                src="https://coheninternationalschool.com/assets/img/pages/Untitled%20design%20(2)1749641119.jpg"
+                src="/images/about_chairman.jpg"
                 alt="Chairman Portrait"
                 className="w-32 h-32 rounded-2xl object-cover shadow-lg border-2 border-gold-500 flex-shrink-0"
               />

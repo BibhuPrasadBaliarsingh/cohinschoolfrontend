@@ -5,18 +5,15 @@ import AnimatedCounter from "./AnimatedCounter";
 const talks = [
   {
     id: 1,
-    image:
-      "https://coheninternationalschool.com/assets/img/cohen-talk/talk_1750239612.jpg",
+    image: "/images/cohen-talk/talk_1.jpg",
   },
   {
     id: 2,
-    image:
-      "https://coheninternationalschool.com/assets/img/cohen-talk/talk_1703569676.jpeg",
+    image: "/images/cohen-talk/talk_2.jpeg",
   },
   {
     id: 3,
-    image:
-      "https://coheninternationalschool.com/assets/img/cohen-talk/talk_1785073874.jpeg",
+    image: "/images/cohen-talk/talk_3.jpeg",
   },
 ];
 
@@ -213,6 +210,10 @@ export default function About({ openChairmanModal }) {
                   <img
                     src={talk.image}
                     alt="Cohen Talks"
+                    onError={(e) => {
+                      e.currentTarget.onerror = null;
+                      e.currentTarget.src = "/images/facilities_banner.png";
+                    }}
                     className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
