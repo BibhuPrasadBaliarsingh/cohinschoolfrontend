@@ -255,6 +255,10 @@ export default function NewsAnnouncements({ openAdmissionModal }) {
                 <img
                   src={item.image}
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
+                  width="400"
+                  height="300"
                   onError={(e) => {
                     e.currentTarget.src = item.fallbackUrl || "/logo.png";
                   }}

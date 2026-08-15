@@ -25,7 +25,7 @@ export default function WhyChoose() {
           {/* Card 1 */}
           <div
             onClick={() => navigate('/academics')}
-            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal"
+            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal-left"
           >
             <div className="w-14 h-14 rounded-2xl bg-gold-500/20 group-hover:bg-gold-500 group-hover:scale-110 transition-all duration-300 flex items-center justify-center mb-6">
               <Brain className="w-7 h-7 text-gold-400 group-hover:text-navy-900 transition-colors" />
@@ -34,7 +34,7 @@ export default function WhyChoose() {
               Integrated Coaching
             </h3>
             <p className="text-white/70 text-sm leading-relaxed mb-4">
-              NCERT + complete IIT-JEE & NEET coaching at <strong className="text-gold-400">no extra cost</strong> through expert faculty from Vidwan Classes.
+              NCERT + complete IIT-JEE &amp; NEET coaching at <strong className="text-gold-400">no extra cost</strong> through expert faculty from Vidwan Classes.
             </p>
             <div className="flex items-center gap-2 text-xs font-semibold text-gold-400 group-hover:translate-x-1.5 transition-transform">
               <span>Explore Academics Page</span> <ArrowRight className="w-4 h-4" />
@@ -44,13 +44,13 @@ export default function WhyChoose() {
           {/* Card 2 */}
           <div
             onClick={() => navigate('/facilities')}
-            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal"
+            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal-right"
           >
             <div className="w-14 h-14 rounded-2xl bg-gold-500/20 group-hover:bg-gold-500 group-hover:scale-110 transition-all duration-300 flex items-center justify-center mb-6">
               <Cpu className="w-7 h-7 text-gold-400 group-hover:text-navy-900 transition-colors" />
             </div>
             <h3 className="font-display text-xl text-white mb-3 group-hover:text-gold-400 transition-colors">
-              AI, Coding & Robotics
+              AI, Coding &amp; Robotics
             </h3>
             <p className="text-white/70 text-sm leading-relaxed mb-4">
               Future-ready curriculum with Artificial Intelligence, Machine Learning, Python Coding and AI Robotics labs for modern learners.
@@ -63,7 +63,7 @@ export default function WhyChoose() {
           {/* Card 3 */}
           <div
             onClick={() => navigate('/academics')}
-            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal"
+            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal-left"
           >
             <div className="w-14 h-14 rounded-2xl bg-gold-500/20 group-hover:bg-gold-500 group-hover:scale-110 transition-all duration-300 flex items-center justify-center mb-6">
               <Lightbulb className="w-7 h-7 text-gold-400 group-hover:text-navy-900 transition-colors" />
@@ -82,7 +82,7 @@ export default function WhyChoose() {
           {/* Card 4 */}
           <div
             onClick={() => navigate('/facilities')}
-            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal"
+            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal-right"
           >
             <div className="w-14 h-14 rounded-2xl bg-gold-500/20 group-hover:bg-gold-500 group-hover:scale-110 transition-all duration-300 flex items-center justify-center mb-6">
               <Trees className="w-7 h-7 text-gold-400 group-hover:text-navy-900 transition-colors" />
@@ -101,7 +101,7 @@ export default function WhyChoose() {
           {/* Card 5 */}
           <div
             onClick={() => navigate('/about')}
-            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal"
+            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal-left"
           >
             <div className="w-14 h-14 rounded-2xl bg-gold-500/20 group-hover:bg-gold-500 group-hover:scale-110 transition-all duration-300 flex items-center justify-center mb-6">
               <Users className="w-7 h-7 text-gold-400 group-hover:text-navy-900 transition-colors" />
@@ -110,7 +110,7 @@ export default function WhyChoose() {
               Experienced Leadership
             </h3>
             <p className="text-white/70 text-sm leading-relaxed mb-4">
-              Founded by IIT-Kharagpur alumnus & visionary educationists with decades of experience guiding students to top IITs, AIIMS & global universities.
+              Founded by IIT-Kharagpur alumnus &amp; visionary educationists with decades of experience guiding students to top IITs, AIIMS &amp; global universities.
             </p>
             <div className="flex items-center gap-2 text-xs font-semibold text-gold-400 group-hover:translate-x-1.5 transition-transform">
               <span>Explore About Us</span> <ArrowRight className="w-4 h-4" />
@@ -120,7 +120,7 @@ export default function WhyChoose() {
           {/* Card 6 */}
           <div
             onClick={() => navigate('/smart-campus')}
-            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal"
+            className="card-cube cursor-pointer p-8 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-3 hover:scale-[1.02] hover:shadow-[0_20px_50px_rgba(201,162,39,0.3)] group reveal-right"
           >
             <div className="w-14 h-14 rounded-2xl bg-gold-500/20 group-hover:bg-gold-500 group-hover:scale-110 transition-all duration-300 flex items-center justify-center mb-6">
               <Smartphone className="w-7 h-7 text-gold-400 group-hover:text-navy-900 transition-colors" />

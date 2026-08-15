@@ -114,6 +114,10 @@ export default function MediaCarousel({ slides = defaultSlides }) {
                 <img
                   src={slides[activeIndex].src}
                   alt={slides[activeIndex].title}
+                  loading="lazy"
+                  decoding="async"
+                  width="800"
+                  height="450"
                   className="w-full h-full max-h-[440px] object-cover"
                 />
               )}

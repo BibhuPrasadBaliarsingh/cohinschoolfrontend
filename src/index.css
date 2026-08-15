@@ -221,15 +221,74 @@ input[type=range]::-webkit-slider-thumb {
   animation-play-state: paused;
 }
 
+/* Premium Card Lift & Gold Glow */
+.card-lift {
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+  will-change: transform, box-shadow;
+}
+
+.card-lift:hover {
+  transform: translateY(-6px) scale(1.008);
+  box-shadow: 0 20px 45px -10px rgba(11, 28, 44, 0.16), 0 0 25px rgba(201, 162, 39, 0.18);
+  border-color: rgba(201, 162, 39, 0.45) !important;
+}
+
+/* Premium Gold Shimmer Sweep for Badges & Buttons */
+.badge-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.badge-shimmer::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  animation: badgeShimmer 3.5s ease-in-out infinite;
+}
+
+@keyframes badgeShimmer {
+  0% { left: -100%; }
+  35%, 100% { left: 200%; }
+}
+
 /* High Performance GPU-Accelerated Pre-emptive Scroll Reveal */
 .reveal {
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s cubic-bezier(0.16, 1, 0.3, 1), transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
   will-change: opacity, transform;
 }
 
 .reveal.active-reveal {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Side Slide Reveals (Distinct Left and Right Slide-In on Scroll) */
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-100px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-left.active-reveal {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(100px);
+  transition: opacity 0.75s cubic-bezier(0.16, 1, 0.3, 1), transform 0.75s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: opacity, transform;
+}
+
+.reveal-right.active-reveal {
+  opacity: 1;
+  transform: translateX(0);
 }

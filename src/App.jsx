@@ -1,7 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import { AuthProvider } from './context/AuthContext';
 import PrivateRoute from './routes/PrivateRoute';
@@ -14,23 +12,24 @@ import AIChatbot from './components/AIChatbot';
 import Modals from './components/Modals';
 
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
-import AcademicsPage from './pages/AcademicsPage';
-import FacilitiesPage from './pages/FacilitiesPage';
-import AdmissionsPage from './pages/AdmissionsPage';
-import SmartCampusPage from './pages/SmartCampusPage';
-import PortalsPage from './pages/PortalsPage';
-import CareersPage from './pages/CareersPage';
-import ContactPage from './pages/ContactPage';
-import TermsPage from './pages/TermsPage';
 
-import LoginPage from './pages/LoginPage';
-import UnauthorizedPage from './pages/UnauthorizedPage';
-import AdminDashboard from './pages/dashboards/AdminDashboard';
-import PrincipalDashboard from './pages/dashboards/PrincipalDashboard';
-import TeacherDashboard from './pages/dashboards/TeacherDashboard';
-import StudentDashboard from './pages/dashboards/StudentDashboard';
-import ParentDashboard from './pages/dashboards/ParentDashboard';
+const AboutPage = lazy(() => import('./pages/AboutPage'));
+const AcademicsPage = lazy(() => import('./pages/AcademicsPage'));
+const FacilitiesPage = lazy(() => import('./pages/FacilitiesPage'));
+const AdmissionsPage = lazy(() => import('./pages/AdmissionsPage'));
+const SmartCampusPage = lazy(() => import('./pages/SmartCampusPage'));
+const PortalsPage = lazy(() => import('./pages/PortalsPage'));
+const CareersPage = lazy(() => import('./pages/CareersPage'));
+const ContactPage = lazy(() => import('./pages/ContactPage'));
+const TermsPage = lazy(() => import('./pages/TermsPage'));
+
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const UnauthorizedPage = lazy(() => import('./pages/UnauthorizedPage'));
+const AdminDashboard = lazy(() => import('./pages/dashboards/AdminDashboard'));
+const PrincipalDashboard = lazy(() => import('./pages/dashboards/PrincipalDashboard'));
+const TeacherDashboard = lazy(() => import('./pages/dashboards/TeacherDashboard'));
+const StudentDashboard = lazy(() => import('./pages/dashboards/StudentDashboard'));
+const ParentDashboard = lazy(() => import('./pages/dashboards/ParentDashboard'));
 
 function AnimatedRoutes({
   openAdmissionModal,
@@ -46,8 +45,8 @@ function AnimatedRoutes({
   const location = useLocation();
 
   useEffect(() => {
-    // Instant pre-emptive IntersectionObserver (triggers 200px ahead of viewport for zero delay)
-    const revealEls = document.querySelectorAll('.reveal');
+    // Scroll reveal observer (triggers distinct slide-in as user scrolls cards into viewport view)
+    const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
     
     const observer = new IntersectionObserver(
       (entries) => {
@@ -58,14 +57,14 @@ function AnimatedRoutes({
           }
         });
       },
-      { threshold: 0, rootMargin: '300px 0px 200px 0px' }
+      { threshold: 0.15, rootMargin: '0px 0px -100px 0px' }
     );
 
     revealEls.forEach((el) => {
-      // Immediately reveal any elements near the top viewport or initial scroll position
-      if (el.getBoundingClientRect().top < window.innerHeight + 250) {
+      // Only immediately reveal top elements inside initial hero/header fold
+      if (el.getBoundingClientRect().top < window.innerHeight - 300) {
         el.classList.add('active-reveal');
-      } else if (!el.classList.contains('active-reveal')) {
+      } else {
         observer.observe(el);
       }
     });
@@ -76,7 +75,8 @@ function AnimatedRoutes({
   }, [location.pathname]);
 
   return (
-    <Routes location={location} key={location.pathname}>
+    <Suspense fallback={<div className="min-h-screen bg-navy-950 flex items-center justify-center text-gold-400 font-bold text-sm">Loading...</div>}>
+      <Routes location={location} key={location.pathname}>
       {/* Public Site Pages */}
       <Route
         path="/"
@@ -194,6 +194,7 @@ function AnimatedRoutes({
         }
       />
     </Routes>
+  </Suspense>
   );
 }
 

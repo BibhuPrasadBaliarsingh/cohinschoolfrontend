@@ -207,6 +207,11 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
           <img
             src={s.src}
             alt={s.accent}
+            fetchPriority={i === 0 ? "high" : "low"}
+            loading={i === 0 ? "eager" : "lazy"}
+            decoding="async"
+            width="1920"
+            height="1080"
             style={{
               width: "100%", height: "100%", objectFit: "cover",
               animation: i === active ? "heroBgZoom 7s ease forwards" : "none",

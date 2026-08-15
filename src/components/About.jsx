@@ -24,7 +24,7 @@ export default function About({ openChairmanModal }) {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="reveal">
+          <div className="reveal-left">
             <p className="text-gold-600 font-medium tracking-widest uppercase text-sm mb-3">
               About the School
             </p>
@@ -105,11 +105,15 @@ export default function About({ openChairmanModal }) {
             </div>
           </div>
 
-          <div className="relative reveal">
+          <div className="relative reveal-right">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-cream-200 group">
               <img
                 src="/board.png"
                 alt="School Campus & Chairman"
+                loading="lazy"
+                decoding="async"
+                width="600"
+                height="540"
                 className="w-full h-[540px] object-cover group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-900/60 to-transparent"></div>
