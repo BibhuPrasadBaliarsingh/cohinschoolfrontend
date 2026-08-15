@@ -39,7 +39,7 @@ export default function HomePage({
       <Admissions openAdmissionModal={openAdmissionModal} />
       <Gallery />
       <Testimonials />
-      <Careers openCareerModal={openCareerModal} />
+      <Careers openCareerModal={openCareerModal} isHomePage={true} />
       <Contact openChatbot={openChatbot} />
     </PageWrapper>
   );

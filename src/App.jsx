@@ -46,26 +46,33 @@ function AnimatedRoutes({
   const location = useLocation();
 
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    // Instant pre-emptive IntersectionObserver (triggers 200px ahead of viewport for zero delay)
     const revealEls = document.querySelectorAll('.reveal');
-    revealEls.forEach((el, i) => {
-      gsap.fromTo(
-        el,
-        { opacity: 0, y: 25 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.6,
-          ease: 'power2.out',
-          scrollTrigger: {
-            trigger: el,
-            start: 'top 92%',
-            toggleActions: 'play none none none'
-          },
-          delay: (i % 4) * 0.03
-        }
-      );
+    
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active-reveal');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0, rootMargin: '300px 0px 200px 0px' }
+    );
+
+    revealEls.forEach((el) => {
+      // Immediately reveal any elements near the top viewport or initial scroll position
+      if (el.getBoundingClientRect().top < window.innerHeight + 250) {
+        el.classList.add('active-reveal');
+      } else if (!el.classList.contains('active-reveal')) {
+        observer.observe(el);
+      }
     });
+
+    return () => {
+      observer.disconnect();
+    };
   }, [location.pathname]);
 
   return (

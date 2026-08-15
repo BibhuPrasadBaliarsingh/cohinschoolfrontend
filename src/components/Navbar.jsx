@@ -10,8 +10,18 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled((prev) => {
+            const isScrolled = window.scrollY > 20;
+            return prev !== isScrolled ? isScrolled : prev;
+          });
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
     handleScroll();
     window.addEventListener('scroll', handleScroll, { passive: true });
