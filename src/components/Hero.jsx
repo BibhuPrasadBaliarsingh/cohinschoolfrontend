@@ -22,7 +22,6 @@ const heroSlides = [
     accent: "Shaping Tomorrow's Leaders",
     headline: ["Excellence", "Without", "Boundaries"],
     sub: "CBSE Affiliated • Nursery to Class XII • Cambridge English Partner",
-    tag: "Est. 2018 • Bhubaneswar, Odisha",
   },
   {
     id: 2,
@@ -30,7 +29,7 @@ const heroSlides = [
     accent: "Where Every Child Thrives",
     headline: ["Sports,", "Passion &", "Joy"],
     sub: "Holistic development through world-class sports infrastructure and guided athletics.",
-    tag: "2.5-Acre Sports Complex",
+  
   },
   {
     id: 3,
@@ -38,7 +37,7 @@ const heroSlides = [
     accent: "10 Acres of Green Learning",
     headline: ["A Campus", "Like No", "Other"],
     sub: "Pollution-free, lush 10-acre campus nestled beside IIT Bhubaneswar at Barunei Hills.",
-    tag: "Residential & Day Scholar",
+  
   },
   {
     id: 4,
@@ -46,7 +45,7 @@ const heroSlides = [
     accent: "STEM & Innovation Labs",
     headline: ["Build.", "Innovate.", "Launch."],
     sub: "Drone labs, aerospace studios, AI robotics, and hands-on STEM from Class I onwards.",
-    tag: "Powered by Briskode ERP",
+   
   },
 ];
 
@@ -286,34 +285,6 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
         flexDirection: "column",
         alignItems: "flex-start",
       }}>
-
-        {/* Premium badge */}
-        <div style={{
-          ...textStyle(0),
-          display: "inline-flex", alignItems: "center", gap: "8px",
-          padding: "6px 18px",
-          borderRadius: "999px",
-          background: "rgba(201,162,39,0.12)",
-          border: "1px solid rgba(201,162,39,0.45)",
-          color: "#C9A227",
-          fontSize: "0.72rem",
-          fontWeight: 700,
-          letterSpacing: "0.1em",
-          textTransform: "uppercase",
-          marginBottom: "20px",
-          backdropFilter: "blur(10px)",
-          position: "relative",
-          overflow: "hidden",
-        }}>
-          <Sparkles size={13} />
-          <span>{slide.tag}</span>
-          {/* Shimmer sweep */}
-          <span style={{
-            position: "absolute", top: 0, left: "-100%", width: "60%", height: "100%",
-            background: "linear-gradient(90deg, transparent, rgba(255,255,255,0.25), transparent)",
-            animation: "shimmerSlide 2.5s 1s infinite",
-          }} />
-        </div>
 
         {/* Accent line */}
         <p style={{
