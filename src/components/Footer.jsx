@@ -39,7 +39,7 @@ export default function Footer({ openLoginModal, openPortalFrame }) {
   };
 
   return (
-    <footer className="bg-navy-950 text-white/60 py-16 border-t border-white/10">
+    <footer className="bg-gradient-to-b from-[#06121E] via-[#0B1C2C] to-[#142C42] text-white/70 py-16 border-t border-white/10 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid md:grid-cols-4 gap-12 mb-12">
           <div className="md:col-span-1">

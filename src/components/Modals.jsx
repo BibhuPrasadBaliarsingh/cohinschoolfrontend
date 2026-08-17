@@ -463,9 +463,13 @@ export default function Modals({
         onClick={closeModal}
       >
         <div
-          className="glass-dark rounded-3xl w-full max-w-md shadow-2xl border border-gold-500/20 overflow-hidden max-h-[92vh] overflow-y-auto"
+          className="glass-dark rounded-3xl w-full max-w-md shadow-2xl border border-gold-500/20 overflow-hidden max-h-[92vh] overflow-y-auto relative"
           onClick={(e) => e.stopPropagation()}
         >
+          {/* Exact Background Image */}
+          <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-20">
+            <img src="/bg.png" alt="" className="w-full h-full object-cover object-center" />
+          </div>
           <div className="px-5 sm:px-6 py-5 flex items-center justify-between border-b border-white/10 bg-navy-950/60">
             <div className="flex items-center gap-3 min-w-0">
               <div className="bg-white px-2 py-1 rounded-xl shadow flex-shrink-0">

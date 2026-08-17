@@ -1,6 +1,7 @@
 import React from 'react';
 import PageWrapper from '../components/PageWrapper';
 import HeaderBanner from '../components/HeaderBanner';
+import DigitalEcosystem from '../components/DigitalEcosystem';
 import { Cpu, Smartphone, Shield, Zap, CheckCircle2 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 

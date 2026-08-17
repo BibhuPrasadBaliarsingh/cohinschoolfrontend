@@ -108,7 +108,6 @@ export default function MediaCarousel({ slides = defaultSlides }) {
                     className="w-full h-full max-h-[440px] object-cover"
                     playsInline
                   />
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-navy-950/70 via-transparent to-transparent" />
                 </div>
               ) : (
                 <img

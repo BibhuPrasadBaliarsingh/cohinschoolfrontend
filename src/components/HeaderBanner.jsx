@@ -6,13 +6,14 @@ export default function HeaderBanner({ title, subtitle, badge, breadcrumb, bgIma
   const imageSrc = bgImage || '/bg.png';
   return (
     <section className="relative pt-36 pb-24 bg-navy-900 overflow-hidden border-b border-gold-500/20">
-      <div className="absolute inset-0">
+      <div className="absolute inset-0 pointer-events-none z-0">
         <img
           src={imageSrc}
           alt={title || 'Campus Banner'}
-          className="w-full h-full object-cover opacity-45 brightness-90 scale-105"
+          className="w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-navy-950/75 via-navy-900/65 to-navy-950/80"></div>
+        {/* Soft dark tint layer for crisp white text readability */}
+        <div className="absolute inset-0 bg-[#050D16]/40" />
       </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

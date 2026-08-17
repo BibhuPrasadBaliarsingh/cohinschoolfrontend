@@ -209,8 +209,18 @@ export default function NewsAnnouncements({ openAdmissionModal }) {
   };
 
   return (
-    <section id="news-events" className="py-16 sm:py-20 bg-white dark:bg-[#06121E] text-navy-950 dark:text-white relative transition-colors duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="news-events" className="py-16 sm:py-20 bg-navy-950 text-white relative overflow-hidden">
+      {/* Unique Smart Campus Background Image with Soft Dark Tint */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <img
+          src="/images/smart_campus_banner.png"
+          alt="Smart Campus Background"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#050D16]/75" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* SECTION HEADER: Matches Screenshot (Green italic "Latest" + Bold "News & Events") */}
         <div className="text-center max-w-2xl mx-auto mb-12">

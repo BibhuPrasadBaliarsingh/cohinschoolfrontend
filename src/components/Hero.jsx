@@ -221,19 +221,11 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
         </div>
       ))}
 
-      {/* ── Gradient overlays ─────────────────────────── */}
+      {/* ── Soft dark tint layer for white text readability ─────────────────────────── */}
       <div style={{
         position: "absolute", inset: 0, zIndex: 1,
-        background: "linear-gradient(to bottom, rgba(7,15,26,0.72) 0%, rgba(7,15,26,0.42) 45%, rgba(7,15,26,0.88) 100%)",
-      }} />
-      <div style={{
-        position: "absolute", inset: 0, zIndex: 1,
-        background: "linear-gradient(to right, rgba(7,15,26,0.65) 0%, transparent 55%)",
-      }} />
-      {/* Gold vignette at bottom */}
-      <div style={{
-        position: "absolute", bottom: 0, left: 0, right: 0, height: "220px", zIndex: 2,
-        background: "linear-gradient(to top, rgba(201,162,39,0.08) 0%, transparent 100%)",
+        background: "rgba(0, 0, 0, 0.35)",
+        pointerEvents: "none"
       }} />
 
       {/* ── Animated particles ────────────────────────── */}

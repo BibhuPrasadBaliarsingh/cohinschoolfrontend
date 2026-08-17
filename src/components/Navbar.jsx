@@ -29,15 +29,29 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
   }, []);
 
   const navLinkClass = ({ isActive }) =>
-    `nav-link text-sm font-medium transition ${isActive ? 'text-gold-400 font-semibold active' : 'text-white/90 hover:text-gold-400'
+    `nav-link text-sm font-semibold transition-colors duration-300 ${
+      scrolled
+        ? isActive
+          ? 'text-gold-600 font-bold active'
+          : 'text-navy-950 hover:text-gold-600'
+        : isActive
+          ? 'text-gold-400 font-bold active'
+          : 'text-white hover:text-gold-400'
     }`;
 
   const mobileNavLinkClass = ({ isActive }) =>
-    `block py-2 text-base font-medium transition ${isActive ? 'text-gold-400 font-bold active' : 'text-white hover:text-gold-400'
+    `block py-2 text-base font-semibold transition-colors duration-300 ${
+      scrolled
+        ? isActive
+          ? 'text-gold-600 font-bold active'
+          : 'text-navy-950 hover:text-gold-600'
+        : isActive
+          ? 'text-gold-400 font-bold active'
+          : 'text-white hover:text-gold-400'
     }`;
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-navy-950/95 backdrop-blur-xl border-b border-gold-500/20 shadow-2xl' : 'bg-transparent'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white border-b border-gray-200 shadow-lg' : 'bg-transparent'}`}>
       {/* Top Notification Bar */}
       <div
         className={`bg-navy-950/90 backdrop-blur-md text-white/80 border-b border-white/10 text-xs transition-all duration-300 transform origin-top overflow-hidden ${scrolled ? 'max-h-0 opacity-0 -translate-y-full py-0 border-transparent pointer-events-none' : 'max-h-24 opacity-100 translate-y-0 py-1.5'
@@ -88,7 +102,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
           <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-16 sm:h-18' : 'h-20 sm:h-22'}`}>
             {/* Logo */}
             <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center group">
-              <div className="bg-white/95 px-3 py-1.5 rounded-xl shadow-lg border border-white/20 group-hover:scale-105 transition-transform flex items-center h-11 sm:h-13">
+              <div className="bg-white px-3 py-1.5 rounded-xl shadow border border-gray-200 group-hover:scale-105 transition-transform flex items-center h-11 sm:h-13">
                 <img
                   src="/logo.png"
                   alt="Cohen International School Logo"
@@ -117,7 +131,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
               <NavLink to="/careers" className={navLinkClass}>
                 Careers
               </NavLink>
-             
+
               <NavLink to="/contact" className={navLinkClass}>
                 Contact
               </NavLink>
@@ -125,17 +139,23 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
               {isAuthenticated && user ? (
                 <Link
                   to={`/${user.role}/dashboard`}
-                  className="px-3.5 py-1.5 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-400 text-xs font-semibold hover:bg-gold-500 hover:text-navy-950 transition flex items-center gap-1.5 shadow"
+                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5 shadow ${
+                    scrolled
+                      ? 'bg-navy-900 text-white hover:bg-gold-500 hover:text-navy-950'
+                      : 'bg-gold-500/20 border border-gold-400/40 text-gold-400 hover:bg-gold-500 hover:text-navy-950'
+                  }`}
                 >
-                  <UserCheck className="w-3.5 h-3.5" />
+                  <UserCheck className="w-3.5 h-3.5 text-gold-400" />
                   <span>{user.name.split(' ')[0]} ({user.role})</span>
                 </Link>
               ) : (
                 <Link
                   to="/login"
-                  className="nav-link text-white/90 hover:text-gold-400 text-sm font-medium transition inline-flex items-center gap-1.5"
+                  className={`nav-link text-sm font-semibold transition-colors duration-300 inline-flex items-center gap-1.5 ${
+                    scrolled ? 'text-navy-950 hover:text-gold-600' : 'text-white/90 hover:text-gold-400'
+                  }`}
                 >
-                  <LogIn className="w-3.5 h-3.5 text-gold-400" />
+                  <LogIn className={`w-3.5 h-3.5 ${scrolled ? 'text-gold-600' : 'text-gold-400'}`} />
                   <span>Login</span>
                 </Link>
               )}
@@ -145,21 +165,25 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
             <div className="flex items-center gap-2.5">
               <button
                 onClick={() => navigate('/contact')}
-                className="btn-premium hidden sm:inline-flex items-center gap-1.5 px-4 py-2 bg-white/10 text-white border border-white/25 font-medium text-xs sm:text-sm rounded-full hover:bg-white/20 transition"
+                className={`hidden sm:inline-flex items-center gap-1.5 px-4 py-2 font-semibold text-xs sm:text-sm rounded-full transition shadow-sm ${
+                  scrolled
+                    ? 'bg-navy-900 text-white hover:bg-navy-800 border border-navy-900'
+                    : 'bg-white/10 text-white hover:bg-white/20 border border-white/25'
+                }`}
               >
                 <HelpCircle className="w-4 h-4 text-gold-400" />
                 Enquire Now
               </button>
               <button
                 onClick={() => openAdmissionModal('apply')}
-                className="btn-premium inline-flex items-center gap-2 px-5 py-2.5 bg-gold-500 text-navy-900 font-semibold text-xs sm:text-sm rounded-full hover:bg-gold-400 transition"
+                className="btn-premium inline-flex items-center gap-2 px-5 py-2.5 bg-gold-500 text-navy-950 font-bold text-xs sm:text-sm rounded-full hover:bg-gold-400 transition shadow-md"
               >
                 <Sparkles className="w-4 h-4" />
                 Apply Now
               </button>
               <button
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="lg:hidden text-white p-2"
+                className={`lg:hidden p-2 rounded-lg transition ${scrolled ? 'text-navy-950 hover:bg-slate-100' : 'text-white hover:bg-white/10'}`}
                 aria-label="Toggle Menu"
               >
                 {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -170,7 +194,9 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="lg:hidden absolute top-full left-0 right-0 glass-dark border-t border-white/10 max-h-[85vh] overflow-y-auto shadow-2xl">
+          <div className={`lg:hidden absolute top-full left-0 right-0 border-t max-h-[85vh] overflow-y-auto shadow-2xl transition-colors ${
+            scrolled ? 'bg-white border-gray-200 text-navy-950' : 'glass-dark border-white/10 text-white'
+          }`}>
             <div className="px-6 py-6 space-y-2">
               <NavLink
                 to="/about"
@@ -227,17 +253,21 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
                 <Link
                   to={`/${user.role}/dashboard`}
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-2 text-gold-400 py-2 w-full text-left text-base font-bold"
+                  className={`flex items-center gap-2 py-2 w-full text-left text-base font-bold ${
+                    scrolled ? 'text-navy-950' : 'text-gold-400'
+                  }`}
                 >
-                  <UserCheck className="w-4 h-4 text-gold-400" /> {user.name} ({user.role})
+                  <UserCheck className="w-4 h-4 text-gold-500" /> {user.name} ({user.role})
                 </Link>
               ) : (
                 <Link
                   to="/login"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="flex items-center gap-1.5 text-white hover:text-gold-400 py-2 w-full text-left text-base font-medium"
+                  className={`flex items-center gap-1.5 py-2 w-full text-left text-base font-semibold ${
+                    scrolled ? 'text-navy-950 hover:text-gold-600' : 'text-white hover:text-gold-400'
+                  }`}
                 >
-                  <LogIn className="w-4 h-4 text-gold-400" /> Login
+                  <LogIn className="w-4 h-4 text-gold-500" /> Login
                 </Link>
               )}
               <div className="flex flex-col gap-2.5 pt-3">
@@ -246,7 +276,9 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
                     setMobileMenuOpen(false);
                     navigate('/contact');
                   }}
-                  className="w-full btn-premium px-5 py-3 bg-white/10 border border-white/20 text-white font-semibold rounded-full flex items-center justify-center gap-2"
+                  className={`w-full px-5 py-3 font-semibold rounded-full flex items-center justify-center gap-2 shadow ${
+                    scrolled ? 'bg-navy-950 text-white' : 'bg-white/10 border border-white/20 text-white'
+                  }`}
                 >
                   <HelpCircle className="w-4 h-4 text-gold-400" /> Enquire Now
                 </button>
@@ -255,7 +287,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
                     setMobileMenuOpen(false);
                     openAdmissionModal('apply');
                   }}
-                  className="w-full btn-premium px-5 py-3 bg-gold-500 text-navy-900 font-semibold rounded-full flex items-center justify-center gap-2"
+                  className="w-full px-5 py-3 bg-gold-500 text-navy-950 font-bold rounded-full flex items-center justify-center gap-2 shadow"
                 >
                   <Sparkles className="w-4 h-4" /> Apply Now
                 </button>

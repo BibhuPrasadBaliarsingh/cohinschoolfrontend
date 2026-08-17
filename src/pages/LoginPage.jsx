@@ -100,12 +100,14 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen bg-[#050D16] flex flex-col justify-between relative overflow-hidden font-sans text-white selection:bg-gold-500 selection:text-navy-950">
 
-      {/* Background Animated Glowing Meshes & Rays */}
+      {/* Unique About Campus Background Image */}
       <div className="absolute top-0 left-0 right-0 h-full overflow-hidden pointer-events-none z-0">
-        <div className="absolute -top-32 left-1/4 w-[650px] h-[650px] bg-gradient-to-br from-gold-500/20 via-amber-500/10 to-transparent rounded-full blur-[140px] animate-pulse-soft" />
-        <div className="absolute bottom-0 right-10 w-[600px] h-[600px] bg-gradient-to-tl from-blue-600/20 via-indigo-600/10 to-transparent rounded-full blur-[160px]" />
-        <div className="absolute top-1/2 -left-20 w-[400px] h-[400px] bg-gradient-to-r from-emerald-500/15 to-transparent rounded-full blur-[130px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(rgba(201,162,39,0.07)_1px,transparent_1px)] [background-size:28px_28px] opacity-80" />
+        <img
+          src="/images/about_banner.png"
+          alt="Cohen International School Campus"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#050D16]/65" />
       </div>
 
       {/* Top Glass Navigation Header */}

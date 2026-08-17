@@ -6,13 +6,18 @@ export default function WhyChoose() {
   const navigate = useNavigate();
 
   return (
-    <section className="py-24 bg-navy-900 relative overflow-hidden">
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-20 left-20 w-64 h-64 rounded-full bg-gold-500 blur-3xl"></div>
-        <div className="absolute bottom-20 right-20 w-80 h-80 rounded-full bg-blue-400 blur-3xl"></div>
+    <section className="py-24 bg-navy-900 text-white relative overflow-hidden">
+      {/* Unique Facilities Background Image with Soft Dark Tint */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <img
+          src="/images/facilities_banner.png"
+          alt="Facilities Campus Background"
+          className="w-full h-full object-cover object-center"
+        />
+        <div className="absolute inset-0 bg-[#050D16]/75" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="text-center mb-16 reveal">
           <p className="text-gold-400 font-medium tracking-widest uppercase text-sm mb-3">Why Cohen</p>
           <h2 className="font-display text-4xl lg:text-5xl text-white mb-4">What Makes Us Different</h2>
