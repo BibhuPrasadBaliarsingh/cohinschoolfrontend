@@ -1,45 +1,51 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import axios from 'axios';
 
 const AuthContext = createContext();
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = '/api';
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem('cohen_user');
+    const savedUser = localStorage.getItem('cohen_user') || localStorage.getItem('user');
     return savedUser ? JSON.parse(savedUser) : null;
   });
-  const [token, setToken] = useState(() => localStorage.getItem('cohen_token') || null);
+  const [token, setToken] = useState(() => localStorage.getItem('cohen_token') || localStorage.getItem('token') || null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  // Synchronize axios default authorization header with token
+  useEffect(() => {
+    if (token) {
+      axios.defaults.headers.common['Authorization'] = `Bearer ${token}`;
+    } else {
+      delete axios.defaults.headers.common['Authorization'];
+    }
+  }, [token]);
 
   // Check initial authentication state on mount
   useEffect(() => {
     async function verifySession() {
-      const storedToken = localStorage.getItem('cohen_token');
+      const storedToken = localStorage.getItem('cohen_token') || localStorage.getItem('token');
       if (!storedToken) {
         setLoading(false);
         return;
       }
 
       try {
-        const response = await fetch(`${API_BASE_URL}/auth/me`, {
-          headers: {
-            Authorization: `Bearer ${storedToken}`
-          }
-        });
+        axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
+        const response = await axios.get(`${API_BASE_URL}/auth/me`);
 
-        const data = await response.json();
-        if (data.success && data.user) {
-          setUser(data.user);
-          localStorage.setItem('cohen_user', JSON.stringify(data.user));
+        if (response.data?.success && (response.data.data || response.data.user)) {
+          const userData = response.data.data || response.data.user;
+          setUser(userData);
+          localStorage.setItem('cohen_user', JSON.stringify(userData));
         } else {
-          // Token expired or invalid
           logout();
         }
       } catch (err) {
         console.error('Session verification failed:', err);
-        // Fallback to local storage user if offline
+        // Keep current saved user state if network error
       } finally {
         setLoading(false);
       }
@@ -54,29 +60,28 @@ export function AuthProvider({ children }) {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ email, password })
-      });
+      const response = await axios.post(`${API_BASE_URL}/auth/login`, { email, password });
 
-      const data = await response.json();
-
-      if (!response.ok || !data.success) {
-        throw new Error(data.message || 'Authentication failed');
+      if (!response.data || !response.data.success) {
+        throw new Error(response.data?.message || 'Authentication failed');
       }
 
-      setToken(data.token);
-      setUser(data.user);
-      localStorage.setItem('cohen_token', data.token);
-      localStorage.setItem('cohen_user', JSON.stringify(data.user));
+      const userToken = response.data.token;
+      const userData = response.data.user;
 
-      return data.user;
+      setToken(userToken);
+      setUser(userData);
+      localStorage.setItem('cohen_token', userToken);
+      localStorage.setItem('token', userToken);
+      localStorage.setItem('cohen_user', JSON.stringify(userData));
+
+      axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
+
+      return userData;
     } catch (err) {
-      setError(err.message);
-      throw err;
+      const errMsg = err.response?.data?.message || err.message || 'Authentication failed';
+      setError(errMsg);
+      throw new Error(errMsg);
     } finally {
       setLoading(false);
     }
@@ -88,29 +93,28 @@ export function AuthProvider({ children }) {
     setLoading(true);
 
     try {
-      const response = await fetch(`${API_BASE_URL}/auth/register`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(userData)
-      });
+      const response = await axios.post(`${API_BASE_URL}/auth/register`, userData);
 
-      const data = await response.json();
-
-      if (!response.ok || !data.success) {
-        throw new Error(data.message || 'Registration failed');
+      if (!response.data || !response.data.success) {
+        throw new Error(response.data?.message || 'Registration failed');
       }
 
-      setToken(data.token);
-      setUser(data.user);
-      localStorage.setItem('cohen_token', data.token);
-      localStorage.setItem('cohen_user', JSON.stringify(data.user));
+      const userToken = response.data.token;
+      const newUserData = response.data.user || response.data.data;
 
-      return data.user;
+      setToken(userToken);
+      setUser(newUserData);
+      localStorage.setItem('cohen_token', userToken);
+      localStorage.setItem('token', userToken);
+      localStorage.setItem('cohen_user', JSON.stringify(newUserData));
+
+      axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
+
+      return newUserData;
     } catch (err) {
-      setError(err.message);
-      throw err;
+      const errMsg = err.response?.data?.message || err.message || 'Registration failed';
+      setError(errMsg);
+      throw new Error(errMsg);
     } finally {
       setLoading(false);
     }
@@ -121,14 +125,17 @@ export function AuthProvider({ children }) {
     setUser(null);
     setToken(null);
     localStorage.removeItem('cohen_token');
+    localStorage.removeItem('token');
     localStorage.removeItem('cohen_user');
+    delete axios.defaults.headers.common['Authorization'];
   }
 
   // Check Role Access Helper
   function hasRole(allowedRoles) {
     if (!user) return false;
     if (!allowedRoles || allowedRoles.length === 0) return true;
-    return allowedRoles.includes(user.role);
+    const userRoleLower = (user.role || '').toLowerCase();
+    return allowedRoles.some(r => r.toLowerCase() === userRoleLower || r === user.role);
   }
 
   const value = {
@@ -153,3 +160,4 @@ export function useAuth() {
   }
   return context;
 }
+

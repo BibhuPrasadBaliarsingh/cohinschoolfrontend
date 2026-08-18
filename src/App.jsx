@@ -4,6 +4,7 @@ import {
   Routes,
   Route,
   useLocation,
+  Navigate,
 } from "react-router-dom";
 
 import { AuthProvider } from "./context/AuthContext";
@@ -30,7 +31,6 @@ const TermsPage = lazy(() => import("./pages/TermsPage"));
 
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const UnauthorizedPage = lazy(() => import("./pages/UnauthorizedPage"));
-const AdminDashboard = lazy(() => import("./pages/dashboards/AdminDashboard"));
 const PrincipalDashboard = lazy(
   () => import("./pages/dashboards/PrincipalDashboard"),
 );
@@ -43,6 +43,51 @@ const StudentDashboard = lazy(
 const ParentDashboard = lazy(
   () => import("./pages/dashboards/ParentDashboard"),
 );
+
+// Admin CRM Components & Pages
+import Sidebar from "./components/crm/Sidebar";
+import Topbar from "./components/crm/Topbar";
+
+const CRMDashboard = lazy(() => import("./pages/crm/Dashboard"));
+const CRMLeads = lazy(() => import("./pages/crm/Leads"));
+const CRMLeadDetail = lazy(() => import("./pages/crm/LeadDetail"));
+const CRMLeadPipeline = lazy(() => import("./pages/crm/LeadPipeline"));
+const CRMFollowUps = lazy(() => import("./pages/crm/FollowUps"));
+const CRMAdmissions = lazy(() => import("./pages/crm/Admissions"));
+const CRMStudents = lazy(() => import("./pages/crm/Students"));
+const CRMMarketing = lazy(() => import("./pages/crm/Marketing"));
+const CRMReports = lazy(() => import("./pages/crm/Reports"));
+const CRMStaffUsers = lazy(() => import("./pages/crm/StaffUsers"));
+const CRMSettings = lazy(() => import("./pages/crm/Settings"));
+
+function CRMLayout() {
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+
+  return (
+    <div className="flex h-screen overflow-hidden bg-white text-slate-800 font-sans">
+      <Sidebar mobileOpen={mobileSidebarOpen} setMobileOpen={setMobileSidebarOpen} />
+      <div className="flex flex-col flex-1 min-w-0 overflow-hidden">
+        <Topbar setMobileOpen={setMobileSidebarOpen} />
+        <main className="flex-1 overflow-y-auto p-6 bg-gray-50">
+          <Routes>
+            <Route path="dashboard" element={<CRMDashboard />} />
+            <Route path="leads" element={<CRMLeads />} />
+            <Route path="leads/:id" element={<CRMLeadDetail />} />
+            <Route path="pipeline" element={<CRMLeadPipeline />} />
+            <Route path="followups" element={<CRMFollowUps />} />
+            <Route path="admissions" element={<CRMAdmissions />} />
+            <Route path="students" element={<CRMStudents />} />
+            <Route path="marketing/*" element={<CRMMarketing />} />
+            <Route path="reports" element={<CRMReports />} />
+            <Route path="users" element={<CRMStaffUsers />} />
+            <Route path="settings" element={<CRMSettings />} />
+            <Route path="*" element={<Navigate to="dashboard" replace />} />
+          </Routes>
+        </main>
+      </div>
+    </div>
+  );
+}
 
 function AnimatedRoutes({
   openAdmissionModal,
@@ -97,7 +142,7 @@ function AnimatedRoutes({
         </div>
       }
     >
-      <Routes location={location} key={location.pathname}>
+      <Routes>
         {/* Public Site Pages */}
         <Route
           path="/"
@@ -173,12 +218,12 @@ function AnimatedRoutes({
         <Route path="/login" element={<LoginPage />} />
         <Route path="/unauthorized" element={<UnauthorizedPage />} />
 
-        {/* Protected Private Role-Based Dashboards */}
+        {/* Admin CRM Protected Routes */}
         <Route
-          path="/admin/dashboard"
+          path="/admin/*"
           element={
-            <PrivateRoute allowedRoles={["admin"]}>
-              <AdminDashboard />
+            <PrivateRoute allowedRoles={["admin", "Super Admin", "Admin", "Counsellor", "Admission Staff"]}>
+              <CRMLayout />
             </PrivateRoute>
           }
         />
@@ -212,6 +257,7 @@ function MainLayout() {
 
   // Check if current route is a private dashboard or login page
   const isDashboardOrAuthPage =
+    location.pathname.startsWith("/admin") ||
     location.pathname.includes("/dashboard") ||
     location.pathname === "/login" ||
     location.pathname === "/unauthorized";

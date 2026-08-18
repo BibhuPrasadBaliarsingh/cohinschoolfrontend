@@ -70,11 +70,15 @@ export default function LoginPage() {
       const loggedUser = await login(email, password);
 
       const from = location.state?.from?.pathname;
-      if (from) {
+      if (from && from !== "/login") {
         navigate(from, { replace: true });
       } else {
         switch (loggedUser?.role) {
           case "admin":
+          case "Super Admin":
+          case "Admin":
+          case "Counsellor":
+          case "Admission Staff":
             navigate("/admin/dashboard", { replace: true });
             break;
           case "principal":
@@ -87,8 +91,10 @@ export default function LoginPage() {
             navigate("/student/dashboard", { replace: true });
             break;
           case "parent":
-          default:
             navigate("/parent/dashboard", { replace: true });
+            break;
+          default:
+            navigate("/admin/dashboard", { replace: true });
             break;
         }
       }

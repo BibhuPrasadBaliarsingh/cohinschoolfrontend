@@ -57,7 +57,7 @@ export default function AdmissionBanner({ openAdmissionModal }) {
     setActivePartnerIndex((prev) => (prev + 1) % partnerSlides.length);
   };
 
-  const currentPartner = partnerSlides[activePartnerIndex];
+  const currentPartner = partnerSlides[activePartnerIndex] || partnerSlides[0] || {};
 
   return (
     <div className="w-full relative z-30 py-6 sm:py-8 px-3 sm:px-6 lg:px-8 overflow-hidden">
