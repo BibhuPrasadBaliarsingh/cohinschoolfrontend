@@ -138,7 +138,11 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
 
               {isAuthenticated && user ? (
                 <Link
-                  to={`/${user.role}/dashboard`}
+                  to={
+                    ['admin', 'principal', 'teacher', 'parent', 'student'].includes((user?.role || '').toLowerCase())
+                      ? `/${(user?.role || 'student').toLowerCase()}/dashboard`
+                      : '/student/dashboard'
+                  }
                   className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5 shadow ${
                     scrolled
                       ? 'bg-navy-900 text-white hover:bg-gold-500 hover:text-navy-950'
@@ -146,7 +150,9 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
                   }`}
                 >
                   <UserCheck className="w-3.5 h-3.5 text-gold-400" />
-                  <span>{user.name.split(' ')[0]} ({user.role})</span>
+                  <span>
+                    {(user?.name ? user.name.split(' ')[0] : user?.email ? user.email.split('@')[0] : 'User')} ({user?.role || 'Portal'})
+                  </span>
                 </Link>
               ) : (
                 <Link
@@ -251,13 +257,17 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
 
               {isAuthenticated && user ? (
                 <Link
-                  to={`/${user.role}/dashboard`}
+                  to={
+                    ['admin', 'principal', 'teacher', 'parent', 'student'].includes((user?.role || '').toLowerCase())
+                      ? `/${(user?.role || 'student').toLowerCase()}/dashboard`
+                      : '/student/dashboard'
+                  }
                   onClick={() => setMobileMenuOpen(false)}
                   className={`flex items-center gap-2 py-2 w-full text-left text-base font-bold ${
                     scrolled ? 'text-navy-950' : 'text-gold-400'
                   }`}
                 >
-                  <UserCheck className="w-4 h-4 text-gold-500" /> {user.name} ({user.role})
+                  <UserCheck className="w-4 h-4 text-gold-500" /> {user?.name || user?.email || 'User'} ({user?.role || 'Portal'})
                 </Link>
               ) : (
                 <Link

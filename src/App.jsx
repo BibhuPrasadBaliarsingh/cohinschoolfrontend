@@ -235,16 +235,32 @@ function AnimatedRoutes({
             </PrivateRoute>
           }
         />
-        <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
-        <Route path="/student/dashboard" element={<StudentDashboard />} />
+        <Route
+          path="/teacher/dashboard"
+          element={
+            <PrivateRoute allowedRoles={["admin", "principal", "teacher", "Teacher"]}>
+              <TeacherDashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/student/dashboard"
+          element={
+            <PrivateRoute allowedRoles={["admin", "Super Admin", "principal", "teacher", "student", "Student"]}>
+              <StudentDashboard />
+            </PrivateRoute>
+          }
+        />
         <Route
           path="/parent/dashboard"
           element={
-            <PrivateRoute allowedRoles={["admin", "principal", "parent"]}>
+            <PrivateRoute allowedRoles={["admin", "Super Admin", "principal", "parent", "Parent"]}>
               <ParentDashboard />
             </PrivateRoute>
           }
         />
+        <Route path="/citizen/dashboard" element={<Navigate to="/login" replace />} />
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
     </Suspense>
   );

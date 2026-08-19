@@ -41,11 +41,18 @@ export function AuthProvider({ children }) {
           setUser(userData);
           localStorage.setItem('cohen_user', JSON.stringify(userData));
         } else {
-          logout();
+          setUser(null);
+          setToken(null);
+          localStorage.clear();
         }
       } catch (err) {
-        console.error('Session verification failed:', err);
-        // Keep current saved user state if network error
+        // Backend verification failed or unauthorized - reset user state cleanly
+        setUser(null);
+        setToken(null);
+        localStorage.removeItem('cohen_token');
+        localStorage.removeItem('token');
+        localStorage.removeItem('cohen_user');
+        delete axios.defaults.headers.common['Authorization'];
       } finally {
         setLoading(false);
       }
