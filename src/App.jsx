@@ -17,6 +17,7 @@ import Footer from "./components/Footer";
 import AIChatbot from "./components/AIChatbot";
 import Modals from "./components/Modals";
 
+import PageLoadingSpinner, { TopRouteLoader } from "./components/PageLoadingSpinner";
 import HomePage from "./pages/HomePage";
 
 const AboutPage = lazy(() => import("./pages/AboutPage"));
@@ -135,13 +136,7 @@ function AnimatedRoutes({
   }, [location.pathname]);
 
   return (
-    <Suspense
-      fallback={
-        <div className="min-h-screen bg-navy-950 flex items-center justify-center text-gold-400 font-bold text-sm">
-          Loading...
-        </div>
-      }
-    >
+    <Suspense fallback={<PageLoadingSpinner message="Loading page..." />}>
       <Routes>
         {/* Public Site Pages */}
         <Route
@@ -319,6 +314,7 @@ function MainLayout() {
   return (
     <div className="min-h-screen bg-cream-50 font-sans relative flex flex-col justify-between">
       <Preloader />
+      <TopRouteLoader />
 
       {!isDashboardOrAuthPage && (
         <Navbar

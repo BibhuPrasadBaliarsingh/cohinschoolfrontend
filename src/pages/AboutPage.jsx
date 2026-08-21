@@ -12,7 +12,7 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
       <HeaderBanner
         title="About Cohen International School"
         subtitle="A 10-Acre Green Campus Next to IIT Bhubaneswar — Where Academic Rigor Meets Holistic Growth & Future-Ready Skills."
-        badge="Excellence Through Harmony"
+        
         breadcrumb="About Us"
         bgImage="/images/about_banner.png"
       />

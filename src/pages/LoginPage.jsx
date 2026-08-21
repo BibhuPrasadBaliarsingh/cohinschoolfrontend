@@ -147,8 +147,8 @@ export default function LoginPage() {
       <main className="flex-1 relative z-10 flex items-center justify-center px-4 py-8 sm:px-6 lg:px-12 my-auto">
         <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
 
-          {/* LEFT SIDE: Brand Heritage Emblem Spotlight (Desktop Column) */}
-          <div className="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+          {/* LEFT SIDE: Brand Heritage Emblem Spotlight (Hidden on Mobile, Visible on Desktop) */}
+          <div className="hidden lg:flex lg:col-span-6 flex-col items-center lg:items-start text-center lg:text-left space-y-6">
 
             {/* Glowing Golden Shield Crest Banner */}
             <div className="relative group">

@@ -89,7 +89,7 @@ export default function TermsPage() {
       <HeaderBanner
         title="Terms & Conditions"
         subtitle="Please review the rules, guidelines, and merchant policies that govern your use of the Cohen International School website."
-        badge="Legal Agreement"
+        
         breadcrumb="Terms & Conditions"
         bgImage="/bg.png"
       />

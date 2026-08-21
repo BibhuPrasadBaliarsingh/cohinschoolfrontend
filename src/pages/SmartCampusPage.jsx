@@ -11,7 +11,7 @@ export default function SmartCampusPage({ openModule, openPortalFrame }) {
       <HeaderBanner
         title="Smart Campus ERP, CRM & AI Ecosystem"
         subtitle="100% paperless school administration, real-time GPS bus tracking, biometric sync, and native mobile apps built with Briskode Technology."
-        badge="Next-Gen School Operating System"
+        
         breadcrumb="Smart Campus"
         bgImage="/images/smart_campus_banner.png"
       />

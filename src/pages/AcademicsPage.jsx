@@ -11,7 +11,7 @@ export default function AcademicsPage({ openAdmissionModal }) {
       <HeaderBanner
         title="Academics & Integrated JEE/NEET Coaching"
         subtitle="CBSE Senior Secondary Curriculum integrated with Vidwan Classes competitive mentorship — with zero hidden coaching fees."
-        badge="Ranked #1 CBSE School"
+       
         breadcrumb="Academics"
         bgImage="/images/academics_banner.png"
       />

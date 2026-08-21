@@ -10,7 +10,7 @@ export default function AdmissionsPage({ openAdmissionModal }) {
       <HeaderBanner
         title="Admissions 2026–27 & Fee Structure"
         subtitle="Transparent admission process, merit scholarships, and indicative annual fee calculator for day scholars and boarders."
-        badge="Session 2026–27 Open"
+        
         breadcrumb="Admissions"
         bgImage="/images/admissions_banner.png"
       />

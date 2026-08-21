@@ -10,7 +10,7 @@ export default function CareersPage({ openCareerModal }) {
       <HeaderBanner
         title="Careers & Faculty Recruitment at CIS"
         subtitle="We empower our educators with competitive remuneration, on-campus accommodation, continuous CPD training, and a state-of-the-art tech workspace."
-        badge="Join Our Team"
+        
         breadcrumb="Careers"
         bgImage="/images/academics_banner.png"
       />

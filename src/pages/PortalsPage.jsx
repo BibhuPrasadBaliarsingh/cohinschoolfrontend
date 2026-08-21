@@ -18,7 +18,7 @@ export default function PortalsPage({ openPortalFrame, openLoginModal }) {
       <HeaderBanner
         title="Role-Based Digital Campus Portals"
         subtitle="Encrypted web portals designed specifically for every stakeholder in the Cohen International School ecosystem."
-        badge="Single Sign-On (SSO)"
+        
         breadcrumb="Portals Hub"
         bgImage="/images/smart_campus_banner.png"
       />
