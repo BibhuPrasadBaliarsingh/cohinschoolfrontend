@@ -1,15 +1,16 @@
 import React, { useState } from "react";
-import img3605 from "../assets/DSC03605.JPG";
-import img3611 from "../assets/DSC03611.JPG";
-import img3604 from "../assets/DSC03604.JPG";
-import img3620 from "../assets/DSC03620.JPG";
-import img3625 from "../assets/DSC03625.JPG";
-import img3681 from "../assets/DSC03681.JPG";
-import img3684 from "../assets/DSC03684.JPG";
+import { Link } from "react-router-dom";
+import img3605 from "../assets/jeeadvance1.jpeg";
+import img3611 from "../assets/jeeadvance2.jpeg";
+import img3604 from "../assets/jeeadvance3.jpeg";
+import img3620 from "../assets/jeeadvance4.jpeg";
+import img3625 from "../assets/jeeadvance5.jpeg";
+import img3681 from "../assets/jeeadvance6.jpeg";
+import img3684 from "../assets/jeeadvance4.jpeg";
 import officialLogo from "../assets/cohen_official_logo.png";
-import officialBanner1 from "../assets/cohen_official_img_2.jpg";
-import officialBanner2 from "../assets/cohen_official_img_3.jpg";
-import officialBanner3 from "../assets/cohen_official_img_4.jpg";
+import officialBanner1 from "../assets/jeeadvance3.jpeg";
+import officialBanner2 from "../assets/jeeadvance6.jpeg";
+import officialBanner3 from "../assets/jeeadvance5.jpeg";
 
 import {
   Calendar,
@@ -28,7 +29,9 @@ import {
   Search,
   CheckCircle2,
   FileText,
-  Download
+  Download,
+  ArrowRight,
+  ChevronUp
 } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
 
@@ -143,12 +146,13 @@ const defaultEventsData = [
   }
 ];
 
-export default function NewsAnnouncements({ openAdmissionModal }) {
+export default function NewsAnnouncements({ openAdmissionModal, isPage = false }) {
   const { user } = useAuth();
   const isAdmin = user?.role === "admin";
 
   const [events, setEvents] = useState(defaultEventsData);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [searchQuery, setSearchQuery] = useState("");
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [showDeployModal, setShowDeployModal] = useState(false);
 
@@ -167,9 +171,16 @@ export default function NewsAnnouncements({ openAdmissionModal }) {
   const categories = ["All", "JEE Advanced Result", "JEE Main Result", "Admissions", "Academic Events"];
 
   const filteredEvents = events.filter((evt) => {
-    if (activeCategory === "All") return true;
-    return evt.category === activeCategory;
+    const matchesCategory = activeCategory === "All" || evt.category === activeCategory;
+    const matchesSearch = !searchQuery ||
+      evt.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      evt.summary.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      (evt.studentName && evt.studentName.toLowerCase().includes(searchQuery.toLowerCase())) ||
+      (evt.posterBadge && evt.posterBadge.toLowerCase().includes(searchQuery.toLowerCase()));
+    return matchesCategory && matchesSearch;
   });
+
+  const displayedEvents = isPage ? filteredEvents : filteredEvents.slice(0, 3);
 
   const handleDeploySubmit = (e) => {
     e.preventDefault();
@@ -210,18 +221,18 @@ export default function NewsAnnouncements({ openAdmissionModal }) {
 
   return (
     <section id="news-events" className="py-16 sm:py-20 bg-navy-950 text-white relative overflow-hidden">
-      {/* Unique Smart Campus Background Image with Soft Dark Tint */}
+      {/* Background Image with Soft Dark Tint */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <img
-          src="/images/smart_campus_banner.png"
-          alt="Smart Campus Background"
-          className="w-full h-full object-cover object-center"
+          src="/images/about_banner.png"
+          alt="News & Events Background"
+          className="w-full h-full object-cover object-center opacity-25"
         />
-        <div className="absolute inset-0 bg-[#050D16]/75" />
+        <div className="absolute inset-0" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
+
         {/* SECTION HEADER: Matches Screenshot (Green italic "Latest" + Bold "News & Events") */}
         <div className="text-center max-w-2xl mx-auto mb-12">
           <span className="text-emerald-600 dark:text-emerald-400 font-serif italic text-2xl font-bold block mb-1">
@@ -232,123 +243,164 @@ export default function NewsAnnouncements({ openAdmissionModal }) {
           </h2>
           <div className="w-16 h-1 bg-gold-500 mx-auto mt-4 rounded-full" />
 
-          
-          
+
+
         </div>
 
-        {/* CATEGORY FILTER TABS */}
-        <div className="flex items-center justify-center flex-wrap gap-2 mb-10">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${
-                activeCategory === cat
+        {/* SEARCH BAR & CATEGORY FILTER TABS */}
+        <div className="flex flex-col items-center justify-center gap-6 mb-10">
+          {isPage && (
+            <div className="relative max-w-md w-full">
+              <Search className="w-4 h-4 text-white/50 absolute left-4 top-1/2 -translate-y-1/2" />
+              <input
+                type="text"
+                placeholder="Search circulars, results, achievements..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="w-full pl-11 pr-4 py-2.5 bg-navy-900/90 border border-white/15 rounded-full text-xs text-white placeholder-white/50 focus:outline-none focus:border-gold-400 shadow-inner"
+              />
+              {searchQuery && (
+                <button
+                  onClick={() => setSearchQuery("")}
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-white/40 hover:text-white text-xs"
+                >
+                  <X className="w-3.5 h-3.5" />
+                </button>
+              )}
+            </div>
+          )}
+
+          <div className="flex items-center justify-center flex-wrap gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setActiveCategory(cat)}
+                className={`px-4 py-2 rounded-full text-xs font-semibold transition-all ${activeCategory === cat
                   ? "bg-navy-900 dark:bg-gold-500 text-white dark:text-navy-950 font-bold shadow-md"
                   : "bg-gray-100 dark:bg-white/5 text-gray-700 dark:text-white/70 hover:bg-gray-200 dark:hover:bg-white/10"
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
+                  }`}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
-        {/* EVENT POSTERS GRID (Matching Screenshot Layout) */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredEvents.map((item) => (
-            <div
-              key={item.id}
-              className="group relative bg-white dark:bg-navy-950/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between"
-            >
-              {/* TOP POSTER MEDIA CONTAINER */}
-              <div className="relative aspect-[4/3] overflow-hidden bg-navy-900">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  loading="lazy"
-                  decoding="async"
-                  width="400"
-                  height="300"
-                  onError={(e) => {
-                    e.currentTarget.src = item.fallbackUrl || "/logo.png";
-                  }}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
-                
-                {/* Poster Graphic Badge Overlay */}
-                <div className="absolute top-3 left-3 bg-navy-950/85 backdrop-blur-md text-gold-400 text-[10px] font-bold px-3 py-1 rounded-full border border-gold-500/30 uppercase tracking-wider shadow">
-                  {item.posterBadge}
-                </div>
+        {/* EVENT POSTERS GRID */}
+        {displayedEvents.length === 0 ? (
+          <div className="text-center py-12 bg-white/5 rounded-2xl border border-white/10 max-w-md mx-auto">
+            <Search className="w-8 h-8 text-gold-400 mx-auto mb-3 opacity-60" />
+            <p className="text-sm font-semibold text-white/90">No news or announcements found</p>
+            <p className="text-xs text-white/50 mt-1">Try selecting a different category or clearing your search term.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {displayedEvents.map((item) => (
+              <div
+                key={item.id}
+                className="group relative bg-white dark:bg-navy-950/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between"
+              >
+                {/* TOP POSTER MEDIA CONTAINER */}
+                <div className="relative w-full min-h-[240px] max-h-[360px] overflow-hidden bg-[#06121E] flex items-center justify-center p-2">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    loading="lazy"
+                    decoding="async"
+                    onError={(e) => {
+                      e.currentTarget.src = item.fallbackUrl || "/logo.png";
+                    }}
+                    className="w-full h-full max-h-[350px] object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                  />
 
-                {/* Hover overlay with detail viewer trigger */}
-                <div className="absolute inset-0 bg-navy-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
-                  <button
-                    onClick={() => setSelectedEvent(item)}
-                    className="p-3 rounded-full bg-gold-500 text-navy-950 font-bold shadow-xl hover:scale-110 transition flex items-center gap-1.5 text-xs"
-                  >
-                    <Eye className="w-4 h-4" />
-                    <span>View Notice</span>
-                  </button>
+                  {/* Poster Graphic Badge Overlay */}
+                  <div className="absolute top-3 left-3 bg-navy-950/85 backdrop-blur-md text-gold-400 text-[10px] font-bold px-3 py-1 rounded-full border border-gold-500/30 uppercase tracking-wider shadow">
+                    {item.posterBadge}
+                  </div>
 
-                  {isAdmin && (
+                  {/* Hover overlay with detail viewer trigger */}
+                  <div className="absolute inset-0 bg-navy-950/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-3">
                     <button
-                      onClick={() => handleDeleteEvent(item.id)}
-                      className="p-3 rounded-full bg-rose-600 text-white font-bold shadow-xl hover:scale-110 transition text-xs"
-                      title="Delete Event"
+                      onClick={() => setSelectedEvent(item)}
+                      className="p-3 rounded-full bg-gold-500 text-navy-950 font-bold shadow-xl hover:scale-110 transition flex items-center gap-1.5 text-xs"
                     >
-                      <Trash2 className="w-4 h-4" />
+                      <Eye className="w-4 h-4" />
+                      <span>View Notice</span>
                     </button>
-                  )}
-                </div>
-              </div>
 
-              {/* BOTTOM DATE & TITLE BANNER (Exact Replica of Screenshot) */}
-              <div className="flex items-stretch bg-white dark:bg-navy-950 border-t border-gray-100 dark:border-white/10">
-                
-                {/* Left Navy Date Box */}
-                <div className="bg-[#0B1C2C] text-white px-5 py-4 flex flex-col items-center justify-center flex-shrink-0 min-w-[85px] border-r border-navy-800">
-                  <span className="font-display text-2xl font-extrabold leading-none text-white">
-                    {item.day}
-                  </span>
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-gold-400 mt-1">
-                    {item.month}
-                  </span>
-                </div>
-
-                {/* Right Title Block */}
-                <div className="p-4 flex-1 flex flex-col justify-center">
-                  <h3
-                    onClick={() => setSelectedEvent(item)}
-                    className="font-serif text-base font-bold text-navy-900 dark:text-white hover:text-emerald-600 dark:hover:text-gold-400 transition-colors cursor-pointer line-clamp-2 leading-snug"
-                  >
-                    {item.title}
-                  </h3>
-                  <p className="text-[11px] text-gray-500 dark:text-white/50 mt-1 font-medium">
-                    {item.rank}
-                  </p>
-                </div>
-
-              </div>
-
-              {/* Admin Bar Footer if Admin */}
-              {isAdmin && (
-                <div className="px-4 py-2 bg-amber-500/10 border-t border-amber-500/20 flex items-center justify-between text-[11px] text-amber-500 font-bold">
-                  <span>Admin Mode Active</span>
-                  <div className="flex items-center gap-2">
-                    <button onClick={() => setSelectedEvent(item)} className="hover:underline flex items-center gap-1">
-                      <Edit3 className="w-3 h-3" /> Edit
-                    </button>
-                    <span>•</span>
-                    <button onClick={() => handleDeleteEvent(item.id)} className="hover:underline text-rose-400 flex items-center gap-1">
-                      <Trash2 className="w-3 h-3" /> Delete
-                    </button>
+                    {isAdmin && (
+                      <button
+                        onClick={() => handleDeleteEvent(item.id)}
+                        className="p-3 rounded-full bg-rose-600 text-white font-bold shadow-xl hover:scale-110 transition text-xs"
+                        title="Delete Event"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </button>
+                    )}
                   </div>
                 </div>
-              )}
 
-            </div>
-          ))}
-        </div>
+                {/* BOTTOM DATE & TITLE BANNER */}
+                <div className="flex items-stretch bg-white dark:bg-navy-950 border-t border-gray-100 dark:border-white/10">
+
+                  {/* Left Navy Date Box */}
+                  <div className="bg-[#0B1C2C] text-white px-5 py-4 flex flex-col items-center justify-center flex-shrink-0 min-w-[85px] border-r border-navy-800">
+                    <span className="font-display text-2xl font-extrabold leading-none text-white">
+                      {item.day}
+                    </span>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-gold-400 mt-1">
+                      {item.month}
+                    </span>
+                  </div>
+
+                  {/* Right Title Block */}
+                  <div className="p-4 flex-1 flex flex-col justify-center">
+                    <h3
+                      onClick={() => setSelectedEvent(item)}
+                      className="font-serif text-base font-bold text-navy-900 dark:text-white hover:text-emerald-600 dark:hover:text-gold-400 transition-colors cursor-pointer line-clamp-2 leading-snug"
+                    >
+                      {item.title}
+                    </h3>
+                    <p className="text-[11px] text-gray-500 dark:text-white/50 mt-1 font-medium">
+                      {item.rank}
+                    </p>
+                  </div>
+
+                </div>
+
+                {/* Admin Bar Footer if Admin */}
+                {isAdmin && (
+                  <div className="px-4 py-2 bg-amber-500/10 border-t border-amber-500/20 flex items-center justify-between text-[11px] text-amber-500 font-bold">
+                    <span>Admin Mode Active</span>
+                    <div className="flex items-center gap-2">
+                      <button onClick={() => setSelectedEvent(item)} className="hover:underline flex items-center gap-1">
+                        <Edit3 className="w-3 h-3" /> Edit
+                      </button>
+                      <span>•</span>
+                      <button onClick={() => handleDeleteEvent(item.id)} className="hover:underline text-rose-400 flex items-center gap-1">
+                        <Trash2 className="w-3 h-3" /> Delete
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* VIEW ALL NEWS POSTS PAGE LINK BUTTON (Only on Homepage section) */}
+        {!isPage && (
+          <div className="mt-12 text-center">
+            <Link
+              to="/news"
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-full bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-sm shadow-xl transition-all duration-300 transform hover:-translate-y-0.5"
+            >
+              <span>View All News Posts</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </div>
+        )}
 
       </div>
 
@@ -377,8 +429,8 @@ export default function NewsAnnouncements({ openAdmissionModal }) {
               </button>
             </div>
 
-            <div className="rounded-xl overflow-hidden aspect-video bg-navy-950">
-              <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-full object-cover" />
+            <div className="rounded-xl overflow-hidden bg-[#06121E] flex items-center justify-center p-2 min-h-[220px] max-h-[380px]">
+              <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-full max-h-[360px] object-contain" />
             </div>
 
             <div className="space-y-3 text-xs sm:text-sm text-gray-700 dark:text-white/80 leading-relaxed">

@@ -1,11 +1,44 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { ArrowRight, Play, Pause, Volume2, VolumeX, Maximize } from 'lucide-react';
+import aboutVideo from "../assets/aboutvideo.mp4";
 
 export default function StartYourJourney() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
   const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      if (videoRef.current.readyState >= 1 && videoRef.current.duration) {
+        setDuration(videoRef.current.duration);
+      }
+    }
+  }, []);
+
+  const formatTime = (timeInSeconds) => {
+    if (isNaN(timeInSeconds) || !timeInSeconds || timeInSeconds === Infinity) return "0:00";
+    const minutes = Math.floor(timeInSeconds / 60);
+    const seconds = Math.floor(timeInSeconds % 60);
+    return `${minutes}:${seconds < 10 ? "0" : ""}${seconds}`;
+  };
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      setCurrentTime(videoRef.current.currentTime);
+      if (!duration && videoRef.current.duration) {
+        setDuration(videoRef.current.duration);
+      }
+    }
+  };
+
+  const handleLoadedMetadata = () => {
+    if (videoRef.current && videoRef.current.duration) {
+      setDuration(videoRef.current.duration);
+    }
+  };
 
   const togglePlay = () => {
     if (!videoRef.current) return;
@@ -94,12 +127,17 @@ export default function StartYourJourney() {
             {/* HTML5 Video Element */}
             <video
               ref={videoRef}
-              src="https://www.w3schools.com/html/mov_bbb.mp4"
+              src={aboutVideo}
               poster="/bg.png"
+              preload="metadata"
               className="w-full aspect-video object-cover"
               onPlay={() => setIsPlaying(true)}
               onPause={() => setIsPlaying(false)}
               onEnded={() => setIsPlaying(false)}
+              onTimeUpdate={handleTimeUpdate}
+              onLoadedMetadata={handleLoadedMetadata}
+              onDurationChange={handleLoadedMetadata}
+              onCanPlay={handleLoadedMetadata}
             />
 
             {/* Overlay Graphic when paused */}
@@ -140,21 +178,42 @@ export default function StartYourJourney() {
             )}
 
             {/* Custom Video Controls Bar */}
-            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy-950 via-navy-950/80 to-transparent p-3 flex items-center justify-between z-20 text-white/90 text-xs">
-              <div className="flex items-center gap-3">
-                <button onClick={togglePlay} className="hover:text-gold-400 transition">
-                  {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-white" />}
-                </button>
-                <span>0:00 / 1:30</span>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-navy-950 via-navy-950/90 to-transparent p-3 flex flex-col gap-1.5 z-20 text-white/90 text-xs">
+              {/* Progress bar */}
+              <div
+                className="w-full bg-white/20 h-1 rounded-full overflow-hidden cursor-pointer"
+                onClick={(e) => {
+                  if (videoRef.current && duration) {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    const pos = (e.clientX - rect.left) / rect.width;
+                    videoRef.current.currentTime = pos * duration;
+                  }
+                }}
+              >
+                <div
+                  className="bg-gold-400 h-full transition-all duration-100"
+                  style={{ width: `${duration ? (currentTime / duration) * 100 : 0}%` }}
+                />
               </div>
 
-              <div className="flex items-center gap-3">
-                <button onClick={toggleMute} className="hover:text-gold-400 transition">
-                  {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4" />}
-                </button>
-                <button onClick={handleFullscreen} className="hover:text-gold-400 transition">
-                  <Maximize className="w-4 h-4" />
-                </button>
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-3">
+                  <button onClick={togglePlay} className="hover:text-gold-400 transition">
+                    {isPlaying ? <Pause className="w-4 h-4" /> : <Play className="w-4 h-4 fill-white" />}
+                  </button>
+                  <span className="font-mono text-[11px]">
+                    {formatTime(currentTime)} / {formatTime(duration)}
+                  </span>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <button onClick={toggleMute} className="hover:text-gold-400 transition">
+                    {isMuted ? <VolumeX className="w-4 h-4 text-red-400" /> : <Volume2 className="w-4 h-4" />}
+                  </button>
+                  <button onClick={handleFullscreen} className="hover:text-gold-400 transition">
+                    <Maximize className="w-4 h-4" />
+                  </button>
+                </div>
               </div>
             </div>
 

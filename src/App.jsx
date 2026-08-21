@@ -28,6 +28,7 @@ const SmartCampusPage = lazy(() => import("./pages/SmartCampusPage"));
 const PortalsPage = lazy(() => import("./pages/PortalsPage"));
 const CareersPage = lazy(() => import("./pages/CareersPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
+const NewsEventsPage = lazy(() => import("./pages/NewsEventsPage"));
 const TermsPage = lazy(() => import("./pages/TermsPage"));
 
 const LoginPage = lazy(() => import("./pages/LoginPage"));
@@ -105,33 +106,51 @@ function AnimatedRoutes({
 
   useEffect(() => {
     // Scroll reveal observer (triggers distinct slide-in as user scrolls cards into viewport view)
-    const revealEls = document.querySelectorAll(
-      ".reveal, .reveal-left, .reveal-right",
-    );
+    let observer = null;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active-reveal");
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      { threshold: 0.15, rootMargin: "0px 0px -100px 0px" },
-    );
+    const setupObserver = () => {
+      const revealEls = document.querySelectorAll(
+        ".reveal, .reveal-left, .reveal-right",
+      );
 
-    revealEls.forEach((el) => {
-      // Only immediately reveal top elements inside initial hero/header fold
-      if (el.getBoundingClientRect().top < window.innerHeight - 300) {
-        el.classList.add("active-reveal");
-      } else {
-        observer.observe(el);
-      }
+      if (observer) observer.disconnect();
+
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active-reveal");
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.1, rootMargin: "0px 0px -50px 0px" },
+      );
+
+      revealEls.forEach((el) => {
+        if (el.getBoundingClientRect().top < window.innerHeight) {
+          el.classList.add("active-reveal");
+        } else {
+          observer.observe(el);
+        }
+      });
+    };
+
+    setupObserver();
+
+    // Re-check after lazy components load
+    const timer = setTimeout(setupObserver, 250);
+
+    const mutationObserver = new MutationObserver(() => {
+      setupObserver();
     });
 
+    mutationObserver.observe(document.body, { childList: true, subtree: true });
+
     return () => {
-      observer.disconnect();
+      clearTimeout(timer);
+      if (observer) observer.disconnect();
+      mutationObserver.disconnect();
     };
   }, [location.pathname]);
 
@@ -205,6 +224,14 @@ function AnimatedRoutes({
         <Route
           path="/contact"
           element={<ContactPage openChatbot={openChatbot} />}
+        />
+        <Route
+          path="/news"
+          element={<NewsEventsPage openAdmissionModal={openAdmissionModal} />}
+        />
+        <Route
+          path="/news-events"
+          element={<NewsEventsPage openAdmissionModal={openAdmissionModal} />}
         />
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/terms-and-conditions" element={<TermsPage />} />

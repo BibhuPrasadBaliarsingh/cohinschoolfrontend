@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Target, Compass, Quote, ArrowRight, Download } from "lucide-react";
 import AnimatedCounter from "./AnimatedCounter";
 
@@ -18,6 +18,13 @@ const talks = [
 ];
 
 export default function About({ openChairmanModal }) {
+  useEffect(() => {
+    const els = document.querySelectorAll("#about .reveal, #about .reveal-left, #about .reveal-right");
+    els.forEach((el) => {
+      el.classList.add("active-reveal");
+    });
+  }, []);
+
   return (
     <section id="about" className="py-24 lg:py-32 relative overflow-hidden bg-white text-navy-900">
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cream-100 to-transparent pointer-events-none"></div>

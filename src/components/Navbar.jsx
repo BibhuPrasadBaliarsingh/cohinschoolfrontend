@@ -125,8 +125,8 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
               <NavLink to="/admissions" className={navLinkClass}>
                 Admissions
               </NavLink>
-              <NavLink to="/smart-campus" className={navLinkClass}>
-                Smart Campus
+              <NavLink to="/news" className={navLinkClass}>
+                News &amp; Events
               </NavLink>
               <NavLink to="/careers" className={navLinkClass}>
                 Careers
@@ -232,12 +232,13 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
               >
                 Admissions
               </NavLink>
+
               <NavLink
-                to="/smart-campus"
+                to="/news"
                 onClick={() => setMobileMenuOpen(false)}
                 className={mobileNavLinkClass}
               >
-                Smart Campus
+                News &amp; Events
               </NavLink>
 
               <NavLink
