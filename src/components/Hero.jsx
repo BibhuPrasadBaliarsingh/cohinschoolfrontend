@@ -11,10 +11,10 @@ import {
 } from "lucide-react";
 
 import coursolImg from "../assets/coursol.jpg";
-import img3613 from "../assets/DSC03613.JPG";
-import img3660 from "../assets/DSC03660.JPG";
-import img3622 from "../assets/DSC03622.JPG";
-import img3684 from "../assets/DSC03684.JPG";
+import img3613 from "../assets/DSC03613.jpg";
+import img3660 from "../assets/DSC03660.jpg";
+import img3622 from "../assets/DSC03622.jpg";
+import img3684 from "../assets/DSC03684.jpg";
 
 const heroSlides = [
   {

@@ -1,14 +1,14 @@
 import React from 'react';
 import { Tv, FlaskConical, Trophy, ArrowRight, ShieldCheck, BookOpen, Cpu, Sparkles, Building } from 'lucide-react';
-import img3604 from '../assets/DSC03604.JPG';
-import img3612 from '../assets/DSC03612.JPG';
-import img3620 from '../assets/DSC03620.JPG';
-import img3622 from '../assets/DSC03622.JPG';
-import img3625 from '../assets/DSC03625.JPG';
-import img3653 from '../assets/DSC03653.JPG';
-import img3671 from '../assets/DSC03671.JPG';
-import img3681 from '../assets/DSC03681.JPG';
-import img3684 from '../assets/DSC03684.JPG';
+import img3604 from '../assets/DSC03604.jpg';
+import img3612 from '../assets/DSC03612.jpg';
+import img3620 from '../assets/DSC03620.jpg';
+import img3622 from '../assets/DSC03622.jpg';
+import img3625 from '../assets/DSC03625.jpg';
+import img3653 from '../assets/DSC03653.jpg';
+import img3671 from '../assets/DSC03671.jpg';
+import img3681 from '../assets/DSC03681.jpg';
+import img3684 from '../assets/DSC03684.jpg';
 
 export default function Facilities({ openDedicatedTopic }) {
   const facilityCards = [
