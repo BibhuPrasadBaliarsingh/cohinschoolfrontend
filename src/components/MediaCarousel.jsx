@@ -97,18 +97,16 @@ export default function MediaCarousel({ slides = defaultSlides }) {
           </div>
 
           <div className="grid gap-6 lg:grid-cols-[1.75fr_1fr] p-8 items-center">
-            <div className="rounded-3xl overflow-hidden bg-black shadow-[0_0_60px_rgba(0,0,0,0.9)]">
+            <div className="w-full h-[260px] sm:h-[360px] lg:h-[440px] rounded-3xl overflow-hidden bg-black shadow-[0_0_60px_rgba(0,0,0,0.9)] relative flex items-center justify-center">
               {slides[activeIndex].type === "video" ? (
-                <div className="relative">
-                  <video
-                    key={slides[activeIndex].src}
-                    src={slides[activeIndex].src}
-                    poster={slides[activeIndex].poster}
-                    controls
-                    className="w-full h-full max-h-[440px] object-cover"
-                    playsInline
-                  />
-                </div>
+                <video
+                  key={slides[activeIndex].src}
+                  src={slides[activeIndex].src}
+                  poster={slides[activeIndex].poster}
+                  controls
+                  className="w-full h-full object-cover"
+                  playsInline
+                />
               ) : (
                 <img
                   src={slides[activeIndex].src}
@@ -117,7 +115,7 @@ export default function MediaCarousel({ slides = defaultSlides }) {
                   decoding="async"
                   width="800"
                   height="450"
-                  className="w-full h-full max-h-[440px] object-cover"
+                  className="w-full h-full object-cover"
                 />
               )}
             </div>
@@ -129,7 +127,7 @@ export default function MediaCarousel({ slides = defaultSlides }) {
                   ? "Video Slide"
                   : "Image Slide"}
               </div>
-              <div>
+              <div className="min-h-[110px]">
                 <h3 className="font-display text-3xl text-white">
                   {slides[activeIndex].title}
                 </h3>

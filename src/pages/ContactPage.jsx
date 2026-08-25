@@ -18,7 +18,7 @@ export default function ContactPage({ openChatbot }) {
       <HeaderBanner
         title="Contact & Visit Our Campus"
         subtitle="Located in the peaceful foothills of Barunei Hills, adjacent to IIT Bhubaneswar — easy access from Bhubaneswar, Cuttack & Khordha."
-        badge="Reach Out To Us"
+        
         breadcrumb="Contact Us"
         bgImage="/images/about_banner.png"
       />

@@ -10,6 +10,7 @@ import {
   MapPin,
 } from "lucide-react";
 
+import coursolImg from "../assets/coursol.jpg";
 import img3613 from "../assets/DSC03613.JPG";
 import img3660 from "../assets/DSC03660.JPG";
 import img3622 from "../assets/DSC03622.JPG";
@@ -18,34 +19,38 @@ import img3684 from "../assets/DSC03684.JPG";
 const heroSlides = [
   {
     id: 1,
-    src: img3613,
+    src: coursolImg,
     accent: "Shaping Tomorrow's Leaders",
+    headline: ["Inspiring", "Future", "Leaders"],
+    sub: "CBSE Affiliated • Nursery to Class XII • World-Class Infrastructure & Holistic Growth",
+  },
+  {
+    id: 2,
+    src: img3613,
+    accent: "Welcome to Cohen International",
     headline: ["Excellence", "Without", "Boundaries"],
     sub: "CBSE Affiliated • Nursery to Class XII • Cambridge English Partner",
   },
   {
-    id: 2,
+    id: 3,
     src: img3660,
     accent: "Where Every Child Thrives",
     headline: ["Sports,", "Passion &", "Joy"],
     sub: "Holistic development through world-class sports infrastructure and guided athletics.",
-  
   },
   {
-    id: 3,
+    id: 4,
     src: img3622,
     accent: "10 Acres of Green Learning",
     headline: ["A Campus", "Like No", "Other"],
     sub: "Pollution-free, lush 10-acre campus nestled beside IIT Bhubaneswar at Barunei Hills.",
-  
   },
   {
-    id: 4,
+    id: 5,
     src: img3684,
     accent: "STEM & Innovation Labs",
     headline: ["Build.", "Innovate.", "Launch."],
     sub: "Drone labs, aerospace studios, AI robotics, and hands-on STEM from Class I onwards.",
-   
   },
 ];
 
@@ -295,6 +300,7 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
           letterSpacing: "0.06em",
           textTransform: "uppercase",
           marginBottom: "12px",
+          minHeight: "1.5em",
         }}>
           {slide.accent}
         </p>
@@ -309,6 +315,7 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
           marginBottom: "28px",
           textShadow: "0 4px 32px rgba(0,0,0,0.45)",
           letterSpacing: "-0.01em",
+          minHeight: "clamp(6rem, 14vw, 11rem)",
         }}>
           {slide.headline.map((word, wi) => (
             <span key={`${active}-${wi}`} style={wordStyle(wi)}>
@@ -338,6 +345,7 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
           color: "rgba(255,255,255,0.78)",
           fontSize: "clamp(0.95rem, 1.8vw, 1.15rem)",
           maxWidth: "600px",
+          minHeight: "56px",
           lineHeight: 1.75,
           marginBottom: "40px",
           fontWeight: 400,

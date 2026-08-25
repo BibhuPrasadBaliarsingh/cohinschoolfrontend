@@ -80,6 +80,9 @@ export default function Footer({ openLoginModal, openPortalFrame }) {
                 <Link to="/admissions" className="hover:text-gold-400 transition">Admissions & Fees</Link>
               </li>
               <li>
+                <Link to="/news" className="hover:text-gold-400 transition">News &amp; Events</Link>
+              </li>
+              <li>
                 <a href="https://www.eduqfix.com/PayDirect/#/student/pay/9u3Ik7RvISUPS+FAt5Vw0mfbWsL0LSABcb0Dwea4EuWIcoB0DJulKNCM0J8ImcKt/4592" target="_blank" rel="noreferrer" className="hover:text-gold-400 transition">
                   Pay Fees Online
                 </a>

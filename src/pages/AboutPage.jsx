@@ -12,7 +12,7 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
       <HeaderBanner
         title="About Cohen International School"
         subtitle="A 10-Acre Green Campus Next to IIT Bhubaneswar — Where Academic Rigor Meets Holistic Growth & Future-Ready Skills."
-        badge="Excellence Through Harmony"
+
         breadcrumb="About Us"
         bgImage="/images/about_banner.png"
       />
@@ -21,14 +21,15 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
 
       <About openChairmanModal={openChairmanModal} />
 
+      {/* Chairman's Desk Section */}
       <section className="py-14 sm:py-16 lg:py-20 bg-[#efefef]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-12 items-center">
-            <div className="w-full bg-[#56d0d3] rounded-sm overflow-hidden shadow-[0_18px_45px_rgba(15,23,42,0.12)] min-h-[320px] sm:min-h-[420px] lg:min-h-[560px]">
+            <div className="w-full h-[340px] sm:h-[420px] lg:h-[460px] bg-navy-950 rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
               <img
                 src="/images/about_chairman.jpg"
                 alt="Chairman portrait"
-                className="w-full h-full object-cover object-center"
+                className="w-full h-full object-cover object-top"
               />
             </div>
 
@@ -55,6 +56,48 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
                 <span className="font-semibold text-lg">Know more</span>
                 <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white/15 text-xl leading-none">→</span>
               </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vice Chairman's Desk Section */}
+      <section className="py-14 sm:py-16 lg:py-20 bg-white border-t border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] gap-8 lg:gap-12 items-center">
+            {/* Left Column: Text Content */}
+            <div className="flex flex-col justify-center order-2 lg:order-1">
+              <p className="text-[#2d7d55] font-medium text-xl sm:text-2xl lg:text-3xl font-display leading-none">
+                From
+              </p>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-[4rem] leading-[0.95] text-navy-900 mt-2">
+                Vice Chairman's Desk
+              </h2>
+
+              <p className="mt-6 text-base sm:text-lg leading-relaxed text-navy-700/80 max-w-xl">
+                At Cohen International School, we believe that true education goes beyond textbooks—it is about inspiring young minds to discover their unique potential, cultivate character, and build resilience for tomorrow's global challenges.
+              </p>
+
+              <p className="mt-4 text-base sm:text-lg leading-relaxed text-navy-700/80 max-w-xl">
+                Our state-of-the-art campus, innovative STEM curriculum, and holistic sports programs are thoughtfully designed to nurture well-rounded leaders. We are committed to fostering an environment where every child feels valued, supported, and motivated to achieve academic excellence.
+              </p>
+
+              <button
+                onClick={openChairmanModal}
+                className="mt-8 inline-flex items-center justify-between gap-4 w-full max-w-[260px] rounded-lg bg-[#2e9e4b] px-6 py-4 text-left text-white shadow-[0_10px_25px_rgba(46,158,75,0.28)] hover:bg-[#288d43] transition-colors duration-200"
+              >
+                <span className="font-semibold text-lg">Know more</span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white/15 text-xl leading-none">→</span>
+              </button>
+            </div>
+
+            {/* Right Column: Vice Chairman Image */}
+            <div className="w-full h-[340px] sm:h-[420px] lg:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200 order-1 lg:order-2 bg-[#0B1C2C]">
+              <img
+                src="/images/about_vc.jpg"
+                alt="Vice Chairman portrait"
+                className="w-full h-full object-cover object-top"
+              />
             </div>
           </div>
         </div>

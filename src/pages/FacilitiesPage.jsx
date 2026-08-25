@@ -11,7 +11,6 @@ export default function FacilitiesPage({ openDedicatedTopic, openAdmissionModal 
       <HeaderBanner
         title="World-Class Campus Facilities & Infrastructure"
         subtitle="Spread across 10 lush green acres near IIT Bhubaneswar — designed for high academic focus, health, safety, and athletic excellence."
-        badge="State-of-the-Art Campus"
         breadcrumb="Facilities"
         bgImage="/images/facilities_banner.png"
       />
