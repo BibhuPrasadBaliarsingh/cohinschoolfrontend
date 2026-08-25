@@ -27,7 +27,7 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-12 items-center">
             <div className="w-full h-[340px] sm:h-[420px] lg:h-[460px] bg-navy-950 rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
               <img
-                src="/images/about_chairman.jpg"
+                src="/chairman.jpg"
                 alt="Chairman portrait"
                 className="w-full h-full object-cover object-top"
               />

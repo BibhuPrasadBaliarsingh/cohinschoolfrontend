@@ -284,13 +284,13 @@ export default function About({ openChairmanModal }) {
           <div className="relative reveal-right">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-cream-200 group">
               <img
-                src="/board.png"
-                alt="School Campus & Chairman"
+                src="/chairman.jpg"
+                alt="Founder Chairman Er. Jyoti Ranjan Tripathy"
                 loading="lazy"
                 decoding="async"
                 width="600"
                 height="540"
-                className="w-full h-[540px] object-cover group-hover:scale-105 transition-transform duration-700"
+                className="w-full h-[540px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-900/60 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
