@@ -898,8 +898,23 @@ export default function Modals({
 
   // 3. MODULE MODAL
   if (type === "module") {
-    const key = data?.moduleKey;
-    const m = modulesData[key];
+    const rawKey = data?.moduleKey;
+    const normalizedKey =
+      rawKey === "teacher-erp"
+        ? "teacher"
+        : rawKey === "student-portal"
+        ? "student"
+        : rawKey === "parent-app"
+        ? "parent"
+        : rawKey === "transport-tms"
+        ? "transport"
+        : rawKey === "fee-gateway"
+        ? "finance"
+        : rawKey === "hostel-management"
+        ? "hostel"
+        : rawKey;
+
+    const m = modulesData[normalizedKey] || modulesData[rawKey];
     if (!m) return null;
 
     return (
@@ -927,7 +942,7 @@ export default function Modals({
           </div>
           <div className="p-6">
             <p className="text-navy-700/80 mb-6">{m.desc}</p>
-            <ul className="space-y-3">
+            <ul className="space-y-3 mb-6">
               {m.features.map((f, i) => (
                 <li key={i} className="flex items-start gap-3">
                   <CheckCircle className="w-5 h-5 text-gold-600 flex-shrink-0 mt-0.5" />
@@ -935,6 +950,27 @@ export default function Modals({
                 </li>
               ))}
             </ul>
+
+            {normalizedKey === "student" ? (
+              <Link
+                to="/student/dashboard"
+                onClick={closeModal}
+                className="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl flex items-center justify-center gap-2 shadow-lg transition"
+              >
+                <ExternalLink className="w-4 h-4" /> Launch Public Student Portal →
+              </Link>
+            ) : (
+              <button
+                type="button"
+                onClick={() => {
+                  closeModal();
+                  openLoginModal?.(normalizedKey);
+                }}
+                className="w-full py-3.5 bg-navy-900 hover:bg-navy-800 text-white font-bold rounded-2xl flex items-center justify-center gap-2 shadow-lg transition"
+              >
+                <LogIn className="w-4.5 h-4.5 text-gold-400" /> Open {m.title}
+              </button>
+            )}
           </div>
         </div>
       </div>

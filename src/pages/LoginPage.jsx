@@ -326,8 +326,24 @@ export default function LoginPage() {
                 </button>
               </form>
 
+              {/* Public Student Portal Quick Launch */}
+              <div className="mt-4 pt-3 border-t border-white/10">
+                <Link
+                  to="/student/dashboard"
+                  className="w-full py-2.5 px-3 rounded-xl bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/30 text-blue-300 hover:text-blue-200 text-xs font-semibold flex items-center justify-between transition group"
+                >
+                  <div className="flex items-center gap-2">
+                    <GraduationCap className="w-4 h-4 text-blue-400" />
+                    <span>Student Portal is Public</span>
+                  </div>
+                  <span className="text-[11px] underline flex items-center gap-1 font-bold">
+                    Open Student Hub <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </span>
+                </Link>
+              </div>
+
               {/* Security note */}
-              <div className="mt-6 pt-4 flex items-center justify-between text-[11px] text-white/50 border-t border-white/10">
+              <div className="mt-4 pt-3 flex items-center justify-between text-[11px] text-white/50 border-t border-white/10">
                 <div className="flex items-center gap-1.5">
                   <Building2 className="w-3.5 h-3.5 text-gold-400" />
                   <span>Cohen Digital Campus ERP</span>

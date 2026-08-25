@@ -29,7 +29,7 @@ export default function ParentDashboard() {
           Guardian Oversight & Fee Gateway
         </h1>
         <p className="text-white/70 text-sm max-w-2xl">
-          Welcome back, <strong className="text-rose-300">{user?.name}</strong>. Child Ward: <strong className="text-gold-400">Aarav Sharma (Class XI Science - JEE Integrated)</strong>. Monitor live attendance, report cards, hostel status, and direct fee payment.
+          Welcome back, <strong className="text-rose-300">{user?.name || "Dr. Alok Mohanty"}</strong>. Child Ward: <strong className="text-gold-400">Aarav Sharma (Class XI Science - JEE Integrated)</strong>. Monitor live attendance, report cards, hostel status, and direct fee payment.
         </p>
       </div>
 

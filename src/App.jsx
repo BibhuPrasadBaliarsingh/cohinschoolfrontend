@@ -235,6 +235,7 @@ function AnimatedRoutes({
             </PrivateRoute>
           }
         />
+        {/* Teacher Portal Protected Routes */}
         <Route
           path="/teacher/dashboard"
           element={
@@ -244,21 +245,28 @@ function AnimatedRoutes({
           }
         />
         <Route
+          path="/teacher"
+          element={
+            <PrivateRoute allowedRoles={["admin", "principal", "teacher", "Teacher"]}>
+              <TeacherDashboard />
+            </PrivateRoute>
+          }
+        />
+
+        {/* Protected Student Portal Routes */}
+        <Route
           path="/student/dashboard"
           element={
-            <PrivateRoute allowedRoles={["admin", "Super Admin", "principal", "teacher", "student", "Student"]}>
+            <PrivateRoute allowedRoles={["admin", "Super Admin", "principal", "student", "Student"]}>
               <StudentDashboard />
             </PrivateRoute>
           }
         />
-        <Route
-          path="/parent/dashboard"
-          element={
-            <PrivateRoute allowedRoles={["admin", "Super Admin", "principal", "parent", "Parent"]}>
-              <ParentDashboard />
-            </PrivateRoute>
-          }
-        />
+        <Route path="/student" element={<Navigate to="/student/dashboard" replace />} />
+
+        {/* Public Parent Portal Routes */}
+        <Route path="/parent/dashboard" element={<ParentDashboard />} />
+        <Route path="/parent" element={<Navigate to="/parent/dashboard" replace />} />
         <Route path="/citizen/dashboard" element={<Navigate to="/login" replace />} />
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
@@ -271,9 +279,11 @@ function MainLayout() {
   const [modalState, setModalState] = useState(null);
   const [chatbotOpen, setChatbotOpen] = useState(false);
 
-  // Check if current route is a private dashboard or login page
+  // Check if current route is a standalone dashboard or login page
   const isDashboardOrAuthPage =
     location.pathname.startsWith("/admin") ||
+    location.pathname.startsWith("/student") ||
+    location.pathname.startsWith("/teacher") ||
     location.pathname.includes("/dashboard") ||
     location.pathname === "/login" ||
     location.pathname === "/unauthorized";

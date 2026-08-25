@@ -19,6 +19,11 @@ export default function Footer({ openLoginModal, openPortalFrame }) {
   const { user, isAuthenticated } = useAuth();
 
   const handlePortalClick = (roleKey) => {
+    if (roleKey === 'student') {
+      navigate('/student/dashboard');
+      return;
+    }
+
     if (!isAuthenticated) {
       // BEFORE LOGIN: Open login page or modal
       if (openLoginModal) {
