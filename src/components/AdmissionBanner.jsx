@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ArrowRight, Sparkles, ChevronLeft, ChevronRight, GraduationCap, Cpu } from "lucide-react";
-import img3620 from "../assets/DSC03620.jpg";
+import img3620 from "../assets/DSC03620.JPG";
 
 const partnerSlides = [
   {

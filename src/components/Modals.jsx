@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import img3604 from "../assets/DSC03604.jpg";
-import img3611 from "../assets/DSC03611.jpg";
-import img3612 from "../assets/DSC03612.jpg";
-import img3616 from "../assets/DSC03616.jpg";
-import img3622 from "../assets/DSC03622.jpg";
-import img3671 from "../assets/DSC03671.jpg";
-import img3681 from "../assets/DSC03681.jpg";
-import img3684 from "../assets/DSC03684.jpg";
+import img3604 from "../assets/DSC03604.JPG";
+import img3611 from "../assets/DSC03611.JPG";
+import img3612 from "../assets/DSC03612.JPG";
+import img3616 from "../assets/DSC03616.JPG";
+import img3622 from "../assets/DSC03622.JPG";
+import img3671 from "../assets/DSC03671.JPG";
+import img3681 from "../assets/DSC03681.JPG";
+import img3684 from "../assets/DSC03684.JPG";
 import {
   X,
   LogIn,

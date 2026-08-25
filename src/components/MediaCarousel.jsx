@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { ChevronLeft, ChevronRight, PlayCircle } from "lucide-react";
-import img3604 from "../assets/DSC03604.jpg";
-import img3612 from "../assets/DSC03612.jpg";
-import img3624 from "../assets/DSC03624.jpg";
+import img3604 from "../assets/DSC03604.JPG";
+import img3612 from "../assets/DSC03612.JPG";
+import img3624 from "../assets/DSC03624.JPG";
 
 const defaultSlides = [
   {
