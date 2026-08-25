@@ -1,10 +1,21 @@
-import React, { useState } from 'react';
-import { ArrowRight, Image as ImageIcon, Video, Sparkles, X, ChevronLeft, ChevronRight, Maximize2, Heart, Award, Camera, Layers } from 'lucide-react';
+import React, { useState, useEffect, useCallback } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  Heart,
+  Maximize2,
+  X,
+  ChevronLeft,
+  ChevronRight,
+  MapPin
+} from 'lucide-react';
 
+import img3604 from '../assets/DSC03604.jpg';
 import img3605 from '../assets/DSC03605.JPG';
 import img3611 from '../assets/DSC03611.JPG';
+import img3612 from '../assets/DSC03612.jpg';
 import img3613 from '../assets/DSC03613.JPG';
 import img3616 from '../assets/DSC03616.JPG';
+import img3620 from '../assets/DSC03620.jpg';
 import img3622 from '../assets/DSC03622.JPG';
 import img3624 from '../assets/DSC03624.JPG';
 import img3625 from '../assets/DSC03625.JPG';
@@ -14,349 +25,630 @@ import img3671 from '../assets/DSC03671.JPG';
 import img3681 from '../assets/DSC03681.JPG';
 import img3684 from '../assets/DSC03684.JPG';
 
-const categories = [
-  "All",
-  "Campus Infrastructure",
-  "Academics",
-  "Innovation Lab",
-  "Sports Arena",
-  "Cultural & Events"
-];
-
 const galleryItems = [
   {
     id: 1,
-    title: "Main School Entrance & Green Campus",
+    title: "Main Campus Gateway & Botanical Sanctuary",
     category: "Campus Infrastructure",
     src: img3605,
-    span: "col-span-2 row-span-2 h-80 md:h-96"
+    location: "Central Campus Quad",
+    tag: "CAPTAIN SQUAD",
+    stat: "10-Acre Sanctuary",
+    resolution: "4K UHD",
+    description: "Expansive 10-acre eco-conscious architectural landscape with lush green lawns and state-of-the-art security entrances."
   },
   {
     id: 2,
-    title: "Smart Classroom Interactive Session",
-    category: "Academics",
-    src: img3611,
-    span: "h-44 md:h-48"
+    title: "AI & Aerospace Robotics Hub",
+    category: "Innovation Lab",
+    src: img3613,
+    location: "Tech Innovation Pavilion",
+    tag: "STRIKER LAB",
+    stat: "3D Printers & AI",
+    resolution: "4K UHD",
+    description: "Hands-on stem workspace equipping students with robotics kits, 3D printers, and artificial intelligence simulation modules."
   },
   {
     id: 3,
-    title: "AI & Aerospace Robotics Studio",
-    category: "Innovation Lab",
-    src: img3613,
-    span: "h-44 md:h-48"
+    title: "Olympic-Standard Sports Arena & Turf",
+    category: "Sports Arena",
+    src: img3622,
+    location: "Athletics Complex",
+    tag: "CHAMPION TURF",
+    stat: "All-Weather Arena",
+    resolution: "4K UHD",
+    description: "All-weather multi-sport synthetic arena supporting soccer, cricket, track events, and outdoor conditioning."
   },
   {
     id: 4,
-    title: "Science & Physics Research Lab",
-    category: "Innovation Lab",
-    src: img3616,
-    span: "h-44 md:h-48"
+    title: "Interactive Smart Tech Studio",
+    category: "Academics",
+    src: img3611,
+    location: "Academic Block A",
+    tag: "SMART CLASS",
+    stat: "Dual 4K Displays",
+    resolution: "HD 1080p",
+    description: "Technology-enabled classrooms fitted with interactive smart boards, dual display setups, and ergonomic modular seating."
   },
   {
     id: 5,
-    title: "Annual Sports Complex & Athletics Track",
-    category: "Sports Arena",
-    src: img3622,
-    span: "h-44 md:h-48"
+    title: "Advanced Physics & Science Research Lab",
+    category: "Innovation Lab",
+    src: img3616,
+    location: "Science Complex",
+    tag: "RESEARCH WING",
+    stat: "National Olympiad",
+    resolution: "HD 1080p",
+    description: "Precision-calibrated lab equipment fostering scientific inquiry, practical experiments, and national research olympiads."
   },
   {
     id: 6,
-    title: "Cambridge English Language Speech Lab",
-    category: "Academics",
-    src: img3624,
-    span: "h-44 md:h-48"
+    title: "Cohen Talks Grand Auditorium",
+    category: "Cultural & Events",
+    src: img3660,
+    location: "Cultural Pavilion",
+    tag: "CENTER STAGE",
+    stat: "1,000 Capacity",
+    resolution: "4K UHD",
+    description: "State-of-the-art 1,000-seater acoustic theater hosting TEDx-style summits, theatrical plays, and annual galas."
   },
   {
     id: 7,
-    title: "Vidwan Integrated JEE & NEET Prep Centre",
+    title: "Vidwan JEE & NEET Integrated Prep Wing",
     category: "Academics",
     src: img3625,
-    span: "h-44 md:h-48"
+    location: "Excellence Center",
+    tag: "TOP RANKERS",
+    stat: "Expert IIT Faculty",
+    resolution: "4K UHD",
+    description: "Rigorous academic environment where expert faculties guide students through competitive entrance preparation."
   },
   {
     id: 8,
-    title: "Hostel Boarding & Dining Complex",
-    category: "Campus Infrastructure",
-    src: img3653,
-    span: "h-44 md:h-48"
+    title: "Robotics Hardware Assembly Station",
+    category: "Innovation Lab",
+    src: img3612,
+    location: "STEM Studio",
+    tag: "HARDWARE HUB",
+    stat: "Robo Kits",
+    resolution: "4K UHD",
+    description: "Specialized micro-controller programming and hardware prototyping workbench for aspiring engineers."
   },
   {
     id: 9,
-    title: "Cohen Talks & Seminar Auditorium",
-    category: "Cultural & Events",
-    src: img3660,
-    span: "h-44 md:h-48"
+    title: "Cambridge Phonetics & Speech Lab",
+    category: "Academics",
+    src: img3624,
+    location: "Language Center",
+    tag: "GLOBAL ACCENT",
+    stat: "Phonetic Studio",
+    resolution: "HD 1080p",
+    description: "Audio-assisted linguistic training suite enhancing public speaking, global accent mastery, and elocution."
   },
   {
     id: 10,
-    title: "Classroom Collaborative Project Work",
-    category: "Academics",
-    src: img3671,
-    span: "h-44 md:h-48"
+    title: "Indoor Badminton & Sports Arena",
+    category: "Sports Arena",
+    src: img3620,
+    location: "Indoor Sports Center",
+    tag: "SMASH COURT",
+    stat: "Wooden Floor",
+    resolution: "HD 1080p",
+    description: "Indoor wooden courts for badminton, table tennis, and yoga sessions supervised by certified athletic coaches."
   },
   {
     id: 11,
-    title: "E-Library & Digital Resource Centre",
+    title: "Luxury Boarding Residence & Lounge",
     category: "Campus Infrastructure",
-    src: img3681,
-    span: "h-44 md:h-48"
+    src: img3653,
+    location: "Hostel Zone",
+    tag: "HOSTEL LUXE",
+    stat: "Nutritious Dining",
+    resolution: "4K UHD",
+    description: "Hygienic, climate-controlled residential quarters with chef-curated nutritious dining for resident scholars."
   },
   {
     id: 12,
-    title: "RouteSafe Fleet & Transport Station",
+    title: "Collaborative Learning Studio Space",
+    category: "Academics",
+    src: img3671,
+    location: "Innovation Hall",
+    tag: "PEER BRAINSTORM",
+    stat: "Modular Pods",
+    resolution: "HD 1080p",
+    description: "Flexible, modern study pods designed to encourage peer brainstorming, group projects, and creative workshops."
+  },
+  {
+    id: 13,
+    title: "Digital E-Library & Knowledge Commons",
+    category: "Campus Infrastructure",
+    src: img3681,
+    location: "Knowledge Hub",
+    tag: "20K+ BOOKS",
+    stat: "Digital Access",
+    resolution: "4K UHD",
+    description: "Quiet research haven featuring over 20,000 physical volumes alongside digital access to global research journals."
+  },
+  {
+    id: 14,
+    title: "Archway Walkway & Botanical Lawn",
+    category: "Campus Infrastructure",
+    src: img3604,
+    location: "North Garden",
+    tag: "GREEN CAMPUS",
+    stat: "Native Flora",
+    resolution: "HD 1080p",
+    description: "Serene shaded pathways connecting academic blocks, surrounded by native flora and peaceful seating nooks."
+  },
+  {
+    id: 15,
+    title: "RouteSafe Fleet & Transit Terminal",
     category: "Campus Infrastructure",
     src: img3684,
-    span: "h-44 md:h-48"
+    location: "Transit Hub",
+    tag: "GPS ROUTE",
+    stat: "AC Buses",
+    resolution: "HD 1080p",
+    description: "GPS-monitored, air-conditioned bus fleet managed with real-time app tracking for parent peace of mind."
   }
 ];
 
 export default function Gallery() {
+  const [squadIdx, setSquadIdx] = useState(0);
   const [selectedIdx, setSelectedIdx] = useState(null);
-  const [activeFilter, setActiveFilter] = useState("All");
   const [likes, setLikes] = useState({});
+  const [copied, setCopied] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check window width for mobile responsive 3D card spacing
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Automatic Smooth Carousel Scroll (Autoplay every 3.5s)
+  useEffect(() => {
+    if (selectedIdx !== null || isPaused) return;
+
+    const timer = setInterval(() => {
+      setSquadIdx((prev) => (prev + 1) % galleryItems.length);
+    }, 3500);
+
+    return () => clearInterval(timer);
+  }, [selectedIdx, isPaused]);
 
   const toggleLike = (e, id) => {
     e.stopPropagation();
-    setLikes(prev => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
+    setLikes((prev) => ({ ...prev, [id]: (prev[id] || 0) + 1 }));
   };
 
-  const filteredItems = activeFilter === "All"
-    ? galleryItems
-    : galleryItems.filter(item => item.category === activeFilter);
+  const handleNextSquad = useCallback(() => {
+    setSquadIdx((prev) => (prev + 1) % galleryItems.length);
+  }, []);
 
-  const handleNext = () => {
+  const handlePrevSquad = useCallback(() => {
+    setSquadIdx((prev) => (prev === 0 ? galleryItems.length - 1 : prev - 1));
+  }, []);
+
+  const handleNextLightbox = useCallback(() => {
     if (selectedIdx !== null) {
-      setSelectedIdx((prev) => (prev + 1) % filteredItems.length);
+      setSelectedIdx((prev) => (prev + 1) % galleryItems.length);
     }
-  };
+  }, [selectedIdx]);
 
-  const handlePrev = () => {
+  const handlePrevLightbox = useCallback(() => {
     if (selectedIdx !== null) {
-      setSelectedIdx((prev) => (prev === 0 ? filteredItems.length - 1 : prev - 1));
+      setSelectedIdx((prev) => (prev === 0 ? galleryItems.length - 1 : prev - 1));
     }
+  }, [selectedIdx]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (selectedIdx !== null) {
+        if (e.key === "ArrowRight") handleNextLightbox();
+        if (e.key === "ArrowLeft") handlePrevLightbox();
+        if (e.key === "Escape") setSelectedIdx(null);
+      } else {
+        if (e.key === "ArrowRight") handleNextSquad();
+        if (e.key === "ArrowLeft") handlePrevSquad();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedIdx, handleNextLightbox, handlePrevLightbox, handleNextSquad, handlePrevSquad]);
+
+  const copyShareLink = (e) => {
+    e.stopPropagation();
+    navigator.clipboard.writeText(window.location.href);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2500);
   };
 
-  const selectedImg = selectedIdx !== null ? filteredItems[selectedIdx] : null;
+  const selectedImg = selectedIdx !== null ? galleryItems[selectedIdx] : null;
+
+  // Compute 3D stage positions (Left, Center, Right)
+  const getSquadPositionIndex = (index) => {
+    const total = galleryItems.length;
+    const diff = (index - squadIdx + total) % total;
+    if (diff === 0) return 0; // Center
+    if (diff === 1 || diff === -(total - 1)) return 1; // Right 1
+    if (diff === total - 1 || diff === -1) return -1; // Left 1
+    return 99; // Hidden offstage
+  };
 
   return (
-    <section className="py-20 sm:py-24 bg-cream-100 border-t border-cream-200 relative overflow-hidden">
-      {/* Floating Animated Parachute, Paper Plane & Nature Leaf Elements */}
+    <section className="py-10 sm:py-24 bg-white text-navy-950 border-t border-cream-200 relative overflow-hidden selection:bg-rose-500 selection:text-white">
+      
+      {/* Floating Animated CSS Keyframes */}
       <style>{`
-        @keyframes floatParachuteG {
-          0% { transform: translateY(-30px) translateX(0px) rotate(-4deg); opacity: 0.3; }
-          50% { transform: translateY(140px) translateX(-20px) rotate(6deg); opacity: 0.9; }
-          100% { transform: translateY(280px) translateX(15px) rotate(-4deg); opacity: 0.3; }
+        @keyframes floatCapG {
+          0% { transform: translateY(0px) rotate(-8deg); }
+          50% { transform: translateY(-30px) rotate(10deg); }
+          100% { transform: translateY(0px) rotate(-8deg); }
         }
-        @keyframes floatLeafG {
-          0% { transform: translateY(80px) translateX(0px) rotate(0deg); opacity: 0.3; }
-          50% { transform: translateY(-120px) translateX(22px) rotate(90deg); opacity: 0.9; }
-          100% { transform: translateY(-240px) translateX(-15px) rotate(180deg); opacity: 0.3; }
+        @keyframes floatFlowerG {
+          0% { transform: translateY(0px) rotate(0deg) scale(1); }
+          50% { transform: translateY(-35px) rotate(120deg) scale(1.15); }
+          100% { transform: translateY(0px) rotate(240deg) scale(1); }
         }
-        @keyframes floatPlaneG {
-          0% { transform: translateY(120px) translateX(-20px) rotate(-15deg); opacity: 0.2; }
-          50% { transform: translateY(-40px) translateX(30px) rotate(10deg); opacity: 0.9; }
-          100% { transform: translateY(-200px) translateX(-25px) rotate(-20deg); opacity: 0.2; }
+        @keyframes floatBubbleG1 {
+          0% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.6; }
+          50% { transform: translateY(-45px) translateX(15px) scale(1.2); opacity: 0.95; }
+          100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.6; }
         }
-        .animate-para-g { animation: floatParachuteG 14s ease-in-out infinite alternate; }
-        .animate-leaf-g { animation: floatLeafG 12s ease-in-out infinite; }
-        .animate-plane-g { animation: floatPlaneG 15s ease-in-out infinite; }
+        @keyframes floatBubbleG2 {
+          0% { transform: translateY(0px) translateX(0px) scale(1.1); opacity: 0.5; }
+          50% { transform: translateY(40px) translateX(-20px) scale(0.9); opacity: 0.95; }
+          100% { transform: translateY(0px) translateX(0px) scale(1.1); opacity: 0.5; }
+        }
+        /* Infinite Flying Rockets behind images */
+        @keyframes flyRocketL2R {
+          0% {
+            transform: translate(-150px, 500px) rotate(42deg) scale(0.7);
+            opacity: 0;
+          }
+          8% { opacity: 0.95; }
+          92% { opacity: 0.95; }
+          100% {
+            transform: translate(1450px, -450px) rotate(42deg) scale(0.95);
+            opacity: 0;
+          }
+        }
+        @keyframes flyRocketR2L {
+          0% {
+            transform: translate(1450px, 550px) rotate(-42deg) scale(0.7);
+            opacity: 0;
+          }
+          8% { opacity: 0.95; }
+          92% { opacity: 0.95; }
+          100% {
+            transform: translate(-200px, -450px) rotate(-42deg) scale(0.95);
+            opacity: 0;
+          }
+        }
+        .animate-float-cap { animation: floatCapG 7s ease-in-out infinite; }
+        .animate-float-flower { animation: floatFlowerG 11s ease-in-out infinite; }
+        .animate-float-bubble-1 { animation: floatBubbleG1 8s ease-in-out infinite; }
+        .animate-float-bubble-2 { animation: floatBubbleG2 9.5s ease-in-out infinite; }
+        .animate-rocket-l2r { animation: flyRocketL2R 13s linear infinite; }
+        .animate-rocket-r2l { animation: flyRocketR2L 15s linear infinite; animation-delay: 4.5s; }
       `}</style>
 
-      {/* Floating Elements on Margins */}
+      {/* Floating Elements Container (Left & Right Margins) */}
       <div className="absolute inset-0 pointer-events-none z-10 hidden sm:block overflow-hidden">
-        {/* Floating Parachute */}
-        <div className="absolute top-[10%] left-[2%] w-12 animate-para-g opacity-85">
-          <svg viewBox="0 0 60 80" className="w-full h-auto filter drop-shadow-md">
-            <defs>
-              <linearGradient id="gal-para-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FF4D6D" />
-                <stop offset="50%" stopColor="#FFB703" />
-                <stop offset="100%" stopColor="#00F5D4" />
-              </linearGradient>
-            </defs>
-            <path d="M5,35 A25,25 0 0,1 55,35 Z" fill="url(#gal-para-grad)" />
-            <line x1="5" y1="35" x2="27" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="17.5" y1="35" x2="28.5" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="42.5" y1="35" x2="31.5" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="55" y1="35" x2="33" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <rect x="25" y="60" width="10" height="8" rx="2" fill="#D97706" />
+        
+        {/* LEFT MARGIN FLOATING ITEMS */}
+
+        {/* 1. Graduation Cap (Left Top) */}
+        <div className="absolute top-[12%] left-[3%] w-14 animate-float-cap opacity-90 filter drop-shadow-lg">
+          <svg viewBox="0 0 100 80" className="w-full h-auto">
+            {/* Cap Top Diamond */}
+            <polygon points="50,10 95,30 50,50 5,30" fill="#0B1C2C" />
+            <polygon points="50,15 88,30 50,45 12,30" fill="#12283A" />
+            {/* Cap Skull Base */}
+            <path d="M25,38 L25,58 C25,68 75,68 75,58 L75,38 Z" fill="#0B1C2C" />
+            {/* Gold Tassel */}
+            <path d="M50,30 Q30,35 22,50" fill="none" stroke="#E8C547" strokeWidth="3.5" strokeLinecap="round" />
+            <circle cx="22" cy="52" r="4" fill="#C9A227" />
           </svg>
         </div>
 
-        {/* Paper Air Plane */}
-        <div className="absolute top-[42%] left-[1.5%] w-10 animate-plane-g opacity-80" style={{ animationDelay: '1s' }}>
-          <svg viewBox="0 0 50 50" className="w-full h-auto filter drop-shadow-md">
-            <path d="M2,24 L46,2 L28,46 L22,30 Z" fill="#E8C547" opacity="0.9" />
-            <path d="M22,30 L46,2 L28,46 Z" fill="#C9A227" opacity="0.8" />
+        {/* 2. Glass Bubble Rose/Gold (Left Mid) */}
+        <div className="absolute top-[45%] left-[2%] w-16 h-16 rounded-full bg-gradient-to-tr from-rose-500/20 via-gold-400/25 to-amber-300/30 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_rgba(232,197,71,0.25)] animate-float-bubble-1" />
+
+        {/* 3. Floating Bubble Cyan (Left Bottom) */}
+        <div className="absolute top-[75%] left-[4%] w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400/25 to-blue-600/20 backdrop-blur-md border border-white/50 shadow-md animate-float-bubble-2" />
+
+
+        {/* RIGHT MARGIN FLOATING ITEMS */}
+
+        {/* 4. Blooming Flower (Right Top) */}
+        <div className="absolute top-[15%] right-[3%] w-14 animate-float-flower opacity-90 filter drop-shadow-md">
+          <svg viewBox="0 0 100 100" className="w-full h-auto">
+            {/* Flower Petals */}
+            <g fill="#E8C547" opacity="0.9">
+              <circle cx="50" cy="25" r="18" />
+              <circle cx="75" cy="50" r="18" />
+              <circle cx="50" cy="75" r="18" />
+              <circle cx="25" cy="50" r="18" />
+            </g>
+            <g fill="#FF4D6D" opacity="0.85">
+              <circle cx="34" cy="34" r="16" />
+              <circle cx="66" cy="34" r="16" />
+              <circle cx="66" cy="66" r="16" />
+              <circle cx="34" cy="66" r="16" />
+            </g>
+            {/* Center Core */}
+            <circle cx="50" cy="50" r="15" fill="#0B1C2C" />
+            <circle cx="50" cy="50" r="8" fill="#C9A227" />
           </svg>
         </div>
 
-        {/* Floating Green Leaf */}
-        <div className="absolute top-[60%] right-[2.5%] w-8 animate-leaf-g opacity-85" style={{ animationDelay: '2s' }}>
-          <svg viewBox="0 0 40 50" className="w-full h-auto filter drop-shadow-sm">
-            <defs>
-              <linearGradient id="gal-leaf-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#52B788" />
-                <stop offset="100%" stopColor="#1B4332" />
-              </linearGradient>
-            </defs>
-            <path d="M20,2 C32,10 38,24 20,44 C2,24 8,10 20,2 Z" fill="url(#gal-leaf-grad)" />
-            <path d="M20,2 Q20,23 20,44" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.2" />
-            <path d="M20,44 Q20,48 18,50" stroke="#1B4332" strokeWidth="1.5" fill="none" />
+        {/* 5. Glass Bubble Gold/Amber (Right Mid) */}
+        <div className="absolute top-[48%] right-[2%] w-20 h-20 rounded-full bg-gradient-to-bl from-gold-400/30 via-rose-400/20 to-amber-500/25 backdrop-blur-md border border-white/70 shadow-[0_10px_35px_rgba(201,162,39,0.3)] animate-float-bubble-2" />
+
+        {/* 6. Graduation Cap 2 (Right Bottom) */}
+        <div className="absolute top-[72%] right-[3.5%] w-14 animate-float-cap opacity-90 filter drop-shadow-lg" style={{ animationDelay: '2s' }}>
+          <svg viewBox="0 0 100 80" className="w-full h-auto">
+            <polygon points="50,10 95,30 50,50 5,30" fill="#0B1C2C" />
+            <polygon points="50,15 88,30 50,45 12,30" fill="#E8C547" opacity="0.3" />
+            <path d="M25,38 L25,58 C25,68 75,68 75,58 L75,38 Z" fill="#0B1C2C" />
+            <path d="M50,30 Q70,35 78,50" fill="none" stroke="#FF4D6D" strokeWidth="3.5" strokeLinecap="round" />
+            <circle cx="78" cy="52" r="4" fill="#FF4D6D" />
           </svg>
-        </div>
-      </div>
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-20">
-
-        {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
-          <div>
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/10 text-gold-700 text-xs font-semibold uppercase tracking-wider mb-3">
-              <Sparkles className="w-3.5 h-3.5 text-gold-600" /> Campus Gallery &amp; Press Corner
-            </div>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-navy-900 font-bold">
-              Moments That Matter at CIS
-            </h2>
-            <p className="text-navy-700/75 text-sm sm:text-base mt-2 max-w-xl">
-              Explore real high-definition captures of our 10-acre campus, smart classrooms, labs, sports facilities, and events.
-            </p>
-          </div>
-
-          {/* Mini Stats Highlights Strip */}
-          <div className="flex items-center gap-3 bg-white px-4 py-2.5 rounded-2xl border border-cream-300 shadow-sm text-xs font-semibold text-navy-900">
-            <span className="flex items-center gap-1.5 text-gold-600">
-              <Camera className="w-4 h-4" /> 500+ HD Captures
-            </span>
-            <span className="text-cream-400">•</span>
-            <span className="flex items-center gap-1.5 text-emerald-600">
-              <Layers className="w-4 h-4" /> 10 Acres
-            </span>
-          </div>
-        </div>
-
-        {/* Category Filter Pills */}
-        <div className="flex items-center flex-wrap gap-2 mb-8">
-          {categories.map((cat) => (
-            <button
-              key={cat}
-              onClick={() => setActiveFilter(cat)}
-              className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-300 ${
-                activeFilter === cat
-                  ? 'bg-navy-900 text-gold-400 shadow-md scale-105'
-                  : 'bg-white text-navy-800 border border-cream-300 hover:border-gold-500/50 hover:bg-cream-50'
-              }`}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-
-        {/* Gallery Masonry Grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
-          {filteredItems.map((item, idx) => (
-            <div
-              key={item.id}
-              onClick={() => setSelectedIdx(idx)}
-              className={`rounded-3xl overflow-hidden shadow-lg border border-cream-300 hover:border-gold-500/80 relative group cursor-pointer transition-all duration-500 hover:-translate-y-1.5 hover:shadow-2xl ${
-                item.span || 'h-44 md:h-48'
-              }`}
-            >
-              <img
-                src={item.src}
-                alt={item.title}
-                loading="lazy"
-                decoding="async"
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-between p-4 text-white">
-                <div className="flex items-center justify-between">
-                  {/* Heart / Like Button */}
-                  <button
-                    onClick={(e) => toggleLike(e, item.id)}
-                    className="px-2.5 py-1 rounded-full bg-white/20 backdrop-blur-md text-xs font-bold text-white hover:bg-rose-500 hover:text-white transition flex items-center gap-1 border border-white/30"
-                  >
-                    <Heart className={`w-3.5 h-3.5 ${likes[item.id] ? 'fill-rose-500 text-rose-500' : 'text-white'}`} />
-                    <span>{likes[item.id] || 0}</span>
-                  </button>
-
-                  <div className="w-8 h-8 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center text-white border border-white/30">
-                    <Maximize2 className="w-4 h-4 text-gold-400" />
-                  </div>
-                </div>
-                <div>
-                  <span className="text-[10px] uppercase font-bold text-gold-400 bg-navy-950/80 px-2.5 py-1 rounded-full w-fit mb-1 inline-block border border-gold-500/30">
-                    {item.category}
-                  </span>
-                  <h4 className="font-bold text-xs sm:text-sm text-white leading-tight">
-                    {item.title}
-                  </h4>
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
 
       </div>
 
-      {/* Image Modal Lightbox with Prev/Next Navigation */}
-      {selectedImg && (
-        <div
-          className="fixed inset-0 z-[100] bg-navy-950/90 backdrop-blur-md flex items-center justify-center p-4"
-          onClick={() => setSelectedIdx(null)}
-        >
-          <div
-            className="relative max-w-4xl w-full bg-navy-900 rounded-3xl overflow-hidden border border-gold-500/40 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
+      {/* Background Arena & Flying Rockets Layer (BEHIND IMAGES AT Z-0) */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        
+        {/* Rocket 1: Flying Left to Right, Bottom to Top */}
+        <div className="absolute bottom-0 left-0 w-24 sm:w-28 animate-rocket-l2r filter drop-shadow-[0_0_20px_rgba(225,29,72,0.6)]">
+          <svg viewBox="0 0 100 120" className="w-full h-auto">
+            <defs>
+              <linearGradient id="rocketFlameL2R" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#FFB703" />
+                <stop offset="50%" stopColor="#FF4D6D" />
+                <stop offset="100%" stopColor="transparent" />
+              </linearGradient>
+            </defs>
+            {/* Fire Exhaust Trail */}
+            <path d="M40,90 Q50,125 60,90 Z" fill="url(#rocketFlameL2R)" />
+            <path d="M44,90 Q50,115 56,90 Z" fill="#FFE600" />
+            {/* Rocket Body */}
+            <path d="M50,10 Q70,40 68,90 L32,90 Q30,40 50,10 Z" fill="#0B1C2C" />
+            {/* Crimson Nosecone */}
+            <path d="M50,10 Q65,35 66,45 L34,45 Q35,35 50,10 Z" fill="#E11D48" />
+            {/* Gold Porthole Window */}
+            <circle cx="50" cy="58" r="10" fill="#E8C547" stroke="#0B1C2C" strokeWidth="2.5" />
+            <circle cx="50" cy="58" r="5" fill="#38BDF8" />
+            {/* Side Wings / Fins */}
+            <path d="M32,70 L15,92 L32,90 Z" fill="#BE123C" />
+            <path d="M68,70 L85,92 L68,90 Z" fill="#BE123C" />
+          </svg>
+        </div>
+
+        {/* Rocket 2: Flying Right to Left, Bottom to Top */}
+        <div className="absolute bottom-0 right-0 w-24 sm:w-28 animate-rocket-r2l filter drop-shadow-[0_0_20px_rgba(201,162,39,0.6)]">
+          <svg viewBox="0 0 100 120" className="w-full h-auto">
+            <defs>
+              <linearGradient id="rocketFlameR2L" x1="0%" y1="0%" x2="0%" y2="100%">
+                <stop offset="0%" stopColor="#00F5D4" />
+                <stop offset="60%" stopColor="#3A86EF" />
+                <stop offset="100%" stopColor="transparent" />
+              </linearGradient>
+            </defs>
+            {/* Fire Exhaust Trail */}
+            <path d="M40,90 Q50,125 60,90 Z" fill="url(#rocketFlameR2L)" />
+            <path d="M44,90 Q50,115 56,90 Z" fill="#80E9FF" />
+            {/* Rocket Body */}
+            <path d="M50,10 Q70,40 68,90 L32,90 Q30,40 50,10 Z" fill="#12283A" />
+            {/* Gold Accent Nosecone */}
+            <path d="M50,10 Q65,35 66,45 L34,45 Q35,35 50,10 Z" fill="#C9A227" />
+            {/* Cyan Porthole Window */}
+            <circle cx="50" cy="58" r="10" fill="#0B1C2C" stroke="#C9A227" strokeWidth="2.5" />
+            <circle cx="50" cy="58" r="5" fill="#00F5D4" />
+            {/* Side Wings / Fins */}
+            <path d="M32,70 L15,92 L32,90 Z" fill="#A8861F" />
+            <path d="M68,70 L85,92 L68,90 Z" fill="#A8861F" />
+          </svg>
+        </div>
+
+        {/* Stadium Floodlight Grid Overlay */}
+        <svg viewBox="0 0 1440 900" className="w-full h-full object-cover text-navy-900/10 stroke-current fill-none opacity-15">
+          <g strokeWidth="0.8">
+            <path d="M-100,250 Q720,-50 1540,250" />
+            <path d="M-100,320 Q720,20 1540,320" />
+            <path d="M-100,400 Q720,100 1540,400" />
+            <path d="M-100,500 Q720,200 1540,500" />
+            <line x1="120" y1="0" x2="120" y2="400" strokeWidth="1.5" stroke="#C9A227" opacity="0.4" />
+            <line x1="1320" y1="0" x2="1320" y2="400" strokeWidth="1.5" stroke="#C9A227" opacity="0.4" />
+          </g>
+        </svg>
+
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60rem] h-[35rem] bg-gradient-to-b from-rose-500/5 via-gold-500/10 to-transparent rounded-full blur-[140px]" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+
+        {/* Clean Centered Header */}
+        <div className="flex flex-col items-center text-center mb-4 sm:mb-12">
+          <motion.h2
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold text-navy-950 tracking-wider uppercase leading-none"
           >
-            {/* Close Button */}
+            CAMPUS <span className="bg-gradient-to-r from-gold-600 via-gold-500 to-amber-600 bg-clip-text text-transparent italic">GALLERY</span>
+          </motion.h2>
+        </div>
+
+        {/* 3D STAGE CAROUSEL */}
+        <div
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+          className="relative min-h-[280px] sm:min-h-[520px] flex flex-col justify-center items-center py-2 sm:py-4"
+        >
+          
+          <div className="relative w-full max-w-5xl h-[230px] sm:h-[460px] flex items-center justify-center">
+
+            {/* Navigation Chevrons */}
             <button
-              onClick={() => setSelectedIdx(null)}
-              className="absolute top-4 right-4 z-20 p-2.5 rounded-full bg-navy-950/80 text-white hover:bg-gold-500 hover:text-navy-950 transition border border-white/10"
-              aria-label="Close modal"
+              onClick={handlePrevSquad}
+              className="absolute left-1 sm:left-6 z-40 p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-rose-700 to-rose-600 text-white hover:bg-gold-400 hover:text-navy-950 transition-all duration-300 shadow-[0_10px_30px_rgba(225,29,72,0.6)] border border-white/20 active:scale-95 group"
+              aria-label="Previous Photo"
             >
-              <X className="w-5 h-5" />
+              <ChevronLeft className="w-4 h-4 sm:w-7 sm:h-7 stroke-[3] group-hover:-translate-x-1 transition-transform" />
             </button>
 
-            {/* Prev Arrow */}
             <button
-              onClick={handlePrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-navy-950/80 text-white hover:bg-gold-500 hover:text-navy-950 transition border border-white/10 shadow-xl"
-              aria-label="Previous image"
+              onClick={handleNextSquad}
+              className="absolute right-1 sm:right-6 z-40 p-2 sm:p-4 rounded-xl sm:rounded-2xl bg-gradient-to-r from-rose-700 to-rose-600 text-white hover:bg-gold-400 hover:text-navy-950 transition-all duration-300 shadow-[0_10px_30px_rgba(225,29,72,0.6)] border border-white/20 active:scale-95 group"
+              aria-label="Next Photo"
             >
-              <ChevronLeft className="w-6 h-6" />
+              <ChevronRight className="w-4 h-4 sm:w-7 sm:h-7 stroke-[3] group-hover:translate-x-1 transition-transform" />
             </button>
 
-            {/* Next Arrow */}
-            <button
-              onClick={handleNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full bg-navy-950/80 text-white hover:bg-gold-500 hover:text-navy-950 transition border border-white/10 shadow-xl"
-              aria-label="Next image"
-            >
-              <ChevronRight className="w-6 h-6" />
-            </button>
+            {/* 3D Rendered Cards */}
+            <div className="relative w-full h-full flex items-center justify-center overflow-hidden">
+              {galleryItems.map((item, idx) => {
+                const pos = getSquadPositionIndex(idx);
+                if (pos === 99) return null; // Hidden offstage
 
-            <div className="max-h-[72vh] overflow-hidden flex items-center justify-center bg-black">
-              <img
-                src={selectedImg.src}
-                alt={selectedImg.title}
-                className="w-full h-full object-contain max-h-[72vh]"
-              />
-            </div>
-            <div className="p-5 bg-navy-950 text-white flex justify-between items-center border-t border-white/10">
-              <div>
-                <span className="text-xs font-bold text-gold-400 uppercase tracking-wider">
-                  {selectedImg.category}
-                </span>
-                <h3 className="text-base sm:text-lg font-bold mt-0.5">{selectedImg.title}</h3>
-              </div>
-              <span className="text-xs text-white/50 font-medium">
-                {selectedIdx + 1} of {filteredItems.length}
-              </span>
+                const isCenter = pos === 0;
+                const isLeft = pos === -1;
+                const isRight = pos === 1;
+
+                return (
+                  <motion.div
+                    key={item.id}
+                    initial={false}
+                    animate={{
+                      x: isCenter ? 0 : isLeft ? (isMobile ? -120 : -260) : (isMobile ? 120 : 260),
+                      scale: isCenter ? 1.05 : 0.75,
+                      rotateY: isCenter ? 0 : isLeft ? 15 : -15,
+                      opacity: isCenter ? 1 : 0.5,
+                      zIndex: isCenter ? 30 : 10,
+                    }}
+                    transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                    onClick={() => {
+                      if (isLeft) handlePrevSquad();
+                      else if (isRight) handleNextSquad();
+                      else setSelectedIdx(squadIdx);
+                    }}
+                    className={`absolute w-[220px] sm:w-[380px] md:w-[440px] aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-2xl border-2 transition-all ${
+                      isCenter
+                        ? "border-gold-500 shadow-[0_25px_70px_rgba(201,162,39,0.35)]"
+                        : "border-cream-300 shadow-xl"
+                    }`}
+                  >
+                    <img
+                      src={item.src}
+                      alt={item.title}
+                      className="w-full h-full object-cover"
+                    />
+                    
+                    {/* Dark Overlay with Title & Info */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent p-5 sm:p-6 flex flex-col justify-between">
+                      <div className="flex justify-between items-center">
+                        <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest bg-rose-600 text-white px-3 py-1 rounded-full shadow-lg">
+                          {item.tag}
+                        </span>
+                        <span className="text-[10px] sm:text-xs font-mono font-bold text-gold-400 bg-navy-950/80 px-2.5 py-1 rounded-full border border-gold-400/30">
+                          {item.stat}
+                        </span>
+                      </div>
+
+                      {isCenter && (
+                        <div className="text-left">
+                          <span className="text-[10px] sm:text-xs font-extrabold text-gold-400 uppercase tracking-widest block">
+                            {item.category}
+                          </span>
+                          <h3 className="text-lg sm:text-2xl font-black text-white font-display leading-tight mt-0.5">
+                            {item.title}
+                          </h3>
+                          <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/10">
+                            <span className="text-xs text-slate-300 flex items-center gap-1">
+                              <MapPin className="w-3 h-3 text-rose-500" /> {item.location}
+                            </span>
+                            <span className="text-xs font-bold text-gold-400 flex items-center gap-1">
+                              <Maximize2 className="w-3 h-3" /> Fullscreen HD
+                            </span>
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </div>
+
         </div>
-      )}
+
+      </div>
+
+      {/* Lightbox Cinema Modal */}
+      <AnimatePresence>
+        {selectedImg && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[120] bg-navy-950/95 backdrop-blur-2xl flex items-center justify-center p-4"
+            onClick={() => setSelectedIdx(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              className="relative max-w-5xl w-full bg-navy-900 rounded-3xl overflow-hidden border border-gold-500/40 shadow-2xl flex flex-col lg:flex-row"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setSelectedIdx(null)}
+                className="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-navy-950/80 text-white hover:bg-gold-500 hover:text-navy-950 transition border border-white/20"
+              >
+                <X className="w-5 h-5" />
+              </button>
+
+              <div className="flex-1 bg-black flex items-center justify-center min-h-[350px]">
+                <img src={selectedImg.src} alt={selectedImg.title} className="w-full h-full object-contain max-h-[75vh]" />
+              </div>
+
+              <div className="w-full lg:w-[360px] bg-navy-950 p-6 flex flex-col justify-between">
+                <div>
+                  <span className="text-[10px] font-black uppercase text-navy-950 bg-gold-400 px-3 py-1 rounded-full">
+                    {selectedImg.tag}
+                  </span>
+                  <h3 className="text-2xl font-extrabold text-white font-display mt-3">{selectedImg.title}</h3>
+                  <p className="text-slate-300 text-sm font-light mt-3">{selectedImg.description}</p>
+                </div>
+
+                <div className="mt-6 flex items-center gap-3">
+                  <button
+                    onClick={(e) => toggleLike(e, selectedImg.id)}
+                    className="flex-1 py-3 rounded-xl bg-white/10 hover:bg-rose-500 text-white font-bold text-xs transition flex items-center justify-center gap-2"
+                  >
+                    <Heart className={`w-4 h-4 ${likes[selectedImg.id] ? 'fill-rose-500 text-rose-500' : 'text-white'}`} />
+                    <span>Like ({likes[selectedImg.id] || 0})</span>
+                  </button>
+                  <button
+                    onClick={copyShareLink}
+                    className="py-3 px-4 rounded-xl bg-gold-500 text-navy-950 font-bold text-xs hover:bg-gold-400 transition"
+                  >
+                    {copied ? "Copied!" : "Share"}
+                  </button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
