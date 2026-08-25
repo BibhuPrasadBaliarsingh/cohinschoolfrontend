@@ -282,7 +282,7 @@ export default function Gallery() {
 
   return (
     <section className="py-10 sm:py-24 bg-white text-navy-950 border-t border-cream-200 relative overflow-hidden selection:bg-rose-500 selection:text-white">
-      
+
       {/* Floating Animated CSS Keyframes */}
       <style>{`
         @keyframes floatCapG {
@@ -340,7 +340,7 @@ export default function Gallery() {
 
       {/* Floating Elements Container (Left & Right Margins) */}
       <div className="absolute inset-0 pointer-events-none z-10 hidden sm:block overflow-hidden">
-        
+
         {/* LEFT MARGIN FLOATING ITEMS */}
 
         {/* 1. Graduation Cap (Left Top) */}
@@ -406,7 +406,7 @@ export default function Gallery() {
 
       {/* Background Arena & Flying Rockets Layer (BEHIND IMAGES AT Z-0) */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-        
+
         {/* Rocket 1: Flying Left to Right, Bottom to Top */}
         <div className="absolute bottom-0 left-0 w-24 sm:w-28 animate-rocket-l2r filter drop-shadow-[0_0_20px_rgba(225,29,72,0.6)]">
           <svg viewBox="0 0 100 120" className="w-full h-auto">
@@ -477,7 +477,7 @@ export default function Gallery() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Clean Centered Header */}
-        <div className="flex flex-col items-center text-center mb-4 sm:mb-12">
+        <div className="flex flex-col items-center text-center mb-3 sm:mb-6">
           <motion.h2
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -485,6 +485,30 @@ export default function Gallery() {
           >
             CAMPUS <span className="bg-gradient-to-r from-gold-600 via-gold-500 to-amber-600 bg-clip-text text-transparent italic">GALLERY</span>
           </motion.h2>
+
+          {/* Active Photo Info Header Above Image */}
+          {galleryItems[squadIdx] && (
+            <motion.div
+              key={galleryItems[squadIdx].id}
+              initial={{ opacity: 0, y: 5 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="mt-3 text-center max-w-xl mx-auto px-4"
+            >
+              <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-gold-700 bg-gold-100/80 px-3 py-1 rounded-full border border-gold-300/50 inline-block mb-1 shadow-xs">
+                {galleryItems[squadIdx].category}
+              </span>
+              <h3 className="text-base sm:text-2xl font-extrabold text-navy-950 font-display leading-tight">
+                {galleryItems[squadIdx].title}
+              </h3>
+              <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-navy-700 font-medium mt-1">
+                <span className="flex items-center gap-1">
+                  <MapPin className="w-3 h-3 text-rose-500" /> {galleryItems[squadIdx].location}
+                </span>
+                <span>•</span>
+                <span className="text-emerald-700 font-semibold">{galleryItems[squadIdx].resolution}</span>
+              </div>
+            </motion.div>
+          )}
         </div>
 
         {/* 3D STAGE CAROUSEL */}
@@ -493,7 +517,7 @@ export default function Gallery() {
           onMouseLeave={() => setIsPaused(false)}
           className="relative min-h-[280px] sm:min-h-[520px] flex flex-col justify-center items-center py-2 sm:py-4"
         >
-          
+
           <div className="relative w-full max-w-5xl h-[230px] sm:h-[460px] flex items-center justify-center">
 
             {/* Navigation Chevrons */}
@@ -540,35 +564,34 @@ export default function Gallery() {
                       else if (isRight) handleNextSquad();
                       else setSelectedIdx(squadIdx);
                     }}
-                    className={`absolute w-[220px] sm:w-[380px] md:w-[440px] aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-2xl border-2 transition-all ${
-                      isCenter
+                    className={`absolute w-[220px] sm:w-[380px] md:w-[440px] aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-2xl border-2 transition-all ${isCenter
                         ? "border-gold-500 shadow-[0_25px_70px_rgba(201,162,39,0.35)]"
                         : "border-cream-300 shadow-xl"
-                    }`}
+                      }`}
                   >
                     <img
                       src={item.src}
                       alt={item.title}
                       className="w-full h-full object-cover"
                     />
-                    
+
                     {/* Dark Overlay with Title & Info */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent p-5 sm:p-6 flex flex-col justify-between">
+                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/10 to-transparent p-3 sm:p-6 flex flex-col justify-between">
                       <div className="flex justify-between items-center">
-                        <span className="text-[10px] sm:text-[11px] font-black uppercase tracking-widest bg-rose-600 text-white px-3 py-1 rounded-full shadow-lg">
+                        <span className="text-[9px] sm:text-[11px] font-black uppercase tracking-widest bg-rose-600 text-white px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg">
                           {item.tag}
                         </span>
-                        <span className="text-[10px] sm:text-xs font-mono font-bold text-gold-400 bg-navy-950/80 px-2.5 py-1 rounded-full border border-gold-400/30">
+                        <span className="text-[9px] sm:text-xs font-mono font-bold text-gold-400 bg-navy-950/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-gold-400/30">
                           {item.stat}
                         </span>
                       </div>
 
                       {isCenter && (
-                        <div className="text-left">
-                          <span className="text-[10px] sm:text-xs font-extrabold text-gold-400 uppercase tracking-widest block">
+                        <div className="text-left hidden sm:block">
+                          <span className="text-xs font-extrabold text-gold-400 uppercase tracking-widest block">
                             {item.category}
                           </span>
-                          <h3 className="text-lg sm:text-2xl font-black text-white font-display leading-tight mt-0.5">
+                          <h3 className="text-2xl font-black text-white font-display leading-tight mt-0.5">
                             {item.title}
                           </h3>
                           <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/10">
