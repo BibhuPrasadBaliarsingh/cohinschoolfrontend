@@ -63,9 +63,9 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
               <Phone className="w-3 h-3 flex-shrink-0" />
               <a href="tel:+917077775310" className="hover:underline hover:text-gold-300 transition">+91 70777 75310</a>
               <span className="text-white/40">/</span>
-              <a href="tel:+917077775311" className="hover:underline hover:text-gold-300 transition">5311</a>
+              <a href="tel:+917077775311" className="hover:underline hover:text-gold-300 transition">11</a>
               <span className="text-white/40">/</span>
-              <a href="tel:+917077775312" className="hover:underline hover:text-gold-300 transition">5312</a>
+              <a href="tel:+917077775312" className="hover:underline hover:text-gold-300 transition">12</a>
             </span>
             <a
               href="mailto:info@coheninternationalschool.com"
