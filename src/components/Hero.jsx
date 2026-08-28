@@ -15,39 +15,62 @@ import img3613 from "../assets/DSC03613.JPG";
 import img3660 from "../assets/DSC03660.JPG";
 import img3622 from "../assets/DSC03622.JPG";
 import img3684 from "../assets/DSC03684.JPG";
+import jeeAdvance1 from "../assets/jeeadvance1.jpeg";
+import jeeAdvance2 from "../assets/jeeadvance2.jpeg";
 
 const heroSlides = [
   {
     id: 1,
     src: coursolImg,
+    fit: "fill",
     accent: "Shaping Tomorrow's Leaders",
     headline: ["Inspiring", "Future", "Leaders"],
     sub: "CBSE Affiliated • Nursery to Class XII • World-Class Infrastructure & Holistic Growth",
   },
   {
     id: 2,
+    src: jeeAdvance1,
+    fit: "fill",
+    accent: "JEE (Advanced) Ranks & Excellence",
+    headline: ["Proven", "JEE Advanced", "Success"],
+    sub: "Odisha State Top Ranks in JEE (Advanced) with 1-on-1 Vidwan Classes Mentorship.",
+  },
+  {
+    id: 3,
     src: img3613,
+    fit: "fill",
     accent: "Welcome to Cohen International",
     headline: ["Excellence", "Without", "Boundaries"],
     sub: "CBSE Affiliated • Nursery to Class XII • Cambridge English Partner",
   },
   {
-    id: 3,
+    id: 4,
+    src: jeeAdvance2,
+    fit: "fill",
+    accent: "Integrated Competitive Coaching",
+    headline: ["Empowering", "Future", "IITians"],
+    sub: "Comprehensive integrated school batch program for JEE (Main & Advanced) and NEET.",
+  },
+  {
+    id: 5,
     src: img3660,
+    fit: "fill",
     accent: "Where Every Child Thrives",
     headline: ["Sports,", "Passion &", "Joy"],
     sub: "Holistic development through world-class sports infrastructure and guided athletics.",
   },
   {
-    id: 4,
+    id: 6,
     src: img3622,
+    fit: "fill",
     accent: "10 Acres of Green Learning",
     headline: ["A Campus", "Like No", "Other"],
     sub: "Pollution-free, lush 10-acre campus nestled beside IIT Bhubaneswar at Barunei Hills.",
   },
   {
-    id: 5,
+    id: 7,
     src: img3684,
+    fit: "fill",
     accent: "STEM & Innovation Labs",
     headline: ["Build.", "Innovate.", "Launch."],
     sub: "Drone labs, aerospace studios, AI robotics, and hands-on STEM from Class I onwards.",
@@ -206,8 +229,29 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
             position: "absolute", inset: 0, zIndex: 0,
             transition: "opacity 1.1s cubic-bezier(0.4,0,0.2,1)",
             opacity: i === active ? 1 : 0,
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            overflow: "hidden",
+            background: "#070f1a",
           }}
         >
+          {/* Ambient blurred backdrop for contain mode posters */}
+          {s.fit === "contain" && (
+            <div
+              style={{
+                position: "absolute",
+                inset: "-10%",
+                width: "120%",
+                height: "120%",
+                backgroundImage: `url(${s.src})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+                filter: "blur(30px) brightness(0.35)",
+                transform: "scale(1.1)",
+              }}
+            />
+          )}
           <img
             src={s.src}
             alt={s.accent}
@@ -217,9 +261,13 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
             width="1920"
             height="1080"
             style={{
-              width: "100%", height: "100%", objectFit: "cover",
-              animation: i === active ? "heroBgZoom 7s ease forwards" : "none",
+              width: "100%", height: "100%",
+              objectFit: s.fit || "cover",
+              objectPosition: "center center",
+              animation: i === active && s.fit !== "contain" ? "heroBgZoom 7s ease forwards" : "none",
               transformOrigin: "center center",
+              position: "relative",
+              zIndex: 1,
             }}
           />
         </div>
