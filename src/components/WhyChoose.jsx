@@ -37,7 +37,7 @@ const cvapPrograms = [
   {
     icon: Cpu,
     title: "Design Thinking & STEAM Learning",
-    desc: "Inspiring innovation and shaping leaders : Where design thinking meets STEAM",
+    desc: "Inspiring innovation and shaping leaders: Where design thinking meets STEAM",
     category: "Innovation & Tech"
   },
   {
@@ -114,7 +114,7 @@ export default function WhyChoose() {
           alt="Campus Facilities Background"
           className="w-full h-full object-cover object-center opacity-20"
         />
-        <div className="absolute inset-0 " />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#050D16]/85 via-[#050D16]/0 to-[#050D16]/60" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
