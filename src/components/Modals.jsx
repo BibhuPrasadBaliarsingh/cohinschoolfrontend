@@ -603,12 +603,83 @@ export default function Modals({
       ? "Register your seat early for the upcoming AY 2027-2028 academic batch."
       : "Complete application form for nursery to Class XI admissions.";
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
       e.preventDefault();
+      const formData = new FormData(e.currentTarget);
+      const data = Object.fromEntries(formData.entries());
+
+      const targetEmail = "info@coheninternationalschool.com";
+      const subject = `New Online Admission Application: ${data.studentName || 'Student'} (AY ${data.academicYear || '2027-2028'})`;
+      const bodyLines = [
+        "ONLINE ADMISSION APPLICATION DETAILS",
+        "================================================",
+        "1. STUDENT DETAILS:",
+        `• Name of the Student: ${data.studentName || ''}`,
+        `• Date of Birth: ${data.dob || ''}`,
+        `• Gender: ${data.gender || ''}`,
+        `• Nationality: ${data.nationality || ''}`,
+        `• Country: ${data.country || ''}`,
+        `• State: ${data.state || ''}`,
+        `• City: ${data.city || ''}`,
+        "",
+        "2. PARENT DETAILS:",
+        `• Father's Name: ${data.fatherName || ''}`,
+        `• Father's Mobile Number: ${data.fatherMobile || ''}`,
+        `• Father's E-mail ID: ${data.fatherEmail || ''}`,
+        `• Father's Profession: ${data.fatherProfession || ''}`,
+        `• Mother's Name: ${data.motherName || ''}`,
+        `• Mother's Mobile Number: ${data.motherMobile || ''}`,
+        `• Mother's E-mail ID: ${data.motherEmail || ''}`,
+        `• Mother's Profession: ${data.motherProfession || ''}`,
+        `• Correspondence Address: ${data.address || ''}`,
+        "",
+        "3. GUARDIAN DETAILS:",
+        `• Guardian's Name: ${data.guardianName || ''}`,
+        `• Guardian's Mobile Number: ${data.guardianMobile || ''}`,
+        `• Guardian's E-mail ID: ${data.guardianEmail || ''}`,
+        "",
+        "4. STUDENT CURRENT ACADEMIC DETAILS:",
+        `• School Currently Studying: ${data.currentSchool || ''}`,
+        `• State: ${data.currentState || ''}`,
+        `• City: ${data.currentCity || ''}`,
+        `• Curriculum Currently Studying In: ${data.curriculum || ''}`,
+        `• Grade Currently Studying In: ${data.currentGrade || ''}`,
+        "",
+        "5. STUDENT ENROLLMENT DETAILS:",
+        `• Grade Applying For: ${data.applyingGrade || ''}`,
+        `• Applying for Academic Year: ${data.academicYear || ''}`,
+        `• Preferred Day of visiting Campus: ${data.preferredDate || ''}`,
+        "================================================",
+        "Sent automatically from Cohen International School Online Portal"
+      ];
+
+      // Ingest to backend CRM asynchronously if API endpoint is available
+      try {
+        await fetch('/api/webhooks/website', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': 'cohen_website_secret_api_key_2026'
+          },
+          body: JSON.stringify({
+            studentName: data.studentName,
+            parentName: data.fatherName || data.motherName || data.guardianName || 'Parent',
+            phone: data.fatherMobile || data.motherMobile || data.guardianMobile || '',
+            email: data.fatherEmail || data.motherEmail || data.guardianEmail || '',
+            classInterested: data.applyingGrade || 'Class 1',
+            academicYear: data.academicYear || '2027-2028'
+          })
+        });
+      } catch (err) {
+        console.log('CRM ingest notification:', err);
+      }
+
+      // Dispatch mailto action to open mail client directed to info@coheninternationalschool.com
+      const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join("\n"))}`;
+      window.location.href = mailtoLink;
+
       alert(
-        `Thank you! Your ${
-          isRegister ? "Registration" : "Application"
-        } details have been captured in the Admission CRM. An admission counsellor will reach out to you within 24 hours.`,
+        `Thank you! Your application details for ${data.studentName || 'the student'} have been submitted.`
       );
       closeModal();
     };
@@ -619,7 +690,7 @@ export default function Modals({
         onClick={closeModal}
       >
         <div
-          className="bg-white rounded-3xl max-w-2xl w-full max-h-[92vh] overflow-y-auto shadow-2xl"
+          className="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto shadow-2xl"
           style={{ border: "1.5px solid rgba(201,162,39,0.25)" }}
           onClick={(e) => e.stopPropagation()}
         >
@@ -674,34 +745,40 @@ export default function Modals({
           </div>
 
           <form className="p-6 md:p-8 space-y-6" onSubmit={handleSubmit}>
-            <div style={{
-              background: "linear-gradient(135deg, rgba(201,162,39,0.08) 0%, rgba(201,162,39,0.04) 100%)",
-              border: "1px solid rgba(201,162,39,0.3)",
-              padding: "14px 16px", borderRadius: "16px",
-              display: "flex", alignItems: "center", gap: "12px",
-              fontSize: "0.75rem", color: "#0B1C2C",
-            }}>
-              <ShieldCheck style={{ width: 20, height: 20, color: "#C9A227", flexShrink: 0 }} />
-              <span style={{ fontWeight: 500 }}>
-                CBSE Senior Secondary School • Integrated IIT-JEE &amp; NEET Coaching • 10-Acre Green Campus, Bhubaneswar
-              </span>
+            {/* Note banner */}
+            <div className="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between">
+              <span>Note: * indicates mandatory information to be filled</span>
+              <span className="text-[10px] text-amber-700 bg-amber-200/60 px-2 py-0.5 rounded-md font-bold">REQUIRED</span>
             </div>
 
-            {/* Student Details */}
-            <div>
-              <h4 className="text-xs font-semibold text-gold-600 uppercase tracking-wider mb-3">
+            {/* 1. Student Details */}
+            <div className="border border-cream-200 rounded-2xl p-5 bg-white shadow-sm space-y-4">
+              <h4 className="text-xs font-bold text-gold-600 uppercase tracking-wider border-b border-cream-200 pb-2">
                 1. Student Details
               </h4>
               <div className="grid md:grid-cols-2 gap-4">
-                <div>
+                <div className="md:col-span-2">
                   <label className="text-xs font-semibold text-navy-800 block mb-1">
-                    Student Full Name *
+                    Name of the Student *
                   </label>
                   <input
                     required
+                    name="studentName"
                     type="text"
-                    className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
-                    placeholder="e.g. Aarav Sharma"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Please enter the name in full"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Date of Birth *
+                  </label>
+                  <input
+                    required
+                    name="dob"
+                    type="date"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Date of Birth (dd/mm/yyyy)"
                   />
                 </div>
                 <div>
@@ -710,9 +787,10 @@ export default function Modals({
                   </label>
                   <select
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    name="gender"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                   >
-                    <option value="">Select Gender</option>
+                    <option value="">Select</option>
                     <option>Male</option>
                     <option>Female</option>
                     <option>Other</option>
@@ -720,23 +798,326 @@ export default function Modals({
                 </div>
                 <div>
                   <label className="text-xs font-semibold text-navy-800 block mb-1">
-                    Date of Birth *
+                    Nationality * (As per passport status)
+                  </label>
+                  <select
+                    required
+                    name="nationality"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                  >
+                    <option value="">Select</option>
+                    <option>Indian</option>
+                    <option>NRI</option>
+                    <option>Foreign National</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Country *
                   </label>
                   <input
                     required
-                    type="date"
-                    className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    name="country"
+                    type="text"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter Country"
                   />
                 </div>
                 <div>
                   <label className="text-xs font-semibold text-navy-800 block mb-1">
-                    Applying for Class *
+                    State *
+                  </label>
+                  <input
+                    required
+                    name="state"
+                    type="text"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter State"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    City *
+                  </label>
+                  <input
+                    required
+                    name="city"
+                    type="text"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter City"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 2. Parent Details */}
+            <div className="border border-cream-200 rounded-2xl p-5 bg-white shadow-sm space-y-4">
+              <h4 className="text-xs font-bold text-gold-600 uppercase tracking-wider border-b border-cream-200 pb-2">
+                2. Parent Details
+              </h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Father's Name *
+                  </label>
+                  <input
+                    required
+                    name="fatherName"
+                    type="text"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Please enter the name in full"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Father’s Mobile Number *
+                  </label>
+                  <input
+                    required
+                    name="fatherMobile"
+                    type="tel"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter mobile number"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Father’s E-mail ID *
+                  </label>
+                  <input
+                    required
+                    name="fatherEmail"
+                    type="email"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter Email Id"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Father's Profession *
+                  </label>
+                  <input
+                    required
+                    name="fatherProfession"
+                    type="text"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Please Specify"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Mother’s Name *
+                  </label>
+                  <input
+                    required
+                    name="motherName"
+                    type="text"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Please enter the name in full"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Mother’s Mobile Number *
+                  </label>
+                  <input
+                    required
+                    name="motherMobile"
+                    type="tel"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter mobile number"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Mother’s E-mail ID *
+                  </label>
+                  <input
+                    required
+                    name="motherEmail"
+                    type="email"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter Email Id"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Mother's Profession *
+                  </label>
+                  <input
+                    required
+                    name="motherProfession"
+                    type="text"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Please Specify"
+                  />
+                </div>
+                <div className="md:col-span-2">
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Correspondence Address *
+                  </label>
+                  <textarea
+                    required
+                    name="address"
+                    rows={2}
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter Correspondence Address"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 3. Guardian Details */}
+            <div className="border border-cream-200 rounded-2xl p-5 bg-white shadow-sm space-y-4">
+              <h4 className="text-xs font-bold text-gold-600 uppercase tracking-wider border-b border-cream-200 pb-2">
+                3. Guardian Details
+              </h4>
+              <div className="grid md:grid-cols-3 gap-4">
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Guardian's Name *
+                  </label>
+                  <input
+                    required
+                    name="guardianName"
+                    type="text"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Please enter the name in full"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Guardian’s Mobile Number *
+                  </label>
+                  <input
+                    required
+                    name="guardianMobile"
+                    type="tel"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter mobile number"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Guardian’s E-mail ID *
+                  </label>
+                  <input
+                    required
+                    name="guardianEmail"
+                    type="email"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter Email Id"
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* 4. Student Current Academic Details */}
+            <div className="border border-cream-200 rounded-2xl p-5 bg-white shadow-sm space-y-4">
+              <h4 className="text-xs font-bold text-gold-600 uppercase tracking-wider border-b border-cream-200 pb-2">
+                4. Student Current Academic Details
+              </h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div className="md:col-span-2">
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    School Currently Studying *
+                  </label>
+                  <input
+                    required
+                    name="currentSchool"
+                    type="text"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Please enter the name in full"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    State *
+                  </label>
+                  <input
+                    required
+                    name="currentState"
+                    type="text"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter state name"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    City *
+                  </label>
+                  <input
+                    required
+                    name="currentCity"
+                    type="text"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Enter city name"
+                  />
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Curriculum Currently Studying In *
                   </label>
                   <select
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    name="curriculum"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                   >
-                    <option value="">Select Grade</option>
+                    <option value="">Select</option>
+                    <option>CBSE</option>
+                    <option>ICSE</option>
+                    <option>State Board</option>
+                    <option>IB / IGCSE</option>
+                    <option>Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Grade Currently studying In *
+                  </label>
+                  <select
+                    required
+                    name="currentGrade"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                  >
+                    <option value="">Select</option>
+                    <option>Nursery</option>
+                    <option>LKG</option>
+                    <option>UKG</option>
+                    <option>Class I</option>
+                    <option>Class II</option>
+                    <option>Class III</option>
+                    <option>Class IV</option>
+                    <option>Class V</option>
+                    <option>Class VI</option>
+                    <option>Class VII</option>
+                    <option>Class VIII</option>
+                    <option>Class IX</option>
+                    <option>Class X</option>
+                    <option>Class XI</option>
+                    <option>Class XII</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            {/* 5. Student Enrollment Details */}
+            <div className="border border-cream-200 rounded-2xl p-5 bg-white shadow-sm space-y-4">
+              <h4 className="text-xs font-bold text-gold-600 uppercase tracking-wider border-b border-cream-200 pb-2">
+                5. Student Enrollment Details
+              </h4>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <label className="text-xs font-semibold text-navy-800 block mb-1">
+                    Grade Applying For *
+                  </label>
+                  <select
+                    required
+                    name="applyingGrade"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                  >
+                    <option value="">Select</option>
                     <option>Nursery</option>
                     <option>LKG</option>
                     <option>UKG</option>
@@ -756,125 +1137,34 @@ export default function Modals({
                     <option>Class XI (Humanities / Arts)</option>
                   </select>
                 </div>
-              </div>
-            </div>
-
-            {/* Academic Career & Stream */}
-            <div>
-              <h4 className="text-xs font-semibold text-gold-600 uppercase tracking-wider mb-3">
-                2. Academic Career & Goal
-              </h4>
-              <div className="grid md:grid-cols-2 gap-4">
                 <div>
                   <label className="text-xs font-semibold text-navy-800 block mb-1">
-                    Academic Career Stream *
+                    Applying for Academic Year *
                   </label>
                   <select
                     required
-                    className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    name="academicYear"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                   >
-                    <option value="">Select Stream / Focus</option>
-                    <option>General Primary (Classes I-V)</option>
-                    <option>Foundation Programme (Classes VI-VIII)</option>
-                    <option>Pre-JEE / Pre-NEET Foundation (IX-X)</option>
-                    <option>Integrated IIT-JEE Coaching (PCM)</option>
-                    <option>Integrated NEET Coaching (PCB)</option>
-                    <option>Commerce & Management Focus</option>
-                    <option>Humanities & Arts</option>
+                    <option>2027-2028</option>
+                    <option>2026-2027</option>
+                    <option>2028-2029</option>
                   </select>
                 </div>
-                <div>
+                <div className="md:col-span-2">
                   <label className="text-xs font-semibold text-navy-800 block mb-1">
-                    Career Goal / Aspiration
-                  </label>
-                  <select className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50">
-                    <option value="">Select Career Goal</option>
-                    <option>Engineering (IIT/NIT/BITS)</option>
-                    <option>Medical (AIIMS/NEET)</option>
-                    <option>Civil Services / IAS</option>
-                    <option>Robotics & Artificial Intelligence</option>
-                    <option>Business & Entrepreneurship</option>
-                    <option>Sports & Athletics</option>
-                    <option>Creative Arts & Design</option>
-                  </select>
-                </div>
-                <div>
-                  <label className="text-xs font-semibold text-navy-800 block mb-1">
-                    Current School & Board Name *
+                    Preferred Day of visiting Campus
                   </label>
                   <input
-                    required
-                    type="text"
-                    className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
-                    placeholder="e.g. DAV Public School, CBSE"
+                    type="date"
+                    name="preferredDate"
+                    className="w-full px-4 py-2.5 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
+                    placeholder="Select Date"
                   />
-                </div>
-                <div>
-                  <label className="text-xs font-semibold text-navy-800 block mb-1">
-                    Schooling Type Preference *
-                  </label>
-                  <select
-                    required
-                    className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
-                  >
-                    <option value="">Select Option</option>
-                    <option>Day Scholar (With Transport)</option>
-                    <option>Day Scholar (Self Transport)</option>
-                    <option>Residential AC Hostel (Full Boarding)</option>
-                  </select>
-                </div>
-              </div>
-            </div>
-
-            {/* Parent Contact Details */}
-            <div>
-              <h4 className="text-xs font-semibold text-gold-600 uppercase tracking-wider mb-3">
-                3. Parent / Guardian Contact
-              </h4>
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="text-xs font-semibold text-navy-800 block mb-1">
-                    Parent / Guardian Name *
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
-                    placeholder="Father's / Mother's name"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-semibold text-navy-800 block mb-1">
-                    Mobile Number (WhatsApp Enabled) *
-                  </label>
-                  <input
-                    required
-                    type="tel"
-                    className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
-                    placeholder="+91 98765 43210"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-semibold text-navy-800 block mb-1">
-                    Email Address *
-                  </label>
-                  <input
-                    required
-                    type="email"
-                    className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
-                    placeholder="parent@example.com"
-                  />
-                </div>
-                <div>
-                  <label className="text-xs font-semibold text-navy-800 block mb-1">
-                    City & State *
-                  </label>
-                  <input
-                    required
-                    type="text"
-                    className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
-                    placeholder="e.g. Bhubaneswar, Odisha"
-                  />
+                  <div className="mt-2 p-3 bg-amber-50/80 border border-amber-200/80 rounded-xl text-[11px] text-amber-900 space-y-0.5">
+                    <p className="font-semibold">Note: The appointment may be rescheduled by an email intimation .</p>
+                    <p className="text-amber-800 font-medium">(Appointment confirmed only by Admissions team)</p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -883,8 +1173,7 @@ export default function Modals({
               type="submit"
               className="w-full py-4 bg-navy-900 text-white font-semibold rounded-2xl hover:bg-navy-800 transition flex items-center justify-center gap-2 shadow-lg"
             >
-              <Send className="w-5 h-5 text-gold-400" /> Submit Form → Instant
-              CRM Capture
+              <Send className="w-5 h-5 text-gold-400" /> Submit
             </button>
             <p className="text-xs text-center text-navy-500">
               Your details are transmitted securely to the Cohen Admission Desk.

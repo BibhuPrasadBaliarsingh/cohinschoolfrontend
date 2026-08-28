@@ -232,11 +232,16 @@ export default function Footer({ openLoginModal, openPortalFrame }) {
                   <a href="tel:+919777706447" className="hover:text-gold-400 hover:underline transition">9777706447</a>
                 </div>
               </li>
-              <li className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-gold-400 flex-shrink-0" />
-                <a href="mailto:info@coheninternationalschool.com" className="hover:text-gold-400 hover:underline transition">
-                  info@coheninternationalschool.com
-                </a>
+              <li className="flex items-start gap-2">
+                <Mail className="w-4 h-4 text-gold-400 flex-shrink-0 mt-1" />
+                <div className="flex flex-col gap-1">
+                  <a href="mailto:info@coheninternationalschool.com" className="hover:text-gold-400 hover:underline transition">
+                    info@coheninternationalschool.com
+                  </a>
+                  <a href="mailto:principal@coheninternationalschool.com" className="hover:text-gold-400 hover:underline transition">
+                    principal@coheninternationalschool.com
+                  </a>
+                </div>
               </li>
             </ul>
           </div>
