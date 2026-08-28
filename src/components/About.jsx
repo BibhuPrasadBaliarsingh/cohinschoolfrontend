@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Target, Compass, Quote, ArrowRight, Download } from "lucide-react";
+import { Target, Compass, Quote, ArrowRight, Download, Sparkles } from "lucide-react";
 import AnimatedCounter from "./AnimatedCounter";
 
 const talks = [
@@ -228,28 +228,31 @@ export default function About({ openChairmanModal }) {
               extra cost.
             </p>
 
+            {/* Motto Badge */}
+            <div className="mb-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-700 text-xs font-bold uppercase tracking-wider">
+              <Sparkles className="w-4 h-4 text-gold-600" /> Motto: Excellence Through Harmony
+            </div>
+
             <div className="grid sm:grid-cols-2 gap-4 mb-10">
-              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-cream-200 shadow-sm">
+              <div className="flex items-start gap-3 p-5 rounded-2xl bg-white border border-cream-200 shadow-sm">
                 <div className="w-10 h-10 rounded-xl bg-gold-500/10 flex items-center justify-center flex-shrink-0">
                   <Target className="w-5 h-5 text-gold-600" />
                 </div>
                 <div>
-                  <p className="font-semibold text-navy-900">Vision</p>
-                  <p className="text-sm text-navy-700/70 mt-1">
-                    World-class academics that help every child pursue dreams in
-                    academics, arts, sports or management.
+                  <p className="font-bold text-navy-900">Our Vision</p>
+                  <p className="text-xs sm:text-sm text-navy-700/80 mt-1 leading-relaxed">
+                    Optimising educational opportunities by imparting Knowledge, Insight, Innovation, Technology and Transformation in accordance with global needs.
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-4 rounded-2xl bg-white border border-cream-200 shadow-sm">
+              <div className="flex items-start gap-3 p-5 rounded-2xl bg-white border border-cream-200 shadow-sm">
                 <div className="w-10 h-10 rounded-xl bg-gold-500/10 flex items-center justify-center flex-shrink-0">
                   <Compass className="w-5 h-5 text-gold-600" />
                 </div>
                 <div>
-                  <p className="font-semibold text-navy-900">Mission</p>
-                  <p className="text-sm text-navy-700/70 mt-1">
-                    Know, Learn &amp; Outshine — empowering students with holistic
-                    growth and global citizenship.
+                  <p className="font-bold text-navy-900">Our Mission</p>
+                  <p className="text-xs sm:text-sm text-navy-700/80 mt-1 leading-relaxed">
+                    Motivate &amp; inculcate every student with the mantra of <strong>"Know, Learn and Outshine the World"</strong> through holistic academics &amp; sports.
                   </p>
                 </div>
               </div>

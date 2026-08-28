@@ -3,7 +3,7 @@ import PageWrapper from '../components/PageWrapper';
 import HeaderBanner from '../components/HeaderBanner';
 import About from '../components/About';
 import StartYourJourney from '../components/StartYourJourney';
-import { Target, Compass, Award, BookOpen, Users, ArrowRight } from 'lucide-react';
+import { Target, Compass, Award, BookOpen, Users, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
@@ -98,6 +98,99 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
                 alt="Vice Chairman portrait"
                 className="w-full h-full object-cover object-top"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── VISION, MISSION & 4 SALIENT PILLARS SECTION ── */}
+      <section className="py-20 bg-gradient-to-br from-navy-950 via-navy-900 to-[#0B1C2C] text-white relative overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/15 border border-gold-400/30 text-gold-400 text-xs font-bold uppercase tracking-widest mb-4">
+              <Sparkles className="w-3.5 h-3.5 text-gold-400" /> School Motto: Excellence Through Harmony
+            </div>
+            <h2 className="font-display text-4xl sm:text-5xl text-white font-bold mb-4">
+              Our Vision &amp; Mission
+            </h2>
+            <p className="text-white/70 text-base sm:text-lg leading-relaxed">
+              Moulding the future of students by enriching childhood through Knowledge, Insight, Innovation, Technology and Transformation.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            {/* Our Vision Card */}
+            <div className="p-8 rounded-3xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold mb-6">
+                  <Target className="w-6 h-6" />
+                </div>
+                <h3 className="font-display text-2xl text-white font-bold mb-3">Our Vision</h3>
+                <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-4">
+                  We envisage Cohen International School as a unique international school that gives education a new name by breaking typical characteristics and moulding the future of students by optimising educational opportunities as the cornerstone of learning procedure.
+                </p>
+                <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
+                  Cohen International School also believes in enriching childhood by imparting Knowledge, Insight, Innovation, Technology and Transformation in accordance with global needs.
+                </p>
+              </div>
+            </div>
+
+            {/* Our Mission Card */}
+            <div className="p-8 rounded-3xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between">
+              <div>
+                <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold mb-6">
+                  <Compass className="w-6 h-6" />
+                </div>
+                <h3 className="font-display text-2xl text-white font-bold mb-3">Our Mission</h3>
+                <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-4">
+                  Cohen International School is committed to motivate, encourage and inculcate every student with the mantra of <strong className="text-gold-400 font-bold">"Know, Learn and Outshine the World"</strong>.
+                </p>
+                <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
+                  We believe that each child is special and our mission is to help kids explore various fields and choose according to their unique interests, empowering them through best-in-class academics &amp; sports.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 4 Salient Features of Mission */}
+          <div className="text-center mb-8">
+            <h3 className="font-display text-2xl sm:text-3xl text-white font-bold mb-2">
+              4 Salient Features of Our Mission
+            </h3>
+            <p className="text-white/60 text-xs sm:text-sm">Foundational pillars supporting holistic student development</p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="p-6 rounded-2xl bg-white/10 border border-white/10">
+              <span className="text-gold-400 font-bold text-xs uppercase tracking-wider block mb-2">01. Academic Core</span>
+              <h4 className="font-display text-lg text-white font-bold mb-2">Holistic Education</h4>
+              <p className="text-xs text-white/70 leading-relaxed">
+                Aiming to be a world-class teaching institution laying the foundation stone for intellectual minds and a compassionate heart.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-white/10 border border-white/10">
+              <span className="text-emerald-400 font-bold text-xs uppercase tracking-wider block mb-2">02. Health &amp; Yoga</span>
+              <h4 className="font-display text-lg text-white font-bold mb-2">Physical &amp; Mental Wellness</h4>
+              <p className="text-xs text-white/70 leading-relaxed">
+                A sound mind in a sound body. Curriculum includes sports, Yoga activities, and sessions catering to emotional needs.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-white/10 border border-white/10">
+              <span className="text-purple-400 font-bold text-xs uppercase tracking-wider block mb-2">03. Moral &amp; Values</span>
+              <h4 className="font-display text-lg text-white font-bold mb-2">Intellectual Development</h4>
+              <p className="text-xs text-white/70 leading-relaxed">
+                Imparting knowledge that kindles minds and touches hearts through human values, gender equality, and moral education.
+              </p>
+            </div>
+
+            <div className="p-6 rounded-2xl bg-white/10 border border-white/10">
+              <span className="text-sky-400 font-bold text-xs uppercase tracking-wider block mb-2">04. Talent Platform</span>
+              <h4 className="font-display text-lg text-white font-bold mb-2">Follow Your Dream</h4>
+              <p className="text-xs text-white/70 leading-relaxed">
+                Offering the right platform to harness unique talents and groom students to excel in academics, fine arts, or sports.
+              </p>
             </div>
           </div>
         </div>

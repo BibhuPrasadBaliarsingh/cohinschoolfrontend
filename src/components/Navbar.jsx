@@ -116,6 +116,9 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
               <NavLink to="/about" className={navLinkClass}>
                 About
               </NavLink>
+              <NavLink to="/mission" className={navLinkClass}>
+                Mission
+              </NavLink>
               <NavLink to="/academics" className={navLinkClass}>
                 Academics
               </NavLink>
@@ -124,9 +127,6 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
               </NavLink>
               <NavLink to="/admissions" className={navLinkClass}>
                 Admissions
-              </NavLink>
-              <NavLink to="/news" className={navLinkClass}>
-                News &amp; Events
               </NavLink>
               <NavLink to="/careers" className={navLinkClass}>
                 Careers
@@ -212,6 +212,13 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
                 About
               </NavLink>
               <NavLink
+                to="/mission"
+                onClick={() => setMobileMenuOpen(false)}
+                className={mobileNavLinkClass}
+              >
+                Mission
+              </NavLink>
+              <NavLink
                 to="/academics"
                 onClick={() => setMobileMenuOpen(false)}
                 className={mobileNavLinkClass}
@@ -231,14 +238,6 @@ export default function Navbar({ openLoginModal, openAdmissionModal }) {
                 className={mobileNavLinkClass}
               >
                 Admissions
-              </NavLink>
-
-              <NavLink
-                to="/news"
-                onClick={() => setMobileMenuOpen(false)}
-                className={mobileNavLinkClass}
-              >
-                News &amp; Events
               </NavLink>
 
               <NavLink

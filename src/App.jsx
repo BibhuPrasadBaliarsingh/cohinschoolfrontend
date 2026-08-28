@@ -21,6 +21,7 @@ import PageLoadingSpinner, { TopRouteLoader } from "./components/PageLoadingSpin
 import HomePage from "./pages/HomePage";
 
 const AboutPage = lazy(() => import("./pages/AboutPage"));
+const MissionPage = lazy(() => import("./pages/MissionPage"));
 const AcademicsPage = lazy(() => import("./pages/AcademicsPage"));
 const FacilitiesPage = lazy(() => import("./pages/FacilitiesPage"));
 const AdmissionsPage = lazy(() => import("./pages/AdmissionsPage"));
@@ -181,6 +182,10 @@ function AnimatedRoutes({
               openAdmissionModal={openAdmissionModal}
             />
           }
+        />
+        <Route
+          path="/mission"
+          element={<MissionPage openAdmissionModal={openAdmissionModal} />}
         />
         <Route
           path="/academics"
