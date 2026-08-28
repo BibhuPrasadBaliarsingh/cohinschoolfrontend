@@ -50,14 +50,14 @@ const galleryItems = [
   },
   {
     id: 3,
-    title: "Olympic-Standard Sports Arena & Turf",
+    title: "Football & Athletic Playgrounds",
     category: "Sports Arena",
-    src: img3622,
+    src: img3653,
     location: "Athletics Complex",
     tag: "CHAMPION TURF",
-    stat: "All-Weather Arena",
+    stat: "Grass Football Field",
     resolution: "4K UHD",
-    description: "All-weather multi-sport synthetic arena supporting soccer, cricket, track events, and outdoor conditioning."
+    description: "Lush green grass football field and athletic playground supporting soccer matches, athletic training, and physical conditioning."
   },
   {
     id: 4,
@@ -140,7 +140,7 @@ const galleryItems = [
     id: 11,
     title: "Luxury Boarding Residence & Lounge",
     category: "Campus Infrastructure",
-    src: img3653,
+    src: img3604,
     location: "Hostel Zone",
     tag: "HOSTEL LUXE",
     stat: "Nutritious Dining",
@@ -173,7 +173,7 @@ const galleryItems = [
     id: 14,
     title: "Archway Walkway & Botanical Lawn",
     category: "Campus Infrastructure",
-    src: img3604,
+    src: img3622,
     location: "North Garden",
     tag: "GREEN CAMPUS",
     stat: "Native Flora",
