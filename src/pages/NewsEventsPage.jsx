@@ -64,14 +64,14 @@ export default function NewsEventsPage({ openAdmissionModal }) {
             Join the Legacy of Odisha State Rankers
           </h2>
           <p className="text-sm sm:text-base text-white/70 max-w-xl mx-auto mb-8 font-light">
-            Admissions for 2026-27 are currently open for Day Boarding &amp; Hostels with integrated IIT-JEE &amp; NEET coaching.
+            Admissions for AY 2027-2028 are currently open for Day Boarding &amp; Hostels with integrated IIT-JEE &amp; NEET coaching.
           </p>
           <div className="flex items-center justify-center flex-wrap gap-4">
             <button
               onClick={() => openAdmissionModal && openAdmissionModal("apply")}
               className="px-8 py-3.5 rounded-full bg-gold-500 hover:bg-gold-400 text-navy-950 font-bold text-xs uppercase tracking-wider shadow-xl transition-all transform hover:-translate-y-0.5"
             >
-              Apply for Admission 2026
+              Apply for Admissions for AY 2027-2028
             </button>
             <Link
               to="/contact"

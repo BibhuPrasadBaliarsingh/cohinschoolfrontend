@@ -75,7 +75,7 @@ export default function ContactPage({ openChatbot }) {
                     <label className="text-xs font-semibold text-navy-800 block mb-1">Subject / Query Topic *</label>
                     <select required className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50">
                       <option value="">Select Topic</option>
-                      <option>Admission Enquiry 2026–27</option>
+                      <option>Admission Enquiry AY 2027-2028</option>
                       <option>Fee Structure & Scholarships</option>
                       <option>Hostel & Residential Boarding</option>
                       <option>Integrated JEE / NEET Coaching</option>

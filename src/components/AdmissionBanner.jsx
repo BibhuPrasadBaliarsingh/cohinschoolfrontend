@@ -168,7 +168,7 @@ export default function AdmissionBanner({ openAdmissionModal }) {
               <span>Nursery to Class XII Admissions Open</span>
             </div>
             <h3 className="font-serif text-base sm:text-lg md:text-xl font-extrabold text-white leading-tight">
-              Admissions Going On <span className="text-gold-400">2026–27</span>
+              Admissions Going On for <span className="text-gold-400">AY 2027-2028</span>
             </h3>
             <p className="text-[11px] sm:text-xs text-slate-300 mt-0.5 font-medium leading-tight">
               Integrated IIT-JEE, NEET &amp; CBSE Board • Residential &amp; Day Scholar

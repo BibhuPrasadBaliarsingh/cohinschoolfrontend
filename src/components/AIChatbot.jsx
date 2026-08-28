@@ -3,7 +3,7 @@ import { MessageCircle, X, Bot, Send } from 'lucide-react';
 
 const botReplies = {
   admission:
-    'Admissions for 2026–27 are open from Nursery to Class XI. The process includes online application, counselling, campus visit, interaction/assessment, document verification and fee payment. Would you like me to start an application for you?',
+    'Admissions for AY 2027-2028 are open from Nursery to Class XI. The process includes online application, counselling, campus visit, interaction/assessment, document verification and fee payment. Would you like me to start an application for you?',
   fee:
     'Fees vary by class and whether the student is a day scholar or boarder. You can use our Fee Estimator on the Admissions page for an indicative amount. Scholarships and sibling discounts are available. Final fee structure is shared during personal counselling.',
   hostel:

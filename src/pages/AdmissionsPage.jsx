@@ -8,7 +8,7 @@ export default function AdmissionsPage({ openAdmissionModal }) {
   return (
     <PageWrapper>
       <HeaderBanner
-        title="Admissions 2026–27 & Fee Structure"
+        title="Admissions for AY 2027-2028 & Fee Structure"
         subtitle="Transparent admission process, merit scholarships, and indicative annual fee calculator for day scholars and boarders."
         
         breadcrumb="Admissions"

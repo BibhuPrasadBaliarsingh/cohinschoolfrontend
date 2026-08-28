@@ -26,7 +26,7 @@ export default function Admissions({ openAdmissionModal }) {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className="reveal">
-            <p className="text-gold-600 font-medium tracking-widest uppercase text-sm mb-3">Admissions 2026–27</p>
+            <p className="text-gold-600 font-medium tracking-widest uppercase text-sm mb-3">Admissions for AY 2027-2028</p>
             <h2 className="font-display text-4xl lg:text-5xl text-navy-900 mb-6">
               Begin Your Journey<br />With Cohen
             </h2>

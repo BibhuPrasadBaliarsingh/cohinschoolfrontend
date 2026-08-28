@@ -66,7 +66,7 @@ export default function Reports() {
             <option>Last 7 Days</option>
             <option>Last 30 Days</option>
             <option>This Quarter</option>
-            <option>Academic Year 2026-2027</option>
+            <option>Academic Year 2027-2028</option>
           </select>
 
           <button

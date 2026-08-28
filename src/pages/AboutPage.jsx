@@ -165,7 +165,7 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
             Experience the CIS Campus Difference
           </h2>
           <p className="text-white/70 text-base mb-8">
-            Book a personal campus tour or speak directly with our admissions desk to learn more about the 2026–27 batch.
+            Book a personal campus tour or speak directly with our admissions desk to learn more about the AY 2027-2028 batch.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <button

@@ -327,7 +327,7 @@ const topicData = {
   },
   admissions: {
     title: "Admissions, Eligibility & Fee Guidance",
-    tag: "Session 2026–27",
+    tag: "Session AY 2027-2028",
     badge: "Scholarships Available",
     image: img3671,
     intro:
@@ -597,10 +597,10 @@ export default function Modals({
     const mode = data?.mode || "apply";
     const isRegister = mode === "register";
     const title = isRegister
-      ? "Student Registration Form 2026–27"
+      ? "Student Registration Form for AY 2027-2028"
       : "Online Admission Application";
     const subtitle = isRegister
-      ? "Register your seat early for the upcoming 2026–27 academic batch."
+      ? "Register your seat early for the upcoming AY 2027-2028 academic batch."
       : "Complete application form for nursery to Class XI admissions.";
 
     const handleSubmit = (e) => {
@@ -661,7 +661,7 @@ export default function Modals({
                 letterSpacing: "0.09em",
                 textTransform: "uppercase",
               }}>
-                Admissions 2026–27
+                Admissions for AY 2027-2028
               </span>
             </div>
             {/* Title text over image at bottom */}

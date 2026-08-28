@@ -55,9 +55,9 @@ const heroSlides = [
 ];
 
 const stats = [
-  { Icon: Award, value: 2018, suffix: "", label: "Founded" },
+  { Icon: Award, value: 2015, suffix: "", label: "Founded" },
   { Icon: Users, value: 1200, suffix: "+", label: "Students" },
-  { Icon: BookOpen, value: 40, suffix: "+", label: "Expert Faculty" },
+  { Icon: BookOpen, value: 55, suffix: "+", label: "Expert Faculty" },
   { Icon: MapPin, value: 10, suffix: " Ac", label: "Green Campus" },
 ];
 
@@ -381,7 +381,7 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
             }}
           >
             <UserPlus size={18} />
-            Apply for Admissions 2026–27
+            Apply for Admissions for AY 2027-2028
             {/* Pulse ring */}
             <span style={{
               position: "absolute", inset: 0, borderRadius: "999px",

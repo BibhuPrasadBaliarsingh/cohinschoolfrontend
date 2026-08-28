@@ -88,7 +88,7 @@ export default function AcademicsPage({ openAdmissionModal }) {
       {/* CTA */}
       <section className="py-16 bg-cream-100 text-center">
         <div className="max-w-3xl mx-auto px-4">
-          <h2 className="font-display text-3xl font-bold text-navy-900 mb-3">Ready to Join the 2026–27 Academic Batch?</h2>
+          <h2 className="font-display text-3xl font-bold text-navy-900 mb-3">Ready to Join the AY 2027-2028 Academic Batch?</h2>
           <p className="text-navy-700/80 mb-6 text-sm">
             Calculate your estimated fees on our Admissions page or fill the online application form.
           </p>
