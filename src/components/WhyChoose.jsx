@@ -18,8 +18,10 @@ import {
   Sparkles,
   BookMarked,
   GraduationCap,
-  CheckCircle2
+  CheckCircle2,
+  Trophy as ChessIcon
 } from 'lucide-react';
+import chessImg from '../assets/chess.png';
 
 const cvapPrograms = [
   {
@@ -99,6 +101,13 @@ const cvapPrograms = [
     title: "Music, Dance, Drama, and More",
     desc: "From rhythm to rhyme: Embrace artistry in music, dance and drama",
     category: "Creative Arts"
+  },
+  {
+    icon: ChessIcon,
+    image: chessImg,
+    title: "Chess in Education (THINK TURF)",
+    desc: "In collaboration with THINK TURF for Grades 1-6. FREE for first 2 months — building concentration, logical thinking, speed, accuracy & decision-making.",
+    category: "Cognitive Mind Sports"
   }
 ];
 
@@ -252,8 +261,12 @@ export default function WhyChoose() {
               >
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-gold-500/20 group-hover:bg-gold-500 group-hover:scale-110 transition-all duration-300 flex items-center justify-center">
-                      <IconComp className="w-6 h-6 text-gold-400 group-hover:text-navy-900 transition-colors" />
+                    <div className="w-12 h-12 rounded-2xl bg-gold-500/20 group-hover:bg-gold-500 group-hover:scale-110 transition-all duration-300 flex items-center justify-center overflow-hidden">
+                      {item.image ? (
+                        <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
+                      ) : (
+                        <IconComp className="w-6 h-6 text-gold-400 group-hover:text-navy-900 transition-colors" />
+                      )}
                     </div>
                     <span className="text-[10px] font-bold text-gold-400/90 uppercase tracking-wider bg-gold-500/10 px-2.5 py-1 rounded-full border border-gold-500/20">
                       {item.category}

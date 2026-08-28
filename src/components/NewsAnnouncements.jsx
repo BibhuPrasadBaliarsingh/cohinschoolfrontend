@@ -11,6 +11,7 @@ import officialLogo from "../assets/cohen_official_logo.png";
 import officialBanner1 from "../assets/jeeadvance3.jpeg";
 import officialBanner2 from "../assets/jeeadvance6.jpeg";
 import officialBanner3 from "../assets/jeeadvance5.jpeg";
+import chessImg from "../assets/chess.png";
 
 import {
   Calendar,
@@ -36,6 +37,24 @@ import {
 import { useAuth } from "../context/AuthContext";
 
 const defaultEventsData = [
+  {
+    id: "evt-chess-001",
+    day: "28",
+    month: "August",
+    year: "2026",
+    title: "Introduction of Chess in Curriculum (Grades 1 to 6)",
+    studentName: "CIS & THINK TURF Collaboration",
+    rank: "FREE for First 2 Months",
+    category: "Academic & Sports",
+    image: chessImg,
+    fallbackUrl: officialLogo,
+    posterBadge: "THINK TURF Chess Program • Grades 1–6",
+    summary:
+      "Cohen International School in collaboration with THINK TURF introduces Chess into the curriculum for Grades 1 to 6 to boost concentration, logic & cognitive mastery. FREE for 2 months!",
+    fullNotice:
+      "Dear Parents,\n\nWe are pleased to inform you that Cohen International School, in collaboration with THINK TURF, is introducing Chess as part of the school curriculum for Grades 1 to 6.\n\nChess will help students develop concentration, logical and cognitive thinking, speed, accuracy, problem-solving, and decision-making skills, which can also contribute to improved examination performance.\n\nThe programme will be FREE for the first two months. Thereafter, students may continue the programme by paying a nominal course fee.\n\nWe encourage all students to actively participate.\n\nRegards,\nCohen International School",
+    pdfUrl: "#"
+  },
   {
     id: "evt-001",
     day: "26",
@@ -301,7 +320,7 @@ export default function NewsAnnouncements({ openAdmissionModal, isPage = false }
                 className="group relative bg-white dark:bg-navy-950/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between"
               >
                 {/* TOP POSTER MEDIA CONTAINER */}
-                <div className="relative w-full min-h-[240px] max-h-[360px] overflow-hidden bg-[#06121E] flex items-center justify-center p-2">
+                <div className="relative w-full h-80 sm:h-96 overflow-hidden bg-[#06121E]">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -310,7 +329,8 @@ export default function NewsAnnouncements({ openAdmissionModal, isPage = false }
                     onError={(e) => {
                       e.currentTarget.src = item.fallbackUrl || "/logo.png";
                     }}
-                    className="w-full h-full max-h-[350px] object-contain group-hover:scale-[1.02] transition-transform duration-300"
+                    className="w-full h-full object-fill group-hover:scale-105 transition-transform duration-500"
+                    style={{ objectFit: "fill" }}
                   />
 
                   {/* Poster Graphic Badge Overlay */}
