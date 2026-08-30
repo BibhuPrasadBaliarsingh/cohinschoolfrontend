@@ -1,16 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
 import { RefreshCw } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
 import { FollowUpsTable, RescheduleModal } from '../../components/crm/followups/FollowUpsComponents';
 
 export default function FollowUps() {
-  const { user } = useAuth();
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   // State variables
   const [followUps, setFollowUps] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [filter, setFilter] = useState('today'); // today, overdue, pending, completed
+  const [filter, setFilter] = useState('today');
 
   // Reschedule Modal controls
   const [showRescheduleModal, setShowRescheduleModal] = useState(false);
@@ -18,62 +24,70 @@ export default function FollowUps() {
   const [rescheduleForm, setRescheduleForm] = useState({ date: '', time: '', notes: '' });
   const [modalLoading, setModalLoading] = useState(false);
 
-  const fetchFollowUps = async () => {
+  const fetchFollowUps = useCallback(async () => {
     try {
-      setLoading(true);
+      if (isMountedRef.current) setLoading(true);
       const res = await axios.get(`/api/followups?filter=${filter}`);
-      if (res.data.success) {
+      if (res.data.success && isMountedRef.current) {
         setFollowUps(res.data.data);
       }
     } catch (e) {
       console.error(e);
     } finally {
-      setLoading(false);
+      if (isMountedRef.current) {
+        setLoading(false);
+      }
     }
-  };
+  }, [filter]);
 
   useEffect(() => {
     fetchFollowUps();
-  }, [filter]);
+  }, [fetchFollowUps]);
 
   // Handle Quick Complete
-  const handleQuickComplete = async (id) => {
-    if (!window.confirm('Mark this follow-up as Completed?')) return;
-    try {
-      const res = await axios.put(`/api/followups/${id}`, { status: 'Completed' });
-      if (res.data.success) {
-        fetchFollowUps();
+  const handleQuickComplete = useCallback(
+    async (id) => {
+      if (!window.confirm('Mark this follow-up as Completed?')) return;
+      try {
+        const res = await axios.put(`/api/followups/${id}`, { status: 'Completed' });
+        if (res.data.success && isMountedRef.current) {
+          fetchFollowUps();
+        }
+      } catch (e) {
+        console.error(e);
       }
-    } catch (e) {
-      console.error(e);
-    }
-  };
+    },
+    [fetchFollowUps]
+  );
 
   // Handle Reschedule submit
-  const handleRescheduleSubmit = async (e) => {
-    e.preventDefault();
-    if (!rescheduleForm.date || !rescheduleForm.time) return;
+  const handleRescheduleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      if (!rescheduleForm.date || !rescheduleForm.time || !selectedFollowUp) return;
 
-    try {
-      setModalLoading(true);
-      const res = await axios.put(`/api/followups/${selectedFollowUp._id}`, {
-        status: 'Rescheduled',
-        date: rescheduleForm.date,
-        time: rescheduleForm.time,
-        notes: rescheduleForm.notes || 'Rescheduled follow-up'
-      });
-      if (res.data.success) {
-        setShowRescheduleModal(false);
-        setSelectedFollowUp(null);
-        setRescheduleForm({ date: '', time: '', notes: '' });
-        fetchFollowUps();
+      try {
+        if (isMountedRef.current) setModalLoading(true);
+        const res = await axios.put(`/api/followups/${selectedFollowUp._id}`, {
+          status: 'Rescheduled',
+          date: rescheduleForm.date,
+          time: rescheduleForm.time,
+          notes: rescheduleForm.notes || 'Rescheduled follow-up'
+        });
+        if (res.data.success && isMountedRef.current) {
+          setShowRescheduleModal(false);
+          setSelectedFollowUp(null);
+          setRescheduleForm({ date: '', time: '', notes: '' });
+          fetchFollowUps();
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        if (isMountedRef.current) setModalLoading(false);
       }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setModalLoading(false);
-    }
-  };
+    },
+    [rescheduleForm, selectedFollowUp, fetchFollowUps]
+  );
 
   return (
     <div className="space-y-6 animate-fade-in">
@@ -85,8 +99,10 @@ export default function FollowUps() {
         </div>
         <div className="flex items-center gap-2">
           <button
+            type="button"
             onClick={fetchFollowUps}
-            className="p-2 border border-gray-200 bg-white rounded-lg text-slate-500 hover:text-slate-800 cursor-pointer"
+            aria-label="Refresh follow ups"
+            className="p-2 border border-gray-200 bg-white rounded-lg text-slate-500 hover:text-slate-800 cursor-pointer focus-visible:ring-2 focus-visible:ring-gold-500"
           >
             <RefreshCw className="w-4.5 h-4.5" />
           </button>
@@ -96,12 +112,13 @@ export default function FollowUps() {
       {/* Filter Tabs */}
       <div className="flex border-b border-gray-200 bg-gray-50 p-1 rounded-lg gap-1.5 w-full max-w-lg">
         {[
-          { key: 'today', name: 'Today\'s' },
+          { key: 'today', name: "Today's" },
           { key: 'overdue', name: 'Overdue' },
           { key: 'pending', name: 'All Pending' },
           { key: 'completed', name: 'Completed' }
         ].map((tab) => (
           <button
+            type="button"
             key={tab.key}
             onClick={() => setFilter(tab.key)}
             className={`flex-1 py-2 text-xs font-bold rounded-lg transition-all duration-200 cursor-pointer ${

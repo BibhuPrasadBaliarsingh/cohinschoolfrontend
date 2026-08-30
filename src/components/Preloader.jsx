@@ -6,7 +6,6 @@ export default function Preloader({ onComplete }) {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // Fast progress counter animation
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -43,23 +42,17 @@ export default function Preloader({ onComplete }) {
       className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#050D16] text-white selection:bg-gold-500"
     >
       <div className="relative flex flex-col items-center justify-center p-6 text-center">
-        
-        {/* CIRCLE SPINNER CONTAINER */}
         <div className="relative w-36 h-36 sm:w-44 sm:h-44 flex items-center justify-center mb-6">
-          
-          {/* Outer Rotating Glowing Ring */}
           <div
             className="absolute inset-0 rounded-full border-4 border-transparent border-t-gold-400 border-r-gold-500/60 animate-spin shadow-[0_0_30px_rgba(201,162,39,0.3)]"
             style={{ animationDuration: '1.1s' }}
           />
 
-          {/* Inner Counter-Rotating Pulsing Ring */}
           <div
             className="absolute inset-2 sm:inset-3 rounded-full border-4 border-transparent border-b-amber-400 border-l-gold-300 animate-spin"
             style={{ animationDuration: '1.6s', animationDirection: 'reverse' }}
           />
 
-          {/* Background Ambient Glow & Logo */}
           <div className="absolute inset-4 rounded-full bg-navy-900/90 backdrop-blur-md border border-gold-500/40 flex items-center justify-center shadow-2xl p-3 sm:p-4">
             <img
               src="/logo.png"
@@ -68,30 +61,20 @@ export default function Preloader({ onComplete }) {
               style={{ animationDuration: '2s' }}
             />
           </div>
-
         </div>
 
-        {/* Brand Text */}
-        <h2 className="font-display text-xl sm:text-2xl text-white font-bold tracking-wide">
-          Cohen International School
-        </h2>
-        <p className="text-gold-400 text-xs sm:text-sm mt-1 font-semibold uppercase tracking-widest">
-          Excellence Through Harmony
-        </p>
+        <h2 className="font-display text-xl sm:text-2xl text-white font-bold tracking-wide">Cohen International School</h2>
+        <p className="text-gold-400 text-xs sm:text-sm mt-1 font-semibold uppercase tracking-widest">Excellence Through Harmony</p>
 
-        {/* Progress Bar & Counter */}
         <div className="w-48 sm:w-56 mt-5">
           <div className="h-1.5 w-full bg-navy-800 rounded-full overflow-hidden border border-white/10">
             <div
-              className="h-full bg-gradient-to-r from-gold-500 via-amber-400 to-amber-300 transition-all duration-150 rounded-full"
+              className="h-full bg-gradient-to-r from-gold-500 via-amber-400 to-amber-300 transition-[width] duration-150 rounded-full"
               style={{ width: `${progress}%` }}
             />
           </div>
-          <p className="text-[11px] text-gold-300/80 mt-2 font-mono tracking-wider">
-            Loading {progress}%
-          </p>
+          <p className="text-[11px] text-gold-300/80 mt-2 font-mono tracking-wider">Loading {progress}%</p>
         </div>
-
       </div>
     </div>
   );

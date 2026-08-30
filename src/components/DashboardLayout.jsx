@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { Link, useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 import {
   Shield,
   UserCheck,
@@ -17,7 +17,6 @@ import {
   Sparkles,
   LayoutDashboard,
   FileText,
-  UserPlus,
   HelpCircle,
   Database
 } from 'lucide-react';
@@ -100,12 +99,11 @@ const roleConfig = {
   }
 };
 
-export default function DashboardLayout({ children, activeTab = 'overview' }) {
+export default function DashboardLayout({ children }) {
   const { user, logout } = useAuth();
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
-  const location = useLocation();
 
   const role = user?.role || 'parent';
   const conf = roleConfig[role] || roleConfig.parent;
@@ -115,8 +113,9 @@ export default function DashboardLayout({ children, activeTab = 'overview' }) {
     <div className="min-h-screen bg-navy-950 text-white flex flex-col md:flex-row overflow-x-hidden">
       {/* Sidebar Navigation */}
       <aside
-        className={`bg-navy-900 border-r border-gold-500/20 transition-all duration-300 flex flex-col justify-between relative z-30 ${sidebarCollapsed ? 'w-full md:w-20' : 'w-full md:w-64'
-          }`}
+        className={`bg-navy-900 border-r border-gold-500/20 transition-all duration-300 flex flex-col justify-between relative z-30 ${
+          sidebarCollapsed ? 'w-full md:w-20' : 'w-full md:w-64'
+        }`}
       >
         <div>
           {/* Top Brand Logo */}
@@ -134,8 +133,10 @@ export default function DashboardLayout({ children, activeTab = 'overview' }) {
             </Link>
 
             <button
+              type="button"
               onClick={() => setSidebarCollapsed(!sidebarCollapsed)}
-              className="hidden md:flex p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition"
+              className="hidden md:flex p-1.5 rounded-lg text-white/60 hover:text-white hover:bg-white/10 transition focus-visible:ring-2 focus-visible:ring-gold-400"
+              aria-label="Toggle Sidebar"
               title="Toggle Sidebar"
             >
               {sidebarCollapsed ? <ChevronRight className="w-4 h-4" /> : <ChevronLeft className="w-4 h-4" />}
@@ -166,12 +167,14 @@ export default function DashboardLayout({ children, activeTab = 'overview' }) {
               const isActive = idx === 0;
               return (
                 <button
+                  type="button"
                   key={idx}
                   onClick={() => navigate(item.path)}
-                  className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-semibold transition ${isActive
+                  className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-semibold transition ${
+                    isActive
                       ? 'bg-gold-500 text-navy-950 font-bold shadow-lg'
                       : 'text-white/70 hover:bg-white/10 hover:text-white'
-                    }`}
+                  }`}
                 >
                   <ItemIcon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-navy-950' : conf.accentColor}`} />
                   {!sidebarCollapsed && <span className="truncate">{item.label}</span>}
@@ -191,6 +194,7 @@ export default function DashboardLayout({ children, activeTab = 'overview' }) {
             {!sidebarCollapsed && <span>Return Main Website</span>}
           </Link>
           <button
+            type="button"
             onClick={logout}
             className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-xs text-rose-300 hover:bg-rose-500/20 transition font-semibold"
           >
@@ -208,8 +212,10 @@ export default function DashboardLayout({ children, activeTab = 'overview' }) {
             <div className="relative w-full">
               <Search className="w-4 h-4 text-white/40 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
+                id="dashboard-search-input"
                 type="text"
                 value={searchQuery}
+                aria-label="Search dashboard modules"
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search dashboard modules, records, reports..."
                 className="w-full pl-10 pr-4 py-2 rounded-full bg-white/10 border border-white/15 text-xs text-white placeholder-white/40 focus:outline-none focus:border-gold-400 transition"
@@ -218,23 +224,24 @@ export default function DashboardLayout({ children, activeTab = 'overview' }) {
           </div>
 
           <div className="flex items-center gap-4">
-            {/* Live System Status Dot */}
             <div className="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-semibold">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
               MongoDB Cloud Live
             </div>
 
-            {/* Notification Bell */}
-            <button className="relative p-2 rounded-full bg-white/10 hover:bg-white/20 text-white/80 transition">
+            <button
+              type="button"
+              aria-label="Notifications"
+              className="relative p-2 rounded-full bg-white/10 hover:bg-white/20 text-white/80 transition focus-visible:ring-2 focus-visible:ring-gold-400"
+            >
               <Bell className="w-4 h-4" />
-              <span className="absolute top-1 right-1 w-2 h-2 bg-gold-400 rounded-full"></span>
+              <span className="absolute top-1 right-1 w-2 h-2 bg-gold-400 rounded-full" />
             </button>
 
-            {/* Profile Avatar */}
             <div className="flex items-center gap-2.5">
               <img
                 src={user?.avatar || `https://api.dicebear.com/7.x/avataaars/svg?seed=${user?.name}`}
-                alt={user?.name}
+                alt={user?.name || 'User Avatar'}
                 className="w-9 h-9 rounded-full bg-gold-500/20 border border-gold-400/40 object-cover"
               />
               <div className="hidden lg:block text-left">
@@ -245,10 +252,7 @@ export default function DashboardLayout({ children, activeTab = 'overview' }) {
           </div>
         </header>
 
-        {/* Dynamic Page Content */}
-        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">
-          {children}
-        </main>
+        <main className="flex-1 p-4 sm:p-6 lg:p-8 max-w-7xl w-full mx-auto">{children}</main>
       </div>
     </div>
   );

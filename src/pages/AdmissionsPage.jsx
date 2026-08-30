@@ -2,7 +2,7 @@ import React from 'react';
 import PageWrapper from '../components/PageWrapper';
 import HeaderBanner from '../components/HeaderBanner';
 import Admissions from '../components/Admissions';
-import { CheckCircle2, ShieldCheck, HelpCircle, FileText, Award } from 'lucide-react';
+import { CheckCircle2, FileText, Award } from 'lucide-react';
 
 export default function AdmissionsPage({ openAdmissionModal }) {
   return (

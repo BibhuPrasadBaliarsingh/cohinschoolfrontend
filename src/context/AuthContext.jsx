@@ -1,16 +1,15 @@
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useState, useEffect, useMemo, useCallback } from 'react';
 import axios from 'axios';
+import { authStorage } from '../services/authStorage';
 
-const AuthContext = createContext();
+export const AuthContext = createContext(null);
+export { default as useAuth } from '../hooks/useAuth';
 
 const API_BASE_URL = '/api';
 
 export function AuthProvider({ children }) {
-  const [user, setUser] = useState(() => {
-    const savedUser = localStorage.getItem('cohen_user') || localStorage.getItem('user');
-    return savedUser ? JSON.parse(savedUser) : null;
-  });
-  const [token, setToken] = useState(() => localStorage.getItem('cohen_token') || localStorage.getItem('token') || null);
+  const [user, setUser] = useState(() => authStorage.getUser());
+  const [token, setToken] = useState(() => authStorage.getToken());
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -23,12 +22,14 @@ export function AuthProvider({ children }) {
     }
   }, [token]);
 
-  // Check initial authentication state on mount
+  // Check initial authentication state on mount with abort signal
   useEffect(() => {
+    let isMounted = true;
+
     async function verifySession() {
-      const storedToken = localStorage.getItem('cohen_token') || localStorage.getItem('token');
+      const storedToken = authStorage.getToken();
       if (!storedToken) {
-        setLoading(false);
+        if (isMounted) setLoading(false);
         return;
       }
 
@@ -36,33 +37,40 @@ export function AuthProvider({ children }) {
         axios.defaults.headers.common['Authorization'] = `Bearer ${storedToken}`;
         const response = await axios.get(`${API_BASE_URL}/auth/me`);
 
-        if (response.data?.success && (response.data.data || response.data.user)) {
-          const userData = response.data.data || response.data.user;
-          setUser(userData);
-          localStorage.setItem('cohen_user', JSON.stringify(userData));
-        } else {
+        if (isMounted) {
+          if (response.data?.success && (response.data.data || response.data.user)) {
+            const userData = response.data.data || response.data.user;
+            setUser(userData);
+            authStorage.setUser(userData);
+          } else {
+            setUser(null);
+            setToken(null);
+            authStorage.clearAuth();
+          }
+        }
+      } catch (_err) {
+        if (isMounted) {
           setUser(null);
           setToken(null);
-          localStorage.clear();
+          authStorage.clearAuth();
+          delete axios.defaults.headers.common['Authorization'];
         }
-      } catch (err) {
-        // Backend verification failed or unauthorized - reset user state cleanly
-        setUser(null);
-        setToken(null);
-        localStorage.removeItem('cohen_token');
-        localStorage.removeItem('token');
-        localStorage.removeItem('cohen_user');
-        delete axios.defaults.headers.common['Authorization'];
       } finally {
-        setLoading(false);
+        if (isMounted) {
+          setLoading(false);
+        }
       }
     }
 
     verifySession();
+
+    return () => {
+      isMounted = false;
+    };
   }, []);
 
   // Login Handler
-  async function login(email, password) {
+  const login = useCallback(async (email, password) => {
     setError(null);
     setLoading(true);
 
@@ -78,9 +86,8 @@ export function AuthProvider({ children }) {
 
       setToken(userToken);
       setUser(userData);
-      localStorage.setItem('cohen_token', userToken);
-      localStorage.setItem('token', userToken);
-      localStorage.setItem('cohen_user', JSON.stringify(userData));
+      authStorage.setToken(userToken);
+      authStorage.setUser(userData);
 
       axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
 
@@ -92,10 +99,10 @@ export function AuthProvider({ children }) {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   // Register Handler
-  async function register(userData) {
+  const register = useCallback(async (userData) => {
     setError(null);
     setLoading(true);
 
@@ -111,9 +118,8 @@ export function AuthProvider({ children }) {
 
       setToken(userToken);
       setUser(newUserData);
-      localStorage.setItem('cohen_token', userToken);
-      localStorage.setItem('token', userToken);
-      localStorage.setItem('cohen_user', JSON.stringify(newUserData));
+      authStorage.setToken(userToken);
+      authStorage.setUser(newUserData);
 
       axios.defaults.headers.common['Authorization'] = `Bearer ${userToken}`;
 
@@ -125,46 +131,41 @@ export function AuthProvider({ children }) {
     } finally {
       setLoading(false);
     }
-  }
+  }, []);
 
   // Logout Handler
-  function logout() {
+  const logout = useCallback(() => {
     setUser(null);
     setToken(null);
-    localStorage.removeItem('cohen_token');
-    localStorage.removeItem('token');
-    localStorage.removeItem('cohen_user');
+    authStorage.clearAuth();
     delete axios.defaults.headers.common['Authorization'];
-  }
+  }, []);
 
   // Check Role Access Helper
-  function hasRole(allowedRoles) {
-    if (!user) return false;
-    if (!allowedRoles || allowedRoles.length === 0) return true;
-    const userRoleLower = (user.role || '').toLowerCase();
-    return allowedRoles.some(r => r.toLowerCase() === userRoleLower || r === user.role);
-  }
+  const hasRole = useCallback(
+    (allowedRoles) => {
+      if (!user) return false;
+      if (!allowedRoles || allowedRoles.length === 0) return true;
+      const userRoleLower = (user.role || '').toLowerCase();
+      return allowedRoles.some((r) => r.toLowerCase() === userRoleLower || r === user.role);
+    },
+    [user]
+  );
 
-  const value = {
-    user,
-    token,
-    loading,
-    error,
-    isAuthenticated: !!user,
-    login,
-    register,
-    logout,
-    hasRole
-  };
+  const value = useMemo(
+    () => ({
+      user,
+      token,
+      loading,
+      error,
+      isAuthenticated: !!user,
+      login,
+      register,
+      logout,
+      hasRole
+    }),
+    [user, token, loading, error, login, register, logout, hasRole]
+  );
 
   return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
-
-export function useAuth() {
-  const context = useContext(AuthContext);
-  if (!context) {
-    throw new Error('useAuth must be used within an AuthProvider');
-  }
-  return context;
-}
-

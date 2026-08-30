@@ -5,9 +5,19 @@ import useLeadDetail from '../../hooks/useLeadDetail';
 import LeadDetailHeader from '../../components/crm/leaddetail/LeadDetailHeader';
 import { StageTracker, LeadProfileCards, EngagementLogger, ActivityTimeline } from '../../components/crm/leaddetail/LeadDetailComponents';
 
+const pipelineStatuses = [
+  'New',
+  'Contacted',
+  'Interested',
+  'Follow-up',
+  'Visit Scheduled',
+  'Application Started',
+  'Application Submitted',
+  'Admission Confirmed'
+];
+
 export default function LeadDetail() {
   const {
-    user,
     lead,
     timeline,
     loading,
@@ -20,7 +30,6 @@ export default function LeadDetail() {
     followUpForm,
     setFollowUpForm,
     actionLoading,
-    settings,
     handleStatusChange,
     handleAddNote,
     handleLogCall,
@@ -39,32 +48,20 @@ export default function LeadDetail() {
   if (!lead) {
     return (
       <div className="text-center py-20 text-xs text-slate-500">
-        Lead not found. <Link to="/admin/leads" className="text-brand-400">Go back</Link>
+        Lead not found.{' '}
+        <Link to="/admin/leads" className="text-brand-400">
+          Go back
+        </Link>
       </div>
     );
   }
-
-  const pipelineStatuses = [
-    'New',
-    'Contacted',
-    'Interested',
-    'Follow-up',
-    'Visit Scheduled',
-    'Application Started',
-    'Application Submitted',
-    'Admission Confirmed'
-  ];
 
   const currentStatusIndex = pipelineStatuses.indexOf(lead.status);
 
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Detail header */}
-      <LeadDetailHeader
-        lead={lead}
-        actionLoading={actionLoading}
-        initiateAdmission={initiateAdmission}
-      />
+      <LeadDetailHeader lead={lead} actionLoading={actionLoading} initiateAdmission={initiateAdmission} />
 
       <StageTracker
         pipelineStatuses={pipelineStatuses}
@@ -98,4 +95,3 @@ export default function LeadDetail() {
     </div>
   );
 }
-

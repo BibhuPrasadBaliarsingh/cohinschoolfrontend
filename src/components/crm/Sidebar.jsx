@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import {
   LayoutDashboard,
   Users2,
-  KanbanSquare,
   Clock,
   FileText,
   GraduationCap,
@@ -14,10 +14,8 @@ import {
   LogOut,
   ChevronDown,
   ChevronRight,
-  Menu,
   X
 } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
 
 export default function Sidebar({ mobileOpen, setMobileOpen }) {
   const location = useLocation();
@@ -108,11 +106,11 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
       return (
         <div key={item.name} className="space-y-1">
           <button
+            type="button"
             onClick={() => setOpen(!open)}
-            className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 cursor-pointer ${isSubActive(item.path)
-                ? 'bg-brand-600 text-white'
-                : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-100'
-              }`}
+            className={`w-full flex items-center justify-between px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 cursor-pointer ${
+              isSubActive(item.path) ? 'bg-brand-600 text-white' : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-100'
+            }`}
           >
             <div className="flex items-center gap-3">
               <Icon className="w-5 h-5" />
@@ -127,10 +125,11 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
                   key={sub.name}
                   to={sub.path}
                   onClick={() => setMobileOpen(false)}
-                  className={`block px-3 py-2 rounded-md text-xs font-medium transition-all duration-150 ${isActive(sub.path)
+                  className={`block px-3 py-2 rounded-md text-xs font-medium transition-all duration-150 ${
+                    isActive(sub.path)
                       ? 'text-brand-400 bg-brand-500/10'
                       : 'text-slate-400 hover:bg-slate-800/30 hover:text-slate-200'
-                    }`}
+                  }`}
                 >
                   {sub.name}
                 </Link>
@@ -146,10 +145,11 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
         key={item.name}
         to={item.path}
         onClick={() => setMobileOpen(false)}
-        className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${isActive(item.path)
+        className={`flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium transition-all duration-150 ${
+          isActive(item.path)
             ? 'bg-gradient-to-r from-brand-600 to-indigo-600 text-white shadow-md shadow-brand-600/10'
             : 'text-slate-400 hover:bg-slate-800/50 hover:text-slate-100'
-          }`}
+        }`}
       >
         <Icon className="w-5 h-5" />
         <span>{item.name}</span>
@@ -161,16 +161,14 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
     <>
       {/* Mobile Sidebar Overlay */}
       {mobileOpen && (
-        <div
-          className="fixed inset-0 z-40 bg-slate-950/80 backdrop-blur-sm lg:hidden"
-          onClick={() => setMobileOpen(false)}
-        />
+        <div className="fixed inset-0 z-40 bg-slate-950/80 backdrop-blur-sm lg:hidden" onClick={() => setMobileOpen(false)} />
       )}
 
       {/* Sidebar Container */}
       <aside
-        className={`fixed inset-y-0 left-0 z-50 flex flex-col w-64 border-r border-blue-800/40 bg-gradient-to-b from-blue-950 via-blue-900 to-indigo-950 transition-transform duration-300 lg:translate-x-0 lg:static lg:h-screen ${mobileOpen ? 'translate-x-0' : '-translate-x-full'
-          }`}
+        className={`fixed inset-y-0 left-0 z-50 flex flex-col w-64 border-r border-blue-800/40 bg-gradient-to-b from-blue-950 via-blue-900 to-indigo-950 transition-transform duration-300 lg:translate-x-0 lg:static lg:h-screen ${
+          mobileOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
       >
         {/* Brand Header */}
         <div className="flex items-center justify-between h-16 px-6 border-b border-blue-800/40">
@@ -180,15 +178,13 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
               Cohen CRM
             </span>
           </Link>
-          <button onClick={() => setMobileOpen(false)} className="text-slate-400 hover:text-white lg:hidden">
+          <button type="button" onClick={() => setMobileOpen(false)} aria-label="Close sidebar" className="text-slate-400 hover:text-white lg:hidden">
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Navigation Items */}
-        <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
-          {filteredItems.map(renderLink)}
-        </nav>
+        <nav className="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">{filteredItems.map(renderLink)}</nav>
 
         {/* User Footer Profile */}
         <div className="p-4 border-t border-blue-800/40 bg-blue-950/50">
@@ -202,6 +198,7 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
             </div>
           </div>
           <button
+            type="button"
             onClick={logout}
             className="w-full flex items-center justify-center gap-2 px-3 py-2 border border-slate-800 rounded-lg text-xs font-medium text-slate-400 hover:bg-rose-950/30 hover:border-rose-900/30 hover:text-rose-400 transition-all duration-150 cursor-pointer"
           >
@@ -213,4 +210,3 @@ export default function Sidebar({ mobileOpen, setMobileOpen }) {
     </>
   );
 }
-

@@ -1,9 +1,17 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
+import useAuth from './useAuth';
 
 export default function useSettings() {
   const { user } = useAuth();
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
 
   // Settings State
   const [schoolSettings, setSchoolSettings] = useState({
@@ -36,13 +44,27 @@ export default function useSettings() {
   const [webhookLogs, setWebhookLogs] = useState([]);
   const [logsLoading, setLogsLoading] = useState(false);
 
-  const fetchSettingsData = async () => {
+  const fetchWebhookLogs = useCallback(async () => {
     try {
-      setLoading(true);
+      if (isMountedRef.current) setLogsLoading(true);
+      const res = await axios.get('/api/meta/webhook-logs');
+      if (res.data.success && isMountedRef.current) {
+        setWebhookLogs(res.data.data);
+      }
+    } catch (e) {
+      console.error(e);
+    } finally {
+      if (isMountedRef.current) setLogsLoading(false);
+    }
+  }, []);
+
+  const fetchSettingsData = useCallback(async () => {
+    try {
+      if (isMountedRef.current) setLoading(true);
 
       try {
         const settingsRes = await axios.get('/api/settings');
-        if (settingsRes.data.success) {
+        if (settingsRes.data.success && isMountedRef.current) {
           const { settings } = settingsRes.data.data;
           setSchoolSettings({
             schoolName: settings.schoolName || '',
@@ -60,124 +82,126 @@ export default function useSettings() {
 
       try {
         const logsRes = await axios.get('/api/meta/webhook-logs');
-        if (logsRes.data.success) {
+        if (logsRes.data.success && isMountedRef.current) {
           setWebhookLogs(logsRes.data.data);
         }
       } catch (e) {
         console.error('Failed to fetch webhook logs:', e);
       }
     } finally {
-      setLoading(false);
+      if (isMountedRef.current) setLoading(false);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchSettingsData();
-  }, []);
+  }, [fetchSettingsData]);
 
   // Save CRM Global settings
-  const handleSaveSettings = async (e) => {
-    e.preventDefault();
-    try {
-      setSaveLoading(true);
-      const res = await axios.put('/api/settings', schoolSettings);
-      if (res.data.success) {
-        alert('Global settings saved successfully');
+  const handleSaveSettings = useCallback(
+    async (e) => {
+      e.preventDefault();
+      try {
+        if (isMountedRef.current) setSaveLoading(true);
+        const res = await axios.put('/api/settings', schoolSettings);
+        if (res.data.success) {
+          alert('Global settings saved successfully');
+        }
+      } catch (_err) {
+        alert('Failed to save settings');
+      } finally {
+        if (isMountedRef.current) setSaveLoading(false);
       }
-    } catch (err) {
-      alert('Failed to save settings');
-    } finally {
-      setSaveLoading(false);
-    }
-  };
+    },
+    [schoolSettings]
+  );
 
   // Regenerate public API key
-  const handleRegenApiKey = async () => {
+  const handleRegenApiKey = useCallback(async () => {
     if (!window.confirm('Regenerating the API Key will break existing website form submissions until updated. Continue?')) return;
     try {
       const res = await axios.post('/api/settings/regenerate-api-key');
-      if (res.data.success) {
+      if (res.data.success && isMountedRef.current) {
         setApiKey(res.data.apiKey);
         alert('New API Key Generated');
       }
     } catch (e) {
       console.error(e);
     }
-  };
+  }, []);
 
   // Run Simulation webhook
-  const handleSimulateWebhook = async (e) => {
-    e.preventDefault();
-    try {
-      setSimLoading(true);
-      setSimResult(null);
-      
-      const payload = {
-        leadId: `mock_lead_${Date.now()}`,
-        formId: 'mock_form_id',
-        pageId: 'mock_page_id',
-        studentName: simForm.name,
-        parentName: 'Simulated Parent',
-        phone: simForm.phone,
-        email: simForm.email,
-        classInterested: simForm.classInterested,
-        campaignName: simForm.campaignName,
-        platform: simForm.platform
-      };
+  const handleSimulateWebhook = useCallback(
+    async (e) => {
+      e.preventDefault();
+      try {
+        if (isMountedRef.current) {
+          setSimLoading(true);
+          setSimResult(null);
+        }
 
-      const res = await axios.post('/api/meta/simulate-webhook', payload);
-      if (res.data.success) {
-        setSimResult({
-          success: true,
-          message: res.data.message,
-          lead: res.data.lead,
-          duplicate: res.data.duplicateStatus,
-          assigned: res.data.assignedCounsellor
-        });
-        fetchWebhookLogs();
-      }
-    } catch (err) {
-      setSimResult({
-        success: false,
-        message: err.response?.data?.message || 'Simulation ingestion failed'
-      });
-    } finally {
-      setSimLoading(false);
-    }
-  };
+        const payload = {
+          leadId: `mock_lead_${Date.now()}`,
+          formId: 'mock_form_id',
+          pageId: 'mock_page_id',
+          studentName: simForm.name,
+          parentName: 'Simulated Parent',
+          phone: simForm.phone,
+          email: simForm.email,
+          classInterested: simForm.classInterested,
+          campaignName: simForm.campaignName,
+          platform: simForm.platform
+        };
 
-  const fetchWebhookLogs = async () => {
-    try {
-      setLogsLoading(true);
-      const res = await axios.get('/api/meta/webhook-logs');
-      if (res.data.success) {
-        setWebhookLogs(res.data.data);
+        const res = await axios.post('/api/meta/simulate-webhook', payload);
+        if (res.data.success && isMountedRef.current) {
+          setSimResult({
+            success: true,
+            message: res.data.message,
+            lead: res.data.lead,
+            duplicate: res.data.duplicateStatus,
+            assigned: res.data.assignedCounsellor
+          });
+          fetchWebhookLogs();
+        }
+      } catch (err) {
+        if (isMountedRef.current) {
+          setSimResult({
+            success: false,
+            message: err.response?.data?.message || 'Simulation ingestion failed'
+          });
+        }
+      } finally {
+        if (isMountedRef.current) setSimLoading(false);
       }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLogsLoading(false);
-    }
-  };
+    },
+    [simForm, fetchWebhookLogs]
+  );
 
   // Retry ingestion logic
-  const handleRetryLog = async (id) => {
-    try {
-      const res = await axios.post(`/api/meta/webhook-logs/${id}/retry`);
-      if (res.data.success) {
-        alert(res.data.message);
-        fetchWebhookLogs();
+  const handleRetryLog = useCallback(
+    async (id) => {
+      try {
+        const res = await axios.post(`/api/meta/webhook-logs/${id}/retry`);
+        if (res.data.success && isMountedRef.current) {
+          alert(res.data.message);
+          fetchWebhookLogs();
+        }
+      } catch (err) {
+        alert(err.response?.data?.message || 'Retry failed');
       }
-    } catch (err) {
-      alert(err.response?.data?.message || 'Retry failed');
-    }
-  };
+    },
+    [fetchWebhookLogs]
+  );
 
-  const copyToClipboard = (text) => {
+  const copyToClipboard = useCallback((text) => {
     navigator.clipboard.writeText(text);
     setApiKeyCopied(true);
-    setTimeout(() => setApiKeyCopied(false), 2000);
-  };
+    const timer = setTimeout(() => {
+      if (isMountedRef.current) setApiKeyCopied(false);
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, []);
 
   return {
     user,

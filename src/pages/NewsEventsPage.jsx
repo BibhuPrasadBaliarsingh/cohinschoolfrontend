@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import PageWrapper from "../components/PageWrapper";
 import NewsAnnouncements from "../components/NewsAnnouncements";
-import { Calendar, Megaphone, Sparkles, ArrowRight, ShieldCheck, Award } from "lucide-react";
+import { Calendar, Megaphone, Sparkles, ShieldCheck, Award } from "lucide-react";
 
 export default function NewsEventsPage({ openAdmissionModal }) {
   return (

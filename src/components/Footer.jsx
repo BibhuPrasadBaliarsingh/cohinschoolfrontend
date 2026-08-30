@@ -120,10 +120,12 @@ export default function Footer({ openLoginModal, openPortalFrame }) {
               <li>
                 <Link to="/about" className="hover:text-gold-400 transition">About Us</Link>
               </li>
-              
-              
-              
-              
+              <li>
+                <Link to="/faculty" className="hover:text-gold-400 transition">Our Management</Link>
+              </li>
+              <li>
+                <Link to="/page/11" className="hover:text-gold-400 transition">Scientific Advisory Board</Link>
+              </li>
               <li>
                 <Link to="/news" className="hover:text-gold-400 transition">News &amp; Events</Link>
               </li>

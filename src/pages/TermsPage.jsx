@@ -13,9 +13,6 @@ import {
   Scale,
   CreditCard,
   Building2,
-  Mail,
-  Phone,
-  CheckCircle2,
   HelpCircle
 } from 'lucide-react';
 import { Link } from 'react-router-dom';

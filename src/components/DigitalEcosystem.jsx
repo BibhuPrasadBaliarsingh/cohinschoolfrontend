@@ -1,5 +1,5 @@
 import React from 'react';
-import { Smartphone, Shield, Zap, Laptop, Bus, UserCheck, BookOpen, CreditCard, Building } from 'lucide-react';
+import { Smartphone, Laptop, Bus, UserCheck, CreditCard, Building } from 'lucide-react';
 
 const modules = [
   {
@@ -72,10 +72,11 @@ export default function DigitalEcosystem({ openModule }) {
           {modules.map((m) => {
             const Icon = m.icon;
             return (
-              <div
+              <button
+                type="button"
                 key={m.id}
                 onClick={() => openModule?.(m.id)}
-                className="group cursor-pointer p-8 rounded-3xl bg-cream-50 border border-cream-200 hover:border-gold-500/80 hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between"
+                className="group cursor-pointer p-8 rounded-3xl bg-cream-50 border border-cream-200 hover:border-gold-500/80 hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 flex flex-col justify-between text-left focus-visible:ring-2 focus-visible:ring-gold-500"
               >
                 <div>
                   <div className="flex justify-between items-start mb-6">
@@ -96,7 +97,7 @@ export default function DigitalEcosystem({ openModule }) {
                 <span className="text-xs font-bold text-navy-900 group-hover:text-gold-600 transition-colors flex items-center gap-1">
                   Launch Interactive Demo →
                 </span>
-              </div>
+              </button>
             );
           })}
         </div>

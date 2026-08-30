@@ -1,18 +1,7 @@
 import React from 'react';
 import DashboardLayout from '../../components/DashboardLayout';
-import { useAuth } from '../../context/AuthContext';
-import {
-  Users,
-  CreditCard,
-  ShieldCheck,
-  CheckCircle2,
-  Award,
-  Calendar,
-  Bus,
-  FileText,
-  MapPin,
-  ExternalLink
-} from 'lucide-react';
+import useAuth from '../../hooks/useAuth';
+import { CreditCard, CheckCircle2, Award, Bus, MapPin, ExternalLink } from 'lucide-react';
 
 export default function ParentDashboard() {
   const { user } = useAuth();
@@ -21,15 +10,15 @@ export default function ParentDashboard() {
     <DashboardLayout>
       {/* Banner */}
       <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-rose-900/40 via-navy-900 to-navy-950 border border-rose-500/30 backdrop-blur-xl mb-8 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-rose-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-80 h-80 bg-rose-500/10 rounded-full blur-[100px] pointer-events-none" />
         <span className="px-3 py-1 rounded-full bg-rose-500/20 text-rose-300 text-xs font-bold uppercase tracking-wider mb-3 inline-block border border-rose-500/30">
           ParentConnect Guardian Desk
         </span>
-        <h1 className="font-display text-3xl font-extrabold text-white mb-2">
-          Guardian Oversight & Fee Gateway
-        </h1>
+        <h1 className="font-display text-3xl font-extrabold text-white mb-2">Guardian Oversight &amp; Fee Gateway</h1>
         <p className="text-white/70 text-sm max-w-2xl">
-          Welcome back, <strong className="text-rose-300">{user?.name || "Dr. Alok Mohanty"}</strong>. Child Ward: <strong className="text-gold-400">Aarav Sharma (Class XI Science - JEE Integrated)</strong>. Monitor live attendance, report cards, hostel status, and direct fee payment.
+          Welcome back, <strong className="text-rose-300">{user?.name || 'Dr. Alok Mohanty'}</strong>. Child Ward:{' '}
+          <strong className="text-gold-400">Aarav Sharma (Class XI Science - JEE Integrated)</strong>. Monitor live attendance, report
+          cards, hostel status, and direct fee payment.
         </p>
       </div>
 
@@ -64,11 +53,11 @@ export default function ParentDashboard() {
 
         <div className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-rose-400/50 transition">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-semibold text-white/70">Hostel & Transport</span>
+            <span className="text-xs font-semibold text-white/70">Hostel &amp; Transport</span>
             <Bus className="w-5 h-5 text-amber-400" />
           </div>
           <p className="font-display text-3xl font-extrabold text-amber-400">Route #4</p>
-          <p className="text-[11px] text-emerald-400 mt-1">GPS & RFID Sync Active</p>
+          <p className="text-[11px] text-emerald-400 mt-1">GPS &amp; RFID Sync Active</p>
         </div>
       </div>
 
@@ -103,7 +92,7 @@ export default function ParentDashboard() {
               <MapPin className="w-5 h-5" />
             </div>
             <div>
-              <h2 className="font-display text-xl font-bold text-white">Live Transport & GPS Tracking</h2>
+              <h2 className="font-display text-xl font-bold text-white">Live Transport &amp; GPS Tracking</h2>
               <p className="text-xs text-white/60">Bus Route #4 (Bhubaneswar – Jatani Campus)</p>
             </div>
           </div>
@@ -118,6 +107,7 @@ export default function ParentDashboard() {
             </div>
           </div>
           <button
+            type="button"
             onClick={() => alert('Live GPS Map: Route #4 bus is parked safely inside the school 10-acre campus.')}
             className="w-full py-3.5 bg-white/10 text-white font-semibold rounded-2xl text-xs hover:bg-white/20 transition border border-white/15 flex items-center justify-center gap-2"
           >

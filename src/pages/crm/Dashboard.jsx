@@ -1,9 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
 import { Loader2 } from 'lucide-react';
 import { KPICards, DashboardCharts, SubPanels, PerformanceGrids } from '../../components/crm/dashboard/DashboardComponents';
 
 export default function Dashboard() {
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
   const [stats, setStats] = useState(null);
   const [chartData, setChartData] = useState(null);
   const [range, setRange] = useState('Last 30 Days');
@@ -11,9 +20,9 @@ export default function Dashboard() {
   const [todayFollowups, setTodayFollowups] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const fetchDashboardData = async () => {
+  const fetchDashboardData = useCallback(async () => {
     try {
-      setLoading(true);
+      if (isMountedRef.current) setLoading(true);
       const [statsRes, chartsRes, leadsRes, followupsRes] = await Promise.all([
         axios.get('/api/dashboard/stats'),
         axios.get(`/api/dashboard/leads?range=${encodeURIComponent(range)}`),
@@ -21,36 +30,39 @@ export default function Dashboard() {
         axios.get('/api/followups?filter=today')
       ]);
 
-      if (statsRes.data.success) setStats(statsRes.data.data);
-      if (chartsRes.data.success) setChartData(chartsRes.data.data);
-      if (leadsRes.data.success) setRecentLeads(leadsRes.data.data);
-      if (followupsRes.data.success) setTodayFollowups(followupsRes.data.data);
+      if (isMountedRef.current) {
+        if (statsRes.data.success) setStats(statsRes.data.data);
+        if (chartsRes.data.success) setChartData(chartsRes.data.data);
+        if (leadsRes.data.success) setRecentLeads(leadsRes.data.data);
+        if (followupsRes.data.success) setTodayFollowups(followupsRes.data.data);
+      }
     } catch (e) {
       console.error('Failed to load dashboard data:', e);
     } finally {
-      setLoading(false);
+      if (isMountedRef.current) {
+        setLoading(false);
+      }
     }
-  };
+  }, [range]);
 
   useEffect(() => {
     fetchDashboardData();
-  }, [range]);
+  }, [fetchDashboardData]);
 
   // Handle follow up quick completion
-  const completeFollowUp = async (id, leadId) => {
+  const completeFollowUp = useCallback(async (id) => {
     try {
       const res = await axios.put(`/api/followups/${id}`, {
         status: 'Completed',
         notes: 'Quick completed from dashboard checklist.'
       });
-      if (res.data.success) {
-        // Refresh
-        setTodayFollowups(todayFollowups.filter(f => f._id !== id));
+      if (res.data.success && isMountedRef.current) {
+        setTodayFollowups((prev) => prev.filter((f) => f._id !== id));
       }
     } catch (e) {
       console.error('Error completing follow up:', e);
     }
-  };
+  }, []);
 
   if (loading && !stats) {
     return (
@@ -69,8 +81,11 @@ export default function Dashboard() {
           <p className="text-xs text-slate-500">Here is the school admissions and leads summary.</p>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-xs font-semibold text-slate-400">View Data:</span>
+          <label htmlFor="crm-dashboard-range" className="text-xs font-semibold text-slate-400">
+            View Data:
+          </label>
           <select
+            id="crm-dashboard-range"
             value={range}
             onChange={(e) => setRange(e.target.value)}
             className="text-xs glass-input bg-white border-gray-200"

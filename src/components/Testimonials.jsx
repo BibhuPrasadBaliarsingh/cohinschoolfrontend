@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Star, Quote, ArrowLeft, ArrowRight, Award, GraduationCap, Building2 } from 'lucide-react';
+import { Star, Quote, ArrowLeft, ArrowRight } from 'lucide-react';
 
 const testimonialsList = [
   {

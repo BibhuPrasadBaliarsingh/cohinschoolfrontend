@@ -1,13 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
 import { RefreshCw } from 'lucide-react';
 import config from '../../config';
-import { useAuth } from '../../context/AuthContext';
 import { AdmissionsTable, UploadDocModal } from '../../components/crm/admissions/AdmissionsComponents';
 
 export default function Admissions() {
-  const { user } = useAuth();
-  
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
   // State variables
   const [admissions, setAdmissions] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,87 +26,100 @@ export default function Admissions() {
   const [docForm, setDocForm] = useState({ name: 'Birth Certificate', fileUrl: config.mockDocUrl, fileType: 'PDF' });
   const [modalLoading, setModalLoading] = useState(false);
 
-  const fetchAdmissions = async () => {
+  const fetchAdmissions = useCallback(async () => {
     try {
-      setLoading(true);
+      if (isMountedRef.current) setLoading(true);
       const queryParams = new URLSearchParams();
       if (statusFilter) queryParams.set('status', statusFilter);
       if (search) queryParams.set('search', search);
 
       const res = await axios.get(`/api/admissions?${queryParams.toString()}`);
-      if (res.data.success) {
+      if (res.data.success && isMountedRef.current) {
         setAdmissions(res.data.data);
       }
     } catch (e) {
       console.error(e);
     } finally {
-      setLoading(false);
+      if (isMountedRef.current) {
+        setLoading(false);
+      }
     }
-  };
+  }, [statusFilter, search]);
 
   useEffect(() => {
     fetchAdmissions();
-  }, [statusFilter, search]);
+  }, [fetchAdmissions]);
 
   // Update Status Inline
-  const handleUpdateStatus = async (id, status) => {
-    try {
-      const res = await axios.put(`/api/admissions/${id}`, { status });
-      if (res.data.success) {
-        fetchAdmissions();
+  const handleUpdateStatus = useCallback(
+    async (id, status) => {
+      try {
+        const res = await axios.put(`/api/admissions/${id}`, { status });
+        if (res.data.success && isMountedRef.current) {
+          fetchAdmissions();
+        }
+      } catch (err) {
+        alert(err.response?.data?.message || 'Failed to update status');
       }
-    } catch (err) {
-      alert(err.response?.data?.message || 'Failed to update status');
-    }
-  };
+    },
+    [fetchAdmissions]
+  );
 
   // Update Payment Status Inline
-  const handleUpdatePayment = async (id, paymentStatus) => {
-    try {
-      const res = await axios.put(`/api/admissions/${id}`, { paymentStatus });
-      if (res.data.success) {
-        fetchAdmissions();
+  const handleUpdatePayment = useCallback(
+    async (id, paymentStatus) => {
+      try {
+        const res = await axios.put(`/api/admissions/${id}`, { paymentStatus });
+        if (res.data.success && isMountedRef.current) {
+          fetchAdmissions();
+        }
+      } catch (e) {
+        console.error(e);
       }
-    } catch (e) {
-      console.error(e);
-    }
-  };
+    },
+    [fetchAdmissions]
+  );
 
   // Handle Document Upload
-  const handleUploadDoc = async (e) => {
-    e.preventDefault();
-    if (!docForm.name || !docForm.fileUrl) return;
+  const handleUploadDoc = useCallback(
+    async (e) => {
+      e.preventDefault();
+      if (!docForm.name || !docForm.fileUrl || !selectedApp) return;
 
-    try {
-      setModalLoading(true);
-      const res = await axios.put(`/api/admissions/${selectedApp._id}`, {
-        document: docForm
-      });
-      if (res.data.success) {
-        setShowDocModal(false);
-        setSelectedApp(null);
-        setDocForm({ name: 'Birth Certificate', fileUrl: config.mockDocUrl, fileType: 'PDF' });
-        fetchAdmissions();
+      try {
+        if (isMountedRef.current) setModalLoading(true);
+        const res = await axios.put(`/api/admissions/${selectedApp._id}`, {
+          document: docForm
+        });
+        if (res.data.success && isMountedRef.current) {
+          setShowDocModal(false);
+          setSelectedApp(null);
+          setDocForm({ name: 'Birth Certificate', fileUrl: config.mockDocUrl, fileType: 'PDF' });
+          fetchAdmissions();
+        }
+      } catch (e) {
+        console.error(e);
+      } finally {
+        if (isMountedRef.current) setModalLoading(false);
       }
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setModalLoading(false);
-    }
-  };
+    },
+    [docForm, selectedApp, fetchAdmissions]
+  );
 
   return (
     <div className="space-y-6 animate-fade-in">
       {/* Top Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h2 className="text-xl font-bold text-slate-800 font-sans">Applications & Admissions</h2>
+          <h2 className="text-xl font-bold text-slate-800 font-sans">Applications &amp; Admissions</h2>
           <p className="text-xs text-slate-400">Track and manage student applications, documentation, and fee clearances.</p>
         </div>
         <div className="flex items-center gap-2">
           <button
+            type="button"
             onClick={fetchAdmissions}
-            className="p-2 border border-gray-200 bg-white rounded-lg text-slate-500 hover:text-slate-800 cursor-pointer"
+            aria-label="Refresh admissions"
+            className="p-2 border border-gray-200 bg-white rounded-lg text-slate-500 hover:text-slate-800 cursor-pointer focus-visible:ring-2 focus-visible:ring-gold-500"
           >
             <RefreshCw className="w-4.5 h-4.5" />
           </button>
@@ -110,7 +129,11 @@ export default function Admissions() {
       {/* Filter and Search controls */}
       <div className="glass-card p-4 flex flex-col md:flex-row gap-3">
         <div className="flex-1">
+          <label htmlFor="adm-search" className="sr-only">
+            Search Applications
+          </label>
           <input
+            id="adm-search"
             type="text"
             placeholder="Search by student name, parent name or app number..."
             value={search}
@@ -119,7 +142,11 @@ export default function Admissions() {
           />
         </div>
         <div className="w-full md:w-64">
+          <label htmlFor="adm-status-filter" className="sr-only">
+            Filter by Status
+          </label>
           <select
+            id="adm-status-filter"
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
             className="w-full glass-input text-xs"

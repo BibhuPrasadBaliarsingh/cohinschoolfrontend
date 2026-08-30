@@ -6,7 +6,7 @@ import StartYourJourney from '../components/StartYourJourney';
 import { Target, Compass, Award, BookOpen, Users, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
+export default function AboutPage({ openChairmanModal, openPrincipalModal, openAdmissionModal }) {
   return (
     <PageWrapper>
       <HeaderBanner
@@ -98,6 +98,52 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
                 alt="Vice Chairman portrait"
                 className="w-full h-full object-cover object-top"
               />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Principal's Desk Section */}
+      <section id="principal-desk" className="py-14 sm:py-16 lg:py-20 bg-[#f4f6f8] border-t border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-12 items-center">
+            {/* Left Column: Image */}
+            <div className="w-full h-[340px] sm:h-[420px] lg:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-navy-950">
+              <img
+                src="/images/about_banner.png"
+                alt="Principal portrait"
+                className="w-full h-full object-cover object-center"
+              />
+            </div>
+
+            {/* Right Column: Text Content */}
+            <div className="flex flex-col justify-center">
+              <p className="text-[#2d7d55] font-medium text-xl sm:text-2xl lg:text-3xl font-display leading-none">
+                From
+              </p>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-[4rem] leading-[0.95] text-navy-900 mt-2">
+                Principal's Desk
+              </h2>
+
+              <p className="mt-6 font-semibold text-navy-900 text-base sm:text-lg">
+                Dear Students and Parents,
+              </p>
+
+              <p className="mt-3 text-base sm:text-lg leading-relaxed text-navy-700/80 max-w-xl">
+                I would like to take this opportunity to warmly welcome you to CIS. We are fully committed to guiding our community of learners towards holistic development. As an international school, CIS develops the whole child as a responsible learner, striving for personal excellence within a thought-provoking academic environment...
+              </p>
+
+              <p className="mt-4 text-base sm:text-lg leading-relaxed text-navy-700/80 max-w-xl">
+                At CIS, we believe in the philosophy of imparting holistic education. Education can not be confined only to books. One can learn a lot from nature and the environment around. The best way to educate a kid is to teach him/her to let their imagination grow...
+              </p>
+
+              <button
+                onClick={openPrincipalModal}
+                className="mt-8 inline-flex items-center justify-between gap-4 w-full max-w-[260px] rounded-lg bg-[#2e9e4b] px-6 py-4 text-left text-white shadow-[0_10px_25px_rgba(46,158,75,0.28)] hover:bg-[#288d43] transition-colors duration-200"
+              >
+                <span className="font-semibold text-lg">Know more</span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white/15 text-xl leading-none">→</span>
+              </button>
             </div>
           </div>
         </div>

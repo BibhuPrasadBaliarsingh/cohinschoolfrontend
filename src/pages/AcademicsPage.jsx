@@ -2,7 +2,7 @@ import React from 'react';
 import PageWrapper from '../components/PageWrapper';
 import HeaderBanner from '../components/HeaderBanner';
 import Academics from '../components/Academics';
-import { BookOpen, CheckCircle, Sparkles, ArrowRight } from 'lucide-react';
+
 import { Link } from 'react-router-dom';
 
 export default function AcademicsPage({ openAdmissionModal }) {

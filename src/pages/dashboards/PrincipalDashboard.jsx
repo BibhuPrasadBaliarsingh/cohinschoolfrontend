@@ -1,19 +1,7 @@
 import React from 'react';
 import DashboardLayout from '../../components/DashboardLayout';
-import { useAuth } from '../../context/AuthContext';
-import {
-  UserCheck,
-  Award,
-  BookOpen,
-  Users,
-  Bell,
-  CheckCircle2,
-  FileText,
-  TrendingUp,
-  BarChart2,
-  Calendar,
-  Sparkles
-} from 'lucide-react';
+import useAuth from '../../hooks/useAuth';
+import { Award, Users, Bell, CheckCircle2, FileText, TrendingUp, BarChart2, Sparkles } from 'lucide-react';
 
 export default function PrincipalDashboard() {
   const { user } = useAuth();
@@ -22,15 +10,14 @@ export default function PrincipalDashboard() {
     <DashboardLayout>
       {/* Banner */}
       <div className="p-6 sm:p-8 rounded-3xl bg-gradient-to-r from-amber-900/40 via-navy-900 to-navy-950 border border-amber-500/30 backdrop-blur-xl mb-8 relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-80 h-80 bg-amber-500/10 rounded-full blur-[100px] pointer-events-none" />
         <span className="px-3 py-1 rounded-full bg-amber-500/20 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3 inline-block border border-amber-500/30">
           Executive Academic Control Desk
         </span>
-        <h1 className="font-display text-3xl font-extrabold text-white mb-2">
-          Principal's Executive Overview
-        </h1>
+        <h1 className="font-display text-3xl font-extrabold text-white mb-2">Principal's Executive Overview</h1>
         <p className="text-white/70 text-sm max-w-2xl">
-          Welcome, <strong className="text-amber-300">{user?.name}</strong>. Monitor overall academic standards, CBSE affiliation metrics, faculty reviews, and campus operations.
+          Welcome, <strong className="text-amber-300">{user?.name}</strong>. Monitor overall academic standards, CBSE affiliation metrics,
+          faculty reviews, and campus operations.
         </p>
       </div>
 
@@ -42,12 +29,12 @@ export default function PrincipalDashboard() {
             <Users className="w-5 h-5 text-amber-400" />
           </div>
           <p className="font-display text-3xl font-extrabold text-amber-400">94</p>
-          <p className="text-[11px] text-emerald-400 mt-1">100% CBSE & Cambridge trained</p>
+          <p className="text-[11px] text-emerald-400 mt-1">100% CBSE &amp; Cambridge trained</p>
         </div>
 
         <div className="p-5 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-amber-400/50 transition">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-semibold text-white/70">JEE & NEET Enrolled</span>
+            <span className="text-xs font-semibold text-white/70">JEE &amp; NEET Enrolled</span>
             <Award className="w-5 h-5 text-gold-400" />
           </div>
           <p className="font-display text-3xl font-extrabold text-gold-400">420</p>
@@ -82,15 +69,15 @@ export default function PrincipalDashboard() {
           <div className="space-y-4 text-xs">
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
               <div>
-                <p className="font-bold text-white text-sm">Senior Secondary Science (Physics & Chemistry)</p>
-                <p className="text-white/60">Class XI & XII Integrated JEE/NEET Batch</p>
+                <p className="font-bold text-white text-sm">Senior Secondary Science (Physics &amp; Chemistry)</p>
+                <p className="text-white/60">Class XI &amp; XII Integrated JEE/NEET Batch</p>
               </div>
               <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">94% Syllabus Done</span>
             </div>
 
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
               <div>
-                <p className="font-bold text-white text-sm">Mathematics & AI Robotics Lab</p>
+                <p className="font-bold text-white text-sm">Mathematics &amp; AI Robotics Lab</p>
                 <p className="text-white/60">Class IX to XII Practical Modules</p>
               </div>
               <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">98% Syllabus Done</span>
@@ -98,8 +85,8 @@ export default function PrincipalDashboard() {
 
             <div className="p-4 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-between">
               <div>
-                <p className="font-bold text-white text-sm">Cambridge English Speech & Debate</p>
-                <p className="text-white/60">Language Communication & CMUN Prep</p>
+                <p className="font-bold text-white text-sm">Cambridge English Speech &amp; Debate</p>
+                <p className="text-white/60">Language Communication &amp; CMUN Prep</p>
               </div>
               <span className="px-3 py-1 rounded-full bg-emerald-500/20 text-emerald-300 font-bold">100% Completed</span>
             </div>
@@ -112,12 +99,14 @@ export default function PrincipalDashboard() {
           </h2>
           <div className="space-y-3 text-xs">
             <button
+              type="button"
               onClick={() => alert('Broadcast Notice: Send instant notification to all parents via ParentConnect App.')}
               className="w-full p-3 rounded-2xl bg-gold-500 text-navy-950 font-bold hover:bg-gold-400 transition flex items-center justify-center gap-2"
             >
               <Sparkles className="w-4 h-4" /> Broadcast Parent Circular
             </button>
             <button
+              type="button"
               onClick={() => alert('Approve Faculty Leave: Review 2 pending leave applications.')}
               className="w-full p-3 rounded-2xl bg-white/10 text-white font-semibold hover:bg-white/20 transition border border-white/15 flex items-center justify-center gap-2"
             >

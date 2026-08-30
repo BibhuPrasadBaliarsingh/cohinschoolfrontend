@@ -1,98 +1,94 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import axios from 'axios';
 import { Search, Loader2, RefreshCw } from 'lucide-react';
-import { useAuth } from '../../context/AuthContext';
 import { PipelineColumn } from '../../components/crm/leadpipeline/LeadPipelineComponents';
 
+const pipelineStatuses = [
+  'New',
+  'Contacted',
+  'Interested',
+  'Follow-up',
+  'Visit Scheduled',
+  'Application Started',
+  'Application Submitted',
+  'Admission Confirmed'
+];
+
 export default function LeadPipeline() {
-  const { user } = useAuth();
+  const isMountedRef = useRef(true);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
   const [leads, setLeads] = useState([]);
   const [loading, setLoading] = useState(true);
   const [search, setSearch] = useState('');
-  const [settings, setSettings] = useState(null);
   const [draggingId, setDraggingId] = useState(null);
 
-  // Column Status list
-  const pipelineStatuses = [
-    'New',
-    'Contacted',
-    'Interested',
-    'Follow-up',
-    'Visit Scheduled',
-    'Application Started',
-    'Application Submitted',
-    'Admission Confirmed'
-  ];
-
   // Fetch Leads for Pipeline (non-paginated)
-  const fetchPipelineLeads = async () => {
+  const fetchPipelineLeads = useCallback(async () => {
     try {
-      setLoading(true);
-      const res = await axios.get('/api/leads?limit=100'); // Load top 100 leads
-      if (res.data.success) {
+      if (isMountedRef.current) setLoading(true);
+      const res = await axios.get('/api/leads?limit=100');
+      if (res.data.success && isMountedRef.current) {
         setLeads(res.data.data);
       }
     } catch (e) {
       console.error(e);
     } finally {
-      setLoading(false);
-    }
-  };
-
-  const fetchSettings = async () => {
-    try {
-      const res = await axios.get('/api/settings');
-      if (res.data.success) {
-        setSettings(res.data.data.settings);
+      if (isMountedRef.current) {
+        setLoading(false);
       }
-    } catch (e) {
-      console.error(e);
     }
-  };
+  }, []);
 
   useEffect(() => {
     fetchPipelineLeads();
-    fetchSettings();
-  }, []);
+  }, [fetchPipelineLeads]);
 
   // HTML5 Drag and Drop Handlers
-  const handleDragStart = (e, id) => {
+  const handleDragStart = useCallback((e, id) => {
     e.dataTransfer.setData('text/plain', id);
     setDraggingId(id);
-  };
+  }, []);
 
-  const handleDragOver = (e) => {
+  const handleDragOver = useCallback((e) => {
     e.preventDefault();
-  };
+  }, []);
 
-  const handleDrop = async (e, targetStatus) => {
-    e.preventDefault();
-    const id = e.dataTransfer.getData('text/plain') || draggingId;
-    if (!id) return;
+  const handleDrop = useCallback(
+    async (e, targetStatus) => {
+      e.preventDefault();
+      const id = e.dataTransfer.getData('text/plain') || draggingId;
+      if (!id) return;
 
-    // Find the lead to update client-side immediately for responsiveness
-    const leadToUpdate = leads.find(l => l._id === id);
-    if (!leadToUpdate || leadToUpdate.status === targetStatus) return;
+      const leadToUpdate = leads.find((l) => l._id === id);
+      if (!leadToUpdate || leadToUpdate.status === targetStatus) return;
 
-    const oldStatus = leadToUpdate.status;
+      const oldStatus = leadToUpdate.status;
 
-    // Optimistic UI Update
-    setLeads(leads.map(l => l._id === id ? { ...l, status: targetStatus } : l));
-    setDraggingId(null);
+      // Optimistic UI Update
+      setLeads((prev) => prev.map((l) => (l._id === id ? { ...l, status: targetStatus } : l)));
+      setDraggingId(null);
 
-    try {
-      // Put request to modify status
-      const res = await axios.put(`/api/leads/${id}`, { status: targetStatus });
-      if (!res.data.success) {
-        // Rollback on failure
-        setLeads(leads.map(l => l._id === id ? { ...l, status: oldStatus } : l));
+      try {
+        const res = await axios.put(`/api/leads/${id}`, { status: targetStatus });
+        if (!res.data.success && isMountedRef.current) {
+          setLeads((prev) => prev.map((l) => (l._id === id ? { ...l, status: oldStatus } : l)));
+        }
+      } catch (err) {
+        console.error('Failed to update status:', err);
+        if (isMountedRef.current) {
+          setLeads((prev) => prev.map((l) => (l._id === id ? { ...l, status: oldStatus } : l)));
+        }
       }
-    } catch (err) {
-      console.error('Failed to update status:', err);
-      // Rollback
-      setLeads(leads.map(l => l._id === id ? { ...l, status: oldStatus } : l));
-    }
-  };
+    },
+    [draggingId, leads]
+  );
 
   // Filter leads based on Search input
   const filteredLeads = leads.filter((lead) => {
@@ -105,7 +101,6 @@ export default function LeadPipeline() {
     );
   });
 
-  // Group leads by status
   const getLeadsByStatus = (status) => {
     return filteredLeads.filter((l) => l.status === status);
   };
@@ -116,15 +111,14 @@ export default function LeadPipeline() {
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 flex-shrink-0">
         <div>
           <h2 className="text-xl font-bold text-slate-800">Lead Pipeline Board</h2>
-          <p className="text-xs text-slate-400">
-            Drag and drop enquiry cards to advance lead status stages.
-          </p>
+          <p className="text-xs text-slate-400">Drag and drop enquiry cards to advance lead status stages.</p>
         </div>
         <div className="flex items-center gap-3">
           <div className="relative flex items-center">
             <Search className="w-4 h-4 text-slate-500 absolute left-3 pointer-events-none" />
             <input
               type="text"
+              aria-label="Filter board cards"
               placeholder="Filter board cards..."
               value={search}
               onChange={(e) => setSearch(e.target.value)}
@@ -132,9 +126,11 @@ export default function LeadPipeline() {
             />
           </div>
           <button
+            type="button"
             onClick={fetchPipelineLeads}
+            aria-label="Refresh Board"
             title="Refresh Board"
-            className="p-2 border border-gray-200 bg-white rounded-lg text-slate-500 hover:text-slate-800 transition-all cursor-pointer"
+            className="p-2 border border-gray-200 bg-white rounded-lg text-slate-500 hover:text-slate-800 transition-all cursor-pointer focus-visible:ring-2 focus-visible:ring-gold-500"
           >
             <RefreshCw className="w-4 h-4" />
           </button>
