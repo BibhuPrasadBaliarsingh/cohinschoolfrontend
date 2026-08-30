@@ -8,10 +8,7 @@ export default function Preloader({ onComplete }) {
   useEffect(() => {
     const interval = setInterval(() => {
       setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
+        if (prev >= 100) return 100;
         return prev + 5;
       });
     }, 25);

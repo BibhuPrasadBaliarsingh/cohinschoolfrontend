@@ -39,6 +39,7 @@ export const handleExportCSV = async (search, status, source, priority, counsell
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
+      URL.revokeObjectURL(url);
     }
   } catch (e) {
     console.error(e);

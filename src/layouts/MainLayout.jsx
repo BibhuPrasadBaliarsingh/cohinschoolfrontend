@@ -21,48 +21,17 @@ export default function MainLayout() {
     location.pathname === '/unauthorized';
 
   useEffect(() => {
-    let observer = null;
-    let timer = null;
-    let mutationObserver = null;
-
-    const setupObserver = () => {
-      const revealEls = document.querySelectorAll('.reveal, .reveal-left, .reveal-right');
-      if (observer) observer.disconnect();
-
-      observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('active-reveal');
-              observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -50px 0px' }
-      );
-
-      revealEls.forEach((el) => {
-        if (el.getBoundingClientRect().top < window.innerHeight) {
-          el.classList.add('active-reveal');
-        } else {
-          observer.observe(el);
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active-reveal');
         }
       });
-    };
-
-    setupObserver();
-    timer = setTimeout(setupObserver, 250);
-
-    mutationObserver = new MutationObserver(() => {
-      setupObserver();
     });
-    mutationObserver.observe(document.body, { childList: true, subtree: true });
 
-    return () => {
-      if (timer) clearTimeout(timer);
-      if (observer) observer.disconnect();
-      if (mutationObserver) mutationObserver.disconnect();
-    };
+    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
   }, [location.pathname]);
 
   const openAdmissionModal = useCallback((mode = 'apply') => {

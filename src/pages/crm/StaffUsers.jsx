@@ -32,9 +32,23 @@ export default function StaffUsers() {
   };
 
   useEffect(() => {
+    let isMounted = true;
     if (user?.role === 'Super Admin') {
-      fetchUsers();
+      setLoading(true);
+      axios.get('/api/settings/users')
+        .then((res) => {
+          if (isMounted && res.data?.success) {
+            setUsers(res.data.data);
+          }
+        })
+        .catch(console.error)
+        .finally(() => {
+          if (isMounted) setLoading(false);
+        });
     }
+    return () => {
+      isMounted = false;
+    };
   }, [user]);
 
   // Toggle user status

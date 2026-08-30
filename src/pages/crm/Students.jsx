@@ -34,7 +34,26 @@ export default function Students() {
   };
 
   useEffect(() => {
-    fetchStudents();
+    let isMounted = true;
+    const queryParams = new URLSearchParams();
+    if (search) queryParams.set('search', search);
+    if (classFilter) queryParams.set('classEnrolled', classFilter);
+
+    setLoading(true);
+    axios.get(`/api/students?${queryParams.toString()}`)
+      .then((res) => {
+        if (isMounted && res.data?.success) {
+          setStudents(res.data.data);
+        }
+      })
+      .catch(console.error)
+      .finally(() => {
+        if (isMounted) setLoading(false);
+      });
+
+    return () => {
+      isMounted = false;
+    };
   }, [search, classFilter]);
 
   return (

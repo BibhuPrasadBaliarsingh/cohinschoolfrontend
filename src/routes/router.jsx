@@ -54,10 +54,29 @@ function RouteAdapter({ Component }) {
   );
 }
 
+function RootErrorBoundary() {
+  return (
+    <div className="min-h-screen bg-navy-950 text-white flex flex-col items-center justify-center p-6 text-center">
+      <div className="max-w-md w-full bg-navy-900 border border-gold-500/30 rounded-3xl p-8 shadow-2xl">
+        <h2 className="font-display text-2xl font-bold text-white mb-2">Something went wrong</h2>
+        <p className="text-sm text-white/70 mb-6">An unhandled error occurred. Please refresh or return to home.</p>
+        <button
+          type="button"
+          onClick={() => (window.location.href = '/')}
+          className="px-6 py-2.5 bg-gold-500 text-navy-950 font-bold rounded-xl hover:bg-gold-400 transition"
+        >
+          Return to Homepage
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export const router = createBrowserRouter([
   {
     path: '/',
     element: <MainLayout />,
+    errorElement: <RootErrorBoundary />,
     children: [
       { index: true, element: <RouteAdapter Component={HomePage} /> },
       { path: 'about', element: <RouteAdapter Component={AboutPage} /> },

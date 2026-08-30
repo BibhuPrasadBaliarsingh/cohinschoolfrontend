@@ -11,18 +11,17 @@ export function TopRouteLoader() {
     setProgress(20);
     const t1 = setTimeout(() => setProgress(70), 120);
     const t2 = setTimeout(() => setProgress(95), 280);
-    const t3 = setTimeout(() => {
-      setProgress(100);
-      setTimeout(() => {
-        setLoading(false);
-        setProgress(0);
-      }, 200);
-    }, 420);
+    const t3 = setTimeout(() => setProgress(100), 420);
+    const t4 = setTimeout(() => {
+      setLoading(false);
+      setProgress(0);
+    }, 620);
 
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
       clearTimeout(t3);
+      clearTimeout(t4);
     };
   }, [location.pathname]);
 

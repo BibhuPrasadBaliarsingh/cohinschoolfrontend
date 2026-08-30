@@ -27,14 +27,17 @@ export default function Login() {
       return;
     }
 
-    setLoading(true);
-    const result = await login(email, password);
-    setLoading(false);
+    try {
+      setLoading(true);
+      const result = await login(email, password);
 
-    if (result.success) {
-      navigate('/dashboard');
-    } else {
-      setError(result.message || 'Login failed.');
+      if (result.success) {
+        navigate('/dashboard');
+      } else {
+        setError(result.message || 'Login failed.');
+      }
+    } finally {
+      setLoading(false);
     }
   };
 
