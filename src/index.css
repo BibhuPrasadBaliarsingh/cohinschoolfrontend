@@ -62,20 +62,21 @@ body {
   font-family: 'Playfair Display', serif;
 }
 
-/* Custom scrollbar - Visible Rounded Pill Thumb */
+/* Custom scrollbar - Inset Floating Pill Thumb */
 ::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
   background: transparent;
-  border-radius: 10px;
+  margin-block: 14px;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb {
   background-color: #C9A227;
-  border-radius: 10px;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {

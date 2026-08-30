@@ -224,8 +224,8 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
               )}
             </div>
 
-            {/* CTA Buttons + 3-Bar Hamburger Menu Button */}
-            <div className="flex items-center gap-2.5">
+            {/* CTA Buttons + Mobile Login + 3-Bar Hamburger Menu Button */}
+            <div className="flex items-center gap-2 sm:gap-2.5">
               <button
                 type="button"
                 onClick={() => navigate('/contact')}
@@ -269,27 +269,37 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
       {/* FULL-SCREEN & MOBILE ELEGANT MEGA MENU OVERLAY (Clean Typography Design) */}
       {megaMenuOpen && (
         <div className="fixed inset-0 z-[100] bg-[#040C16] text-white flex flex-col overflow-y-auto animate-fadeIn font-sans transition-all duration-300">
-          {/* Top Header Bar with Close Button */}
+          {/* Top Header Bar with Close & Login Buttons */}
           <div className="max-w-7xl w-full mx-auto px-6 sm:px-10 py-6 sm:py-8 flex items-center justify-between border-b border-white/10 sticky top-0 bg-[#040C16]/95 backdrop-blur-md z-20">
             <Link to="/" onClick={() => setMegaMenuOpen(false)} className="flex items-center gap-3">
               <div className="bg-white px-3 py-1.5 rounded-xl shadow">
                 <img src="/logo.png" alt="Cohen Logo" className="h-8 sm:h-9 w-auto object-contain" />
               </div>
-              <span className="font-display font-bold text-lg sm:text-2xl text-white tracking-wide">
-                Cohen International School
-              </span>
+              
             </Link>
 
-            {/* Close Button X */}
-            <button
-              type="button"
-              onClick={() => setMegaMenuOpen(false)}
-              className="p-2.5 sm:p-3 rounded-full bg-white/10 hover:bg-gold-500 hover:text-navy-950 text-white border border-white/20 transition-all duration-300 hover:scale-110 cursor-pointer"
-              aria-label="Close Navigation Overlay"
-              title="Close Navigation Overlay"
-            >
-              <X className="w-6 h-6 sm:w-7 sm:h-7" />
-            </button>
+            <div className="flex items-center gap-3">
+              {/* Login Button inside Overlay */}
+              <Link
+                to="/login"
+                onClick={() => setMegaMenuOpen(false)}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-bold text-gold-400 bg-white/10 rounded-full border border-gold-500/40 hover:bg-gold-500 hover:text-navy-950 transition-all"
+              >
+                <LogIn className="w-4 h-4 text-gold-400" />
+                <span>Portal Login</span>
+              </Link>
+
+              {/* Close Button X */}
+              <button
+                type="button"
+                onClick={() => setMegaMenuOpen(false)}
+                className="p-2.5 sm:p-3 rounded-full bg-white/10 hover:bg-gold-500 hover:text-navy-950 text-white border border-white/20 transition-all duration-300 hover:scale-110 cursor-pointer"
+                aria-label="Close Navigation Overlay"
+                title="Close Navigation Overlay"
+              >
+                <X className="w-6 h-6 sm:w-7 sm:h-7" />
+              </button>
+            </div>
           </div>
 
           {/* Navigation Container (Clean Spacious Typography - No Cards) */}
