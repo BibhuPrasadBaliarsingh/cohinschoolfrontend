@@ -62,18 +62,38 @@ body {
   font-family: 'Playfair Display', serif;
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar - Rounded Capsule Thumb & Transparent Floating Track */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #F0EBE0;
+  background: transparent;
+  border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb {
   background: #C9A227;
-  border-radius: 4px;
+  border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #E8C547;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Firefox scrollbar styling */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #C9A227 transparent;
 }
 
 /* Glass effect */
