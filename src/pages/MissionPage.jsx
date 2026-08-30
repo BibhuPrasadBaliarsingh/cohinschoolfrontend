@@ -1,12 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PageWrapper from '../components/PageWrapper';
 import HeaderBanner from '../components/HeaderBanner';
-import { Target, Compass, Sparkles, CheckCircle2, Award, Heart, BookOpen, Sun, ArrowRight } from 'lucide-react';
+import { Target, Compass, Sparkles, CheckCircle2, Award, Heart, BookOpen, Sun, ArrowRight, ChevronDown, ChevronUp } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import visionImg from '../assets/vision.png';
 import missionImg from '../assets/mission.png';
 
 export default function MissionPage({ openAdmissionModal }) {
+  const [expandedCards, setExpandedCards] = useState({});
+
+  const toggleCard = (id) => {
+    setExpandedCards((prev) => ({ ...prev, [id]: !prev[id] }));
+  };
   return (
     <PageWrapper>
       {/* HEADER BANNER */}
@@ -143,7 +148,7 @@ export default function MissionPage({ openAdmissionModal }) {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
             
             {/* Feature 1 */}
             <div className="p-8 rounded-3xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
@@ -154,8 +159,20 @@ export default function MissionPage({ openAdmissionModal }) {
                 <span className="text-gold-400 font-bold text-xs uppercase tracking-widest block mb-2">01. Academic Core</span>
                 <h3 className="font-display text-xl text-white font-bold mb-3">Holistic Education</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
-                  We aim at becoming a world-class teaching institution, one that will lay the foundation stone for intellectual minds and a compassionate heart.
+                  {expandedCards[1] ? (
+                    "We aim at becoming a world-class teaching institution, one that will lay the foundation stone for intellectual minds and a compassionate heart."
+                  ) : (
+                    "We aim at becoming a world-class teaching institution, one that will lay the foundation stone..."
+                  )}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => toggleCard(1)}
+                  className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-gold-400 hover:text-gold-300 transition"
+                >
+                  <span>{expandedCards[1] ? "Read Less" : "Read More"}</span>
+                  {expandedCards[1] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
               </div>
             </div>
 
@@ -166,10 +183,22 @@ export default function MissionPage({ openAdmissionModal }) {
                   <Heart className="w-6 h-6" />
                 </div>
                 <span className="text-emerald-400 font-bold text-xs uppercase tracking-widest block mb-2">02. Health &amp; Yoga</span>
-                <h3 className="font-display text-xl text-white font-bold mb-3">Physical &amp; Mental Wellness</h3>
+                <h3 className="font-display text-xl text-white font-bold mb-3">Physical and Mental Wellness</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
-                  A sound mind resides in a sound body. We value physical fitness and mental wellness with sports, Yoga activities, and emotional care sessions.
+                  {expandedCards[2] ? (
+                    "A sound mind resides in a sound body. We value the importance of physical fitness and mental wellness. CIS curriculum will include sports, Yoga activities and sessions for catering to the emotional needs of each child."
+                  ) : (
+                    "A sound mind resides in a sound body. We value the importance of physical fitness and mental wellness..."
+                  )}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => toggleCard(2)}
+                  className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition"
+                >
+                  <span>{expandedCards[2] ? "Read Less" : "Read More"}</span>
+                  {expandedCards[2] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
               </div>
             </div>
 
@@ -182,8 +211,20 @@ export default function MissionPage({ openAdmissionModal }) {
                 <span className="text-purple-400 font-bold text-xs uppercase tracking-widest block mb-2">03. Moral Values</span>
                 <h3 className="font-display text-xl text-white font-bold mb-3">Intellectual Development</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
-                  Knowledge that kindles minds and touches hearts. Includes human values, gender equality, outreach activities, and moral education.
+                  {expandedCards[3] ? (
+                    "We aim at imparting knowledge that not only kindles the minds but also touches their heart. Our curriculum will include human values, gender equality, outreach activities, moral education in addition to the formal education."
+                  ) : (
+                    "We aim at imparting knowledge that not only kindles the minds but also touches their heart..."
+                  )}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => toggleCard(3)}
+                  className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-purple-400 hover:text-purple-300 transition"
+                >
+                  <span>{expandedCards[3] ? "Read Less" : "Read More"}</span>
+                  {expandedCards[3] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
               </div>
             </div>
 
@@ -196,8 +237,20 @@ export default function MissionPage({ openAdmissionModal }) {
                 <span className="text-sky-400 font-bold text-xs uppercase tracking-widest block mb-2">04. Talent Platform</span>
                 <h3 className="font-display text-xl text-white font-bold mb-3">Follow Your Dream</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
-                  CIS offers the right platform to harness the unique talents of each kid, grooming them to excel in academics, fine arts, or sports.
+                  {expandedCards[4] ? (
+                    "CIS offers the right platform to harness the unique talents of each kid, and groom them to be excel in the fields of their choice, be it academics, fine arts, sports."
+                  ) : (
+                    "CIS offers the right platform to harness the unique talents of each kid, and groom them to excel..."
+                  )}
                 </p>
+                <button
+                  type="button"
+                  onClick={() => toggleCard(4)}
+                  className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-sky-400 hover:text-sky-300 transition"
+                >
+                  <span>{expandedCards[4] ? "Read Less" : "Read More"}</span>
+                  {expandedCards[4] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                </button>
               </div>
             </div>
 

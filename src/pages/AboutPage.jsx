@@ -143,10 +143,10 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
                 </div>
                 <h3 className="font-display text-2xl text-white font-bold mb-3">Our Mission</h3>
                 <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-4">
-                  Cohen International School is committed to motivate, encourage and inculcate every student with the mantra of <strong className="text-gold-400 font-bold">"Know, Learn and Outshine the World"</strong>.
+                  Cohen International School is committed to motivate, encourage and inculcate every student with the mantra of <strong className="text-gold-400 font-bold">"Know, Learn and Outshine the World"</strong>. Our motto is <strong>'Excellence Through Harmony'</strong>.
                 </p>
                 <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
-                  We believe that each child is special and our mission is to help kids explore various fields and choose according to their unique interests, empowering them through best-in-class academics &amp; sports.
+                  We believe that each child is special and our mission to help the kids explore the various fields available and choose one of their own interest. Cohen International School in its pursuit for imparting holistic education, empowers students by best in class academics &amp; sports, imbibes &amp; inculcates creative learning with goal oriented, overall development.
                 </p>
               </div>
             </div>
@@ -165,15 +165,15 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
               <span className="text-gold-400 font-bold text-xs uppercase tracking-wider block mb-2">01. Academic Core</span>
               <h4 className="font-display text-lg text-white font-bold mb-2">Holistic Education</h4>
               <p className="text-xs text-white/70 leading-relaxed">
-                Aiming to be a world-class teaching institution laying the foundation stone for intellectual minds and a compassionate heart.
+                We aim at becoming a world-class teaching institution, one that will lay the foundation stone for intellectual minds and a compassionate heart.
               </p>
             </div>
 
             <div className="p-6 rounded-2xl bg-white/10 border border-white/10">
               <span className="text-emerald-400 font-bold text-xs uppercase tracking-wider block mb-2">02. Health &amp; Yoga</span>
-              <h4 className="font-display text-lg text-white font-bold mb-2">Physical &amp; Mental Wellness</h4>
+              <h4 className="font-display text-lg text-white font-bold mb-2">Physical and Mental Wellness</h4>
               <p className="text-xs text-white/70 leading-relaxed">
-                A sound mind in a sound body. Curriculum includes sports, Yoga activities, and sessions catering to emotional needs.
+                A sound mind resides in a sound body. We value the importance of physical fitness and mental wellness. CIS curriculum will include sports, Yoga activities and sessions for catering to the emotional needs of each child.
               </p>
             </div>
 
@@ -181,7 +181,7 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
               <span className="text-purple-400 font-bold text-xs uppercase tracking-wider block mb-2">03. Moral &amp; Values</span>
               <h4 className="font-display text-lg text-white font-bold mb-2">Intellectual Development</h4>
               <p className="text-xs text-white/70 leading-relaxed">
-                Imparting knowledge that kindles minds and touches hearts through human values, gender equality, and moral education.
+                We aim at imparting knowledge that not only kindles the minds but also touches their heart. Our curriculum will include human values, gender equality, outreach activities, moral education in addition to the formal education.
               </p>
             </div>
 
@@ -189,7 +189,7 @@ export default function AboutPage({ openChairmanModal, openAdmissionModal }) {
               <span className="text-sky-400 font-bold text-xs uppercase tracking-wider block mb-2">04. Talent Platform</span>
               <h4 className="font-display text-lg text-white font-bold mb-2">Follow Your Dream</h4>
               <p className="text-xs text-white/70 leading-relaxed">
-                Offering the right platform to harness unique talents and groom students to excel in academics, fine arts, or sports.
+                CIS offers the right platform to harness the unique talents of each kid, and groom them to be excel in the fields of their choice, be it academics, fine arts, sports.
               </p>
             </div>
           </div>

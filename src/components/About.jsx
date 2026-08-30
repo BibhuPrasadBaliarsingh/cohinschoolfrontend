@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { Target, Compass, Quote, ArrowRight, Download, Sparkles } from "lucide-react";
+import React, { useEffect, useState } from "react";
+import { Target, Compass, Quote, ArrowRight, Download, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
 import AnimatedCounter from "./AnimatedCounter";
 
 const talks = [
@@ -18,6 +18,9 @@ const talks = [
 ];
 
 export default function About({ openChairmanModal }) {
+  const [showFullVision, setShowFullVision] = useState(false);
+  const [showFullMission, setShowFullMission] = useState(false);
+
   useEffect(() => {
     const els = document.querySelectorAll("#about .reveal, #about .reveal-left, #about .reveal-right");
     els.forEach((el) => {
@@ -233,27 +236,58 @@ export default function About({ openChairmanModal }) {
               <Sparkles className="w-4 h-4 text-gold-600" /> Motto: Excellence Through Harmony
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4 mb-10">
-              <div className="flex items-start gap-3 p-5 rounded-2xl bg-white border border-cream-200 shadow-sm">
+            <div className="grid sm:grid-cols-2 gap-4 mb-10 items-start">
+              {/* Our Vision Card */}
+              <div className="flex items-start gap-3 p-5 rounded-2xl bg-white border border-cream-200 shadow-sm hover:shadow-md transition">
                 <div className="w-10 h-10 rounded-xl bg-gold-500/10 flex items-center justify-center flex-shrink-0">
                   <Target className="w-5 h-5 text-gold-600" />
                 </div>
-                <div>
-                  <p className="font-bold text-navy-900">Our Vision</p>
+                <div className="flex-1">
+                  <p className="font-bold text-navy-900 text-base">Our Vision</p>
                   <p className="text-xs sm:text-sm text-navy-700/80 mt-1 leading-relaxed">
-                    Optimising educational opportunities by imparting Knowledge, Insight, Innovation, Technology and Transformation in accordance with global needs.
+                    {showFullVision ? (
+                      "We envisage CIS as a unique international school that gives education a new name by breaking typical characteristics, moulding the future of students by optimising educational opportunities and imparting Knowledge, Insight, Innovation, Technology & Transformation."
+                    ) : (
+                      "We envisage CIS as a unique international school that gives education a new name by breaking typical characteristics..."
+                    )}
                   </p>
+                  <button
+                    type="button"
+                    onClick={() => setShowFullVision(!showFullVision)}
+                    className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-gold-600 hover:text-gold-700 transition focus:outline-none"
+                  >
+                    <span>{showFullVision ? "Read Less" : "Read More"}</span>
+                    {showFullVision ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                  </button>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-5 rounded-2xl bg-white border border-cream-200 shadow-sm">
+
+              {/* Our Mission Card */}
+              <div className="flex items-start gap-3 p-5 rounded-2xl bg-white border border-cream-200 shadow-sm hover:shadow-md transition">
                 <div className="w-10 h-10 rounded-xl bg-gold-500/10 flex items-center justify-center flex-shrink-0">
                   <Compass className="w-5 h-5 text-gold-600" />
                 </div>
-                <div>
-                  <p className="font-bold text-navy-900">Our Mission</p>
+                <div className="flex-1">
+                  <p className="font-bold text-navy-900 text-base">Our Mission</p>
                   <p className="text-xs sm:text-sm text-navy-700/80 mt-1 leading-relaxed">
-                    Motivate &amp; inculcate every student with the mantra of <strong>"Know, Learn and Outshine the World"</strong> through holistic academics &amp; sports.
+                    {showFullMission ? (
+                      <>
+                        Cohen International School is committed to motivate, encourage and inculcate every student with the mantra of <strong>"Know, Learn and Outshine the World"</strong>. Our motto is <strong>'Excellence Through Harmony'</strong>. We believe each child is special, empowering them through best-in-class academics, sports &amp; creative learning with goal-oriented development.
+                      </>
+                    ) : (
+                      <>
+                        Cohen International School is committed to motivate, encourage and inculcate every student with the mantra of <strong>"Know, Learn and Outshine the World"</strong>...
+                      </>
+                    )}
                   </p>
+                  <button
+                    type="button"
+                    onClick={() => setShowFullMission(!showFullMission)}
+                    className="mt-2.5 inline-flex items-center gap-1 text-xs font-bold text-gold-600 hover:text-gold-700 transition focus:outline-none"
+                  >
+                    <span>{showFullMission ? "Read Less" : "Read More"}</span>
+                    {showFullMission ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
+                  </button>
                 </div>
               </div>
             </div>
