@@ -23,7 +23,13 @@ export default function HeaderBanner({ title, subtitle, badge, breadcrumb, bgIma
             Home
           </Link>
           <ChevronRight className="w-3.5 h-3.5 text-gold-400" />
-          <span className="text-gold-400 font-medium">{breadcrumb || title}</span>
+          <span className="text-gold-400 font-medium">
+            {typeof breadcrumb === 'string'
+              ? breadcrumb
+              : Array.isArray(breadcrumb)
+                ? breadcrumb[breadcrumb.length - 1]?.label || title
+                : title}
+          </span>
         </div>
 
         {badge && (

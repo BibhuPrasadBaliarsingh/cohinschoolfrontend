@@ -31,6 +31,7 @@ const CareersPage = lazy(() => import("./pages/CareersPage"));
 const ContactPage = lazy(() => import("./pages/ContactPage"));
 const NewsEventsPage = lazy(() => import("./pages/NewsEventsPage"));
 const TermsPage = lazy(() => import("./pages/TermsPage"));
+const CohenTalkPage = lazy(() => import("./pages/CohenTalkPage"));
 
 const LoginPage = lazy(() => import("./pages/LoginPage"));
 const UnauthorizedPage = lazy(() => import("./pages/UnauthorizedPage"));
@@ -240,6 +241,14 @@ function AnimatedRoutes({
         />
         <Route path="/terms" element={<TermsPage />} />
         <Route path="/terms-and-conditions" element={<TermsPage />} />
+        <Route
+          path="/cohentalk"
+          element={<CohenTalkPage openAdmissionModal={openAdmissionModal} />}
+        />
+        <Route
+          path="/cohen-talk"
+          element={<CohenTalkPage openAdmissionModal={openAdmissionModal} />}
+        />
 
         {/* Authentication & Authorization Routes */}
         <Route path="/login" element={<LoginPage />} />

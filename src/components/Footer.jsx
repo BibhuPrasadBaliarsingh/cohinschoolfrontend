@@ -120,20 +120,15 @@ export default function Footer({ openLoginModal, openPortalFrame }) {
               <li>
                 <Link to="/about" className="hover:text-gold-400 transition">About Us</Link>
               </li>
-              <li>
-                <Link to="/mission" className="hover:text-gold-400 transition">Vision &amp; Mission</Link>
-              </li>
-              <li>
-                <Link to="/academics" className="hover:text-gold-400 transition">Academics & JEE/NEET</Link>
-              </li>
-              <li>
-                <Link to="/facilities" className="hover:text-gold-400 transition">Campus Facilities</Link>
-              </li>
-              <li>
-                <Link to="/admissions" className="hover:text-gold-400 transition">Admissions & Fees</Link>
-              </li>
+              
+              
+              
+              
               <li>
                 <Link to="/news" className="hover:text-gold-400 transition">News &amp; Events</Link>
+              </li>
+              <li>
+                <Link to="/cohentalk" className="hover:text-gold-400 transition font-medium text-gold-400/90">Cohen Talks</Link>
               </li>
               <li>
                 <a href="https://www.eduqfix.com/PayDirect/#/student/pay/9u3Ik7RvISUPS+FAt5Vw0mfbWsL0LSABcb0Dwea4EuWIcoB0DJulKNCM0J8ImcKt/4592" target="_blank" rel="noreferrer" className="hover:text-gold-400 transition">
