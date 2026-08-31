@@ -6,7 +6,7 @@ import StartYourJourney from '../components/StartYourJourney';
 import { Target, Compass, Award, BookOpen, Users, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function AboutPage({ openChairmanModal, openPrincipalModal, openAdmissionModal }) {
+export default function AboutPage({ openChairmanModal, openViceChairmanModal, openPrincipalModal, openAdmissionModal }) {
   return (
     <PageWrapper>
       <HeaderBanner
@@ -25,12 +25,25 @@ export default function AboutPage({ openChairmanModal, openPrincipalModal, openA
       <section className="py-14 sm:py-16 lg:py-20 bg-[#efefef]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-12 items-center">
-            <div className="w-full h-[340px] sm:h-[420px] lg:h-[460px] bg-navy-950 rounded-2xl overflow-hidden shadow-2xl border border-slate-200">
+            {/* Left Column: Chairman Image with Name & Education Overlay */}
+            <div className="relative w-full h-[340px] sm:h-[420px] lg:h-[460px] bg-navy-950 rounded-2xl overflow-hidden shadow-2xl border border-slate-200 group">
               <img
                 src="/chairman.jpg"
-                alt="Chairman portrait"
-                className="w-full h-full object-cover object-top"
+                alt="Chairman Er. Jyoti Ranjan Tripathy"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 text-white z-10">
+                <div className="inline-block px-3 py-1 rounded-full bg-gold-500/20 border border-gold-400/30 text-gold-400 text-[11px] font-extrabold uppercase tracking-wider mb-1.5">
+                  FOUNDER &amp; CHAIRMAN
+                </div>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-white leading-tight">
+                  Er. Jyoti Ranjan Tripathy
+                </h3>
+                <p className="text-white/80 text-xs sm:text-sm font-medium mt-1">
+                  Mechanical Engineering at IIT Kharagpur
+                </p>
+              </div>
             </div>
 
             <div className="flex flex-col justify-center">
@@ -83,7 +96,7 @@ export default function AboutPage({ openChairmanModal, openPrincipalModal, openA
               </p>
 
               <button
-                onClick={openChairmanModal}
+                onClick={openViceChairmanModal || openChairmanModal}
                 className="mt-8 inline-flex items-center justify-between gap-4 w-full max-w-[260px] rounded-lg bg-[#2e9e4b] px-6 py-4 text-left text-white shadow-[0_10px_25px_rgba(46,158,75,0.28)] hover:bg-[#288d43] transition-colors duration-200"
               >
                 <span className="font-semibold text-lg">Know more</span>
@@ -91,13 +104,25 @@ export default function AboutPage({ openChairmanModal, openPrincipalModal, openA
               </button>
             </div>
 
-            {/* Right Column: Vice Chairman Image */}
-            <div className="w-full h-[340px] sm:h-[420px] lg:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200 order-1 lg:order-2 bg-[#0B1C2C]">
+            {/* Right Column: Vice Chairman Image with Name & Education Overlay */}
+            <div className="relative w-full h-[340px] sm:h-[420px] lg:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200 order-1 lg:order-2 bg-navy-950 group">
               <img
                 src="/images/about_vc.jpg"
-                alt="Vice Chairman portrait"
-                className="w-full h-full object-cover object-top"
+                alt="Vice Chairman Mr. Vikas Bahinipati"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 text-white z-10">
+                <div className="inline-block px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-400/30 text-emerald-400 text-[11px] font-extrabold uppercase tracking-wider mb-1.5">
+                  VICE CHAIRMAN
+                </div>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-white leading-tight">
+                  Mr. Vikas Bahinipati
+                </h3>
+                <p className="text-white/80 text-xs sm:text-sm font-medium mt-1">
+                  MBA from Maastricht School of Management, The Netherlands
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -107,13 +132,25 @@ export default function AboutPage({ openChairmanModal, openPrincipalModal, openA
       <section id="principal-desk" className="py-14 sm:py-16 lg:py-20 bg-[#f4f6f8] border-t border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-12 items-center">
-            {/* Left Column: Image */}
-            <div className="w-full h-[340px] sm:h-[420px] lg:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-navy-950">
+            {/* Left Column: Principal Image with Name & Education Overlay */}
+            <div className="relative w-full h-[340px] sm:h-[420px] lg:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-navy-950 group">
               <img
-                src="/images/about_banner.png"
-                alt="Principal portrait"
-                className="w-full h-full object-cover object-center"
+                src="/images/about_principal.jpg"
+                alt="Principal Jagjeevan R.D. Dash"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
               />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 text-white z-10">
+                <div className="inline-block px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-400 text-[11px] font-extrabold uppercase tracking-wider mb-1.5">
+                  PRINCIPAL
+                </div>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-white leading-tight">
+                  Jagjeevan R.D. Dash
+                </h3>
+                <p className="text-white/80 text-xs sm:text-sm font-medium mt-1">
+                  M.Sc Botany &amp; Gold Medalist - M.A. Sociology, B.Ed (Kurukshetra University)
+                </p>
+              </div>
             </div>
 
             {/* Right Column: Text Content */}

@@ -53,6 +53,10 @@ export default function MainLayout() {
     setModalState({ type: 'chairman', data: {} });
   }, []);
 
+  const openViceChairmanModal = useCallback(() => {
+    setModalState({ type: 'viceChairman', data: {} });
+  }, []);
+
   const openPrincipalModal = useCallback(() => {
     setModalState({ type: 'principal', data: {} });
   }, []);
@@ -90,6 +94,7 @@ export default function MainLayout() {
           openLoginModal={openLoginModal}
           openAdmissionModal={openAdmissionModal}
           openChairmanModal={openChairmanModal}
+          openViceChairmanModal={openViceChairmanModal}
           openPrincipalModal={openPrincipalModal}
         />
       )}
@@ -100,6 +105,7 @@ export default function MainLayout() {
             openAdmissionModal,
             openVirtualTour,
             openChairmanModal,
+            openViceChairmanModal,
             openPrincipalModal,
             openDedicatedTopic,
             openModule,

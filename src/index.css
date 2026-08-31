@@ -58,6 +58,21 @@ body {
   padding: 0;
 }
 
+/* Force cursor pointer on all interactive elements & buttons */
+button,
+a,
+select,
+summary,
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+input[type="checkbox"],
+input[type="radio"],
+[role="button"],
+.cursor-pointer {
+  cursor: pointer !important;
+}
+
 .font-display {
   font-family: 'Playfair Display', serif;
 }

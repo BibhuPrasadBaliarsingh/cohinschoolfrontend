@@ -38,14 +38,17 @@ export default function PrincipalModal({ closeModal }) {
         <div className="p-6 md:p-8 space-y-6 text-navy-800">
           <div className="flex flex-col md:flex-row gap-6 items-center bg-cream-100 p-6 rounded-2xl border border-cream-200">
             <img
-              src="/images/about_banner.png"
-              alt="Principal Cohen International School"
-              className="w-32 h-32 rounded-2xl object-cover shadow-lg border-2 border-gold-500 flex-shrink-0"
+              src="/images/about_principal.jpg"
+              alt="Principal Jagjeevan R.D. Dash"
+              className="w-32 h-36 rounded-2xl object-cover object-top shadow-lg border-2 border-gold-500 flex-shrink-0"
             />
             <div>
-              <h4 className="font-display text-2xl text-navy-900 font-bold mb-1">From the Principal</h4>
-              <p className="text-gold-600 text-xs font-semibold uppercase tracking-wider mb-2">
+              <h4 className="font-display text-2xl text-navy-900 font-bold mb-0.5">Jagjeevan R.D. Dash</h4>
+              <p className="text-gold-600 text-xs font-extrabold uppercase tracking-wider mb-1">
                 Principal, Cohen International School
+              </p>
+              <p className="text-xs text-navy-700 font-semibold mb-2">
+                M.Sc Botany &amp; Gold Medalist - M.A. Sociology, B.Ed (Kurukshetra University)
               </p>
               <p className="text-xs text-navy-700 leading-relaxed font-medium">principal@coheninternationalschool.com</p>
             </div>
@@ -81,8 +84,9 @@ export default function PrincipalModal({ closeModal }) {
           <div className="pt-4 border-t border-cream-200 flex items-center justify-between">
             <div>
               <p className="font-display text-lg text-navy-900 font-bold">Best Wishes</p>
-              <p className="text-sm font-semibold text-navy-800">Principal</p>
-              <p className="text-xs text-navy-500">Cohen International School</p>
+              <p className="text-sm font-bold text-navy-900">Jagjeevan R.D. Dash</p>
+              <p className="text-xs font-semibold text-navy-700">Principal, Cohen International School</p>
+              <p className="text-xs text-navy-500">M.Sc Botany &amp; Gold Medalist - M.A. Sociology, B.Ed (Kurukshetra University)</p>
               <a href="mailto:principal@coheninternationalschool.com" className="text-xs text-gold-600 font-semibold hover:underline">
                 principal@coheninternationalschool.com
               </a>

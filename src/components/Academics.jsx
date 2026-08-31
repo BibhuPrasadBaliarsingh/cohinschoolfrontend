@@ -17,22 +17,20 @@ export default function Academics() {
             <button
               type="button"
               onClick={() => setActiveGradeTab('kg-v')}
-              className={`px-6 py-4 font-semibold text-sm sm:text-base transition-all cursor-pointer border-b-4 flex-shrink-0 ${
-                activeGradeTab === 'kg-v'
+              className={`px-6 py-4 font-semibold text-sm sm:text-base transition-all cursor-pointer border-b-4 flex-shrink-0 ${activeGradeTab === 'kg-v'
                   ? 'bg-white text-[#2ea44f] border-[#1b5e20] font-bold rounded-t-lg shadow-sm'
                   : 'text-white border-transparent hover:bg-white/10'
-              }`}
+                }`}
             >
               KinderGarten - Grade V
             </button>
             <button
               type="button"
               onClick={() => setActiveGradeTab('vi-xi')}
-              className={`px-6 py-4 font-semibold text-sm sm:text-base transition-all cursor-pointer border-b-4 flex-shrink-0 ${
-                activeGradeTab === 'vi-xi'
+              className={`px-6 py-4 font-semibold text-sm sm:text-base transition-all cursor-pointer border-b-4 flex-shrink-0 ${activeGradeTab === 'vi-xi'
                   ? 'bg-white text-[#2ea44f] border-[#1b5e20] font-bold rounded-t-lg shadow-sm'
                   : 'text-white border-transparent hover:bg-white/10'
-              }`}
+                }`}
             >
               Grade VI - Grade XI
             </button>
@@ -305,7 +303,7 @@ export default function Academics() {
         {/* ── KEY FEATURES OF NEP 5+3+3+4 STRUCTURE ── */}
         <div className="bg-gradient-to-br from-navy-900 via-navy-800 to-[#0F2840] text-white p-8 sm:p-10 rounded-3xl shadow-xl mb-20 relative overflow-hidden">
           <div className="absolute -top-10 -right-10 w-60 h-60 bg-gold-500/10 rounded-full blur-3xl" />
-          
+
           <h3 className="font-display text-2xl sm:text-3xl font-bold text-gold-400 mb-6 text-center">
             Key Features of the NEP 5+3+3+4 Structure
           </h3>
@@ -376,7 +374,7 @@ export default function Academics() {
               <p className="text-navy-700/80 text-sm leading-relaxed mb-6">
                 A holistic journey fostering critical thinking, problem-solving, and structured pre-foundation coaching for IIT-JEE, NEET &amp; Olympiads.
               </p>
-              
+
               <ul className="space-y-3 text-xs sm:text-sm text-navy-800 font-medium">
                 <li className="flex items-start gap-2.5">
                   <Check className="w-4 h-4 text-gold-600 flex-shrink-0 mt-0.5" />
