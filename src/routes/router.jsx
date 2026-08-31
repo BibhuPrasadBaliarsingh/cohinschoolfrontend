@@ -24,6 +24,7 @@ const TermsPage = lazy(() => import('../pages/TermsPage'));
 const CohenTalkPage = lazy(() => import('../pages/CohenTalkPage'));
 const ScientificAdvisoryBoardPage = lazy(() => import('../pages/ScientificAdvisoryBoardPage'));
 const ClubPage = lazy(() => import('../pages/ClubPage'));
+const OlympiadSchoolPage = lazy(() => import('../pages/OlympiadSchoolPage'));
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const UnauthorizedPage = lazy(() => import('../pages/UnauthorizedPage'));
@@ -89,6 +90,8 @@ export const router = createBrowserRouter([
       { path: 'management', element: <RouteAdapter Component={FacultyPage} /> },
       { path: 'page/11', element: <RouteAdapter Component={ScientificAdvisoryBoardPage} /> },
       { path: 'scientific-advisory-board', element: <RouteAdapter Component={ScientificAdvisoryBoardPage} /> },
+      { path: 'page/12', element: <RouteAdapter Component={OlympiadSchoolPage} /> },
+      { path: 'olympiad-school', element: <RouteAdapter Component={OlympiadSchoolPage} /> },
       { path: 'smart-campus', element: <RouteAdapter Component={SmartCampusPage} /> },
       { path: 'portals', element: <RouteAdapter Component={PortalsPage} /> },
       { path: 'careers', element: <RouteAdapter Component={CareersPage} /> },

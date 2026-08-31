@@ -21,17 +21,15 @@ export default function MainLayout() {
     location.pathname === '/unauthorized';
 
   useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('active-reveal');
-        }
+    const activate = () => {
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) => {
+        el.classList.add('active-reveal');
       });
-    });
+    };
 
-    document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
+    activate();
+    const t = setTimeout(activate, 200);
+    return () => clearTimeout(t);
   }, [location.pathname]);
 
   const openAdmissionModal = useCallback((mode = 'apply') => {

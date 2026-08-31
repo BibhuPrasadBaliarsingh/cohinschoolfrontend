@@ -441,7 +441,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                     </li>
                     <li>
                       <Link
-                        to="/academics"
+                        to="/page/12"
                         onClick={() => setMegaMenuOpen(false)}
                         className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
                       >
