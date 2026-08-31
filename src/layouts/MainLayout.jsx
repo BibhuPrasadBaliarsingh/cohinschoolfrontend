@@ -5,6 +5,7 @@ import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import AIChatbot from '../components/AIChatbot';
 import Modals from '../components/Modals';
+import ScrollToTop from '../components/ScrollToTop';
 import { TopRouteLoader } from '../components/PageLoadingSpinner';
 
 export default function MainLayout() {
@@ -80,6 +81,7 @@ export default function MainLayout() {
 
   return (
     <div className="min-h-screen bg-cream-50 font-sans relative flex flex-col justify-between">
+      <ScrollToTop />
       <Preloader />
       <TopRouteLoader />
 

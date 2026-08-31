@@ -231,7 +231,7 @@ export default function About({ openChairmanModal }) {
               it stands as a beacon of holistic, career-oriented education in
               Odisha.
             </p>
-            <p className="text-navy-700/80 leading-relaxed mb-8">
+            <p className="text-navy-700/80 text-lg leading-relaxed mb-6">
               Our pedagogy —{" "}
               <strong>Collaborative, Instrumental & Self-Paced (CIS)</strong> —
               transforms classrooms into vibrant learning spaces. From Nursery

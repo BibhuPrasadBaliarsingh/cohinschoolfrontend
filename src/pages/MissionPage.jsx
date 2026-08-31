@@ -28,13 +28,12 @@ export default function MissionPage({ openAdmissionModal }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Left Graphic Image */}
-            <div className="lg:col-span-6 relative">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-cream-200 group bg-navy-950">
+            <div className="lg:col-span-6 relative flex justify-center">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-cream-200 group max-w-[420px] w-full mx-auto">
                 <img
                   src={visionImg}
                   alt="Cohen Vision Graphic"
-                  className="w-full h-auto object-contain w-full transition-transform duration-500 group-hover:scale-[1.02]"
-                  style={{ width: '100%' }}
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                 />
               </div>
               <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-gold-500/20 rounded-full blur-2xl pointer-events-none" />
@@ -87,13 +86,12 @@ export default function MissionPage({ openAdmissionModal }) {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
             {/* Left Graphic Image (Placed on left to match site) */}
-            <div className="lg:col-span-6 relative order-1">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-cream-300 group bg-navy-950">
+            <div className="lg:col-span-6 relative order-1 flex justify-center">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-cream-300 group max-w-[420px] w-full mx-auto">
                 <img
                   src={missionImg}
                   alt="Cohen Mission Sunrise Child Graphic"
-                  className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-[1.02]"
-                  style={{ width: '100%' }}
+                  className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-[1.02]"
                 />
               </div>
               <div className="absolute -top-6 -left-6 w-24 h-24 bg-gold-500/20 rounded-full blur-2xl pointer-events-none" />
@@ -151,13 +149,13 @@ export default function MissionPage({ openAdmissionModal }) {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
             
             {/* Feature 1 */}
-            <div className="p-8 rounded-3xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
+            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold mb-6 group-hover:bg-gold-500 group-hover:text-navy-950 transition">
-                  <BookOpen className="w-6 h-6" />
+                <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold mb-4 group-hover:bg-gold-500 group-hover:text-navy-950 transition">
+                  <BookOpen className="w-5 h-5" />
                 </div>
-                <span className="text-gold-400 font-bold text-xs uppercase tracking-widest block mb-2">01. Academic Core</span>
-                <h3 className="font-display text-xl text-white font-bold mb-3">Holistic Education</h3>
+                <span className="text-gold-400 font-bold text-xs uppercase tracking-widest block mb-1.5">01. Academic Core</span>
+                <h3 className="font-display text-lg text-white font-bold mb-2">Holistic Education</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
                   {expandedCards[1] ? (
                     "We aim at becoming a world-class teaching institution, one that will lay the foundation stone for intellectual minds and a compassionate heart."
@@ -168,7 +166,7 @@ export default function MissionPage({ openAdmissionModal }) {
                 <button
                   type="button"
                   onClick={() => toggleCard(1)}
-                  className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-gold-400 hover:text-gold-300 transition"
+                  className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-gold-400 hover:text-gold-300 transition"
                 >
                   <span>{expandedCards[1] ? "Read Less" : "Read More"}</span>
                   {expandedCards[1] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -177,13 +175,13 @@ export default function MissionPage({ openAdmissionModal }) {
             </div>
 
             {/* Feature 2 */}
-            <div className="p-8 rounded-3xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
+            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold mb-6 group-hover:bg-emerald-500 group-hover:text-navy-950 transition">
-                  <Heart className="w-6 h-6" />
+                <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold mb-4 group-hover:bg-emerald-500 group-hover:text-navy-950 transition">
+                  <Heart className="w-5 h-5" />
                 </div>
-                <span className="text-emerald-400 font-bold text-xs uppercase tracking-widest block mb-2">02. Health &amp; Yoga</span>
-                <h3 className="font-display text-xl text-white font-bold mb-3">Physical and Mental Wellness</h3>
+                <span className="text-emerald-400 font-bold text-xs uppercase tracking-widest block mb-1.5">02. Health &amp; Yoga</span>
+                <h3 className="font-display text-lg text-white font-bold mb-2">Physical and Mental Wellness</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
                   {expandedCards[2] ? (
                     "A sound mind resides in a sound body. We value the importance of physical fitness and mental wellness. CIS curriculum will include sports, Yoga activities and sessions for catering to the emotional needs of each child."
@@ -194,7 +192,7 @@ export default function MissionPage({ openAdmissionModal }) {
                 <button
                   type="button"
                   onClick={() => toggleCard(2)}
-                  className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition"
+                  className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-emerald-400 hover:text-emerald-300 transition"
                 >
                   <span>{expandedCards[2] ? "Read Less" : "Read More"}</span>
                   {expandedCards[2] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -203,13 +201,13 @@ export default function MissionPage({ openAdmissionModal }) {
             </div>
 
             {/* Feature 3 */}
-            <div className="p-8 rounded-3xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
+            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold mb-6 group-hover:bg-purple-500 group-hover:text-navy-950 transition">
-                  <Award className="w-6 h-6" />
+                <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold mb-4 group-hover:bg-purple-500 group-hover:text-navy-950 transition">
+                  <Award className="w-5 h-5" />
                 </div>
-                <span className="text-purple-400 font-bold text-xs uppercase tracking-widest block mb-2">03. Moral Values</span>
-                <h3 className="font-display text-xl text-white font-bold mb-3">Intellectual Development</h3>
+                <span className="text-purple-400 font-bold text-xs uppercase tracking-widest block mb-1.5">03. Moral Values</span>
+                <h3 className="font-display text-lg text-white font-bold mb-2">Intellectual Development</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
                   {expandedCards[3] ? (
                     "We aim at imparting knowledge that not only kindles the minds but also touches their heart. Our curriculum will include human values, gender equality, outreach activities, moral education in addition to the formal education."
@@ -220,7 +218,7 @@ export default function MissionPage({ openAdmissionModal }) {
                 <button
                   type="button"
                   onClick={() => toggleCard(3)}
-                  className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-purple-400 hover:text-purple-300 transition"
+                  className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-purple-400 hover:text-purple-300 transition"
                 >
                   <span>{expandedCards[3] ? "Read Less" : "Read More"}</span>
                   {expandedCards[3] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
@@ -229,13 +227,13 @@ export default function MissionPage({ openAdmissionModal }) {
             </div>
 
             {/* Feature 4 */}
-            <div className="p-8 rounded-3xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
+            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
               <div>
-                <div className="w-12 h-12 rounded-2xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold mb-6 group-hover:bg-sky-500 group-hover:text-navy-950 transition">
-                  <Sun className="w-6 h-6" />
+                <div className="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold mb-4 group-hover:bg-sky-500 group-hover:text-navy-950 transition">
+                  <Sun className="w-5 h-5" />
                 </div>
-                <span className="text-sky-400 font-bold text-xs uppercase tracking-widest block mb-2">04. Talent Platform</span>
-                <h3 className="font-display text-xl text-white font-bold mb-3">Follow Your Dream</h3>
+                <span className="text-sky-400 font-bold text-xs uppercase tracking-widest block mb-1.5">04. Talent Platform</span>
+                <h3 className="font-display text-lg text-white font-bold mb-2">Follow Your Dream</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
                   {expandedCards[4] ? (
                     "CIS offers the right platform to harness the unique talents of each kid, and groom them to be excel in the fields of their choice, be it academics, fine arts, sports."
@@ -246,7 +244,7 @@ export default function MissionPage({ openAdmissionModal }) {
                 <button
                   type="button"
                   onClick={() => toggleCard(4)}
-                  className="mt-4 inline-flex items-center gap-1 text-xs font-bold text-sky-400 hover:text-sky-300 transition"
+                  className="mt-3 inline-flex items-center gap-1 text-xs font-bold text-sky-400 hover:text-sky-300 transition"
                 >
                   <span>{expandedCards[4] ? "Read Less" : "Read More"}</span>
                   {expandedCards[4] ? <ChevronUp className="w-3.5 h-3.5" /> : <ChevronDown className="w-3.5 h-3.5" />}
