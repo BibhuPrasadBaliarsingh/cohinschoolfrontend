@@ -55,8 +55,8 @@ const portalCards = [
     id: 'parent',
     title: 'ParentConnect Guardian Portal',
     role: 'Parent Portal',
-    tag: 'Public Access',
-    isPublic: true,
+    tag: 'SSO Login',
+    isPublic: false,
     path: '/parent/dashboard',
     icon: Heart,
     color: 'rose',
@@ -70,7 +70,7 @@ const portalCards = [
       'Live GPS School Bus Fleet Tracking',
       'Digital Report Cards & Term Analytics'
     ],
-    buttonText: 'Launch Parent Portal (Public) →'
+    buttonText: 'Sign In to Parent Portal →'
   },
   {
     id: 'crm',
@@ -291,7 +291,7 @@ export default function PortalsPage({ openLoginModal }) {
                 <div className="pt-4 flex flex-wrap items-center gap-4">
                   <Link
                     to="/student/dashboard"
-                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-2xl hover:brightness-110 active:scale-95 transition-all duration-200 shadow-xl shadow-blue-500/25 inline-flex items-center gap-2 text-sm"
+                    className="px-8 py-4 bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-bold rounded-2xl hover:brightness-110 active:scale-95 transition-all duration-200 shadow-xl shadow-blue-500/25 inline-flex items-center gap-2 text-sm focus-visible:ring-2 focus-visible:ring-gold-400"
                   >
                     <GraduationCap className="w-5 h-5" />
                     <span>Open Student Portal Now</span>
@@ -301,7 +301,7 @@ export default function PortalsPage({ openLoginModal }) {
                   <button
                     type="button"
                     onClick={() => openLoginModal?.('student')}
-                    className="px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/15 transition flex items-center gap-2"
+                    className="px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/20 text-white font-semibold text-xs sm:text-sm border border-white/15 transition flex items-center gap-2 focus-visible:ring-2 focus-visible:ring-gold-400"
                   >
                     <span>SSO Sign In Mode</span>
                   </button>
@@ -362,7 +362,7 @@ export default function PortalsPage({ openLoginModal }) {
 
                   <Link
                     to="/student/dashboard"
-                    className="block text-center py-2.5 rounded-xl bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 text-xs font-bold transition border border-blue-500/40"
+                    className="block text-center py-2.5 rounded-xl bg-blue-500/20 hover:bg-blue-500/30 text-blue-300 text-xs font-bold transition border border-blue-500/40 focus-visible:ring-2 focus-visible:ring-gold-400"
                   >
                     Direct Access to Student Portal →
                   </Link>
@@ -424,16 +424,16 @@ export default function PortalsPage({ openLoginModal }) {
                     {p.isPublic ? (
                       <Link
                         to={p.path}
-                        className="w-full py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold rounded-2xl flex items-center justify-center gap-2 shadow-lg shadow-blue-600/20 transition text-xs sm:text-sm"
+                        className={`w-full py-3.5 bg-gradient-to-r ${p.gradient} hover:brightness-110 text-white font-bold rounded-2xl flex items-center justify-center gap-2 shadow-lg transition text-xs sm:text-sm focus-visible:ring-2 focus-visible:ring-gold-400`}
                       >
-                        <GraduationCap className="w-4 h-4" />
+                        <Icon className="w-4 h-4" />
                         <span>{p.buttonText}</span>
                       </Link>
                     ) : (
                       <button
                         type="button"
                         onClick={() => openLoginModal?.(p.id)}
-                        className="w-full py-3.5 bg-navy-900 hover:bg-navy-800 text-white font-semibold rounded-2xl flex items-center justify-center gap-2 shadow-md transition text-xs sm:text-sm cursor-pointer"
+                        className="w-full py-3.5 bg-navy-900 hover:bg-navy-800 text-white font-semibold rounded-2xl flex items-center justify-center gap-2 shadow-md transition text-xs sm:text-sm cursor-pointer focus-visible:ring-2 focus-visible:ring-gold-400"
                       >
                         <Lock className="w-4 h-4 text-gold-400" />
                         <span>{p.buttonText}</span>

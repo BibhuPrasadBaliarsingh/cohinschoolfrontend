@@ -160,8 +160,22 @@ export const router = createBrowserRouter([
         )
       },
       { path: 'student', element: <Navigate to="/student/dashboard" replace /> },
-      { path: 'parent/dashboard', element: <RouteAdapter Component={ParentDashboard} /> },
-      { path: 'parent', element: <Navigate to="/parent/dashboard" replace /> },
+      {
+        path: 'parent/dashboard',
+        element: (
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'principal', 'parent', 'Parent']}>
+            <RouteAdapter Component={ParentDashboard} />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'parent',
+        element: (
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'principal', 'parent', 'Parent']}>
+            <RouteAdapter Component={ParentDashboard} />
+          </PrivateRoute>
+        )
+      },
       { path: 'citizen/dashboard', element: <Navigate to="/login" replace /> },
       { path: '*', element: <Navigate to="/" replace /> }
     ]

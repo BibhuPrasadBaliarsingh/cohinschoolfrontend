@@ -7,12 +7,12 @@ import router from './routes/router';
 
 export default function App() {
   return (
-    <AuthProvider>
+    <MotionConfig reducedMotion="user">
       <ThemeProvider>
-        <MotionConfig reducedMotion="user">
+        <AuthProvider>
           <RouterProvider router={router} />
-        </MotionConfig>
+        </AuthProvider>
       </ThemeProvider>
-    </AuthProvider>
+    </MotionConfig>
   );
 }
