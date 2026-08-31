@@ -162,17 +162,16 @@ export default function AdminDashboard() {
                   <td className="p-3.5 text-white/70 font-mono">{u.email}</td>
                   <td className="p-3.5">
                     <span
-                      className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase border ${
-                        u.role === 'admin'
+                      className={`px-2.5 py-1 rounded-full text-[10px] font-extrabold uppercase border ${u.role === 'admin'
                           ? 'bg-purple-500/20 text-purple-300 border-purple-500/40'
                           : u.role === 'principal'
-                          ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
-                          : u.role === 'teacher'
-                          ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
-                          : u.role === 'student'
-                          ? 'bg-blue-500/20 text-blue-300 border-blue-500/40'
-                          : 'bg-rose-500/20 text-rose-300 border-rose-500/40'
-                      }`}
+                            ? 'bg-amber-500/20 text-amber-300 border-amber-500/40'
+                            : u.role === 'teacher'
+                              ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40'
+                              : u.role === 'student'
+                                ? 'bg-blue-500/20 text-blue-300 border-blue-500/40'
+                                : 'bg-rose-500/20 text-rose-300 border-rose-500/40'
+                        }`}
                     >
                       {u.role}
                     </span>

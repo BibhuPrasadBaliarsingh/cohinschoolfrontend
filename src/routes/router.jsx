@@ -130,7 +130,15 @@ export const router = createBrowserRouter([
       {
         path: 'principal/dashboard',
         element: (
-          <PrivateRoute allowedRoles={['admin', 'principal']}>
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal']}>
+            <RouteAdapter Component={PrincipalDashboard} />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'principal',
+        element: (
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal']}>
             <RouteAdapter Component={PrincipalDashboard} />
           </PrivateRoute>
         )
@@ -138,7 +146,7 @@ export const router = createBrowserRouter([
       {
         path: 'teacher/dashboard',
         element: (
-          <PrivateRoute allowedRoles={['admin', 'principal', 'teacher', 'Teacher']}>
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal', 'teacher', 'Teacher']}>
             <RouteAdapter Component={TeacherDashboard} />
           </PrivateRoute>
         )
@@ -146,7 +154,7 @@ export const router = createBrowserRouter([
       {
         path: 'teacher',
         element: (
-          <PrivateRoute allowedRoles={['admin', 'principal', 'teacher', 'Teacher']}>
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal', 'teacher', 'Teacher']}>
             <RouteAdapter Component={TeacherDashboard} />
           </PrivateRoute>
         )
@@ -154,7 +162,7 @@ export const router = createBrowserRouter([
       {
         path: 'student/dashboard',
         element: (
-          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'principal', 'student', 'Student']}>
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal', 'student', 'Student']}>
             <RouteAdapter Component={StudentDashboard} />
           </PrivateRoute>
         )
@@ -163,7 +171,7 @@ export const router = createBrowserRouter([
       {
         path: 'parent/dashboard',
         element: (
-          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'principal', 'parent', 'Parent']}>
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal', 'parent', 'Parent']}>
             <RouteAdapter Component={ParentDashboard} />
           </PrivateRoute>
         )
@@ -171,7 +179,7 @@ export const router = createBrowserRouter([
       {
         path: 'parent',
         element: (
-          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'principal', 'parent', 'Parent']}>
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal', 'parent', 'Parent']}>
             <RouteAdapter Component={ParentDashboard} />
           </PrivateRoute>
         )

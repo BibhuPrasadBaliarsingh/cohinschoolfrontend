@@ -1,38 +1,67 @@
 import React, { useState } from 'react';
-import { X, LogIn, Loader2, Mail, Lock, Eye, EyeOff, CheckCircle2 } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { X, LogIn, Loader2, Mail, Lock, Eye, EyeOff, CheckCircle2, Sparkles } from 'lucide-react';
 import { portalTheme } from '../../constants/modalData';
+import useAuth from '../../hooks/useAuth';
 
 const PORTALS = [
-  { key: 'parent', title: 'Parent Desk', desc: 'Fees, Attendance, Progress' },
-  { key: 'student', title: 'Student Desk', desc: 'LMS, Exams, Homework' },
-  { key: 'teacher', title: 'Faculty Desk', desc: 'Marks, Assignments, Diary' },
-  { key: 'principal', title: 'Executive Desk', desc: 'School Insights, Admin' },
-  { key: 'admin', title: 'Admin ERP Desk', desc: 'Master Controls & ERP' }
+  { key: 'parent', title: 'Parent Desk', desc: 'Fees, Attendance, Live Bus', email: 'parent@cohen.edu.in', path: '/parent/dashboard' },
+  { key: 'student', title: 'Student Desk', desc: 'LMS, Exams, Homework', email: 'student@cohen.edu.in', path: '/student/dashboard' },
+  { key: 'teacher', title: 'Faculty Desk', desc: 'Marks, Attendance, Diary', email: 'teacher@cohen.edu.in', path: '/teacher/dashboard' },
+  { key: 'principal', title: 'Executive Desk', desc: 'School Insights, Approvals', email: 'principal@cohen.edu.in', path: '/principal/dashboard' },
+  { key: 'admin', title: 'Admin CRM Desk', desc: 'Leads, Admissions, ERP', email: 'superadmin@cohenschool.com', path: '/admin/dashboard' }
 ];
 
 export default function LoginModal({ closeModal, openLoginModal, openPortalFrame, activeKey = 'parent' }) {
+  const navigate = useNavigate();
+  const { login } = useAuth();
   const [loginSubmitting, setLoginSubmitting] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
+
+  const initialPortal = PORTALS.find(p => p.key === activeKey) || PORTALS[0];
+  const [loginEmail, setLoginEmail] = useState(initialPortal.email);
+  const [loginPassword, setLoginPassword] = useState('password123');
   const [loginError, setLoginError] = useState('');
 
   const p = portalTheme[activeKey] || portalTheme.parent;
 
   const handlePortalSelect = (key) => {
     setLoginError('');
+    const target = PORTALS.find(p => p.key === key);
+    if (target) {
+      setLoginEmail(target.email);
+      setLoginPassword('password123');
+    }
     if (openLoginModal) openLoginModal(key);
   };
 
-  const handleLoginSubmit = (e) => {
-    e.preventDefault();
+  const handleLoginSubmit = async (e) => {
+    if (e) e.preventDefault();
     if (loginSubmitting) return;
+    setLoginError('');
     setLoginSubmitting(true);
-    const timer = setTimeout(() => {
+
+    try {
+      const loggedUser = await login(loginEmail, loginPassword);
+      closeModal();
+
+      const userRole = (loggedUser?.role || activeKey || '').toLowerCase();
+      if (userRole.includes('parent')) {
+        navigate('/parent/dashboard');
+      } else if (userRole.includes('student')) {
+        navigate('/student/dashboard');
+      } else if (userRole.includes('teacher')) {
+        navigate('/teacher/dashboard');
+      } else if (userRole.includes('principal')) {
+        navigate('/principal/dashboard');
+      } else {
+        navigate('/admin/dashboard');
+      }
+    } catch (err) {
+      setLoginError(err.message || 'Authentication failed. Please verify credentials.');
+    } finally {
       setLoginSubmitting(false);
-      openPortalFrame(activeKey);
-    }, 700);
-    return () => clearTimeout(timer);
+    }
   };
 
   return (

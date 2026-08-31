@@ -391,9 +391,8 @@ export default function PortalsPage({ openLoginModal }) {
               return (
                 <div
                   key={p.id}
-                  className={`p-6 sm:p-8 rounded-3xl bg-white border ${
-                    p.isPublic ? 'border-blue-400/80 ring-2 ring-blue-500/20' : 'border-cream-200'
-                  } shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between`}
+                  className={`p-6 sm:p-8 rounded-3xl bg-white border ${p.isPublic ? 'border-blue-400/80 ring-2 ring-blue-500/20' : 'border-cream-200'
+                    } shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 flex flex-col justify-between`}
                 >
                   <div>
                     <div className="flex items-start justify-between mb-5">
