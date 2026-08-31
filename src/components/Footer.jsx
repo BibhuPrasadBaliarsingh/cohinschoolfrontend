@@ -57,7 +57,7 @@ export default function Footer({ openLoginModal, openPortalFrame }) {
               </Link>
             </div>
             <p className="text-sm leading-relaxed text-white/70">
-              The Best CBSE School in Bhubaneswar (Affiliation No: 1530280) — Managed by Subhadra Charitable Trust (SCT). A complete digital transformation partnered with Briskode Technology.
+              The Best CBSE School in Bhubaneswar (Affiliation No: 1530280) — Managed by <a href="https://www.subhadracharitabletrust.org/" target="_blank" rel="noopener noreferrer" className="text-gold-400 hover:underline">Subhadra Charitable Trust (SCT)</a>. A complete digital transformation partnered with Briskode Technology.
             </p>
             <div className="mt-5 flex items-center gap-3">
               <a

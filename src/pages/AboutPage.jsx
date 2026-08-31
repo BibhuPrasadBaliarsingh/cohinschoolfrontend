@@ -154,7 +154,7 @@ export default function AboutPage({ openChairmanModal, openPrincipalModal, openA
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/15 border border-gold-400/30 text-gold-400 text-xs font-bold uppercase tracking-widest mb-4">
-              <Sparkles className="w-3.5 h-3.5 text-gold-400" /> School Motto: Excellence Through Harmony
+              <Sparkles className="w-3.5 h-3.5 text-gold-400" /> School Motto: Enabling Excellence, Through Harmony
             </div>
             <h2 className="font-display text-4xl sm:text-5xl text-white font-bold mb-4">
               Our Vision &amp; Mission
@@ -189,7 +189,7 @@ export default function AboutPage({ openChairmanModal, openPrincipalModal, openA
                 </div>
                 <h3 className="font-display text-2xl text-white font-bold mb-3">Our Mission</h3>
                 <p className="text-white/80 text-sm sm:text-base leading-relaxed mb-4">
-                  Cohen International School is committed to motivate, encourage and inculcate every student with the mantra of <strong className="text-gold-400 font-bold">"Know, Learn and Outshine the World"</strong>. Our motto is <strong>'Excellence Through Harmony'</strong>.
+                  Cohen International School is committed to motivate, encourage and inculcate every student with the mantra of <strong className="text-gold-400 font-bold">"Know, Learn and Outshine the World"</strong>. Our motto is <strong>'Enabling Excellence, Through Harmony'</strong>.
                 </p>
                 <p className="text-white/70 text-xs sm:text-sm leading-relaxed">
                   We believe that each child is special and our mission to help the kids explore the various fields available and choose one of their own interest. Cohen International School in its pursuit for imparting holistic education, empowers students by best in class academics &amp; sports, imbibes &amp; inculcates creative learning with goal oriented, overall development.

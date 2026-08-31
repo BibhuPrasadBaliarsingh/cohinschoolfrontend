@@ -17,7 +17,7 @@ export default function MissionPage({ openAdmissionModal }) {
       {/* HEADER BANNER */}
       <HeaderBanner
         title="Our Vision & Mission"
-        subtitle="Moulding the Future of Students — Excellence Through Harmony"
+        subtitle="Moulding the Future of Students — Enabling Excellence, Through Harmony"
         breadcrumb="Vision & Mission"
         bgImage="/images/about_banner.png"
       />
@@ -112,7 +112,7 @@ export default function MissionPage({ openAdmissionModal }) {
               <div className="p-4 rounded-2xl bg-navy-900 text-white flex flex-col sm:flex-row sm:items-center justify-between gap-3 shadow-md border border-gold-500/30">
                 <div>
                   <span className="text-gold-400 font-extrabold text-[11px] uppercase tracking-wider block">SCHOOL MOTTO</span>
-                  <span className="text-base font-bold">Excellence Through Harmony</span>
+                  <span className="text-base font-bold">Enabling Excellence, Through Harmony</span>
                 </div>
                 <div className="sm:border-l sm:border-white/20 sm:pl-4">
                   <span className="text-gold-400 font-extrabold text-[11px] uppercase tracking-wider block">STUDENT MANTRA</span>
@@ -121,7 +121,7 @@ export default function MissionPage({ openAdmissionModal }) {
               </div>
 
               <p className="text-navy-700/90 text-base sm:text-lg leading-relaxed font-medium">
-                Cohen International School is committed to motivate, encourage and inculcate every student with the mantra of <strong>know, learn and outshine the world</strong>. Our motto is <strong>'Excellence Through Harmony'</strong>.
+                Cohen International School is committed to motivate, encourage and inculcate every student with the mantra of <strong>know, learn and outshine the world</strong>. Our motto is <strong>'Enabling Excellence, Through Harmony'</strong>.
               </p>
 
               <p className="text-navy-700/80 text-sm sm:text-base leading-relaxed">
@@ -263,7 +263,7 @@ export default function MissionPage({ openAdmissionModal }) {
       <section className="py-16 bg-gold-500 text-navy-950 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-3">
-            Experience Excellence Through Harmony
+            Experience Enabling Excellence, Through Harmony
           </h2>
           <p className="text-navy-900/80 mb-6 text-sm sm:text-base max-w-2xl mx-auto font-medium">
             Join the AY 2027-2028 batch at Cohen International School and empower your child's future.

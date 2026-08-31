@@ -94,7 +94,7 @@ const stats = [
   { Icon: Award, value: 2015, suffix: "", label: "Founded" },
   { Icon: Users, value: 1200, suffix: "+", label: "Students" },
   { Icon: BookOpen, value: 55, suffix: "+", label: "Expert Faculty" },
-  { Icon: MapPin, value: 10, suffix: " Ac", label: "Green Campus" },
+  { Icon: MapPin, value: 10, suffix: " Acre", label: "Green Campus" },
 ];
 
 function useCountUp(target, duration, active) {

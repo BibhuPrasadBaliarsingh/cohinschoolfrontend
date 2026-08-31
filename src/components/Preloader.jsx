@@ -61,7 +61,7 @@ export default function Preloader({ onComplete }) {
         </div>
 
         <h2 className="font-display text-xl sm:text-2xl text-white font-bold tracking-wide">Cohen International School</h2>
-        <p className="text-gold-400 text-xs sm:text-sm mt-1 font-semibold uppercase tracking-widest">Excellence Through Harmony</p>
+        <p className="text-gold-400 text-xs sm:text-sm mt-1 font-semibold uppercase tracking-widest">Enabling Excellence, Through Harmony</p>
 
         <div className="w-48 sm:w-56 mt-5">
           <div className="h-1.5 w-full bg-navy-800 rounded-full overflow-hidden border border-white/10">

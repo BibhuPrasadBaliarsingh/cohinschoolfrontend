@@ -243,7 +243,7 @@ export default function About({ openChairmanModal }) {
 
             {/* Motto Badge */}
             <div className="mb-6 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/15 border border-gold-500/30 text-gold-700 text-xs font-bold uppercase tracking-wider">
-              <Sparkles className="w-4 h-4 text-gold-600" /> Motto: Excellence Through Harmony
+              <Sparkles className="w-4 h-4 text-gold-600" /> Motto: Enabling Excellence, Through Harmony
             </div>
 
             <div className="grid sm:grid-cols-2 gap-4 mb-10 items-start">
@@ -282,7 +282,7 @@ export default function About({ openChairmanModal }) {
                   <p className="text-xs sm:text-sm text-navy-700/80 mt-1 leading-relaxed">
                     {showFullMission ? (
                       <>
-                        Cohen International School is committed to motivate, encourage and inculcate every student with the mantra of <strong>"Know, Learn and Outshine the World"</strong>. Our motto is <strong>'Excellence Through Harmony'</strong>. We believe each child is special, empowering them through best-in-class academics, sports &amp; creative learning with goal-oriented development.
+                        Cohen International School is committed to motivate, encourage and inculcate every student with the mantra of <strong>"Know, Learn and Outshine the World"</strong>. Our motto is <strong>'Enabling Excellence, Through Harmony'</strong>. We believe each child is special, empowering them through best-in-class academics, sports &amp; creative learning with goal-oriented development.
                       </>
                     ) : (
                       <>
@@ -316,9 +316,14 @@ export default function About({ openChairmanModal }) {
               <span className="px-4 py-2 rounded-full bg-navy-900 text-white text-sm font-medium">
                 CBSE Affiliated (#1530280)
               </span>
-              <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">
+              <a
+                href="https://www.subhadracharitabletrust.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 hover:bg-gold-500/25 hover:text-gold-800 text-sm font-medium transition cursor-pointer"
+              >
                 Subhadra Charitable Trust
-              </span>
+              </a>
               <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">
                 10 Acre Campus
               </span>

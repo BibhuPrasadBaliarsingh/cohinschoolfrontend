@@ -31,8 +31,8 @@ export default function HomePage({
         openVirtualTour={openVirtualTour}
       />
       <AdmissionBanner openAdmissionModal={openAdmissionModal} />
-      <NewsAnnouncements openAdmissionModal={openAdmissionModal} />
       <About openChairmanModal={openChairmanModal} />
+      <NewsAnnouncements openAdmissionModal={openAdmissionModal} />
       <WhyChoose openDedicatedTopic={openDedicatedTopic} />
       <Academics />
       <Facilities openDedicatedTopic={openDedicatedTopic} />
