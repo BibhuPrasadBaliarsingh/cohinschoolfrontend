@@ -48,14 +48,35 @@ export default function LoginPage() {
       setDetectedRole({ title: "Teacher Portal", badge: "TeachFlow Pro", icon: BookOpen, color: "from-emerald-500 to-teal-600", text: "text-emerald-400" });
     } else if (lower.includes("principal")) {
       setDetectedRole({ title: "Principal Desk", badge: "Executive Leadership", icon: UserCheck, color: "from-amber-500 to-gold-600", text: "text-amber-400" });
-    } else if (lower.includes("admin")) {
-      setDetectedRole({ title: "Super Admin", badge: "Governance CRM", icon: Shield, color: "from-purple-500 to-violet-600", text: "text-purple-400" });
+    } else if (lower.includes("admin") || lower.includes("counsellor") || lower.includes("admission")) {
+      setDetectedRole({ title: "Super Admin CRM", badge: "Governance ERP", icon: Shield, color: "from-purple-500 to-violet-600", text: "text-purple-400" });
     } else if (lower.length > 3) {
       setDetectedRole({ title: "Verified Account", badge: "Campus SSO", icon: ShieldCheck, color: "from-gold-400 to-amber-500", text: "text-gold-400" });
     } else {
       setDetectedRole(null);
     }
   }, [email]);
+
+  const redirectToDashboard = (loggedUser) => {
+    const from = location.state?.from?.pathname;
+    if (from && from !== "/login") {
+      navigate(from, { replace: true });
+      return;
+    }
+
+    const userRole = (loggedUser?.role || "").toLowerCase();
+    if (userRole === "parent") {
+      navigate("/parent/dashboard", { replace: true });
+    } else if (userRole === "student") {
+      navigate("/student/dashboard", { replace: true });
+    } else if (userRole === "teacher") {
+      navigate("/teacher/dashboard", { replace: true });
+    } else if (userRole === "principal") {
+      navigate("/principal/dashboard", { replace: true });
+    } else {
+      navigate("/admin/dashboard", { replace: true });
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -68,36 +89,7 @@ export default function LoginPage() {
 
     try {
       const loggedUser = await login(email, password);
-
-      const from = location.state?.from?.pathname;
-      if (from && from !== "/login") {
-        navigate(from, { replace: true });
-      } else {
-        switch (loggedUser?.role) {
-          case "admin":
-          case "Super Admin":
-          case "Admin":
-          case "Counsellor":
-          case "Admission Staff":
-            navigate("/admin/dashboard", { replace: true });
-            break;
-          case "principal":
-            navigate("/principal/dashboard", { replace: true });
-            break;
-          case "teacher":
-            navigate("/teacher/dashboard", { replace: true });
-            break;
-          case "student":
-            navigate("/student/dashboard", { replace: true });
-            break;
-          case "parent":
-            navigate("/parent/dashboard", { replace: true });
-            break;
-          default:
-            navigate("/admin/dashboard", { replace: true });
-            break;
-        }
-      }
+      redirectToDashboard(loggedUser);
     } catch (err) {
       setFormError(err.message || "Authentication failed. Please check credentials.");
     }
@@ -215,12 +207,17 @@ export default function LoginPage() {
               <div className="absolute top-0 inset-x-10 h-1 bg-gradient-to-r from-transparent via-gold-400 to-transparent rounded-full" />
 
               {/* Card Header & Dynamic Role Badge */}
-              <div className="flex items-center justify-between mb-6 pb-4 border-b border-white/10">
+              <div className="flex items-center justify-between mb-5 pb-4 border-b border-white/10">
                 <div>
                   <h3 className="font-display text-xl font-extrabold text-white">Sign In</h3>
-                  <p className="text-xs text-white/60">Access your digital desk</p>
+                  <p className="text-xs text-white/60">Access your digital campus desk</p>
                 </div>
-
+                {detectedRole && (
+                  <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 border border-white/20 text-[11px] font-bold">
+                    <detectedRole.icon className={`w-3.5 h-3.5 ${detectedRole.text}`} />
+                    <span className={detectedRole.text}>{detectedRole.badge}</span>
+                  </div>
+                )}
               </div>
 
               {/* Error Alert */}
@@ -268,7 +265,7 @@ export default function LoginPage() {
                       required
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter password"
+                      placeholder="Enter password (e.g. password123)"
                       className="w-full pl-10 pr-11 py-3 bg-navy-950/80 border border-white/20 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-gold-400 focus:ring-2 focus:ring-gold-400/30 transition text-sm font-medium"
                     />
                     <button
@@ -319,28 +316,12 @@ export default function LoginPage() {
                   ) : (
                     <>
                       <LogIn className="w-5 h-5 group-hover:translate-x-0.5 transition-transform" />
-                      <span>Sign In to Campus</span>
+                      <span>Sign In to Dashboard</span>
                       <ChevronRight className="w-4 h-4 opacity-70 group-hover:translate-x-1 transition-transform" />
                     </>
                   )}
                 </button>
               </form>
-
-              {/* Public Student Portal Quick Launch */}
-              <div className="mt-4 pt-3 border-t border-white/10">
-                <Link
-                  to="/student/dashboard"
-                  className="w-full py-2.5 px-3 rounded-xl bg-blue-500/15 hover:bg-blue-500/25 border border-blue-500/30 text-blue-300 hover:text-blue-200 text-xs font-semibold flex items-center justify-between transition group"
-                >
-                  <div className="flex items-center gap-2">
-                    <GraduationCap className="w-4 h-4 text-blue-400" />
-                    <span>Student Portal is Public</span>
-                  </div>
-                  <span className="text-[11px] underline flex items-center gap-1 font-bold">
-                    Open Student Hub <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </span>
-                </Link>
-              </div>
 
               {/* Security note */}
               <div className="mt-4 pt-3 flex items-center justify-between text-[11px] text-white/50 border-t border-white/10">
@@ -353,7 +334,6 @@ export default function LoginPage() {
 
             </div>
           </div>
-
         </div>
       </main>
 

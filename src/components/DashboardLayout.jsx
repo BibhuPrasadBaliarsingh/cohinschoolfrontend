@@ -113,9 +113,8 @@ export default function DashboardLayout({ children }) {
     <div className="min-h-screen bg-navy-950 text-white flex flex-col md:flex-row overflow-x-hidden">
       {/* Sidebar Navigation */}
       <aside
-        className={`bg-navy-900 border-r border-gold-500/20 transition-all duration-300 flex flex-col justify-between relative z-30 ${
-          sidebarCollapsed ? 'w-full md:w-20' : 'w-full md:w-64'
-        }`}
+        className={`bg-navy-900 border-r border-gold-500/20 transition-all duration-300 flex flex-col justify-between relative z-30 ${sidebarCollapsed ? 'w-full md:w-20' : 'w-full md:w-64'
+          }`}
       >
         <div>
           {/* Top Brand Logo */}
@@ -170,11 +169,10 @@ export default function DashboardLayout({ children }) {
                   type="button"
                   key={idx}
                   onClick={() => navigate(item.path)}
-                  className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-semibold transition ${
-                    isActive
+                  className={`w-full flex items-center gap-3 px-3.5 py-3 rounded-xl text-xs font-semibold transition ${isActive
                       ? 'bg-gold-500 text-navy-950 font-bold shadow-lg'
                       : 'text-white/70 hover:bg-white/10 hover:text-white'
-                  }`}
+                    }`}
                 >
                   <ItemIcon className={`w-4 h-4 flex-shrink-0 ${isActive ? 'text-navy-950' : conf.accentColor}`} />
                   {!sidebarCollapsed && <span className="truncate">{item.label}</span>}

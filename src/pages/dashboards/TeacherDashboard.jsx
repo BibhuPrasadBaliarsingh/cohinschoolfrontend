@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import {
   GraduationCap,
@@ -22,10 +22,12 @@ import {
   Pencil,
   Save,
   Camera,
+  LogOut,
 } from "lucide-react";
 
 export default function TeacherDashboard() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [activeNav, setActiveNav] = useState("dashboard");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedTimetableDay, setSelectedTimetableDay] = useState("Mon");
@@ -511,6 +513,17 @@ export default function TeacherDashboard() {
           </Link>
 
           <button
+            onClick={() => {
+              logout();
+              navigate('/login');
+            }}
+            className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition border border-rose-500/20"
+          >
+            <LogOut className="w-4 h-4 text-rose-400" />
+            <span>Sign Out / Switch Portal</span>
+          </button>
+
+          <button
             onClick={() => setActiveNav("profile")}
             className="w-full flex items-center gap-3 p-2.5 rounded-xl bg-slate-800/50 hover:bg-slate-800 border border-slate-800 transition text-left cursor-pointer group"
           >
@@ -552,6 +565,18 @@ export default function TeacherDashboard() {
             <button className="relative p-2.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:bg-slate-50 hover:text-slate-900 shadow-sm transition">
               <Bell className="w-4 h-4" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
+            </button>
+
+            <button
+              onClick={() => {
+                logout();
+                navigate('/login');
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white border border-slate-200 hover:border-rose-300 hover:bg-rose-50 text-rose-600 text-xs font-bold shadow-sm transition"
+              title="Sign Out to Switch Accounts"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Logout</span>
             </button>
           </div>
         </header>

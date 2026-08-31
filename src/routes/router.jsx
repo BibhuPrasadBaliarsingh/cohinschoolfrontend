@@ -133,7 +133,15 @@ export const router = createBrowserRouter([
       {
         path: 'principal/dashboard',
         element: (
-          <PrivateRoute allowedRoles={['admin', 'principal']}>
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal']}>
+            <RouteAdapter Component={PrincipalDashboard} />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'principal',
+        element: (
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal']}>
             <RouteAdapter Component={PrincipalDashboard} />
           </PrivateRoute>
         )
@@ -141,7 +149,7 @@ export const router = createBrowserRouter([
       {
         path: 'teacher/dashboard',
         element: (
-          <PrivateRoute allowedRoles={['admin', 'principal', 'teacher', 'Teacher']}>
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal', 'teacher', 'Teacher']}>
             <RouteAdapter Component={TeacherDashboard} />
           </PrivateRoute>
         )
@@ -149,7 +157,7 @@ export const router = createBrowserRouter([
       {
         path: 'teacher',
         element: (
-          <PrivateRoute allowedRoles={['admin', 'principal', 'teacher', 'Teacher']}>
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal', 'teacher', 'Teacher']}>
             <RouteAdapter Component={TeacherDashboard} />
           </PrivateRoute>
         )
@@ -157,14 +165,28 @@ export const router = createBrowserRouter([
       {
         path: 'student/dashboard',
         element: (
-          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'principal', 'student', 'Student']}>
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal', 'student', 'Student']}>
             <RouteAdapter Component={StudentDashboard} />
           </PrivateRoute>
         )
       },
       { path: 'student', element: <Navigate to="/student/dashboard" replace /> },
-      { path: 'parent/dashboard', element: <RouteAdapter Component={ParentDashboard} /> },
-      { path: 'parent', element: <Navigate to="/parent/dashboard" replace /> },
+      {
+        path: 'parent/dashboard',
+        element: (
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal', 'parent', 'Parent']}>
+            <RouteAdapter Component={ParentDashboard} />
+          </PrivateRoute>
+        )
+      },
+      {
+        path: 'parent',
+        element: (
+          <PrivateRoute allowedRoles={['admin', 'Super Admin', 'Admin', 'principal', 'Principal', 'parent', 'Parent']}>
+            <RouteAdapter Component={ParentDashboard} />
+          </PrivateRoute>
+        )
+      },
       { path: 'citizen/dashboard', element: <Navigate to="/login" replace /> },
       { path: '*', element: <Navigate to="/" replace /> }
     ]

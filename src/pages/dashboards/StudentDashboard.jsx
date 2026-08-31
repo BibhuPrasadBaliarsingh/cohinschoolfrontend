@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import {
   GraduationCap,
@@ -28,6 +28,7 @@ import {
   Trophy,
   FileText,
   HelpCircle,
+  LogOut,
   CheckCircle2,
   Award,
   Download,
@@ -76,7 +77,8 @@ import {
 } from "lucide-react";
 
 export default function StudentDashboard() {
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
+  const navigate = useNavigate();
   const [activeNav, setActiveNav] = useState("dashboard");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [selectedTimetableDay, setSelectedTimetableDay] = useState("Mon");
@@ -1970,7 +1972,7 @@ Interested athletes should register with their respective House Masters (Ruby, S
         </div>
 
         {/* Sidebar Footer */}
-        <div className="p-4 border-t border-slate-800/80 space-y-4">
+        <div className="p-4 border-t border-slate-800/80 space-y-3">
           <Link
             to="/"
             className="flex items-center gap-2 px-3 text-xs text-slate-400 hover:text-white transition font-medium"
@@ -1978,6 +1980,17 @@ Interested athletes should register with their respective House Masters (Ruby, S
             <ArrowLeft className="w-4 h-4 text-slate-400" />
             <span>Back to School Website</span>
           </Link>
+
+          <button
+            onClick={() => {
+              logout();
+              navigate('/login');
+            }}
+            className="w-full flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-semibold text-rose-400 hover:bg-rose-500/10 hover:text-rose-300 transition border border-rose-500/20"
+          >
+            <LogOut className="w-4 h-4 text-rose-400" />
+            <span>Sign Out / Switch Portal</span>
+          </button>
 
           <button
             onClick={() => setActiveNav("profile")}
@@ -2027,6 +2040,18 @@ Interested athletes should register with their respective House Masters (Ruby, S
               {unreadCount > 0 && (
                 <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full border-2 border-white animate-pulse"></span>
               )}
+            </button>
+
+            <button
+              onClick={() => {
+                logout();
+                navigate('/login');
+              }}
+              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-xl bg-white border border-slate-200 hover:border-rose-300 hover:bg-rose-50 text-rose-600 text-xs font-bold shadow-sm transition"
+              title="Sign Out to Switch Accounts"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              <span>Logout</span>
             </button>
           </div>
         </header>
