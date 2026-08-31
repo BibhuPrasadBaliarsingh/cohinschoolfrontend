@@ -22,7 +22,6 @@ const heroSlides = [
   {
     id: 1,
     src: coursolImg,
-    fit: "fill",
     accent: "Shaping Tomorrow's Leaders",
     headline: ["Inspiring", "Future", "Leaders"],
     sub: "CBSE Affiliated • Nursery to Class XII • World-Class Infrastructure & Holistic Growth",
