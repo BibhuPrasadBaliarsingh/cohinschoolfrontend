@@ -23,6 +23,7 @@ const NewsEventsPage = lazy(() => import('../pages/NewsEventsPage'));
 const TermsPage = lazy(() => import('../pages/TermsPage'));
 const CohenTalkPage = lazy(() => import('../pages/CohenTalkPage'));
 const ScientificAdvisoryBoardPage = lazy(() => import('../pages/ScientificAdvisoryBoardPage'));
+const ClubPage = lazy(() => import('../pages/ClubPage'));
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const UnauthorizedPage = lazy(() => import('../pages/UnauthorizedPage'));
@@ -98,6 +99,8 @@ export const router = createBrowserRouter([
       { path: 'terms-and-conditions', element: <RouteAdapter Component={TermsPage} /> },
       { path: 'cohentalk', element: <RouteAdapter Component={CohenTalkPage} /> },
       { path: 'cohen-talk', element: <RouteAdapter Component={CohenTalkPage} /> },
+      { path: 'club', element: <RouteAdapter Component={ClubPage} /> },
+      { path: 'clup', element: <RouteAdapter Component={ClubPage} /> },
 
       { path: 'login', element: <RouteAdapter Component={LoginPage} /> },
       { path: 'unauthorized', element: <RouteAdapter Component={UnauthorizedPage} /> },

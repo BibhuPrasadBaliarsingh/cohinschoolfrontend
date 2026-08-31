@@ -537,9 +537,19 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                   <ul className="mt-3 space-y-3 text-base sm:text-lg text-white/80 font-sans animate-fadeIn">
                     <li>
                       <Link
-                        to="/cohentalk"
+                        to="/club"
                         onClick={() => setMegaMenuOpen(false)}
                         className="flex items-center gap-2 text-gold-300 font-semibold hover:text-gold-400 transition group"
+                      >
+                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
+                        <span>Student Clubs &amp; Activities</span>
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/cohentalk"
+                        onClick={() => setMegaMenuOpen(false)}
+                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
                       >
                         <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
                         <span>Beyond Academics (Cohen Talks)</span>
