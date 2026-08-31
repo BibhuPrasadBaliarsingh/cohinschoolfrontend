@@ -46,7 +46,7 @@ const heroSlides = [
   {
     id: 2,
     src: img3613,
-    mobileSrc: mobCoursol3,
+    mobileSrc: mobCoursol6,
     fit: "fill",
     accent: "Welcome to Cohen International",
     headline: ["Excellence", "Without", "Boundaries"],
@@ -55,7 +55,7 @@ const heroSlides = [
   {
     id: 3,
     src: jeetopers,
-    mobileSrc: mobCoursol4,
+    mobileSrc: mobCoursol2,
     fit: "fill",
     accent: "Integrated Competitive Coaching",
     headline: ["Empowering", "Future", "IITians"],
@@ -64,7 +64,7 @@ const heroSlides = [
   {
     id:  4,
     src: img3660,
-    mobileSrc: mobCoursol5,
+    mobileSrc: mobCoursol3,
     fit: "fill",
     accent: "Where Every Child Thrives",
     headline: ["Sports,", "Passion &", "Joy"],
@@ -73,7 +73,7 @@ const heroSlides = [
   {
     id: 5,
     src: img3622,
-    mobileSrc: mobCoursol6,
+    mobileSrc: mobCoursol5,
     fit: "fill",
     accent: "10 Acres of Green Learning",
     headline: ["A Campus", "Like No", "Other"],
@@ -82,7 +82,7 @@ const heroSlides = [
   {
     id: 6,
     src: img3684,
-    mobileSrc: mobCoursol6,
+    mobileSrc: mobCoursol4,
     fit: "fill",
     accent: "STEM & Innovation Labs",
     headline: ["Build.", "Innovate.", "Launch."],
