@@ -23,20 +23,22 @@ const partnerSlides = [
   }
 ];
 
-const floatingBalloons = [
-  { id: "l1", side: "left", pos: "1.2%", size: 38, duration: "9s", delay: "0s", colors: { top: "#FFD700", mid: "#E6AC00", base: "#B38600" } },
-  { id: "l2", side: "left", pos: "5.5%", size: 28, duration: "12s", delay: "3.5s", colors: { top: "#FF4D6D", mid: "#C77DFF", base: "#7B2CBF" } },
-  { id: "l3", side: "left", pos: "9.8%", size: 44, duration: "10s", delay: "6.5s", colors: { top: "#00F5D4", mid: "#00BBF9", base: "#0077B6" } },
-  { id: "r1", side: "right", pos: "1.2%", size: 40, duration: "9.5s", delay: "1.5s", colors: { top: "#FF758F", mid: "#FF4D6D", base: "#C70039" } },
-  { id: "r2", side: "right", pos: "5.5%", size: 30, duration: "11s", delay: "4.8s", colors: { top: "#FFB703", mid: "#FB8500", base: "#D90429" } },
-  { id: "r3", side: "right", pos: "9.8%", size: 42, duration: "13s", delay: "2.8s", colors: { top: "#E0AAFF", mid: "#9D4EDD", base: "#3C096C" } },
-];
+const floatingStudySymbols = [
+  { id: "s1", symbol: "%", side: "left", pos: "1.0%", size: "1.9rem", duration: "9.5s", delay: "0.5s", color: "#FFD700" },
+  { id: "s2", symbol: "π", side: "left", pos: "3.5%", size: "1.8rem", duration: "11s", delay: "2.8s", color: "#00F5D4" },
+  { id: "s3", symbol: "α", side: "left", pos: "6.0%", size: "1.6rem", duration: "13s", delay: "5.2s", color: "#FF4D6D" },
+  { id: "s4", symbol: "atom", side: "left", pos: "8.5%", size: "2.2rem", duration: "10.5s", delay: "1.2s", color: "#E0AAFF" },
+  { id: "s5", symbol: "√", side: "left", pos: "11.0%", size: "1.7rem", duration: "12s", delay: "3.8s", color: "#70E000" },
+  { id: "s6", symbol: "λ", side: "left", pos: "13.5%", size: "1.6rem", duration: "14s", delay: "6.5s", color: "#FF9E00" },
+  { id: "s7", symbol: "Ω", side: "left", pos: "16.0%", size: "1.5rem", duration: "11.5s", delay: "2.0s", color: "#38B6FF" },
 
-const floatingLeaves = [
-  { id: "fl1", side: "left", pos: "3.2%", size: 28, duration: "11s", delay: "1.8s", colors: { top: "#52B788", base: "#1B4332" } },
-  { id: "fl2", side: "left", pos: "7.8%", size: 24, duration: "14s", delay: "5.2s", colors: { top: "#74C69D", base: "#2D6A4F" } },
-  { id: "fr1", side: "right", pos: "3.2%", size: 30, duration: "12s", delay: "2.5s", colors: { top: "#95D5B2", base: "#40916C" } },
-  { id: "fr2", side: "right", pos: "7.8%", size: 26, duration: "15s", delay: "6.0s", colors: { top: "#52B788", base: "#1B4332" } },
+  { id: "s8", symbol: "%", side: "right", pos: "1.0%", size: "2.0rem", duration: "10s", delay: "1.0s", color: "#38B6FF" },
+  { id: "s9", symbol: "β", side: "right", pos: "3.5%", size: "1.6rem", duration: "12.5s", delay: "3.5s", color: "#FFB703" },
+  { id: "s10", symbol: "γ", side: "right", pos: "6.0%", size: "1.7rem", duration: "10.5s", delay: "0.2s", color: "#FF758F" },
+  { id: "s11", symbol: "atom", side: "right", pos: "8.5%", size: "2.4rem", duration: "11.8s", delay: "4.8s", color: "#00F5D4" },
+  { id: "s12", symbol: "∞", side: "right", pos: "11.0%", size: "1.9rem", duration: "13.5s", delay: "2.2s", color: "#C77DFF" },
+  { id: "s13", symbol: "∫", side: "right", pos: "13.5%", size: "1.8rem", duration: "12.2s", delay: "5.8s", color: "#E8C547" },
+  { id: "s14", symbol: "Δ", side: "right", pos: "16.0%", size: "1.6rem", duration: "11s", delay: "1.5s", color: "#52B788" },
 ];
 
 export default function AdmissionBanner({ openAdmissionModal }) {
@@ -62,86 +64,47 @@ export default function AdmissionBanner({ openAdmissionModal }) {
   return (
     <div className="w-full relative z-30 py-6 sm:py-8 px-3 sm:px-6 lg:px-8 overflow-hidden">
       <style>{`
-        @keyframes balloonFloatUp {
-          0% { transform: translateY(110px) translateX(0) rotate(0deg); opacity: 0; }
-          10% { opacity: 0.95; }
-          50% { transform: translateY(-160px) translateX(15px) rotate(6deg); opacity: 1; }
-          85% { opacity: 0.9; }
-          100% { transform: translateY(-440px) translateX(-12px) rotate(-6deg); opacity: 0; }
-        }
-        @keyframes leafFloatUp {
-          0% { transform: translateY(100px) translateX(0) rotate(0deg); opacity: 0; }
+        @keyframes symbolFloatUp {
+          0% { transform: translateY(80px) translateX(0) rotate(0deg) scale(0.8); opacity: 0; }
           15% { opacity: 0.9; }
-          40% { transform: translateY(-140px) translateX(-22px) rotate(45deg); }
-          75% { transform: translateY(-290px) translateX(20px) rotate(-35deg); opacity: 0.85; }
-          100% { transform: translateY(-440px) translateX(-15px) rotate(90deg); opacity: 0; }
+          50% { transform: translateY(-140px) translateX(18px) rotate(15deg) scale(1.05); opacity: 0.95; }
+          85% { opacity: 0.75; }
+          100% { transform: translateY(-380px) translateX(-12px) rotate(-15deg) scale(0.8); opacity: 0; }
         }
-        .animate-balloon-rise {
-          animation-name: balloonFloatUp;
-          animation-iteration-count: infinite;
-          animation-timing-function: ease-in-out;
-        }
-        .animate-leaf-rise {
-          animation-name: leafFloatUp;
+        .animate-symbol-rise {
+          animation-name: symbolFloatUp;
           animation-iteration-count: infinite;
           animation-timing-function: ease-in-out;
         }
       `}</style>
 
-      {/* Floating Balloons & Leaves */}
-      {floatingBalloons.map((b) => (
+      {/* Floating Science & Study Symbols (Pi, Alpha, Beta, Gamma, Atom, Sigma, Delta) */}
+      {floatingStudySymbols.map((s) => (
         <div
-          key={b.id}
-          className="absolute bottom-0 pointer-events-none z-20 animate-balloon-rise hidden sm:block"
+          key={s.id}
+          className="absolute bottom-0 pointer-events-none z-20 animate-symbol-rise flex items-center justify-center select-none"
           style={{
-            [b.side]: b.pos,
-            width: `${b.size}px`,
-            animationDuration: b.duration,
-            animationDelay: b.delay,
+            [s.side]: s.pos,
+            width: s.symbol === "atom" ? "36px" : "auto",
+            fontSize: s.size,
+            color: s.color,
+            animationDuration: s.duration,
+            animationDelay: s.delay,
+            filter: `drop-shadow(0 0 10px ${s.color}66)`,
           }}
         >
-          <svg viewBox="0 0 50 75" className="w-full h-auto filter drop-shadow-lg">
-            <defs>
-              <radialGradient id={`balloon-grad-${b.id}`} cx="35%" cy="35%" r="65%">
-                <stop offset="0%" stopColor={b.colors.top} />
-                <stop offset="65%" stopColor={b.colors.mid} />
-                <stop offset="100%" stopColor={b.colors.base} />
-              </radialGradient>
-            </defs>
-            <ellipse cx="25" cy="26" rx="20" ry="24" fill={`url(#balloon-grad-${b.id})`} />
-            <ellipse cx="16" cy="16" rx="5" ry="8" fill="#FFFFFF" opacity="0.5" transform="rotate(-20 16 16)" />
-            <polygon points="22,50 28,50 25,54" fill={b.colors.base} />
-            <path d="M25,54 Q19,62 26,69 T23,76" fill="none" stroke="rgba(255,255,255,0.75)" strokeWidth="1.4" />
-          </svg>
-        </div>
-      ))}
-
-      {floatingLeaves.map((l) => (
-        <div
-          key={l.id}
-          className="absolute bottom-0 pointer-events-none z-20 animate-leaf-rise hidden sm:block opacity-90"
-          style={{
-            [l.side]: l.pos,
-            width: `${l.size}px`,
-            animationDuration: l.duration,
-            animationDelay: l.delay,
-          }}
-        >
-          <svg viewBox="0 0 40 50" className="w-full h-auto filter drop-shadow-md">
-            <defs>
-              <linearGradient id={`leaf-grad-${l.id}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor={l.colors.top} />
-                <stop offset="100%" stopColor={l.colors.base} />
-              </linearGradient>
-            </defs>
-            <path d="M20,2 C32,10 38,24 20,44 C2,24 8,10 20,2 Z" fill={`url(#leaf-grad-${l.id})`} />
-            <path d="M20,2 Q20,23 20,44" fill="none" stroke="rgba(255,255,255,0.45)" strokeWidth="1.2" />
-            <path d="M20,14 C24,11 27,10 29,11" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,22 C25,18 29,17 31,18" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,14 C16,11 13,10 11,11" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,22 C15,18 11,17 9,18" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,44 Q20,48 18,50" stroke={l.colors.base} strokeWidth="1.5" fill="none" />
-          </svg>
+          {s.symbol === "atom" ? (
+            <svg viewBox="0 0 40 40" className="w-8 h-8 filter drop-shadow-md">
+              <circle cx="20" cy="20" r="3.5" fill={s.color} />
+              <ellipse cx="20" cy="20" rx="16" ry="6" fill="none" stroke={s.color} strokeWidth="1.6" transform="rotate(0 20 20)" opacity="0.85" />
+              <ellipse cx="20" cy="20" rx="16" ry="6" fill="none" stroke={s.color} strokeWidth="1.6" transform="rotate(60 20 20)" opacity="0.85" />
+              <ellipse cx="20" cy="20" rx="16" ry="6" fill="none" stroke={s.color} strokeWidth="1.6" transform="rotate(120 20 20)" opacity="0.85" />
+            </svg>
+          ) : (
+            <span className="font-serif font-black tracking-wider leading-none drop-shadow-md">
+              {s.symbol}
+            </span>
+          )}
         </div>
       ))}
 
@@ -165,7 +128,7 @@ export default function AdmissionBanner({ openAdmissionModal }) {
           <div className="w-full md:w-5/12 px-4 py-2 flex flex-col justify-center text-white bg-[#0B1C2C] md:h-full">
             <div className="flex items-center gap-1.5 text-gold-400 text-[10px] sm:text-[11px] font-bold uppercase tracking-wider mb-0.5">
               <Sparkles className="w-3 h-3 text-gold-400 flex-shrink-0" />
-              <span>Nursery to Class XII Admissions Open</span>
+              <span>Nursery to Class XI Admissions Open</span>
             </div>
             <h3 className="font-serif text-base sm:text-lg md:text-xl font-extrabold text-white leading-tight">
               Admissions Going On for <span className="text-gold-400">AY 2027-2028</span>
