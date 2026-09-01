@@ -11,7 +11,7 @@ export default function AboutPage({ openChairmanModal, openViceChairmanModal, op
     <PageWrapper>
       <HeaderBanner
         title="About Cohen International School"
-        subtitle="A 10-Acre Green Campus Next to IIT Bhubaneswar — Where Academic Rigor Meets Holistic Growth & Future-Ready Skills."
+        subtitle="A 10-Acre Green Campus Near to IIT Bhubaneswar — Where Academic Rigor Meets Holistic Growth & Future-Ready Skills."
 
         breadcrumb="About Us"
         bgImage="/images/about_banner.png"
@@ -324,7 +324,7 @@ export default function AboutPage({ openChairmanModal, openViceChairmanModal, op
                 S
               </div>
               <h3 className="font-display text-2xl text-navy-900 font-semibold mb-3">
-                Self-Paced Growth
+                Engaging Growth
               </h3>
               <p className="text-navy-700/80 text-sm leading-relaxed">
                 Customized academic mentorship, personalized doubt-clearing sessions, and digital portal access tailored to each child's learning speed.

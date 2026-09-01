@@ -27,7 +27,7 @@ const testimonialsList = [
   {
     id: 3,
     quote:
-      "CIS, an acronym of COHEN INTERNATIONAL SCHOOL, is not simply a school; rather it's a Learning Villa. In fact, pedagogy at CIS is Collaborative (C), Instrumental (I) and Self-Paced (S). The educationists are cooperative, learned, and display immense patience.",
+      "CIS, an acronym of COHEN INTERNATIONAL SCHOOL, is not simply a school; rather it's a Learning Villa. In fact, pedagogy at CIS is Collaborative (C), Instrumental (I) and Engaging (S). The educationists are cooperative, learned, and display immense patience.",
     name: "Lt Cdr Raj Kumar",
     title: "B.Sc. in Mathematics (Hons.) with Distinction",
     relation: "Parent of CIS Student",

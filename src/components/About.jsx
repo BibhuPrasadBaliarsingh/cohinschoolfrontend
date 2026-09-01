@@ -5,6 +5,13 @@ import AnimatedCounter from "./AnimatedCounter";
 
 const talks = [
   {
+    id: 3,
+    image: "/images/cohen-talk/talk_3.jpeg",
+    day: "27",
+    month: "July",
+    title: "Cohen Talks on Chess in Education",
+  },
+  {
     id: 1,
     image: "/images/cohen-talk/talk_1.jpg",
     day: "11",
@@ -17,13 +24,6 @@ const talks = [
     day: "17",
     month: "December",
     title: 'Cohen Talks "Newtons Playground"',
-  },
-  {
-    id: 3,
-    image: "/images/cohen-talk/talk_3.jpeg",
-    day: "27",
-    month: "July",
-    title: "Cohen Talks on Chess in Education",
   },
 ];
 
@@ -221,7 +221,7 @@ export default function About({ openChairmanModal }) {
               A Temple of Learning
               <br />
               <span className="italic text-navy-700">
-                Next to IIT Bhubaneswar
+                Near to IIT Bhubaneswar
               </span>
             </h2>
             <p className="text-navy-700/80 text-lg leading-relaxed mb-6">
@@ -233,9 +233,9 @@ export default function About({ openChairmanModal }) {
             </p>
             <p className="text-navy-700/80 text-lg leading-relaxed mb-6">
               Our pedagogy —{" "}
-              <strong>Collaborative, Instrumental & Self-Paced (CIS)</strong> —
+              <strong>Collaborative, Instrumental & Engaging (CIS)</strong> —
               transforms classrooms into vibrant learning spaces. From Nursery
-              to Class XII, students experience Project-Based Learning, Design
+              to Class XII, students experience Theme-Based Learning, Project-Based Learning, Design
               Thinking, Cambridge English, Artificial Intelligence, Coding &
               Robotics, alongside integrated coaching for IIT-JEE and NEET at no
               extra cost.
@@ -376,14 +376,15 @@ export default function About({ openChairmanModal }) {
               </div>
             </div>
 
-            {/* Floating badge */}
-            <div className="absolute -top-6 -right-6 w-32 h-32 rounded-full bg-gold-500 flex flex-col items-center justify-center shadow-xl animate-float">
-              <span className="font-display text-3xl text-navy-900 font-bold">
-                <AnimatedCounter end={10} suffix="+" duration={1800} />
-              </span>
-              <span className="text-navy-900 text-xs font-medium text-center leading-tight px-2">
-                Years of Excellence
-              </span>
+            {/* Floating Gold Circular Stamp Seal (Direct Image Reference) */}
+            <div className="absolute -top-7 -right-7 sm:-top-8 sm:-right-8 w-36 h-36 sm:w-40 sm:h-40 animate-float z-20 select-none group cursor-pointer">
+              <div className="relative w-full h-full -rotate-12 group-hover:rotate-0 group-hover:scale-105 transition-all duration-500">
+                <img
+                  src="/images/over_2_decades_stamp.png"
+                  alt="Over 2 Decades of Excellence Stamp"
+                  className="w-full h-full object-contain drop-shadow-[0_12px_28px_rgba(0,0,0,0.35)]"
+                />
+              </div>
             </div>
             {/* Stats */}
             <div className="mt-16 rounded-[2rem] bg-gold-500/10 border border-gold-400/30 p-6 shadow-2xl backdrop-blur-xl reveal">

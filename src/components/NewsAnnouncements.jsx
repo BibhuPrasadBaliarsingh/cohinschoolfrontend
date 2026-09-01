@@ -55,6 +55,7 @@ const defaultEventsData = [
       "Dear Parents,\n\nWe are pleased to inform you that Cohen International School, in collaboration with THINK TURF, is introducing Chess as part of the school curriculum for Grades 1 to 6.\n\nChess will help students develop concentration, logical and cognitive thinking, speed, accuracy, problem-solving, and decision-making skills, which can also contribute to improved examination performance.\n\nThe programme will be FREE for the first two months. Thereafter, students may continue the programme by paying a nominal course fee.\n\nWe encourage all students to actively participate.\n\nRegards,\nCohen International School",
     pdfUrl: "#"
   },
+  
   {
     id: "evt-001",
     day: "26",
@@ -64,7 +65,7 @@ const defaultEventsData = [
     studentName: "Bhavesh Patra",
     rank: "AIR 29 (Odisha State Rank 1)",
     category: "JEE Advanced Result",
-    image: img3605,
+    image: img3611,
     fallbackUrl: officialLogo,
     posterBadge: "AIR 29 • State Rank 1",
     summary:
@@ -82,7 +83,7 @@ const defaultEventsData = [
     studentName: "Aryasmman Pradhan",
     rank: "AIR 314 (Odisha State Rank 2)",
     category: "JEE Advanced Result",
-    image: img3611,
+    image: img3605,
     fallbackUrl: officialLogo,
     posterBadge: "AIR 314 • State Rank 2",
     summary:
@@ -91,6 +92,7 @@ const defaultEventsData = [
       "Cohen International School proudly congratulates Aryasmman Pradhan for achieving AIR 314 and Odisha State Rank 2 in JEE (Advanced) 2026. As a student of the Cohen Vidwan Integrated Batch, Aryasmman attributes his success to regular mock tests, 1-on-1 faculty mentorship, and state-of-the-art campus learning environment.",
     pdfUrl: "https://drive.google.com/file/d/1gQa9u2EHouQNeoMaA7HTFnNi7pBrRwDt/view"
   },
+  
   {
     id: "evt-003",
     day: "14",
@@ -431,10 +433,11 @@ export default function NewsAnnouncements({ openAdmissionModal, isPage = false }
           onClick={() => setSelectedEvent(null)}
         >
           <div
-            className="bg-white dark:bg-navy-900 border border-gold-500/30 rounded-3xl p-6 sm:p-8 max-w-xl w-full shadow-2xl space-y-4 relative text-navy-950 dark:text-white"
+            className="bg-white dark:bg-navy-900 border border-gold-500/30 rounded-3xl p-5 sm:p-7 max-w-xl w-full max-h-[90vh] flex flex-col shadow-2xl relative text-navy-950 dark:text-white overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-start justify-between gap-4 pb-3 border-b border-gray-200 dark:border-white/10">
+            {/* Modal Header */}
+            <div className="flex items-start justify-between gap-4 pb-3.5 border-b border-gray-200 dark:border-white/10 flex-shrink-0">
               <div>
                 <div className="flex items-center gap-2 text-xs font-bold text-emerald-600 dark:text-gold-400 mb-1">
                   <Calendar className="w-3.5 h-3.5" />
@@ -442,23 +445,35 @@ export default function NewsAnnouncements({ openAdmissionModal, isPage = false }
                   <span>•</span>
                   <span>{selectedEvent.category}</span>
                 </div>
-                <h3 className="font-serif text-xl font-bold">{selectedEvent.title}</h3>
+                <h3 className="font-serif text-lg sm:text-xl font-bold leading-snug">{selectedEvent.title}</h3>
               </div>
-              <button onClick={() => setSelectedEvent(null)} className="p-1 rounded-lg text-gray-400 hover:text-gray-600 dark:hover:text-white">
+              <button
+                onClick={() => setSelectedEvent(null)}
+                className="p-2 rounded-full bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-white/80 hover:bg-gold-500 hover:text-navy-950 transition flex-shrink-0 cursor-pointer"
+                title="Close"
+              >
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <div className="rounded-xl overflow-hidden bg-[#06121E] flex items-center justify-center p-2 min-h-[220px] max-h-[380px]">
-              <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-full max-h-[360px] object-contain" />
+            {/* Modal Scrollable Body */}
+            <div className="overflow-y-auto space-y-4 py-4 pr-1 flex-1 custom-scrollbar">
+              <div className="rounded-2xl overflow-hidden bg-[#06121E] w-full border border-gold-500/20 shadow-md">
+                <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-[240px] sm:h-[300px] object-fill rounded-2xl" />
+              </div>
+
+              <div className="space-y-3 text-xs sm:text-sm text-gray-700 dark:text-white/80 leading-relaxed">
+                {selectedEvent.summary && (
+                  <p className="font-bold text-navy-900 dark:text-gold-300">{selectedEvent.summary}</p>
+                )}
+                {selectedEvent.fullNotice && (
+                  <p className="whitespace-pre-line text-gray-700 dark:text-white/80">{selectedEvent.fullNotice}</p>
+                )}
+              </div>
             </div>
 
-            <div className="space-y-3 text-xs sm:text-sm text-gray-700 dark:text-white/80 leading-relaxed">
-              <p className="font-bold text-navy-900 dark:text-gold-300">{selectedEvent.summary}</p>
-              <p>{selectedEvent.fullNotice}</p>
-            </div>
-
-            <div className="pt-3 border-t border-gray-200 dark:border-white/10 flex items-center justify-between">
+            {/* Modal Footer */}
+            <div className="pt-3 border-t border-gray-200 dark:border-white/10 flex items-center justify-between flex-shrink-0">
               <div className="flex items-center gap-1.5 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                 <ShieldCheck className="w-4 h-4" /> Verified CIS Release
               </div>
@@ -467,7 +482,7 @@ export default function NewsAnnouncements({ openAdmissionModal, isPage = false }
                   href={selectedEvent.pdfUrl}
                   target="_blank"
                   rel="noreferrer"
-                  className="px-4 py-2 rounded-xl bg-gold-500 text-navy-950 font-bold hover:bg-gold-400 text-xs transition flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-xl bg-gold-500 text-navy-950 font-bold hover:bg-gold-400 text-xs transition flex items-center gap-1.5 shadow"
                 >
                   <Download className="w-3.5 h-3.5" /> Download Circular
                 </a>
@@ -484,119 +499,121 @@ export default function NewsAnnouncements({ openAdmissionModal, isPage = false }
           onClick={() => setShowDeployModal(false)}
         >
           <div
-            className="bg-navy-900 border border-gold-500/40 rounded-3xl p-6 sm:p-8 max-w-lg w-full shadow-2xl space-y-4 relative text-white"
+            className="bg-navy-900 border border-gold-500/40 rounded-3xl p-6 sm:p-8 max-w-lg w-full max-h-[90vh] flex flex-col shadow-2xl relative text-white overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <div className="flex items-center justify-between pb-3 border-b border-white/10">
+            <div className="flex items-center justify-between pb-3 border-b border-white/10 flex-shrink-0">
               <div className="flex items-center gap-2">
                 <Megaphone className="w-5 h-5 text-gold-400" />
                 <h3 className="font-display text-lg font-bold text-white">
                   Deploy / Publish New Event Poster
                 </h3>
               </div>
-              <button onClick={() => setShowDeployModal(false)} className="text-white/60 hover:text-white">
+              <button onClick={() => setShowDeployModal(false)} className="text-white/60 hover:text-white p-1 rounded-lg">
                 <X className="w-5 h-5" />
               </button>
             </div>
 
-            <p className="text-xs text-white/70">
-              Fill out details to publish a live news item to the school homepage. (Frontend State Simulator for Admin).
-            </p>
+            <div className="overflow-y-auto flex-1 pr-1 py-2 custom-scrollbar space-y-4">
+              <p className="text-xs text-white/70">
+                Fill out details to publish a live news item to the school homepage. (Frontend State Simulator for Admin).
+              </p>
 
-            <form onSubmit={handleDeploySubmit} className="space-y-4">
-              <div>
-                <label className="block text-xs font-semibold text-white/90 mb-1">Event Title *</label>
-                <input
-                  type="text"
-                  required
-                  value={deployTitle}
-                  onChange={(e) => setDeployTitle(e.target.value)}
-                  placeholder="e.g. JEE (Advanced) 2026 : Odisha State Rank 1"
-                  className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-3">
+              <form onSubmit={handleDeploySubmit} className="space-y-4">
                 <div>
-                  <label className="block text-xs font-semibold text-white/90 mb-1">Date Number *</label>
+                  <label className="block text-xs font-semibold text-white/90 mb-1">Event Title *</label>
                   <input
                     type="text"
                     required
-                    value={deployDay}
-                    onChange={(e) => setDeployDay(e.target.value)}
-                    placeholder="e.g. 26"
+                    value={deployTitle}
+                    onChange={(e) => setDeployTitle(e.target.value)}
+                    placeholder="e.g. JEE (Advanced) 2026 : Odisha State Rank 1"
                     className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
                   />
                 </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-semibold text-white/90 mb-1">Date Number *</label>
+                    <input
+                      type="text"
+                      required
+                      value={deployDay}
+                      onChange={(e) => setDeployDay(e.target.value)}
+                      placeholder="e.g. 26"
+                      className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
+                    />
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-white/90 mb-1">Month Name *</label>
+                    <input
+                      type="text"
+                      required
+                      value={deployMonth}
+                      onChange={(e) => setDeployMonth(e.target.value)}
+                      placeholder="e.g. July"
+                      className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
+                    />
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-2 gap-3">
+                  <div>
+                    <label className="block text-xs font-semibold text-white/90 mb-1">Category</label>
+                    <select
+                      value={deployCategory}
+                      onChange={(e) => setDeployCategory(e.target.value)}
+                      className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
+                    >
+                      {categories.filter((c) => c !== "All").map((c) => (
+                        <option key={c} value={c}>{c}</option>
+                      ))}
+                    </select>
+                  </div>
+                  <div>
+                    <label className="block text-xs font-semibold text-white/90 mb-1">Poster Tag</label>
+                    <input
+                      type="text"
+                      value={deployBadge}
+                      onChange={(e) => setDeployBadge(e.target.value)}
+                      placeholder="e.g. 2-Yr Integrated Program"
+                      className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
+                    />
+                  </div>
+                </div>
+
                 <div>
-                  <label className="block text-xs font-semibold text-white/90 mb-1">Month Name *</label>
+                  <label className="block text-xs font-semibold text-white/90 mb-1">Poster Image URL (Optional)</label>
+                  <input
+                    type="text"
+                    value={deployImage}
+                    onChange={(e) => setDeployImage(e.target.value)}
+                    placeholder="https://... (Leave blank for default high-res poster)"
+                    className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-xs font-semibold text-white/90 mb-1">Summary *</label>
                   <input
                     type="text"
                     required
-                    value={deployMonth}
-                    onChange={(e) => setDeployMonth(e.target.value)}
-                    placeholder="e.g. July"
+                    value={deploySummary}
+                    onChange={(e) => setDeploySummary(e.target.value)}
+                    placeholder="Brief summary text"
                     className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
                   />
                 </div>
-              </div>
 
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="block text-xs font-semibold text-white/90 mb-1">Category</label>
-                  <select
-                    value={deployCategory}
-                    onChange={(e) => setDeployCategory(e.target.value)}
-                    className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
-                  >
-                    {categories.filter((c) => c !== "All").map((c) => (
-                      <option key={c} value={c}>{c}</option>
-                    ))}
-                  </select>
-                </div>
-                <div>
-                  <label className="block text-xs font-semibold text-white/90 mb-1">Poster Tag</label>
-                  <input
-                    type="text"
-                    value={deployBadge}
-                    onChange={(e) => setDeployBadge(e.target.value)}
-                    placeholder="e.g. 2-Yr Integrated Program"
-                    className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-white/90 mb-1">Poster Image URL (Optional)</label>
-                <input
-                  type="text"
-                  value={deployImage}
-                  onChange={(e) => setDeployImage(e.target.value)}
-                  placeholder="https://... (Leave blank for default high-res poster)"
-                  className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
-                />
-              </div>
-
-              <div>
-                <label className="block text-xs font-semibold text-white/90 mb-1">Summary *</label>
-                <input
-                  type="text"
-                  required
-                  value={deploySummary}
-                  onChange={(e) => setDeploySummary(e.target.value)}
-                  placeholder="Brief summary text"
-                  className="w-full px-3.5 py-2.5 bg-navy-950 border border-white/20 rounded-xl text-xs text-white focus:outline-none focus:border-gold-400"
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-500 transition text-xs shadow-lg flex items-center justify-center gap-1.5"
-              >
-                <Sparkles className="w-4 h-4" />
-                <span>Deploy &amp; Publish Poster (Live Preview)</span>
-              </button>
-            </form>
+                <button
+                  type="submit"
+                  className="w-full py-3 bg-emerald-600 text-white font-bold rounded-xl hover:bg-emerald-500 transition text-xs shadow-lg flex items-center justify-center gap-1.5"
+                >
+                  <Sparkles className="w-4 h-4" />
+                  <span>Deploy &amp; Publish Poster (Live Preview)</span>
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       )}

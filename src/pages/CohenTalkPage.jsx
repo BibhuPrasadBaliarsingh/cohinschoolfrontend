@@ -24,6 +24,24 @@ import PageWrapper from "../components/PageWrapper";
 
 const talkItems = [
   {
+    id: 3,
+    title: "Cohen Talks on Chess in Education",
+    category: "Arts & Leadership",
+    date: "27th July, 2026",
+    time: "11:00 AM to 1:00 PM",
+    venue: "Cohen Grand Auditorium",
+    speakers: [
+      {
+        name: "Swayangsu Satyakam",
+        title: "FIDE Lead School Instructor & National Coach",
+      },
+    ],
+    image: "/images/cohen-talk/talk_3.jpeg",
+    description:
+      "Cohen International School successfully hosted Cohen Talks on Chess in Education, highlighting the role of chess in developing strategic thinking, mental focus, confidence, and academic discipline.",
+    tag: "COGNITIVE MASTERY",
+  },
+  {
     id: 1,
     title: "Future of Work - Are you ready?",
     category: "Career & Industry",
@@ -53,24 +71,6 @@ const talkItems = [
     description:
       "Celebrating another inspiring edition of CohenTalks: 17th December, 2023. Live hands-on physics experiments, mechanics demonstrations, and creative STEM learning.",
     tag: "STEM WORKSHOP",
-  },
-  {
-    id: 3,
-    title: "Cohen Talks on Chess in Education",
-    category: "Arts & Leadership",
-    date: "27th July, 2026",
-    time: "11:00 AM to 1:00 PM",
-    venue: "Cohen Grand Auditorium",
-    speakers: [
-      {
-        name: "Swayangsu Satyakam",
-        title: "FIDE Lead School Instructor & National Coach",
-      },
-    ],
-    image: "/images/cohen-talk/talk_3.jpeg",
-    description:
-      "Cohen International School successfully hosted Cohen Talks on Chess in Education, highlighting the role of chess in developing strategic thinking, mental focus, confidence, and academic discipline.",
-    tag: "COGNITIVE MASTERY",
   },
   {
     id: 4,
@@ -309,7 +309,7 @@ export default function CohenTalkPage({ openAdmissionModal }) {
             <div className="lg:col-span-5">
               <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-navy-950 group">
                 <img
-                  src="/images/cohen-talk/talk_1.jpg"
+                  src="/images/cohen-talk/talk_3.jpeg"
                   alt="Cohen Talks Spotlight"
                   className="w-full h-[420px] object-contain bg-white transition-transform duration-700 group-hover:scale-105"
                 />
@@ -317,8 +317,8 @@ export default function CohenTalkPage({ openAdmissionModal }) {
                   <span className="px-3 py-1 bg-gold-500 text-navy-950 text-xs font-bold rounded-md w-fit mb-2">
                     FEATURED TALK
                   </span>
-                  <h3 className="text-white font-bold text-xl">Future of Work - Are You Ready?</h3>
-                  <p className="text-slate-300 text-xs mt-1">Suniti Nanda (CEO) & Parijat Garg (COO) • Maxx Up</p>
+                  <h3 className="text-white font-bold text-xl">Cohen Talks on Chess in Education</h3>
+                  <p className="text-slate-300 text-xs mt-1">Swayangsu Satyakam • FIDE Lead School Instructor & National Coach</p>
                 </div>
               </div>
             </div>
