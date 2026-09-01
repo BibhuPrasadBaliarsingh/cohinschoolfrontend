@@ -108,19 +108,19 @@ export default function AdmissionModal({ closeModal, mode = 'apply' }) {
 
   return (
     <div
-      className="fixed inset-0 z-[120] bg-navy-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto animate-fadeIn"
+      className="fixed inset-0 z-[120] bg-navy-950/85 backdrop-blur-md flex items-center justify-center p-2 sm:p-4 overflow-y-auto animate-fadeIn"
       onClick={closeModal}
       role="dialog"
       aria-modal="true"
       aria-labelledby="admission-modal-title"
     >
       <div
-        className="bg-white rounded-3xl max-w-3xl w-full max-h-[88vh] sm:max-h-[92vh] flex flex-col shadow-2xl overflow-hidden my-auto"
+        className="bg-white rounded-2xl sm:rounded-3xl max-w-3xl w-full max-h-[82vh] sm:max-h-[90vh] flex flex-col shadow-2xl overflow-hidden my-auto"
         style={{ border: '1.5px solid rgba(201,162,39,0.3)' }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Banner Header */}
-        <div className="relative h-40 sm:h-52 rounded-t-3xl overflow-hidden shrink-0">
+        {/* Banner Header (Compact on mobile) */}
+        <div className="relative h-28 sm:h-44 rounded-t-2xl sm:rounded-t-3xl overflow-hidden shrink-0">
           <img
             src={img3671}
             alt="Cohen International School Campus"
@@ -134,27 +134,27 @@ export default function AdmissionModal({ closeModal, mode = 'apply' }) {
               background: 'linear-gradient(to top, rgba(7,15,26,0.95) 0%, rgba(7,15,26,0.55) 55%, rgba(7,15,26,0.25) 100%)'
             }}
           />
-          <div className="absolute top-4 left-4">
-            <div className="bg-white/95 backdrop-blur px-2.5 py-1.5 rounded-xl shadow-lg flex items-center gap-2">
-              <img src="/logo.png" alt="Cohen Logo" className="h-6 sm:h-7 w-auto object-contain" />
+          <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
+            <div className="bg-white/95 backdrop-blur px-2 py-1 rounded-lg sm:rounded-xl shadow flex items-center gap-2">
+              <img src="/logo.png" alt="Cohen Logo" className="h-5 sm:h-7 w-auto object-contain" />
             </div>
           </div>
           <button
             type="button"
             onClick={closeModal}
             aria-label="Close modal"
-            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur flex items-center justify-center text-white transition cursor-pointer"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur flex items-center justify-center text-white transition cursor-pointer z-10"
           >
-            <X className="w-5 h-5" />
+            <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
-          <div className="absolute top-4 left-1/2 -translate-x-1/2">
+          <div className="absolute top-3 left-1/2 -translate-x-1/2 hidden sm:block">
             <span
               style={{
                 background: 'linear-gradient(135deg,#C9A227,#E8C547)',
                 color: '#0B1C2C',
-                padding: '4px 16px',
+                padding: '3px 14px',
                 borderRadius: '999px',
-                fontSize: '0.68rem',
+                fontSize: '0.65rem',
                 fontWeight: 800,
                 letterSpacing: '0.09em',
                 textTransform: 'uppercase'
@@ -163,18 +163,18 @@ export default function AdmissionModal({ closeModal, mode = 'apply' }) {
               Admissions for AY 2027-2028
             </span>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 px-5 sm:px-6 pb-4 sm:pb-5">
-            <h3 id="admission-modal-title" className="font-display text-lg sm:text-2xl text-white font-bold leading-tight">
+          <div className="absolute bottom-0 left-0 right-0 px-4 sm:px-6 pb-3 sm:pb-4">
+            <h3 id="admission-modal-title" className="font-display text-base sm:text-2xl text-white font-bold leading-tight truncate">
               {title}
             </h3>
-            <p className="text-xs sm:text-sm text-white/70 mt-0.5">{subtitle}</p>
+            <p className="text-[11px] sm:text-sm text-white/70 mt-0.5 truncate">{subtitle}</p>
           </div>
         </div>
 
-        {/* Scrollable Form Body */}
-        <form className="p-5 sm:p-8 space-y-6 overflow-y-auto flex-1 overscroll-contain text-left" onSubmit={handleSubmit}>
-          <div className="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between">
-            <span>Note: * indicates mandatory information to be filled</span>
+        {/* Scrollable Form Body (Compact padding on mobile with bottom padding for submit button) */}
+        <form className="p-4 sm:p-8 space-y-4 sm:space-y-6 overflow-y-auto flex-1 overscroll-contain text-left pb-8" onSubmit={handleSubmit}>
+          <div className="bg-amber-50 border border-amber-200 text-amber-900 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center justify-between">
+            <span>Note: * mandatory fields</span>
             <span className="text-[10px] text-amber-700 bg-amber-200/60 px-2 py-0.5 rounded-md font-bold">REQUIRED</span>
           </div>
 
