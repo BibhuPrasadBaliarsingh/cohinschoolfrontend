@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Target, Compass, Quote, ArrowRight, Download, Sparkles, ChevronDown, ChevronUp } from "lucide-react";
+import { Target, Compass, Quote, ArrowRight, Download, Sparkles, ChevronDown, ChevronUp, Atom, GraduationCap, FlaskConical, Microscope } from "lucide-react";
 import AnimatedCounter from "./AnimatedCounter";
 
 const talks = [
@@ -39,175 +39,70 @@ export default function About({ openChairmanModal }) {
   }, []);
 
   return (
-    <section id="about" className="py-24 lg:py-32 relative overflow-hidden bg-white text-navy-900">
+    <section id="about" className="py-12 lg:py-16 relative overflow-hidden bg-white text-navy-900">
       <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-cream-100 to-transparent pointer-events-none"></div>
 
-      {/* Floating Parachutes, Leaves & Hot Air Balloon Animations on White Background */}
+      {/* Floating Academic & Science Animations: Atoms, Graduation Caps, Math Symbols, Greek Letters */}
       <style>{`
-        @keyframes parachuteGlide {
-          0% {
-            transform: translateY(-40px) translateX(0px) rotate(-4deg);
-            opacity: 0.3;
-          }
-          20% {
-            opacity: 0.95;
-          }
-          50% {
-            transform: translateY(160px) translateX(-30px) rotate(6deg);
-            opacity: 1;
-          }
-          80% {
-            opacity: 0.9;
-          }
-          100% {
-            transform: translateY(320px) translateX(20px) rotate(-6deg);
-            opacity: 0.3;
-          }
+        @keyframes floatAcademic1 {
+          0% { transform: translateY(0px) rotate(0deg) scale(0.95); opacity: 0.4; }
+          50% { transform: translateY(-40px) rotate(15deg) scale(1.1); opacity: 0.95; }
+          100% { transform: translateY(0px) rotate(0deg) scale(0.95); opacity: 0.4; }
         }
-        @keyframes leafFlutter {
-          0% {
-            transform: translateY(100px) translateX(0px) rotate(0deg) scale(0.9);
-            opacity: 0.3;
-          }
-          30% {
-            transform: translateY(-60px) translateX(28px) rotate(55deg) scale(1.08);
-            opacity: 0.95;
-          }
-          70% {
-            transform: translateY(-180px) translateX(-22px) rotate(160deg) scale(0.95);
-            opacity: 0.85;
-          }
-          100% {
-            transform: translateY(-290px) translateX(15px) rotate(260deg) scale(0.9);
-            opacity: 0.3;
-          }
+        @keyframes floatAcademic2 {
+          0% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.35; }
+          50% { transform: translateY(45px) rotate(-18deg) scale(1.15); opacity: 0.9; }
+          100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.35; }
         }
-        @keyframes hotAirFloat {
-          0% {
-            transform: translateY(140px) translateX(0px) rotate(0deg);
-            opacity: 0.3;
-          }
-          25% {
-            opacity: 0.95;
-          }
-          60% {
-            transform: translateY(-120px) translateX(22px) rotate(5deg);
-            opacity: 1;
-          }
-          100% {
-            transform: translateY(-320px) translateX(-15px) rotate(-5deg);
-            opacity: 0.3;
-          }
+        @keyframes pulseAtom {
+          0% { transform: rotate(0deg) scale(1); }
+          50% { transform: rotate(180deg) scale(1.1); }
+          100% { transform: rotate(360deg) scale(1); }
         }
-        .animate-parachute {
-          animation: parachuteGlide 15s ease-in-out infinite alternate;
-        }
-        .animate-leaf-flutter {
-          animation: leafFlutter 13s ease-in-out infinite;
-        }
-        .animate-hotair {
-          animation: hotAirFloat 17s ease-in-out infinite;
-        }
+        .animate-academic-1 { animation: floatAcademic1 10s ease-in-out infinite; }
+        .animate-academic-2 { animation: floatAcademic2 12s ease-in-out infinite; }
+        .animate-atom-spin { animation: pulseAtom 16s linear infinite; }
       `}</style>
 
-      {/* Floating Elements Container (Left & Right Margins) */}
+      {/* Floating Academic Elements Container (Left & Right Margins) */}
       <div className="absolute inset-0 pointer-events-none z-10 hidden sm:block overflow-hidden">
-        {/* Parachute 1 - Left Upper Margin */}
-        <div className="absolute top-[12%] left-[2%] w-14 animate-parachute opacity-90">
-          <svg viewBox="0 0 60 80" className="w-full h-auto filter drop-shadow-md">
-            <defs>
-              <linearGradient id="para-grad-1" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FF4D6D" />
-                <stop offset="33%" stopColor="#FFB703" />
-                <stop offset="66%" stopColor="#00F5D4" />
-                <stop offset="100%" stopColor="#7209B7" />
-              </linearGradient>
-            </defs>
-            <path d="M5,35 A25,25 0 0,1 55,35 Z" fill="url(#para-grad-1)" />
-            <path d="M17.5,35 A25,25 0 0,1 42.5,35 Z" fill="rgba(255,255,255,0.35)" />
-            <path d="M25,35 A25,25 0 0,1 35,35 Z" fill="rgba(255,255,255,0.5)" />
-            <line x1="5" y1="35" x2="27" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="17.5" y1="35" x2="28.5" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="42.5" y1="35" x2="31.5" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="55" y1="35" x2="33" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <rect x="25" y="60" width="10" height="8" rx="2" fill="#D97706" />
-          </svg>
+        {/* Floating Science Atom - Left Upper Margin */}
+        <div className="absolute top-[10%] left-[2.5%] p-3.5 rounded-2xl bg-white/90 shadow-xl border border-gold-400/40 text-gold-600 animate-academic-1">
+          <Atom className="w-8 h-8 text-gold-500 animate-atom-spin" />
         </div>
 
-        {/* Parachute 2 - Right Middle Margin */}
-        <div className="absolute top-[48%] right-[2.5%] w-16 animate-parachute opacity-90" style={{ animationDelay: "4s" }}>
-          <svg viewBox="0 0 60 80" className="w-full h-auto filter drop-shadow-md">
-            <defs>
-              <linearGradient id="para-grad-2" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#00F5D4" />
-                <stop offset="50%" stopColor="#00BBF9" />
-                <stop offset="100%" stopColor="#4361EE" />
-              </linearGradient>
-            </defs>
-            <path d="M5,35 A25,25 0 0,1 55,35 Z" fill="url(#para-grad-2)" />
-            <path d="M17.5,35 A25,25 0 0,1 42.5,35 Z" fill="rgba(255,255,255,0.35)" />
-            <line x1="5" y1="35" x2="27" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="17.5" y1="35" x2="28.5" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="42.5" y1="35" x2="31.5" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="55" y1="35" x2="33" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <rect x="25" y="60" width="10" height="8" rx="2" fill="#92400E" />
-          </svg>
+        {/* Floating Graduation Cap - Right Upper Margin */}
+        <div className="absolute top-[16%] right-[3%] p-3.5 rounded-2xl bg-navy-900 shadow-xl border border-gold-400/40 text-gold-400 animate-academic-2">
+          <GraduationCap className="w-8 h-8 text-gold-400" />
         </div>
 
-        {/* Natural Green Leaf 1 - Left Lower Margin */}
-        <div className="absolute top-[65%] left-[3.5%] w-9 animate-leaf-flutter opacity-90" style={{ animationDelay: "1.5s" }}>
-          <svg viewBox="0 0 40 50" className="w-full h-auto filter drop-shadow-sm">
-            <defs>
-              <linearGradient id="about-leaf-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#52B788" />
-                <stop offset="100%" stopColor="#1B4332" />
-              </linearGradient>
-            </defs>
-            <path d="M20,2 C32,10 38,24 20,44 C2,24 8,10 20,2 Z" fill="url(#about-leaf-1)" />
-            <path d="M20,2 Q20,23 20,44" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.2" />
-            <path d="M20,14 C24,11 27,10 29,11" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,22 C25,18 29,17 31,18" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,14 C16,11 13,10 11,11" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,22 C15,18 11,17 9,18" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,44 Q20,48 18,50" stroke="#1B4332" strokeWidth="1.5" fill="none" />
-          </svg>
+        {/* Floating Greek & Math Symbols Pill (π, β, γ, E=mc², + - ×) - Left Middle Margin */}
+        <div className="absolute top-[42%] left-[2%] px-3.5 py-2.5 rounded-2xl bg-gradient-to-r from-navy-900 to-navy-800 text-gold-400 font-serif text-sm font-bold shadow-xl border border-gold-400/40 animate-academic-2 flex items-center gap-2">
+          <span className="text-base font-extrabold text-gold-300">π</span>
+          <span className="text-xs text-white/70">•</span>
+          <span className="text-base font-extrabold text-gold-400">β</span>
+          <span className="text-xs text-white/70">•</span>
+          <span className="text-base font-extrabold text-gold-300">γ</span>
+          <span className="text-xs text-gold-400 font-mono bg-white/10 px-2 py-0.5 rounded">+ − × ÷</span>
         </div>
 
-        {/* Natural Green Leaf 2 - Right Upper Margin */}
-        <div className="absolute top-[18%] right-[3.5%] w-8 animate-leaf-flutter opacity-90" style={{ animationDelay: "5.5s" }}>
-          <svg viewBox="0 0 40 50" className="w-full h-auto filter drop-shadow-sm">
-            <defs>
-              <linearGradient id="about-leaf-2" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#74C69D" />
-                <stop offset="100%" stopColor="#2D6A4F" />
-              </linearGradient>
-            </defs>
-            <path d="M20,2 C32,10 38,24 20,44 C2,24 8,10 20,2 Z" fill="url(#about-leaf-2)" />
-            <path d="M20,2 Q20,23 20,44" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.2" />
-            <path d="M20,14 C24,11 27,10 29,11" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,22 C25,18 29,17 31,18" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,14 C16,11 13,10 11,11" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,22 C15,18 11,17 9,18" stroke="rgba(255,255,255,0.35)" strokeWidth="0.8" fill="none" />
-            <path d="M20,44 Q20,48 18,50" stroke="#2D6A4F" strokeWidth="1.5" fill="none" />
-          </svg>
+        {/* Floating Chemistry Flask & Lab - Left Lower Margin */}
+        <div className="absolute top-[68%] left-[3%] p-3.5 rounded-2xl bg-white/90 shadow-xl border border-emerald-400/40 text-emerald-600 animate-academic-1">
+          <FlaskConical className="w-7 h-7 text-emerald-600" />
         </div>
 
-        {/* Hot Air Balloon - Right Lower Margin */}
-        <div className="absolute top-[75%] right-[1.8%] w-16 animate-hotair opacity-90" style={{ animationDelay: "2.8s" }}>
-          <svg viewBox="0 0 60 90" className="w-full h-auto filter drop-shadow-md">
-            <defs>
-              <linearGradient id="hab-grad-1" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#FF9F1C" />
-                <stop offset="50%" stopColor="#FF4081" />
-                <stop offset="100%" stopColor="#7C4DFF" />
-              </linearGradient>
-            </defs>
-            <path d="M30,5 C48,5 55,25 45,50 C40,62 36,65 30,65 C24,65 20,62 15,50 C5,25 12,5 30,5 Z" fill="url(#hab-grad-1)" />
-            <ellipse cx="23" cy="20" rx="4" ry="12" fill="rgba(255,255,255,0.35)" transform="rotate(-15 23 20)" />
-            <line x1="22" y1="65" x2="26" y2="78" stroke="#555" strokeWidth="1.2" />
-            <line x1="38" y1="65" x2="34" y2="78" stroke="#555" strokeWidth="1.2" />
-            <rect x="24" y="78" width="12" height="9" rx="2" fill="#8D6E63" />
-          </svg>
+        {/* Floating Physics & Math Formula Pill (α + β = γ | √x | ∞) - Right Middle Margin */}
+        <div className="absolute top-[52%] right-[2.5%] px-3.5 py-2.5 rounded-2xl bg-white/90 shadow-xl border border-gold-400/40 text-navy-900 font-serif text-xs font-bold animate-academic-1 flex items-center gap-2">
+          <span className="text-sm font-bold text-navy-900 font-mono">E = mc²</span>
+          <span className="text-xs text-navy-400">•</span>
+          <span className="text-sm font-bold text-gold-600">√x</span>
+          <span className="text-xs text-navy-400">•</span>
+          <span className="text-sm font-bold text-navy-900">∞</span>
+        </div>
+
+        {/* Floating Microscope / Research Icon - Right Lower Margin */}
+        <div className="absolute top-[76%] right-[3%] p-3.5 rounded-2xl bg-navy-900 shadow-xl border border-sky-400/40 text-sky-400 animate-academic-2">
+          <Microscope className="w-7 h-7 text-sky-400" />
         </div>
       </div>
 

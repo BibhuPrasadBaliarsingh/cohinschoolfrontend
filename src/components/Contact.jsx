@@ -3,7 +3,7 @@ import { MapPin, Phone, Mail, MessageCircle, Bot } from 'lucide-react';
 
 export default function Contact({ openChatbot }) {
   return (
-    <section id="contact" className="py-24 bg-[#06121E] text-white relative">
+    <section id="contact" className="py-12 lg:py-16 bg-[#06121E] text-white relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid lg:grid-cols-2 gap-16">
           <div className="reveal">

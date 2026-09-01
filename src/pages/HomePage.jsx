@@ -34,7 +34,7 @@ export default function HomePage({
       <About openChairmanModal={openChairmanModal} />
       <NewsAnnouncements openAdmissionModal={openAdmissionModal} />
       <WhyChoose openDedicatedTopic={openDedicatedTopic} />
-      <Academics />
+      <Academics isHomePage={true} />
       <Facilities openDedicatedTopic={openDedicatedTopic} />
       <Admissions openAdmissionModal={openAdmissionModal} />
       <Gallery />

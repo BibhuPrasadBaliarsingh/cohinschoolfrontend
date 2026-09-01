@@ -9,7 +9,7 @@ export default function CareersPage({ openCareerModal }) {
     <PageWrapper>
       <HeaderBanner
         title="Careers & Faculty Recruitment at CIS"
-        subtitle="We empower our educators with competitive remuneration, on-campus accommodation, continuous CPD training, and a state-of-the-art tech workspace."
+        subtitle="We empower our educators with competitive remuneration, PF & ESI social security, continuous CPD training, and a state-of-the-art tech workspace."
         
         breadcrumb="Careers"
         bgImage="/images/academics_banner.png"
@@ -44,12 +44,12 @@ export default function CareersPage({ openCareerModal }) {
             </div>
 
             <div className="p-8 rounded-3xl bg-white border border-cream-200 shadow-md">
-              <Home className="w-10 h-10 text-gold-600 mb-4" />
+              <ShieldCheck className="w-10 h-10 text-gold-600 mb-4" />
               <h3 className="font-display text-2xl text-navy-900 font-bold mb-2">
-                Free On-Campus Quarters
+                Social Security & Medical Perks
               </h3>
               <p className="text-navy-700/80 text-sm leading-relaxed">
-                Furnished residential accommodation on our 10-acre green campus for resident wardens and outstation senior faculty.
+                Provident Fund (PF), ESI medical coverage, paid leave structure, and comprehensive health insurance for faculty.
               </p>
             </div>
 

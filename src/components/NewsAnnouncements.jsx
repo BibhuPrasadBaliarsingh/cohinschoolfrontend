@@ -241,7 +241,7 @@ export default function NewsAnnouncements({ openAdmissionModal, isPage = false }
   };
 
   return (
-    <section id="news-events" className="py-16 sm:py-20 bg-navy-950 text-white relative overflow-hidden">
+    <section id="news-events" className="py-12 lg:py-16 bg-navy-950 text-white relative overflow-hidden">
       {/* Background Image with Soft Dark Tint */}
       <div className="absolute inset-0 pointer-events-none z-0">
         <img

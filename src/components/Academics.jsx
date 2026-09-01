@@ -3,178 +3,140 @@ import { Sparkles, Check, BookOpen, Layers, Award, Target, Compass, Feather, Sta
 import img3624 from '../assets/acadmic1.png';
 import img3612 from '../assets/acadmic2.png';
 
-export default function Academics() {
+export default function Academics({ isHomePage = false }) {
   const [activeGradeTab, setActiveGradeTab] = useState('kg-v');
 
   return (
-    <section id="academics" className="py-16 lg:py-24 bg-cream-50/50">
+    <section id="academics" className={`bg-cream-50/50 ${isHomePage ? 'pt-10 pb-4' : 'py-12 lg:py-16'}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
-        {/* ── ACADEMIC WINGS & ADMISSION PROCEDURE TABS ── */}
-        <div className="mb-20 rounded-3xl bg-white shadow-xl border border-gray-100 overflow-hidden">
-          {/* Green Tab Navigation Bar */}
-          <div className="bg-[#2ea44f] px-4 sm:px-8 flex items-center gap-2 border-b-2 border-green-800 overflow-x-auto no-scrollbar">
-            <button
-              type="button"
-              onClick={() => setActiveGradeTab('kg-v')}
-              className={`px-6 py-4 font-semibold text-sm sm:text-base transition-all cursor-pointer border-b-4 flex-shrink-0 ${activeGradeTab === 'kg-v'
+        {/* ── ACADEMIC WINGS & ADMISSION PROCEDURE TABS (Shown on Standalone Academics Page) ── */}
+        {!isHomePage && (
+          <div className="mb-20 rounded-3xl bg-white shadow-xl border border-gray-100 overflow-hidden">
+            {/* Green Tab Navigation Bar */}
+            <div className="bg-[#2ea44f] px-4 sm:px-8 flex items-center gap-2 border-b-2 border-green-800 overflow-x-auto no-scrollbar">
+              <button
+                type="button"
+                onClick={() => setActiveGradeTab('kg-v')}
+                className={`px-6 py-4 font-semibold text-sm sm:text-base transition-all cursor-pointer border-b-4 flex-shrink-0 ${activeGradeTab === 'kg-v'
                   ? 'bg-white text-[#2ea44f] border-[#1b5e20] font-bold rounded-t-lg shadow-sm'
                   : 'text-white border-transparent hover:bg-white/10'
-                }`}
-            >
-              KinderGarten - Grade V
-            </button>
-            <button
-              type="button"
-              onClick={() => setActiveGradeTab('vi-xi')}
-              className={`px-6 py-4 font-semibold text-sm sm:text-base transition-all cursor-pointer border-b-4 flex-shrink-0 ${activeGradeTab === 'vi-xi'
+                  }`}
+              >
+                KinderGarten - Grade V
+              </button>
+              <button
+                type="button"
+                onClick={() => setActiveGradeTab('vi-xi')}
+                className={`px-6 py-4 font-semibold text-sm sm:text-base transition-all cursor-pointer border-b-4 flex-shrink-0 ${activeGradeTab === 'vi-xi'
                   ? 'bg-white text-[#2ea44f] border-[#1b5e20] font-bold rounded-t-lg shadow-sm'
                   : 'text-white border-transparent hover:bg-white/10'
-                }`}
-            >
-              Grade VI - Grade XI
-            </button>
-          </div>
+                  }`}
+              >
+                Grade VI - Grade XI
+              </button>
+            </div>
 
-          {/* Tab Content Area */}
-          <div className="p-6 sm:p-10 lg:p-14">
-            {activeGradeTab === 'kg-v' ? (
-              <div className="animate-fadeIn">
-                {/* Heading */}
-                <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1b365d] text-center mb-10">
-                  KinderGarten - Grade V
-                </h1>
-
-                <div className="grid lg:grid-cols-12 gap-8 items-start">
-                  {/* Text Column */}
-                  <div className="lg:col-span-7 space-y-5 text-gray-700 text-sm sm:text-base leading-relaxed font-sans">
-                    <p>
-                      We assure you that we will leave a lasting positive first impression when you visit us. Our Academic counselor will take you through the school's academic structure, academic procedure and address all your queries. We will interact with the child, which will facilitate us in understanding the child's readiness for the class to which he/she has applied for.
-                    </p>
-                    <p>
-                      Admissions will be based on a formal interview/viva of the student and the prospective parents. Admissions will be confirmed based on the results of a personal interview/viva of the student.
-                    </p>
-                    <p className="font-medium text-slate-800">
-                      The following documents will be required at the time of admission:
-                    </p>
-
-                    {/* Required Documents List */}
-                    <div className="bg-slate-50/80 p-5 rounded-2xl border border-slate-100 my-4">
-                      <ul className="space-y-2 text-sm text-emerald-800 font-medium">
-                        <li className="flex items-center gap-2">
-                          <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
-                          <span>Birth certificate</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
-                          <span>Passport size Photos (12 nos of students &amp; 6 nos of Parents)</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
-                          <span>Immunization Record</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
-                          <span>Local address Proof</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
-                          <span>Parent Aadhar card &amp; V card</span>
-                        </li>
-                      </ul>
+            {/* Tab Content Area */}
+            <div className="p-6 sm:p-10 lg:p-14">
+              {activeGradeTab === 'kg-v' ? (
+                <div className="animate-fadeIn">
+                  <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1b365d] text-center mb-10">
+                    KinderGarten - Grade V
+                  </h1>
+                  <div className="grid lg:grid-cols-12 gap-8 items-start">
+                    <div className="lg:col-span-7 space-y-5 text-gray-700 text-sm sm:text-base leading-relaxed font-sans">
+                      <p>
+                        We assure you that we will leave a lasting positive first impression when you visit us. Our Academic counselor will take you through the school's academic structure, academic procedure and address all your queries.
+                      </p>
+                      <p>
+                        Admissions will be based on a formal interview/viva of the student and the prospective parents.
+                      </p>
+                      <div className="bg-slate-50/80 p-5 rounded-2xl border border-slate-100 my-4">
+                        <ul className="space-y-2 text-sm text-emerald-800 font-medium">
+                          <li className="flex items-center gap-2">
+                            <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
+                            <span>Birth certificate</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
+                            <span>Passport size Photos (12 nos of students &amp; 6 nos of Parents)</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
+                            <span>Immunization Record</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
+                            <span>Local address Proof</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
+                            <span>Parent Aadhar card &amp; V card</span>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
-
-                    <p>
-                      Students and parents will be intimated over telephone about their admission status. On confirmation of Admission, parents are required to submit a conduct certificate and transfer certificate from the school attended previously. In case of new admissions to KG class, this will be relaxed.
-                    </p>
-                  </div>
-
-                  {/* Image Column */}
-                  <div className="lg:col-span-5">
-                    <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200 group bg-slate-100 min-h-[250px]">
-                      <img
-                        src={img3624}
-                        alt="KinderGarten and Primary Classroom Students"
-                        className="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-300"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = "https://images.unsplash.com/photo-1577896851231-70ef18881754?auto=format&fit=crop&w=800&q=80";
-                        }}
-                      />
+                    <div className="lg:col-span-5">
+                      <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200 group bg-slate-100 min-h-[250px]">
+                        <img
+                          src={img3624}
+                          alt="KinderGarten and Primary Classroom Students"
+                          className="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-300"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <div className="animate-fadeIn">
-                {/* Heading */}
-                <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1b365d] text-center mb-10">
-                  Grade VI - Grade XI
-                </h1>
-
-                <div className="grid lg:grid-cols-12 gap-8 items-start">
-                  {/* Text Column */}
-                  <div className="lg:col-span-7 space-y-5 text-gray-700 text-sm sm:text-base leading-relaxed font-sans">
-                    <p>
-                      We assure you that we will leave a lasting positive first impression when you visit us. Our Academic counselor will take you through the school's academic structure, academic procedure and address all your queries. We will interact with the child, which will facilitate us in understanding the child's readiness for the class to which he/she has applied for.
-                    </p>
-                    <p>
-                      Admissions will be based on a formal interview/viva of the student and the prospective parents. Admissions will be confirmed based on the results of a personal interview/viva of the student.
-                    </p>
-                    <p className="font-medium text-slate-800">
-                      The following documents will be required at the time of admission:
-                    </p>
-
-                    {/* Required Documents List */}
-                    <div className="bg-slate-50/80 p-5 rounded-2xl border border-slate-100 my-4">
-                      <ul className="space-y-2 text-sm text-emerald-800 font-medium">
-                        <li className="flex items-center gap-2">
-                          <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
-                          <span>Birth certificate</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
-                          <span>Passport size Photos (12 nos of students &amp; 6 nos of Parents)</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
-                          <span>Immunization Record</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
-                          <span>Local address Proof</span>
-                        </li>
-                        <li className="flex items-center gap-2">
-                          <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
-                          <span>Parent Aadhar card &amp; V card</span>
-                        </li>
-                      </ul>
+              ) : (
+                <div className="animate-fadeIn">
+                  <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1b365d] text-center mb-10">
+                    Grade VI - Grade XI
+                  </h1>
+                  <div className="grid lg:grid-cols-12 gap-8 items-start">
+                    <div className="lg:col-span-7 space-y-5 text-gray-700 text-sm sm:text-base leading-relaxed font-sans">
+                      <p>
+                        We assure you that we will leave a lasting positive first impression when you visit us. Our Academic counselor will take you through the school's academic structure, academic procedure and address all your queries.
+                      </p>
+                      <p>
+                        Admissions will be based on a formal interview/viva of the student and the prospective parents.
+                      </p>
+                      <div className="bg-slate-50/80 p-5 rounded-2xl border border-slate-100 my-4">
+                        <ul className="space-y-2 text-sm text-emerald-800 font-medium">
+                          <li className="flex items-center gap-2">
+                            <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
+                            <span>Birth certificate</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
+                            <span>Passport size Photos (12 nos of students &amp; 6 nos of Parents)</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
+                            <span>Local address Proof</span>
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="text-emerald-600 font-bold text-lg leading-none">-</span>
+                            <span>Parent Aadhar card &amp; V card</span>
+                          </li>
+                        </ul>
+                      </div>
                     </div>
-
-                    <p>
-                      Students and parents will be intimated over telephone about their admission status. On confirmation of Admission, parents are required to submit a conduct certificate and transfer certificate from the school attended previously. In case of new admissions to grade-vi class, this will be relaxed.
-                    </p>
-                  </div>
-
-                  {/* Image Column */}
-                  <div className="lg:col-span-5">
-                    <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200 group bg-slate-100 min-h-[250px]">
-                      <img
-                        src={img3612}
-                        alt="Grade VI to XI Secondary Students"
-                        className="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-300"
-                        onError={(e) => {
-                          e.target.onerror = null;
-                          e.target.src = "https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=800&q=80";
-                        }}
-                      />
+                    <div className="lg:col-span-5">
+                      <div className="rounded-2xl overflow-hidden shadow-lg border border-gray-200 group bg-slate-100 min-h-[250px]">
+                        <img
+                          src={img3612}
+                          alt="Grade VI to XI Secondary Students"
+                          className="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-300"
+                        />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
+              )}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* ── NEP 2020 HEADER SECTION ── */}
         <div className="text-center mb-16 reveal">
@@ -200,7 +162,7 @@ export default function Academics() {
                   5 Years
                 </span>
                 <span className="text-xs text-emerald-700 font-semibold bg-emerald-50 px-2.5 py-0.5 rounded-md border border-emerald-200">
-                  Ages 3–8
+                  Ages 4–8
                 </span>
               </div>
               <h3 className="font-display text-xl text-navy-900 font-bold mb-1">
@@ -301,7 +263,7 @@ export default function Academics() {
         </div>
 
         {/* ── KEY FEATURES OF NEP 5+3+3+4 STRUCTURE ── */}
-        <div className="bg-gradient-to-br from-navy-900 via-navy-800 to-[#0F2840] text-white p-8 sm:p-10 rounded-3xl shadow-xl mb-20 relative overflow-hidden">
+        <div className={`bg-gradient-to-br from-navy-900 via-navy-800 to-[#0F2840] text-white p-8 sm:p-10 rounded-3xl shadow-xl relative overflow-hidden ${isHomePage ? 'mb-0' : 'mb-16'}`}>
           <div className="absolute -top-10 -right-10 w-60 h-60 bg-gold-500/10 rounded-full blur-3xl" />
 
           <h3 className="font-display text-2xl sm:text-3xl font-bold text-gold-400 mb-6 text-center">
@@ -345,129 +307,133 @@ export default function Academics() {
           </div>
         </div>
 
-        {/* ── COHEN FLAGSHIP PROGRAMMES: CFP & CSIP ── */}
-        <div className="text-center mb-12">
-          <span className="text-gold-600 font-bold tracking-widest uppercase text-xs mb-2 block">
-            SPECIALIZED ACADEMIC PATHWAYS
-          </span>
-          <h2 className="font-display text-3xl sm:text-4xl text-navy-900 font-bold">
-            Flagship Academic Programs (CFP &amp; CSIP)
-          </h2>
-          <p className="text-navy-700/80 max-w-2xl mx-auto text-sm sm:text-base mt-2">
-            Tailored programs catering to students across Odisha and other states for complete competitive &amp; board mastery.
-          </p>
-        </div>
-
-        <div className="grid lg:grid-cols-12 gap-8 mb-12">
-          {/* CFP: Cohen Foundation Program */}
-          <div className="lg:col-span-5 p-8 rounded-3xl bg-white border border-cream-300 shadow-md flex flex-col justify-between">
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-navy-900 text-gold-400 px-3 py-1 rounded-full text-xs font-black tracking-wider uppercase">
-                  CFP
-                </span>
-                <span className="text-xs font-bold text-navy-600">Classes 6 to 10</span>
-              </div>
-              <h3 className="font-display text-2xl text-navy-900 font-bold mb-3">
-                Cohen Foundation Program (CFP)
-              </h3>
-              <p className="text-navy-700/80 text-sm leading-relaxed mb-6">
-                A holistic journey fostering critical thinking, problem-solving, and structured pre-foundation coaching for IIT-JEE, NEET &amp; Olympiads.
+        {/* ── COHEN FLAGSHIP PROGRAMMES: CFP & CSIP (Shown on Standalone Academics Page) ── */}
+        {!isHomePage && (
+          <>
+            <div className="text-center mb-12">
+              <span className="text-gold-600 font-bold tracking-widest uppercase text-xs mb-2 block">
+                SPECIALIZED ACADEMIC PATHWAYS
+              </span>
+              <h2 className="font-display text-3xl sm:text-4xl text-navy-900 font-bold">
+                Flagship Academic Programs (CFP &amp; CSIP)
+              </h2>
+              <p className="text-navy-700/80 max-w-2xl mx-auto text-sm sm:text-base mt-2">
+                Tailored programs catering to students across Odisha and other states for complete competitive &amp; board mastery.
               </p>
-
-              <ul className="space-y-3 text-xs sm:text-sm text-navy-800 font-medium">
-                <li className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-gold-600 flex-shrink-0 mt-0.5" />
-                  <span>Conceptual clarity + competitive edge for middle &amp; high schoolers</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-gold-600 flex-shrink-0 mt-0.5" />
-                  <span>Weekly tests &amp; dedicated doubt-clearing sessions</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-gold-600 flex-shrink-0 mt-0.5" />
-                  <span>Olympiad &amp; Reasoning training with Science camp exposure</span>
-                </li>
-                <li className="flex items-start gap-2.5">
-                  <Check className="w-4 h-4 text-gold-600 flex-shrink-0 mt-0.5" />
-                  <span>Early exposure to Coding, Robotics, AI and Model UN (CMUN)</span>
-                </li>
-              </ul>
             </div>
 
-            <div className="mt-8 p-4 rounded-2xl bg-cream-100 border border-cream-200 text-xs text-navy-800 font-semibold">
-              Prepares students seamlessly for Class 11 &amp; 12 CSIP Entrance Coaching.
-            </div>
-          </div>
+            <div className="grid lg:grid-cols-12 gap-8 mb-12">
+              {/* CFP: Cohen Foundation Program */}
+              <div className="lg:col-span-5 p-8 rounded-3xl bg-white border border-cream-300 shadow-md flex flex-col justify-between">
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="bg-navy-900 text-gold-400 px-3 py-1 rounded-full text-xs font-black tracking-wider uppercase">
+                      CFP
+                    </span>
+                    <span className="text-xs font-bold text-navy-600">Classes 6 to 10</span>
+                  </div>
+                  <h3 className="font-display text-2xl text-navy-900 font-bold mb-3">
+                    Cohen Foundation Program (CFP)
+                  </h3>
+                  <p className="text-navy-700/80 text-sm leading-relaxed mb-6">
+                    A holistic journey fostering critical thinking, problem-solving, and structured pre-foundation coaching for IIT-JEE, NEET &amp; Olympiads.
+                  </p>
 
-          {/* CSIP: Cohen School Integrated Program */}
-          <div className="lg:col-span-7 p-8 rounded-3xl bg-navy-900 text-white shadow-2xl relative overflow-hidden flex flex-col justify-between border-2 border-gold-500/40">
-            <div className="absolute -top-10 -right-10 w-48 h-48 bg-gold-500/10 rounded-full blur-2xl" />
+                  <ul className="space-y-3 text-xs sm:text-sm text-navy-800 font-medium">
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-gold-600 flex-shrink-0 mt-0.5" />
+                      <span>Conceptual clarity + competitive edge for middle &amp; high schoolers</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-gold-600 flex-shrink-0 mt-0.5" />
+                      <span>Weekly tests &amp; dedicated doubt-clearing sessions</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-gold-600 flex-shrink-0 mt-0.5" />
+                      <span>Olympiad &amp; Reasoning training with Science camp exposure</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <Check className="w-4 h-4 text-gold-600 flex-shrink-0 mt-0.5" />
+                      <span>Early exposure to Coding, Robotics, AI and Model UN (CMUN)</span>
+                    </li>
+                  </ul>
+                </div>
 
-            <div>
-              <div className="flex items-center gap-2 mb-3">
-                <span className="bg-gold-500 text-navy-900 px-3 py-1 rounded-full text-xs font-black tracking-wider uppercase">
-                  CSIP
-                </span>
-                <span className="text-xs font-bold text-gold-400">Classes 11 &amp; 12</span>
-              </div>
-              <h3 className="font-display text-2xl sm:text-3xl text-white font-bold mb-2">
-                Cohen School Integrated Program (CSIP)
-              </h3>
-              <p className="text-gold-400 font-semibold text-xs sm:text-sm mb-6">
-                Our USPs for CSIP (Grades 11 &amp; 12) — Catering to all students of Odisha &amp; other states
-              </p>
-
-              <div className="grid sm:grid-cols-2 gap-4 text-xs sm:text-sm text-white/90">
-                <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
-                  <span className="text-gold-400 font-bold">1.</span>
-                  <span>Integrated CBSE schooling + IIT JEE, NEET, NISER, IISER, IISC &amp; Olympiad coaching.</span>
-                </div>
-                <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
-                  <span className="text-gold-400 font-bold">2.</span>
-                  <span>Entrance faculties are alumni of top IITs &amp; PhD holders / Doctorates / Gold Medalists.</span>
-                </div>
-                <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
-                  <span className="text-gold-400 font-bold">3.</span>
-                  <span>Regular subjective tests for Board preparations.</span>
-                </div>
-                <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
-                  <span className="text-gold-400 font-bold">4.</span>
-                  <span>Weekly, fortnightly &amp; monthly CBTs (Computer Based Tests) for entrance exam pattern.</span>
-                </div>
-                <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
-                  <span className="text-gold-400 font-bold">5.</span>
-                  <span>Rich legacy of Vidwan Classes (est. 2007) — pioneers of IIT JEE &amp; NEET coaching in Odisha.</span>
-                </div>
-                <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
-                  <span className="text-gold-400 font-bold">6.</span>
-                  <span>Strong alumni network passed out of top IITs, IISC, NISER, IISER, ISI etc.</span>
-                </div>
-                <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
-                  <span className="text-gold-400 font-bold">7.</span>
-                  <span>Regular PTMs, result analysis &amp; academic journey management by top faculties.</span>
-                </div>
-                <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
-                  <span className="text-gold-400 font-bold">8.</span>
-                  <span>Safe AC hostel accommodation with own canteen staff providing hygienic &amp; balanced diet.</span>
-                </div>
-                <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
-                  <span className="text-gold-400 font-bold">9.</span>
-                  <span>Recreational facilities, Sports, &amp; visits to reputed institutes (IIT, NISER, SDI, IOP).</span>
-                </div>
-                <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
-                  <span className="text-gold-400 font-bold">10.</span>
-                  <span>Seminars at Cohen with resource persons from TIFR, ISRO, IIT, NISER, IOP.</span>
+                <div className="mt-8 p-4 rounded-2xl bg-cream-100 border border-cream-200 text-xs text-navy-800 font-semibold">
+                  Prepares students seamlessly for Class 11 &amp; 12 CSIP Entrance Coaching.
                 </div>
               </div>
-            </div>
 
-            <div className="mt-6 pt-4 border-t border-white/15 flex items-center justify-between text-xs text-gold-400 font-semibold">
-              <span>Full Coaching Integrated — Zero Extra Fee</span>
-              <span>Available for PCM &amp; PCB Streams</span>
+              {/* CSIP: Cohen School Integrated Program */}
+              <div className="lg:col-span-7 p-8 rounded-3xl bg-navy-900 text-white shadow-2xl relative overflow-hidden flex flex-col justify-between border-2 border-gold-500/40">
+                <div className="absolute -top-10 -right-10 w-48 h-48 bg-gold-500/10 rounded-full blur-2xl" />
+
+                <div>
+                  <div className="flex items-center gap-2 mb-3">
+                    <span className="bg-gold-500 text-navy-900 px-3 py-1 rounded-full text-xs font-black tracking-wider uppercase">
+                      CSIP
+                    </span>
+                    <span className="text-xs font-bold text-gold-400">Classes 11 &amp; 12</span>
+                  </div>
+                  <h3 className="font-display text-2xl sm:text-3xl text-white font-bold mb-2">
+                    Cohen School Integrated Program (CSIP)
+                  </h3>
+                  <p className="text-gold-400 font-semibold text-xs sm:text-sm mb-6">
+                    Our USPs for CSIP (Grades 11 &amp; 12) — Catering to all students of Odisha &amp; other states
+                  </p>
+
+                  <div className="grid sm:grid-cols-2 gap-4 text-xs sm:text-sm text-white/90">
+                    <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
+                      <span className="text-gold-400 font-bold">1.</span>
+                      <span>Integrated CBSE schooling + IIT JEE, NEET, NISER, IISER, IISC &amp; Olympiad coaching.</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
+                      <span className="text-gold-400 font-bold">2.</span>
+                      <span>Entrance faculties are alumni of top IITs &amp; PhD holders / Doctorates / Gold Medalists.</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
+                      <span className="text-gold-400 font-bold">3.</span>
+                      <span>Regular subjective tests for Board preparations.</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
+                      <span className="text-gold-400 font-bold">4.</span>
+                      <span>Weekly, fortnightly &amp; monthly CBTs (Computer Based Tests) for entrance exam pattern.</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
+                      <span className="text-gold-400 font-bold">5.</span>
+                      <span>Rich legacy of Vidwan Classes (est. 2007) — pioneers of IIT JEE &amp; NEET coaching in Odisha.</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
+                      <span className="text-gold-400 font-bold">6.</span>
+                      <span>Strong alumni network passed out of top IITs, IISC, NISER, IISER, ISI etc.</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
+                      <span className="text-gold-400 font-bold">7.</span>
+                      <span>Regular PTMs, result analysis &amp; academic journey management by top faculties.</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
+                      <span className="text-gold-400 font-bold">8.</span>
+                      <span>Safe AC hostel accommodation with own canteen staff providing hygienic &amp; balanced diet.</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
+                      <span className="text-gold-400 font-bold">9.</span>
+                      <span>Recreational facilities, Sports, &amp; visits to reputed institutes (IIT, NISER, SDI, IOP).</span>
+                    </div>
+                    <div className="flex items-start gap-2.5 bg-white/5 p-3 rounded-xl border border-white/10">
+                      <span className="text-gold-400 font-bold">10.</span>
+                      <span>Seminars at Cohen with resource persons from TIFR, ISRO, IIT, NISER, IOP.</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="mt-6 pt-4 border-t border-white/15 flex items-center justify-between text-xs text-gold-400 font-semibold">
+                  <span>Full Coaching Integrated — Zero Extra Fee</span>
+                  <span>Available for PCM &amp; PCB Streams</span>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
+          </>
+        )}
 
       </div>
     </section>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import {
   LogIn,
   Sparkles,
@@ -12,37 +12,34 @@ import {
   UserCheck,
   HelpCircle,
   ChevronDown,
-  Compass,
-  ArrowRight
+  Building,
+  ArrowRight,
+  GraduationCap,
+  Cpu,
+  BookOpen
 } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 
 export default function Navbar({ openLoginModal, openAdmissionModal, openChairmanModal, openPrincipalModal }) {
   const navigate = useNavigate();
+  const location = useLocation();
   const { user, isAuthenticated } = useAuth();
   const [scrolled, setScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
 
-  // Accordion state for mobile / mega menu subcategories (All closed initially)
+  // Accordion state for mobile menu subcategories (About closed by default)
   const [openSubmenu, setOpenSubmenu] = useState({
     about: false,
     academics: false,
-    facilities: false,
-    clubs: false,
-    important: false,
-    gallery: false
+    facilities: false
   });
 
-  // Single-accordion toggle: opening one closes all other subcategories
+  // Single-accordion toggle: opening one section closes all other sections
   const toggleSubmenu = (key) => {
     setOpenSubmenu((prev) => ({
       about: false,
       academics: false,
       facilities: false,
-      clubs: false,
-      important: false,
-      gallery: false,
       [key]: !prev[key]
     }));
   };
@@ -66,7 +63,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Prevent background body scroll when Mega Menu overlay is open
+  // Prevent background body scroll when Mobile Menu overlay is open
   useEffect(() => {
     if (megaMenuOpen) {
       document.body.style.overflow = 'hidden';
@@ -89,17 +86,6 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
         : 'text-white hover:text-gold-400'
     }`;
 
-  const mobileNavLinkClass = ({ isActive }) =>
-    `block py-2.5 px-3 rounded-xl text-base font-semibold transition-colors duration-300 ${
-      scrolled
-        ? isActive
-          ? 'bg-gold-500/10 text-gold-600 font-bold'
-          : 'text-navy-950 hover:bg-slate-100 hover:text-gold-600'
-        : isActive
-        ? 'bg-gold-500/20 text-gold-400 font-bold'
-        : 'text-white hover:bg-white/10 hover:text-gold-400'
-    }`;
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -118,14 +104,6 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
               <Phone className="w-3 h-3 flex-shrink-0" />
               <a href="tel:+917077775310" className="hover:underline hover:text-gold-300 transition">
                 +91 70777 75310
-              </a>
-              <span className="text-white/40">/</span>
-              <a href="tel:+917077775311" className="hover:underline hover:text-gold-300 transition">
-                11
-              </a>
-              <span className="text-white/40">/</span>
-              <a href="tel:+917077775312" className="hover:underline hover:text-gold-300 transition">
-                12
               </a>
             </span>
             <a
@@ -162,29 +140,123 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
         <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12">
           <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-16 sm:h-18' : 'h-20 sm:h-22'}`}>
             {/* Logo */}
-            <Link to="/" onClick={() => setMobileMenuOpen(false)} className="flex items-center group">
+            <Link to="/" onClick={() => setMegaMenuOpen(false)} className="flex items-center group">
               <div className="bg-white px-3 py-1.5 rounded-xl shadow border border-gray-200 group-hover:scale-105 transition-transform flex items-center h-11 sm:h-13">
                 <img src="/logo.png" alt="Cohen International School Logo" className="h-8 sm:h-10 w-auto object-contain" />
               </div>
             </Link>
 
-            {/* Desktop Navigation Links */}
+            {/* Desktop Navigation Links with Hover Dropdowns (Unchanged Desktop Layout) */}
             <div className="hidden lg:flex items-center gap-5 xl:gap-7">
-              <NavLink to="/about" className={navLinkClass}>
-                About
-              </NavLink>
-              <NavLink to="/mission" className={navLinkClass}>
-                Mission
-              </NavLink>
-              <NavLink to="/academics" className={navLinkClass}>
-                Academics
-              </NavLink>
-              <NavLink to="/facilities" className={navLinkClass}>
-                Facilities
-              </NavLink>
+              {/* About Us Dropdown */}
+              <div className="relative group py-2">
+                <NavLink to="/about" className={navLinkClass}>
+                  <span>About Us</span>
+                </NavLink>
+
+                {/* Dropdown Menu */}
+                <div className="absolute top-full left-0 w-60 py-2.5 px-2 bg-white text-navy-950 rounded-2xl shadow-2xl border border-gray-100 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                  <Link
+                    to="/about"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    About Cohen International
+                  </Link>
+                  <Link
+                    to="/mission"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    Our Mission &amp; Vision
+                  </Link>
+                  <Link
+                    to="/scientific-advisory-board"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    Scientific Advisory Board
+                  </Link>
+                  <Link
+                    to="/faculty"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    Faculty &amp; Mentors
+                  </Link>
+                </div>
+              </div>
+
+              {/* Academics Dropdown */}
+              <div className="relative group py-2">
+                <NavLink to="/academics" className={navLinkClass}>
+                  <span>Academics</span>
+                </NavLink>
+
+                {/* Dropdown Menu */}
+                <div className="absolute top-full left-0 w-64 py-2.5 px-2 bg-white text-navy-950 rounded-2xl shadow-2xl border border-gray-100 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                  <Link
+                    to="/academics"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    Academic Wings &amp; Curriculum
+                  </Link>
+                  <Link
+                    to="/academics"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    CFP Pre-Foundation (Classes 6-10)
+                  </Link>
+                  <Link
+                    to="/academics"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    CSIP Integrated Coaching (11-12)
+                  </Link>
+                  <Link
+                    to="/olympiad-school"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    Olympiad &amp; Reasoning School
+                  </Link>
+                </div>
+              </div>
+
+              {/* Campus Life Dropdown */}
+              <div className="relative group py-2">
+                <NavLink to="/facilities" className={navLinkClass}>
+                  <span>Campus Life</span>
+                </NavLink>
+
+                {/* Dropdown Menu */}
+                <div className="absolute top-full left-0 w-60 py-2.5 px-2 bg-white text-navy-950 rounded-2xl shadow-2xl border border-gray-100 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                  <Link
+                    to="/facilities"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    World-Class Facilities
+                  </Link>
+                  <Link
+                    to="/smart-campus"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    Smart Campus &amp; Tech Labs
+                  </Link>
+                  <Link
+                    to="/club"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    Clubs &amp; Co-Curricular
+                  </Link>
+                  <Link
+                    to="/cohen-talk"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    Cohen Talks &amp; Seminars
+                  </Link>
+                </div>
+              </div>
+
               <NavLink to="/admissions" className={navLinkClass}>
                 Admissions
               </NavLink>
+
               <NavLink to="/careers" className={navLinkClass}>
                 Careers
               </NavLink>
@@ -194,46 +266,24 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
               </NavLink>
 
               {isAuthenticated && user ? (
-                <Link
-                  to={
-                    ['admin', 'principal', 'teacher', 'parent', 'student'].includes((user?.role || '').toLowerCase())
-                      ? `/${(user?.role || 'student').toLowerCase()}/dashboard`
-                      : '/student/dashboard'
-                  }
-                  className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5 shadow ${
-                    scrolled
-                      ? 'bg-navy-900 text-white hover:bg-gold-500 hover:text-navy-950'
-                      : 'bg-gold-500/20 border border-gold-400/40 text-gold-400 hover:bg-gold-500 hover:text-navy-950'
-                  }`}
-                >
+                <Link to={`/${(user?.role || 'student').toLowerCase()}/dashboard`} className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5 shadow ${scrolled ? 'bg-navy-900 text-white hover:bg-gold-500 hover:text-navy-950' : 'bg-gold-500/20 border border-gold-400/40 text-gold-400 hover:bg-gold-500 hover:text-navy-950'}`}>
                   <UserCheck className="w-3.5 h-3.5 text-gold-400" />
-                  <span>
-                    {(user?.name ? user.name.split(' ')[0] : user?.email ? user.email.split('@')[0] : 'User')} ({user?.role || 'Portal'})
-                  </span>
+                  <span>{(user?.name ? user.name.split(' ')[0] : 'User')} ({user?.role || 'Portal'})</span>
                 </Link>
               ) : (
-                <Link
-                  to="/login"
-                  className={`nav-link text-sm font-semibold transition-colors duration-300 inline-flex items-center gap-1.5 ${
-                    scrolled ? 'text-navy-950 hover:text-gold-600' : 'text-white/90 hover:text-gold-400'
-                  }`}
-                >
+                <Link to="/login" className={`nav-link text-sm font-semibold transition-colors duration-300 inline-flex items-center gap-1.5 ${scrolled ? 'text-navy-950 hover:text-gold-600' : 'text-white/90 hover:text-gold-400'}`}>
                   <LogIn className={`w-3.5 h-3.5 ${scrolled ? 'text-gold-600' : 'text-gold-400'}`} />
                   <span>Login</span>
                 </Link>
               )}
             </div>
 
-            {/* CTA Buttons + Mobile Login + 3-Bar Hamburger Menu Button */}
+            {/* CTA Buttons + Mobile Hamburger */}
             <div className="flex items-center gap-2 sm:gap-2.5">
               <button
                 type="button"
                 onClick={() => navigate('/contact')}
-                className={`hidden sm:inline-flex items-center gap-1.5 px-4 py-2 font-semibold text-xs sm:text-sm rounded-full transition shadow-sm ${
-                  scrolled
-                    ? 'bg-navy-900 text-white hover:bg-navy-800 border border-navy-900'
-                    : 'bg-white/10 text-white hover:bg-white/20 border border-white/25'
-                }`}
+                className={`hidden sm:inline-flex items-center gap-1.5 px-4 py-2 font-semibold text-xs sm:text-sm rounded-full transition shadow-sm ${scrolled ? 'bg-navy-900 text-white hover:bg-navy-800 border border-navy-900' : 'bg-white/10 text-white hover:bg-white/20 border border-white/25'}`}
               >
                 <HelpCircle className="w-4 h-4 text-gold-400" />
                 Enquire Now
@@ -250,468 +300,177 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
               {/* 3-Bar Hamburger Button */}
               <button
                 type="button"
-                onClick={() => setMegaMenuOpen(true)}
-                className={`p-2 rounded-xl transition border flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-gold-500 ${
+                onClick={() => setMegaMenuOpen((prev) => !prev)}
+                className={`lg:hidden p-2.5 rounded-xl transition border flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-gold-500 ${
                   scrolled
-                    ? 'bg-navy-950 text-white hover:bg-gold-500 hover:text-navy-950 border-navy-900'
-                    : 'bg-white/10 text-white hover:bg-white/20 border-white/30'
+                    ? 'bg-navy-950 text-white hover:bg-gold-500 hover:text-navy-950 border-navy-900 shadow-md'
+                    : 'bg-white/10 text-white hover:bg-white/20 border-white/30 backdrop-blur-md'
                 }`}
-                aria-label="Open Full Navigation Menu"
-                title="Full Site Navigation"
+                aria-label="Toggle Navigation Menu"
+                title="Toggle Navigation Menu"
               >
-                <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+                {megaMenuOpen ? <X className="w-6 h-6 text-gold-400" /> : <Menu className="w-6 h-6" />}
               </button>
             </div>
           </div>
         </div>
       </nav>
 
-      {/* FULL-SCREEN & MOBILE ELEGANT MEGA MENU OVERLAY (Clean Typography Design) */}
+      {/* ULTRA-POLISHED MODERN MOBILE NAVIGATION MENU OVERLAY */}
       {megaMenuOpen && (
-        <div className="fixed inset-0 z-[100] bg-[#040C16] text-white flex flex-col overflow-y-auto animate-fadeIn font-sans transition-all duration-300">
-          {/* Top Header Bar with Close & Login Buttons */}
-          <div className="max-w-7xl w-full mx-auto px-6 sm:px-10 py-6 sm:py-8 flex items-center justify-between border-b border-white/10 sticky top-0 bg-[#040C16]/95 backdrop-blur-md z-20">
-            <Link to="/" onClick={() => setMegaMenuOpen(false)} className="flex items-center gap-3">
-              <div className="bg-white px-3 py-1.5 rounded-xl shadow">
-                <img src="/logo.png" alt="Cohen Logo" className="h-8 sm:h-9 w-auto object-contain" />
+        <div className="fixed inset-0 z-[100] bg-gradient-to-b from-[#030914] via-[#091B30] to-[#030914] text-white flex flex-col overflow-y-auto animate-fadeIn font-sans transition-all duration-300 selection:bg-gold-500 selection:text-navy-950">
+          
+          <div className="w-full px-5 py-4 flex items-center justify-between border-b border-white/10 sticky top-0 bg-[#030914]/95 backdrop-blur-xl z-30 shadow-md">
+            <Link to="/" onClick={() => setMegaMenuOpen(false)} className="flex items-center gap-2">
+              <div className="bg-white px-3 py-1.5 rounded-xl shadow border border-white/20">
+                <img src="/logo.png" alt="Cohen Logo" className="h-8 w-auto object-contain" />
               </div>
-              
             </Link>
 
-            <div className="flex items-center gap-3">
-              {/* Login Button inside Overlay */}
+            <div className="flex items-center gap-2">
               <Link
                 to="/login"
                 onClick={() => setMegaMenuOpen(false)}
-                className="inline-flex items-center gap-1.5 px-3.5 py-2 text-xs sm:text-sm font-bold text-gold-400 bg-white/10 rounded-full border border-gold-500/40 hover:bg-gold-500 hover:text-navy-950 transition-all"
+                className="inline-flex items-center gap-1.5 px-3.5 py-1.5 text-xs font-bold text-gold-400 bg-white/10 rounded-full border border-gold-400/30 hover:bg-gold-500 hover:text-navy-950 transition-all"
               >
-                <LogIn className="w-4 h-4 text-gold-400" />
-                <span>Portal Login</span>
+                <LogIn className="w-3.5 h-3.5" />
+                <span>Login</span>
               </Link>
-
-              {/* Close Button X */}
+              
               <button
                 type="button"
                 onClick={() => setMegaMenuOpen(false)}
-                className="p-2.5 sm:p-3 rounded-full bg-white/10 hover:bg-gold-500 hover:text-navy-950 text-white border border-white/20 transition-all duration-300 hover:scale-110 cursor-pointer"
-                aria-label="Close Navigation Overlay"
-                title="Close Navigation Overlay"
+                className="p-2 rounded-full bg-white/10 text-white hover:bg-gold-400 hover:text-navy-950 transition-all cursor-pointer border border-white/20"
+                aria-label="Close menu"
               >
-                <X className="w-6 h-6 sm:w-7 sm:h-7" />
+                <X className="w-5 h-5" />
               </button>
             </div>
           </div>
 
-          {/* Navigation Container (Clean Spacious Typography - No Cards) */}
-          <div className="max-w-7xl w-full mx-auto px-6 sm:px-10 py-10 sm:py-14 flex-1">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gold-400 mb-8 flex items-center gap-2">
-              <Compass className="w-4 h-4 text-gold-400" /> Explore Campus Navigation &amp; Desks
-            </p>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-10 lg:gap-14">
-              {/* SECTION 1: ABOUT */}
-              <div className="space-y-4">
-                <button
-                  type="button"
-                  onClick={() => toggleSubmenu('about')}
-                  className="w-full flex items-center justify-between pb-2.5 border-b border-white/20 text-left cursor-pointer group"
-                >
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-gold-400 transition-colors">
-                    About
-                  </h3>
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/80 group-hover:bg-gold-500 group-hover:text-navy-950 transition">
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-300 ${openSubmenu.about ? 'rotate-180' : 'rotate-0'}`}
-                    />
+          <div className="w-full max-w-md mx-auto px-5 py-6 flex-1 space-y-3.5">
+            
+            {/* 1. ABOUT US ACCORDION */}
+            <div className="rounded-2xl bg-white/[0.04] border border-white/10 overflow-hidden shadow-lg transition-all">
+              <button
+                type="button"
+                onClick={() => toggleSubmenu('about')}
+                className="w-full flex items-center justify-between p-4 text-left font-bold text-base text-white hover:text-gold-400 transition cursor-pointer min-h-[52px]"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-gold-500/20 text-gold-400">
+                    <Building className="w-4 h-4" />
                   </div>
-                </button>
+                  <span>About Us</span>
+                </div>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openSubmenu.about ? 'rotate-180 text-gold-400' : 'text-white/50'}`} />
+              </button>
 
-                {openSubmenu.about && (
-                  <ul className="mt-3 space-y-3 text-base sm:text-lg text-white/80 font-sans animate-fadeIn">
-                    <li>
-                      <Link
-                        to="/about"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>About Us &amp; Campus Overview</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setMegaMenuOpen(false);
-                          if (openChairmanModal) openChairmanModal();
-                          else navigate('/about');
-                        }}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition text-left group cursor-pointer"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Chairman's Desk Message</span>
-                      </button>
-                    </li>
-                    <li>
-                      <button
-                        type="button"
-                        onClick={() => {
-                          setMegaMenuOpen(false);
-                          if (openPrincipalModal) openPrincipalModal();
-                          else navigate('/about');
-                        }}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition text-left group cursor-pointer"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Principal's Executive Desk</span>
-                      </button>
-                    </li>
-                    <li>
-                      <Link
-                        to="/faculty"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Faculty &amp; Leadership</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/page/11"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Scientific Advisory Board</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/mission"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Our Vision &amp; Core Mission</span>
-                      </Link>
-                    </li>
-                  </ul>
-                )}
-              </div>
-
-              {/* SECTION 2: ACADEMICS */}
-              <div className="space-y-4">
-                <button
-                  type="button"
-                  onClick={() => toggleSubmenu('academics')}
-                  className="w-full flex items-center justify-between pb-2.5 border-b border-white/20 text-left cursor-pointer group"
-                >
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-gold-400 transition-colors">
-                    Academics
-                  </h3>
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/80 group-hover:bg-gold-500 group-hover:text-navy-950 transition">
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-300 ${openSubmenu.academics ? 'rotate-180' : 'rotate-0'}`}
-                    />
-                  </div>
-                </button>
-
-                {openSubmenu.academics && (
-                  <ul className="mt-3 space-y-3 text-base sm:text-lg text-white/80 font-sans animate-fadeIn">
-                    <li>
-                      <Link
-                        to="/academics"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>CBSE Senior Secondary</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/academics"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Vidwan IIT-JEE &amp; NEET Prep</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/page/12"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Olympiad &amp; Foundation School</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/admissions"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Admissions AY 2027-2028</span>
-                      </Link>
-                    </li>
-                  </ul>
-                )}
-              </div>
-
-              {/* SECTION 3: FACILITIES */}
-              <div className="space-y-4">
-                <button
-                  type="button"
-                  onClick={() => toggleSubmenu('facilities')}
-                  className="w-full flex items-center justify-between pb-2.5 border-b border-white/20 text-left cursor-pointer group"
-                >
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-gold-400 transition-colors">
-                    Facilities
-                  </h3>
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/80 group-hover:bg-gold-500 group-hover:text-navy-950 transition">
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-300 ${openSubmenu.facilities ? 'rotate-180' : 'rotate-0'}`}
-                    />
-                  </div>
-                </button>
-
-                {openSubmenu.facilities && (
-                  <ul className="mt-3 space-y-3 text-base sm:text-lg text-white/80 font-sans animate-fadeIn">
-                    <li>
-                      <Link
-                        to="/facilities"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>10-Acre Campus Overview</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/smart-campus"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Smart Campus &amp; ERP</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/facilities"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Robotics, Physics &amp; Chemistry Labs</span>
-                      </Link>
-                    </li>
-                  </ul>
-                )}
-              </div>
-
-              {/* SECTION 4: CLUBS & SPORTS */}
-              <div className="space-y-4">
-                <button
-                  type="button"
-                  onClick={() => toggleSubmenu('clubs')}
-                  className="w-full flex items-center justify-between pb-2.5 border-b border-white/20 text-left cursor-pointer group"
-                >
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-gold-400 transition-colors">
-                    Clubs &amp; Sports
-                  </h3>
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/80 group-hover:bg-gold-500 group-hover:text-navy-950 transition">
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-300 ${openSubmenu.clubs ? 'rotate-180' : 'rotate-0'}`}
-                    />
-                  </div>
-                </button>
-
-                {openSubmenu.clubs && (
-                  <ul className="mt-3 space-y-3 text-base sm:text-lg text-white/80 font-sans animate-fadeIn">
-                    <li>
-                      <Link
-                        to="/club"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-gold-300 font-semibold hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Student Clubs &amp; Activities</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/cohentalk"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Beyond Academics (Cohen Talks)</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/smart-campus"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>STEM &amp; Robotics Guild</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/facilities"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Aerospace &amp; Astronomy Club</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/cohentalk"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Grandmaster Chess &amp; Athletics</span>
-                      </Link>
-                    </li>
-                  </ul>
-                )}
-              </div>
-
-              {/* SECTION 5: MEDIA & GALLERY */}
-              <div className="space-y-4">
-                <button
-                  type="button"
-                  onClick={() => toggleSubmenu('gallery')}
-                  className="w-full flex items-center justify-between pb-2.5 border-b border-white/20 text-left cursor-pointer group"
-                >
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-gold-400 transition-colors">
-                    Media &amp; Gallery
-                  </h3>
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/80 group-hover:bg-gold-500 group-hover:text-navy-950 transition">
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-300 ${openSubmenu.gallery ? 'rotate-180' : 'rotate-0'}`}
-                    />
-                  </div>
-                </button>
-
-                {openSubmenu.gallery && (
-                  <ul className="mt-3 space-y-3 text-base sm:text-lg text-white/80 font-sans animate-fadeIn">
-                    <li>
-                      <Link
-                        to="/news"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Image &amp; Video Highlights</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/news"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Press Corner &amp; Releases</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/news"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Annual Galas &amp; Festivals</span>
-                      </Link>
-                    </li>
-                  </ul>
-                )}
-              </div>
-
-              {/* SECTION 6: IMPORTANT LINKS */}
-              <div className="space-y-4">
-                <button
-                  type="button"
-                  onClick={() => toggleSubmenu('important')}
-                  className="w-full flex items-center justify-between pb-2.5 border-b border-white/20 text-left cursor-pointer group"
-                >
-                  <h3 className="font-display text-2xl sm:text-3xl font-bold text-white group-hover:text-gold-400 transition-colors">
-                    Important Links
-                  </h3>
-                  <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/80 group-hover:bg-gold-500 group-hover:text-navy-950 transition">
-                    <ChevronDown
-                      className={`w-4 h-4 transition-transform duration-300 ${openSubmenu.important ? 'rotate-180' : 'rotate-0'}`}
-                    />
-                  </div>
-                </button>
-
-                {openSubmenu.important && (
-                  <ul className="mt-3 space-y-3 text-base sm:text-lg text-white/80 font-sans animate-fadeIn">
-                    <li>
-                      <Link
-                        to="/news"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Academic Holiday List</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/careers"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Careers at Cohen International</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/contact"
-                        onClick={() => setMegaMenuOpen(false)}
-                        className="flex items-center gap-2 text-white/80 hover:text-gold-400 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Contact Admissions Office</span>
-                      </Link>
-                    </li>
-                    <li>
-                      <a
-                        href="https://www.eduqfix.com/PayDirect/#/student/pay/9u3Ik7RvISUPS+FAt5Vw0mfbWsL0LSABcb0Dwea4EuWIcoB0DJulKNCM0J8ImcKt/4592"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="flex items-center gap-2 text-gold-400 font-semibold hover:text-gold-300 transition group"
-                      >
-                        <ArrowRight className="w-4 h-4 text-gold-400 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all" />
-                        <span>Pay Fees Online via Eduqfix</span>
-                      </a>
-                    </li>
-                  </ul>
-                )}
-              </div>
+              {openSubmenu.about && (
+                <div className="px-4 pb-4 pt-1 space-y-1.5 border-t border-white/10 bg-black/20">
+                  <Link to="/about" onClick={() => setMegaMenuOpen(false)} className={`flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium transition ${location.pathname === '/about' ? 'bg-gold-500/20 text-gold-400 font-bold border-l-2 border-gold-400' : 'text-white/80 hover:text-gold-400 hover:bg-white/5'}`}>
+                    <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                    <span className="truncate">About Cohen International</span>
+                  </Link>
+                  <button type="button" onClick={() => { setMegaMenuOpen(false); openChairmanModal ? openChairmanModal() : navigate('/about'); }} className="w-full flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium text-white/80 hover:text-gold-400 hover:bg-white/5 transition text-left cursor-pointer">
+                    <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                    <span className="truncate">Chairman's Desk Message</span>
+                  </button>
+                  <button type="button" onClick={() => { setMegaMenuOpen(false); openPrincipalModal ? openPrincipalModal() : navigate('/about'); }} className="w-full flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium text-white/80 hover:text-gold-400 hover:bg-white/5 transition text-left cursor-pointer">
+                    <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                    <span className="truncate">Principal's Executive Desk</span>
+                  </button>
+                  <Link to="/faculty" onClick={() => setMegaMenuOpen(false)} className={`flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium transition ${location.pathname === '/faculty' ? 'bg-gold-500/20 text-gold-400 font-bold border-l-2 border-gold-400' : 'text-white/80 hover:text-gold-400 hover:bg-white/5'}`}>
+                    <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                    <span className="truncate">Faculty &amp; Mentors</span>
+                  </Link>
+                </div>
+              )}
             </div>
+
+            {/* 2. ACADEMICS ACCORDION */}
+            <div className="rounded-2xl bg-white/[0.04] border border-white/10 overflow-hidden shadow-lg transition-all">
+              <button
+                type="button"
+                onClick={() => toggleSubmenu('academics')}
+                className="w-full flex items-center justify-between p-4 text-left font-bold text-base text-white hover:text-gold-400 transition cursor-pointer min-h-[52px]"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-gold-500/20 text-gold-400">
+                    <GraduationCap className="w-4 h-4" />
+                  </div>
+                  <span>Academics</span>
+                </div>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openSubmenu.academics ? 'rotate-180 text-gold-400' : 'text-white/50'}`} />
+              </button>
+
+              {openSubmenu.academics && (
+                <div className="px-4 pb-4 pt-1 space-y-1.5 border-t border-white/10 bg-black/20">
+                  <Link to="/academics" onClick={() => setMegaMenuOpen(false)} className={`flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium transition ${location.pathname === '/academics' ? 'bg-gold-500/20 text-gold-400 font-bold border-l-2 border-gold-400' : 'text-white/80 hover:text-gold-400 hover:bg-white/5'}`}>
+                    <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                    <span className="truncate">Academic Wings &amp; Curriculum</span>
+                  </Link>
+                  <Link to="/olympiad-school" onClick={() => setMegaMenuOpen(false)} className={`flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium transition ${location.pathname === '/olympiad-school' ? 'bg-gold-500/20 text-gold-400 font-bold border-l-2 border-gold-400' : 'text-white/80 hover:text-gold-400 hover:bg-white/5'}`}>
+                    <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                    <span className="truncate">Olympiad &amp; Reasoning School</span>
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            {/* 3. FACILITIES ACCORDION */}
+            <div className="rounded-2xl bg-white/[0.04] border border-white/10 overflow-hidden shadow-lg transition-all">
+              <button
+                type="button"
+                onClick={() => toggleSubmenu('facilities')}
+                className="w-full flex items-center justify-between p-4 text-left font-bold text-base text-white hover:text-gold-400 transition cursor-pointer min-h-[52px]"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-gold-500/20 text-gold-400">
+                    <Cpu className="w-4 h-4" />
+                  </div>
+                  <span>Campus Facilities</span>
+                </div>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openSubmenu.facilities ? 'rotate-180 text-gold-400' : 'text-white/50'}`} />
+              </button>
+
+              {openSubmenu.facilities && (
+                <div className="px-4 pb-4 pt-1 space-y-1.5 border-t border-white/10 bg-black/20">
+                  <Link to="/facilities" onClick={() => setMegaMenuOpen(false)} className={`flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium transition ${location.pathname === '/facilities' ? 'bg-gold-500/20 text-gold-400 font-bold border-l-2 border-gold-400' : 'text-white/80 hover:text-gold-400 hover:bg-white/5'}`}>
+                    <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                    <span className="truncate">World-Class Facilities</span>
+                  </Link>
+                  <Link to="/club" onClick={() => setMegaMenuOpen(false)} className={`flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium transition ${location.pathname === '/club' ? 'bg-gold-500/20 text-gold-400 font-bold border-l-2 border-gold-400' : 'text-white/80 hover:text-gold-400 hover:bg-white/5'}`}>
+                    <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                    <span className="truncate">Clubs &amp; Co-Curricular</span>
+                  </Link>
+                </div>
+              )}
+            </div>
+
+            <Link to="/admissions" onClick={() => setMegaMenuOpen(false)} className={`flex items-center justify-between p-4 rounded-2xl bg-white/[0.04] border border-white/10 shadow-lg text-base font-bold transition min-h-[52px] ${location.pathname === '/admissions' ? 'bg-gold-500/20 text-gold-400 border-gold-500/40' : 'text-white hover:text-gold-400 hover:bg-white/10'}`}>
+              <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><Sparkles className="w-4 h-4"/></div><span>Admissions</span></div>
+              <ArrowRight className="w-4 h-4 text-gold-400" />
+            </Link>
+
+            <Link to="/careers" onClick={() => setMegaMenuOpen(false)} className={`flex items-center justify-between p-4 rounded-2xl bg-white/[0.04] border border-white/10 shadow-lg text-base font-bold transition min-h-[52px] ${location.pathname === '/careers' ? 'bg-gold-500/20 text-gold-400 border-gold-500/40' : 'text-white hover:text-gold-400 hover:bg-white/10'}`}>
+              <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><BookOpen className="w-4 h-4"/></div><span>Careers</span></div>
+              <ArrowRight className="w-4 h-4 text-gold-400" />
+            </Link>
+
+            <Link to="/contact" onClick={() => setMegaMenuOpen(false)} className={`flex items-center justify-between p-4 rounded-2xl bg-white/[0.04] border border-white/10 shadow-lg text-base font-bold transition min-h-[52px] ${location.pathname === '/contact' ? 'bg-gold-500/20 text-gold-400 border-gold-500/40' : 'text-white hover:text-gold-400 hover:bg-white/10'}`}>
+              <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><Phone className="w-4 h-4"/></div><span>Contact Us</span></div>
+              <ArrowRight className="w-4 h-4 text-gold-400" />
+            </Link>
           </div>
 
-          {/* Bottom Footer Bar */}
-          <div className="border-t border-white/10 py-6 px-6 sm:px-10 text-center text-xs text-white/50 font-sans">
-            &copy; {new Date().getFullYear()} Cohen International School. All Rights Reserved. Barunei Hills, Adjacent to IIT Bhubaneswar,
-            Odisha.
+          <div className="w-full max-w-md mx-auto px-5 py-5 border-t border-white/10 space-y-3 bg-[#030914]/95 backdrop-blur-md sticky bottom-0 z-30">
+            <button type="button" onClick={() => { setMegaMenuOpen(false); openAdmissionModal('apply'); }} className="btn-premium flex items-center justify-center gap-2 py-3.5 w-full bg-gold-500 text-navy-950 font-bold text-sm rounded-2xl shadow-xl hover:bg-gold-400 transition">
+              <Sparkles className="w-4 h-4" /><span>Apply for Admissions</span>
+            </button>
+            <button type="button" onClick={() => { setMegaMenuOpen(false); navigate('/contact'); }} className="flex items-center justify-center gap-2 py-3 w-full bg-white/10 text-white font-semibold text-xs rounded-2xl border border-white/20 hover:bg-white/20 transition">
+              <HelpCircle className="w-3.5 h-3.5 text-gold-400" /><span>Enquire Now</span>
+            </button>
           </div>
         </div>
       )}

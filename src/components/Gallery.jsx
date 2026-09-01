@@ -281,7 +281,7 @@ export default function Gallery() {
   };
 
   return (
-    <section className="py-10 sm:py-24 bg-white text-navy-950 border-t border-cream-200 relative overflow-hidden selection:bg-rose-500 selection:text-white">
+    <section className="py-12 lg:py-16 bg-white text-navy-950 border-t border-cream-200 relative overflow-hidden selection:bg-rose-500 selection:text-white">
 
       {/* Floating Animated CSS Keyframes */}
       <style>{`
@@ -357,39 +357,36 @@ export default function Gallery() {
           </svg>
         </div>
 
-        {/* 2. Glass Bubble Rose/Gold (Left Mid) */}
-        <div className="absolute top-[45%] left-[2%] w-16 h-16 rounded-full bg-gradient-to-tr from-rose-500/20 via-gold-400/25 to-amber-300/30 backdrop-blur-md border border-white/60 shadow-[0_8px_32px_rgba(232,197,71,0.25)] animate-float-bubble-1" />
+        {/* 2. Math Formula Pill (Left Mid) */}
+        <div className="absolute top-[45%] left-[2%] px-3.5 py-2.5 rounded-2xl bg-navy-900 text-gold-400 font-serif text-xs font-bold shadow-xl border border-gold-400/40 animate-float-bubble-1 flex items-center gap-2">
+          <span className="text-sm font-extrabold text-gold-300">π</span>
+          <span className="text-xs text-white/50">•</span>
+          <span className="text-sm font-extrabold text-gold-400">β</span>
+          <span className="text-xs text-white/50">•</span>
+          <span className="text-xs font-mono bg-white/10 px-2 py-0.5 rounded text-gold-300">+ − × ÷</span>
+        </div>
 
-        {/* 3. Floating Bubble Cyan (Left Bottom) */}
-        <div className="absolute top-[75%] left-[4%] w-12 h-12 rounded-full bg-gradient-to-br from-cyan-400/25 to-blue-600/20 backdrop-blur-md border border-white/50 shadow-md animate-float-bubble-2" />
+        {/* 3. Floating Atom Icon (Left Bottom) */}
+        <div className="absolute top-[75%] left-[4%] p-3.5 rounded-2xl bg-white/90 shadow-xl border border-cyan-400/40 text-cyan-600 animate-float-bubble-2 flex items-center gap-2">
+          <span className="text-sm font-bold text-navy-900 font-mono">E = mc²</span>
+        </div>
 
 
         {/* RIGHT MARGIN FLOATING ITEMS */}
 
-        {/* 4. Blooming Flower (Right Top) */}
-        <div className="absolute top-[15%] right-[3%] w-14 animate-float-flower opacity-90 filter drop-shadow-md">
-          <svg viewBox="0 0 100 100" className="w-full h-auto">
-            {/* Flower Petals */}
-            <g fill="#E8C547" opacity="0.9">
-              <circle cx="50" cy="25" r="18" />
-              <circle cx="75" cy="50" r="18" />
-              <circle cx="50" cy="75" r="18" />
-              <circle cx="25" cy="50" r="18" />
-            </g>
-            <g fill="#FF4D6D" opacity="0.85">
-              <circle cx="34" cy="34" r="16" />
-              <circle cx="66" cy="34" r="16" />
-              <circle cx="66" cy="66" r="16" />
-              <circle cx="34" cy="66" r="16" />
-            </g>
-            {/* Center Core */}
-            <circle cx="50" cy="50" r="15" fill="#0B1C2C" />
-            <circle cx="50" cy="50" r="8" fill="#C9A227" />
-          </svg>
+        {/* 4. Science Atom Orbit (Right Top) */}
+        <div className="absolute top-[15%] right-[3%] p-3.5 rounded-2xl bg-white/90 shadow-xl border border-gold-400/40 text-gold-600 animate-float-flower flex items-center gap-2">
+          <span className="text-base font-serif font-extrabold text-gold-600">α + β = γ</span>
         </div>
 
-        {/* 5. Glass Bubble Gold/Amber (Right Mid) */}
-        <div className="absolute top-[48%] right-[2%] w-20 h-20 rounded-full bg-gradient-to-bl from-gold-400/30 via-rose-400/20 to-amber-500/25 backdrop-blur-md border border-white/70 shadow-[0_10px_35px_rgba(201,162,39,0.3)] animate-float-bubble-2" />
+        {/* 5. Math Symbol Badge (Right Mid) */}
+        <div className="absolute top-[48%] right-[2%] px-3.5 py-2.5 rounded-2xl bg-navy-900 text-gold-400 font-serif text-xs font-bold shadow-xl border border-gold-400/40 animate-float-bubble-2 flex items-center gap-2">
+          <span className="text-sm font-bold text-gold-300">√x</span>
+          <span className="text-xs text-white/50">•</span>
+          <span className="text-sm font-bold text-gold-400">∫ dx</span>
+          <span className="text-xs text-white/50">•</span>
+          <span className="text-sm font-bold text-gold-300">∞</span>
+        </div>
 
         {/* 6. Graduation Cap 2 (Right Bottom) */}
         <div className="absolute top-[72%] right-[3.5%] w-14 animate-float-cap opacity-90 filter drop-shadow-lg" style={{ animationDelay: '2s' }}>

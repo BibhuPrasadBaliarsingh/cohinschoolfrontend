@@ -57,7 +57,7 @@ export default function Careers({ openCareerModal, isHomePage = false }) {
   const displayedJobs = isHomePage ? jobsData.slice(0, 3) : jobsData;
 
   return (
-    <section id="careers" className="py-16 sm:py-20 lg:py-24 bg-cream-50 relative overflow-hidden">
+    <section id="careers" className="py-12 lg:py-16 bg-cream-50 relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-10 sm:mb-14 reveal">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-500/30 text-gold-700 text-xs font-semibold tracking-wider uppercase mb-3">
@@ -67,7 +67,7 @@ export default function Careers({ openCareerModal, isHomePage = false }) {
             Careers at Cohen International
           </h2>
           <p className="text-navy-700/70 text-sm sm:text-base max-w-2xl mx-auto">
-            Shape the leaders of tomorrow. We offer competitive remuneration, on-campus accommodation, PF, ESI, research support, and an inspiring tech-enabled workplace.
+            Shape the leaders of tomorrow. We offer competitive remuneration, PF, ESI, research support, and an inspiring tech-enabled workplace.
           </p>
         </div>
 

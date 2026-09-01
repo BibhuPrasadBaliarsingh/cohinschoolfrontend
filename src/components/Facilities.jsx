@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tv, FlaskConical, Trophy, ArrowRight, ShieldCheck, BookOpen, Cpu, Sparkles, Building } from 'lucide-react';
+import { Tv, FlaskConical, Trophy, ArrowRight, ShieldCheck, BookOpen, Cpu, Sparkles, Building, Atom, GraduationCap } from 'lucide-react';
 import img3604 from '../assets/DSC03604.JPG';
 import img3612 from '../assets/DSC03612.JPG';
 import img3620 from '../assets/DSC03620.JPG';
@@ -105,7 +105,7 @@ export default function Facilities({ openDedicatedTopic }) {
   ];
 
   return (
-    <section id="facilities" className="py-24 bg-cream-100 relative overflow-hidden">
+    <section id="facilities" className="py-12 lg:py-16 bg-cream-100 relative overflow-hidden">
       {/* 6 Animated Floating Graphics (Parachute, Leaf, Paper Plane, Cloud, Sparkle, Palm Leaf) */}
       <style>{`
         @keyframes facPara {
@@ -147,70 +147,35 @@ export default function Facilities({ openDedicatedTopic }) {
         .animate-fac-palm { animation: facPalm 16s ease-in-out infinite; }
       `}</style>
 
-      {/* Floating 6 Graphics Layer */}
+      {/* Floating Academic & Science Graphics Layer (Atoms, Graduation Caps, Math Symbols) */}
       <div className="absolute inset-0 pointer-events-none z-10 hidden sm:block overflow-hidden">
-        {/* 1. Parachute */}
-        <div className="absolute top-[8%] left-[1.8%] w-12 animate-fac-para opacity-85">
-          <svg viewBox="0 0 60 80" className="w-full h-auto filter drop-shadow-md">
-            <defs>
-              <linearGradient id="f-para-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                <stop offset="0%" stopColor="#FF4D6D" />
-                <stop offset="50%" stopColor="#FFB703" />
-                <stop offset="100%" stopColor="#00F5D4" />
-              </linearGradient>
-            </defs>
-            <path d="M5,35 A25,25 0 0,1 55,35 Z" fill="url(#f-para-grad)" />
-            <line x1="5" y1="35" x2="27" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="17.5" y1="35" x2="28.5" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="42.5" y1="35" x2="31.5" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <line x1="55" y1="35" x2="33" y2="60" stroke="#718096" strokeWidth="1.2" />
-            <rect x="25" y="60" width="10" height="8" rx="2" fill="#D97706" />
-          </svg>
+        {/* 1. Floating Science Atom */}
+        <div className="absolute top-[8%] left-[1.8%] p-3 rounded-2xl bg-white/90 shadow-lg border border-gold-400/40 text-gold-600 animate-fac-sparkle">
+          <Atom className="w-7 h-7 text-gold-600" />
         </div>
 
-        {/* 2. Green Leaf */}
-        <div className="absolute top-[15%] right-[2.2%] w-9 animate-fac-leaf opacity-85" style={{ animationDelay: '1.5s' }}>
-          <svg viewBox="0 0 40 50" className="w-full h-auto filter drop-shadow-sm">
-            <defs>
-              <linearGradient id="f-leaf-grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#52B788" />
-                <stop offset="100%" stopColor="#1B4332" />
-              </linearGradient>
-            </defs>
-            <path d="M20,2 C32,10 38,24 20,44 C2,24 8,10 20,2 Z" fill="url(#f-leaf-grad)" />
-            <path d="M20,2 Q20,23 20,44" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.2" />
-            <path d="M20,44 Q20,48 18,50" stroke="#1B4332" strokeWidth="1.5" fill="none" />
-          </svg>
+        {/* 2. Floating Graduation Cap */}
+        <div className="absolute top-[12%] right-[2.2%] p-3 rounded-2xl bg-navy-900 shadow-lg border border-gold-400/40 text-gold-400 animate-fac-sparkle" style={{ animationDelay: '1.5s' }}>
+          <GraduationCap className="w-7 h-7 text-gold-400" />
         </div>
 
-        {/* 3. Paper Airplane */}
-        <div className="absolute top-[45%] left-[1.5%] w-10 animate-fac-plane opacity-80" style={{ animationDelay: '2.5s' }}>
-          <svg viewBox="0 0 50 50" className="w-full h-auto filter drop-shadow-md">
-            <path d="M2,24 L46,2 L28,46 L22,30 Z" fill="#E8C547" opacity="0.9" />
-            <path d="M22,30 L46,2 L28,46 Z" fill="#C9A227" opacity="0.8" />
-          </svg>
+        {/* 3. Floating Math Formula Pill (π • β • γ | + - × ÷) */}
+        <div className="absolute top-[45%] left-[1.5%] px-3 py-2 rounded-xl bg-navy-900 text-gold-400 font-serif text-xs font-bold shadow-lg border border-gold-400/40 animate-fac-cloud flex items-center gap-1.5">
+          <span className="text-sm font-extrabold text-gold-300">π</span>
+          <span>•</span>
+          <span className="text-sm font-extrabold text-gold-400">β</span>
+          <span>•</span>
+          <span className="text-xs font-mono bg-white/10 px-1.5 py-0.5 rounded">+ − × ÷</span>
         </div>
 
-        {/* 4. Soft Cloud */}
-        <div className="absolute top-[4%] left-[45%] w-20 animate-fac-cloud opacity-40">
-          <svg viewBox="0 0 100 60" className="w-full h-auto fill-current text-white">
-            <path d="M10,45 Q10,25 30,25 Q40,10 60,15 Q75,5 85,25 Q95,30 90,45 Z" fill="#E2E8F0" />
-          </svg>
+        {/* 4. Floating Chemistry Flask */}
+        <div className="absolute top-[50%] right-[2.5%] p-3 rounded-2xl bg-white/90 shadow-lg border border-emerald-400/40 text-emerald-600 animate-fac-sparkle" style={{ animationDelay: '3.2s' }}>
+          <FlaskConical className="w-7 h-7 text-emerald-600" />
         </div>
 
-        {/* 5. Glowing Sparkle Star */}
-        <div className="absolute top-[52%] right-[2.5%] w-8 animate-fac-sparkle opacity-90" style={{ animationDelay: '3.2s' }}>
-          <svg viewBox="0 0 40 40" className="w-full h-auto filter drop-shadow-sm">
-            <path d="M20,0 L24,16 L40,20 L24,24 L20,40 L16,24 L0,20 L16,16 Z" fill="#F59E0B" />
-          </svg>
-        </div>
-
-        {/* 6. Tropical Palm Leaf */}
-        <div className="absolute top-[75%] left-[2.2%] w-10 animate-fac-palm opacity-85" style={{ animationDelay: '4.0s' }}>
-          <svg viewBox="0 0 50 50" className="w-full h-auto filter drop-shadow-sm">
-            <path d="M25,2 C35,15 45,30 25,48 C5,30 15,15 25,2 Z" fill="#10B981" />
-            <path d="M25,2 L25,48" stroke="#047857" strokeWidth="1.5" />
-          </svg>
+        {/* 5. Floating Open Book */}
+        <div className="absolute top-[75%] left-[2.2%] p-3 rounded-2xl bg-white/90 shadow-lg border border-indigo-400/40 text-indigo-600 animate-fac-sparkle" style={{ animationDelay: '4.0s' }}>
+          <BookOpen className="w-7 h-7 text-indigo-600" />
         </div>
       </div>
 
