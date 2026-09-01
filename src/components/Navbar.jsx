@@ -16,7 +16,8 @@ import {
   ArrowRight,
   GraduationCap,
   Cpu,
-  BookOpen
+  BookOpen,
+  Rocket
 } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 
@@ -253,6 +254,23 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                 </div>
               </div>
 
+              {/* Highlighted Aerospace Programme Link */}
+              <NavLink
+                to="/aerospace-programme"
+                className={({ isActive }) =>
+                  `px-3 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wide transition flex items-center gap-1.5 shadow-md border ${
+                    isActive
+                      ? 'bg-gold-500 text-navy-950 border-gold-400 font-black scale-105'
+                      : scrolled
+                      ? 'bg-blue-600 text-white border-blue-500 hover:bg-blue-700'
+                      : 'bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white border-blue-400/50 hover:brightness-110'
+                  }`
+                }
+              >
+                <Rocket className="w-3.5 h-3.5 text-gold-300 animate-pulse" />
+                <span>Aerospace Programme</span>
+              </NavLink>
+
               <NavLink to="/admissions" className={navLinkClass}>
                 Admissions
               </NavLink>
@@ -350,6 +368,26 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
 
           <div className="w-full max-w-md mx-auto px-5 py-6 flex-1 space-y-3.5">
             
+            {/* 0. AEROSPACE PROGRAMME (HIGHLIGHTED) */}
+            <Link
+              to="/aerospace-programme"
+              onClick={() => setMegaMenuOpen(false)}
+              className={`flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white shadow-xl font-bold border border-blue-400/40 transition min-h-[52px] ${
+                location.pathname === '/aerospace-programme' ? 'ring-2 ring-gold-400' : ''
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-white/20 text-gold-300 flex-shrink-0">
+                  <Rocket className="w-4 h-4 animate-pulse" />
+                </div>
+                <div className="text-left">
+                  <span className="text-[10px] uppercase font-extrabold tracking-widest text-gold-300 block">Odisha's 1st Centre of Excellence</span>
+                  <span className="text-sm font-black uppercase text-white">Aerospace Programme</span>
+                </div>
+              </div>
+              <ArrowRight className="w-4 h-4 text-gold-300" />
+            </Link>
+
             {/* 1. ABOUT US ACCORDION */}
             <div className="rounded-2xl bg-white/[0.04] border border-white/10 overflow-hidden shadow-lg transition-all">
               <button

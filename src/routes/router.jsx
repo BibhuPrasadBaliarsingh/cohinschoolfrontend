@@ -25,6 +25,7 @@ const CohenTalkPage = lazy(() => import('../pages/CohenTalkPage'));
 const ScientificAdvisoryBoardPage = lazy(() => import('../pages/ScientificAdvisoryBoardPage'));
 const ClubPage = lazy(() => import('../pages/ClubPage'));
 const OlympiadSchoolPage = lazy(() => import('../pages/OlympiadSchoolPage'));
+const AerospaceProgrammePage = lazy(() => import('../pages/AerospaceProgrammePage'));
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const UnauthorizedPage = lazy(() => import('../pages/UnauthorizedPage'));
@@ -103,6 +104,8 @@ export const router = createBrowserRouter([
       { path: 'cohentalk', element: <RouteAdapter Component={CohenTalkPage} /> },
       { path: 'cohen-talk', element: <RouteAdapter Component={CohenTalkPage} /> },
       { path: 'club', element: <RouteAdapter Component={ClubPage} /> },
+      { path: 'aerospace', element: <RouteAdapter Component={AerospaceProgrammePage} /> },
+      { path: 'aerospace-programme', element: <RouteAdapter Component={AerospaceProgrammePage} /> },
       { path: 'clup', element: <RouteAdapter Component={ClubPage} /> },
 
       { path: 'login', element: <RouteAdapter Component={LoginPage} /> },
