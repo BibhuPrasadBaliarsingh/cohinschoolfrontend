@@ -1,26 +1,35 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { X, Quote } from 'lucide-react';
 
 export default function ViceChairmanModal({ closeModal }) {
+  // Prevent background body scroll when Vice Chairman Modal is open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
+
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop"
+      className="fixed inset-0 z-[120] bg-navy-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto animate-fadeIn"
       onClick={closeModal}
       role="dialog"
       aria-modal="true"
       aria-labelledby="vc-modal-title"
     >
       <div
-        className="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-cream-200"
+        className="bg-white rounded-3xl max-w-3xl w-full max-h-[85vh] sm:max-h-[90vh] flex flex-col shadow-2xl border border-cream-200 overflow-hidden my-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sticky top-0 bg-navy-900 px-6 py-5 flex items-center justify-between rounded-t-3xl border-b border-white/10 z-10">
+        {/* Fixed Header */}
+        <div className="bg-navy-900 px-5 sm:px-6 py-4 flex items-center justify-between rounded-t-3xl border-b border-white/10 shrink-0 z-10">
           <div className="flex items-center gap-3">
-            <div className="bg-emerald-500 p-2 rounded-xl text-navy-900">
-              <Quote className="w-6 h-6" />
+            <div className="bg-emerald-500 p-2 rounded-xl text-navy-900 flex-shrink-0">
+              <Quote className="w-5 h-5 sm:w-6 sm:h-6" />
             </div>
             <div>
-              <h3 id="vc-modal-title" className="font-display text-xl text-white font-semibold">
+              <h3 id="vc-modal-title" className="font-display text-lg sm:text-xl text-white font-semibold leading-tight">
                 Vice Chairman’s Desk
               </h3>
             </div>
@@ -29,13 +38,14 @@ export default function ViceChairmanModal({ closeModal }) {
             type="button"
             onClick={closeModal}
             aria-label="Close modal"
-            className="text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10 transition focus-visible:ring-2 focus-visible:ring-gold-400"
+            className="text-white/70 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition cursor-pointer"
           >
             <X className="w-6 h-6" />
           </button>
         </div>
 
-        <div className="p-6 md:p-8 space-y-6 text-navy-800">
+        {/* Scrollable Content Body */}
+        <div className="p-5 sm:p-8 space-y-6 text-navy-800 overflow-y-auto flex-1 overscroll-contain text-left">
           <div className="flex flex-col md:flex-row gap-6 items-center bg-cream-100 p-6 rounded-2xl border border-cream-200">
             <img
               src="/images/about_vc.jpg"

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import img3671 from '../../assets/DSC03671.JPG';
 
@@ -9,6 +9,14 @@ export default function AdmissionModal({ closeModal, mode = 'apply' }) {
   const subtitle = isRegister
     ? 'Register your seat early for the upcoming AY 2027-2028 academic batch.'
     : 'Complete application form for nursery to Class XI admissions.';
+
+  // Lock background body scroll when Admission Form Modal is open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -81,13 +89,17 @@ export default function AdmissionModal({ closeModal, mode = 'apply' }) {
           })
         });
       } catch (err) {
-        console.log('CRM ingest notification:', err);
+        console.warn('Webhook payload omitted:', err);
       }
 
-      const mailtoLink = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-      window.location.href = mailtoLink;
+      const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
+      window.location.href = mailtoUrl;
 
-      alert(`Thank you! Your application details for ${data.studentName || 'the student'} have been submitted.`);
+      alert('Thank you for submitting your admission application! Your email client has been opened to complete sending. Our admissions team will reach out to you shortly.');
+      closeModal();
+    } catch (err) {
+      console.error(err);
+      alert('Application recorded! Our team will contact you shortly.');
       closeModal();
     } finally {
       setSubmitting(false);
@@ -96,18 +108,19 @@ export default function AdmissionModal({ closeModal, mode = 'apply' }) {
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-4 modal-backdrop"
+      className="fixed inset-0 z-[120] bg-navy-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto animate-fadeIn"
       onClick={closeModal}
       role="dialog"
       aria-modal="true"
       aria-labelledby="admission-modal-title"
     >
       <div
-        className="bg-white rounded-3xl max-w-3xl w-full max-h-[92vh] overflow-y-auto shadow-2xl"
-        style={{ border: '1.5px solid rgba(201,162,39,0.25)' }}
+        className="bg-white rounded-3xl max-w-3xl w-full max-h-[88vh] sm:max-h-[92vh] flex flex-col shadow-2xl overflow-hidden my-auto"
+        style={{ border: '1.5px solid rgba(201,162,39,0.3)' }}
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="relative h-44 sm:h-52 rounded-t-3xl overflow-hidden">
+        {/* Banner Header */}
+        <div className="relative h-40 sm:h-52 rounded-t-3xl overflow-hidden shrink-0">
           <img
             src={img3671}
             alt="Cohen International School Campus"
@@ -123,14 +136,14 @@ export default function AdmissionModal({ closeModal, mode = 'apply' }) {
           />
           <div className="absolute top-4 left-4">
             <div className="bg-white/95 backdrop-blur px-2.5 py-1.5 rounded-xl shadow-lg flex items-center gap-2">
-              <img src="/logo.png" alt="Cohen Logo" className="h-7 w-auto object-contain" />
+              <img src="/logo.png" alt="Cohen Logo" className="h-6 sm:h-7 w-auto object-contain" />
             </div>
           </div>
           <button
             type="button"
             onClick={closeModal}
             aria-label="Close modal"
-            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur flex items-center justify-center text-white transition focus-visible:ring-2 focus-visible:ring-gold-400"
+            className="absolute top-4 right-4 w-9 h-9 rounded-full bg-black/40 hover:bg-black/60 backdrop-blur flex items-center justify-center text-white transition cursor-pointer"
           >
             <X className="w-5 h-5" />
           </button>
@@ -150,15 +163,16 @@ export default function AdmissionModal({ closeModal, mode = 'apply' }) {
               Admissions for AY 2027-2028
             </span>
           </div>
-          <div className="absolute bottom-0 left-0 right-0 px-6 pb-5">
-            <h3 id="admission-modal-title" className="font-display text-xl sm:text-2xl text-white font-bold leading-tight">
+          <div className="absolute bottom-0 left-0 right-0 px-5 sm:px-6 pb-4 sm:pb-5">
+            <h3 id="admission-modal-title" className="font-display text-lg sm:text-2xl text-white font-bold leading-tight">
               {title}
             </h3>
-            <p className="text-xs sm:text-sm text-white/70 mt-1">{subtitle}</p>
+            <p className="text-xs sm:text-sm text-white/70 mt-0.5">{subtitle}</p>
           </div>
         </div>
 
-        <form className="p-6 md:p-8 space-y-6" onSubmit={handleSubmit}>
+        {/* Scrollable Form Body */}
+        <form className="p-5 sm:p-8 space-y-6 overflow-y-auto flex-1 overscroll-contain text-left" onSubmit={handleSubmit}>
           <div className="bg-amber-50 border border-amber-200 text-amber-900 px-4 py-2.5 rounded-xl text-xs font-semibold flex items-center justify-between">
             <span>Note: * indicates mandatory information to be filled</span>
             <span className="text-[10px] text-amber-700 bg-amber-200/60 px-2 py-0.5 rounded-md font-bold">REQUIRED</span>

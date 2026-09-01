@@ -1,8 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { X, Briefcase, CheckCircle } from 'lucide-react';
 
 export default function CareerModal({ closeModal, role = 'General Faculty Application' }) {
   const [submitting, setSubmitting] = useState(false);
+
+  // Lock background body scroll when Career Form Modal is open
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   const handleCareerSubmit = (e) => {
     e.preventDefault();
@@ -17,23 +25,24 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
 
   return (
     <div
-      className="fixed inset-0 z-[100] flex items-center justify-center p-4 modal-backdrop"
+      className="fixed inset-0 z-[120] bg-navy-950/85 backdrop-blur-md flex items-center justify-center p-3 sm:p-4 overflow-y-auto animate-fadeIn"
       onClick={closeModal}
       role="dialog"
       aria-modal="true"
       aria-labelledby="career-modal-title"
     >
       <div
-        className="bg-white rounded-3xl max-w-xl w-full max-h-[92vh] overflow-y-auto shadow-2xl border border-cream-200"
+        className="bg-white rounded-3xl max-w-xl w-full max-h-[85vh] sm:max-h-[90vh] flex flex-col shadow-2xl border border-cream-200 overflow-hidden my-auto"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="sticky top-0 bg-navy-900 px-6 py-5 flex items-center justify-between rounded-t-3xl border-b border-white/10 z-10">
+        {/* Header */}
+        <div className="bg-navy-900 px-5 sm:px-6 py-4 flex items-center justify-between rounded-t-3xl border-b border-white/10 shrink-0 z-10">
           <div className="flex items-center gap-3">
-            <div className="bg-gold-500 p-2 rounded-xl text-navy-900">
+            <div className="bg-gold-500 p-2 rounded-xl text-navy-900 flex-shrink-0">
               <Briefcase className="w-5 h-5" />
             </div>
             <div>
-              <h3 id="career-modal-title" className="font-display text-xl text-white font-semibold">
+              <h3 id="career-modal-title" className="font-display text-lg sm:text-xl text-white font-semibold leading-tight">
                 Faculty &amp; Staff Application
               </h3>
               <p className="text-xs text-gold-400">Position: {role}</p>
@@ -43,13 +52,14 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
             type="button"
             onClick={closeModal}
             aria-label="Close modal"
-            className="text-white/70 hover:text-white p-1 rounded-lg hover:bg-white/10 transition focus-visible:ring-2 focus-visible:ring-gold-400"
+            className="text-white/70 hover:text-white p-1.5 rounded-lg hover:bg-white/10 transition cursor-pointer"
           >
-            <X className="w-6 h-6" />
+            <X className="w-5 h-5" />
           </button>
         </div>
 
-        <form className="p-6 md:p-8 space-y-5" onSubmit={handleCareerSubmit}>
+        {/* Scrollable Form Body */}
+        <form className="p-5 sm:p-6 space-y-4 overflow-y-auto flex-1 overscroll-contain text-left" onSubmit={handleCareerSubmit}>
           <div>
             <label htmlFor="career-position" className="text-xs font-semibold text-navy-800 block mb-1">
               Position Applied For *
