@@ -9,7 +9,13 @@ import {
   MapPin,
   Filter,
   Grid,
-  Sparkles
+  Sparkles,
+  Rocket,
+  GraduationCap,
+  Camera,
+  Star,
+  BookOpen,
+  Atom
 } from 'lucide-react';
 
 import img3604 from '../assets/DSC03604.JPG';
@@ -595,9 +601,133 @@ export default function Gallery({ isHomePage = false }) {
   return (
     <section className="py-12 lg:py-16 bg-white text-navy-950 border-t border-cream-200 relative overflow-hidden selection:bg-rose-500 selection:text-white">
 
+      {/* Floating Icon + Rocket CSS Animations */}
+      <style>{`
+        @keyframes galFloat1 {
+          0%   { transform: translateY(0px)   translateX(0px)  rotate(-6deg); opacity: 0.55; }
+          50%  { transform: translateY(-28px) translateX(10px) rotate(8deg);  opacity: 1; }
+          100% { transform: translateY(0px)   translateX(0px)  rotate(-6deg); opacity: 0.55; }
+        }
+        @keyframes galFloat2 {
+          0%   { transform: translateY(0px)  translateX(0px)   rotate(4deg);  opacity: 0.5; }
+          50%  { transform: translateY(24px) translateX(-12px) rotate(-8deg); opacity: 0.95; }
+          100% { transform: translateY(0px)  translateX(0px)   rotate(4deg);  opacity: 0.5; }
+        }
+        @keyframes galFloat3 {
+          0%   { transform: translateY(-10px) rotate(0deg);   opacity: 0.45; }
+          50%  { transform: translateY(18px)  rotate(12deg);  opacity: 1; }
+          100% { transform: translateY(-10px) rotate(0deg);   opacity: 0.45; }
+        }
+        @keyframes galFloat4 {
+          0%   { transform: scale(0.88) translateY(0px);   opacity: 0.4; }
+          50%  { transform: scale(1.12) translateY(-22px);  opacity: 0.95; }
+          100% { transform: scale(0.88) translateY(0px);   opacity: 0.4; }
+        }
+        @keyframes galFloat5 {
+          0%   { transform: translateX(0px) translateY(0px)  rotate(-10deg); opacity: 0.5; }
+          50%  { transform: translateX(18px) translateY(20px) rotate(10deg); opacity: 1; }
+          100% { transform: translateX(0px) translateY(0px)  rotate(-10deg); opacity: 0.5; }
+        }
+        @keyframes galFloat6 {
+          0%   { transform: translateY(12px) rotate(3deg);  opacity: 0.45; }
+          50%  { transform: translateY(-20px) rotate(-5deg); opacity: 0.9; }
+          100% { transform: translateY(12px) rotate(3deg);  opacity: 0.45; }
+        }
+        .gal-icon-1 { animation: galFloat1 7s ease-in-out infinite; }
+        .gal-icon-2 { animation: galFloat2 9s ease-in-out infinite; }
+        .gal-icon-3 { animation: galFloat3 6.5s ease-in-out infinite; }
+        .gal-icon-4 { animation: galFloat4 8s ease-in-out infinite; }
+        .gal-icon-5 { animation: galFloat5 10s ease-in-out infinite; }
+        .gal-icon-6 { animation: galFloat6 7.5s ease-in-out infinite; }
+
+        /* Rocket A wrapper: animates position bottom-left → top-right */
+        @keyframes rocketApos {
+          0%   { top: 108%; left: -8%;  opacity: 0; }
+          6%   { opacity: 1; }
+          94%  { opacity: 1; }
+          100% { top: -15%; left: 108%; opacity: 0; }
+        }
+        /* Rocket B wrapper: animates position bottom-right → top-left */
+        @keyframes rocketBpos {
+          0%   { top: 108%; left: 108%; opacity: 0; }
+          6%   { opacity: 1; }
+          94%  { opacity: 1; }
+          100% { top: -15%; left: -8%;  opacity: 0; }
+        }
+        .gal-rocket-a {
+          position: absolute;
+          animation: rocketApos 12s linear infinite;
+          filter: drop-shadow(0 0 16px rgba(251,191,36,1));
+          z-index: 20;
+        }
+        .gal-rocket-b {
+          position: absolute;
+          animation: rocketBpos 12s linear infinite;
+          animation-delay: 6s;
+          filter: drop-shadow(0 0 16px rgba(251,113,133,1));
+          z-index: 20;
+        }
+      `}</style>
+
       {/* Floating Animated Background Effects */}
       <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-30">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60rem] h-[35rem] bg-gradient-to-b from-rose-500/5 via-gold-500/10 to-transparent rounded-full blur-[140px]" />
+      </div>
+
+      {/* Floating Decorative Icons Layer */}
+      <div className="absolute inset-0 pointer-events-none z-10 hidden sm:block overflow-hidden">
+
+        {/* 🚀 Rocket A – flies from bottom-left corner → top-right corner */}
+        <div className="gal-rocket-a">
+          <div style={{ transform: 'rotate(45deg)' }}>
+            <Rocket className="w-20 h-20 text-gold-400" />
+          </div>
+        </div>
+
+        {/* 🚀 Rocket B – flies from bottom-right corner → top-left corner (delayed 3s) */}
+        <div className="gal-rocket-b">
+          <div style={{ transform: 'rotate(-45deg)' }}>
+            <Rocket className="w-20 h-20 text-rose-400" />
+          </div>
+        </div>
+
+        {/* 2. Graduation Cap – top-right */}
+        <div className="absolute top-[8%] right-[2%] p-3 rounded-2xl bg-white/95 shadow-lg border border-gold-400/40 gal-icon-2" style={{ animationDelay: '1.2s' }}>
+          <GraduationCap className="w-7 h-7 text-gold-600" />
+        </div>
+
+        {/* 3. Camera – mid-left */}
+        <div className="absolute top-[42%] left-[1.5%] p-3 rounded-2xl bg-white/95 shadow-lg border border-rose-400/40 gal-icon-3" style={{ animationDelay: '0.7s' }}>
+          <Camera className="w-7 h-7 text-rose-500" />
+        </div>
+
+        {/* 4. Star – mid-right */}
+        <div className="absolute top-[40%] right-[2%] p-3 rounded-2xl bg-navy-900 shadow-lg border border-gold-400/40 gal-icon-4" style={{ animationDelay: '2s' }}>
+          <Star className="w-7 h-7 text-gold-400" />
+        </div>
+
+        {/* 5. BookOpen – bottom-left */}
+        <div className="absolute top-[75%] left-[2%] p-3 rounded-2xl bg-white/95 shadow-lg border border-indigo-400/40 gal-icon-5" style={{ animationDelay: '1.8s' }}>
+          <BookOpen className="w-7 h-7 text-indigo-500" />
+        </div>
+
+        {/* 6. Atom – bottom-right */}
+        <div className="absolute top-[72%] right-[1.8%] p-3 rounded-2xl bg-white/95 shadow-lg border border-emerald-400/40 gal-icon-6" style={{ animationDelay: '3s' }}>
+          <Atom className="w-7 h-7 text-emerald-600" />
+        </div>
+
+        {/* 7. Math pill – left lower (π • E=mc²) */}
+        <div className="absolute top-[58%] left-[1.5%] px-3 py-2 rounded-xl bg-navy-900 text-gold-400 font-serif text-xs font-bold shadow-lg border border-gold-400/30 gal-icon-2 flex items-center gap-1.5" style={{ animationDelay: '0.4s' }}>
+          <span className="text-sm font-extrabold text-gold-300">π</span>
+          <span>•</span>
+          <span className="text-xs font-mono bg-white/10 px-1.5 py-0.5 rounded">E=mc²</span>
+        </div>
+
+        {/* 8. Sparkles – right lower */}
+        <div className="absolute top-[60%] right-[2%] p-3 rounded-2xl bg-white/95 shadow-lg border border-amber-400/40 gal-icon-1" style={{ animationDelay: '2.5s' }}>
+          <Sparkles className="w-7 h-7 text-amber-500" />
+        </div>
+
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
