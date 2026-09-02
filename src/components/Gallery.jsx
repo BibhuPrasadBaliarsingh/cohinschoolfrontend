@@ -25,32 +25,62 @@ import img3671 from '../assets/DSC03671.JPG';
 import img3681 from '../assets/DSC03681.JPG';
 import img3684 from '../assets/DSC03684.JPG';
 
+// Imports from galary assets folder
+import gImg1 from '../assets/galary/image.png';
+import gImg2 from '../assets/galary/image copy.png';
+import gImg3 from '../assets/galary/image copy 2.png';
+import gImg4 from '../assets/galary/image copy 3.png';
+import gImg5 from '../assets/galary/image copy 4.png';
+import gImg6 from '../assets/galary/image copy 5.png';
+
 const galleryItems = [
   {
     id: 1,
-    title: "Main Campus Gateway & Botanical Sanctuary",
+    title: "Panoramic Aerial View of Cohen Campus & Grounds",
     category: "Campus Infrastructure",
-    src: img3605,
+    src: img3613,
     location: "Central Campus Quad",
     tag: "CAPTAIN SQUAD",
     stat: "10-Acre Sanctuary",
     resolution: "4K UHD",
-    description: "Expansive 10-acre eco-conscious architectural landscape with lush green lawns and state-of-the-art security entrances."
+    description: "Expansive 10-acre eco-conscious architectural landscape with lush green lawns, modern academic wings, and state-of-the-art security entrances."
   },
   {
     id: 2,
-    title: "AI & Aerospace Robotics Hub",
-    category: "Innovation Lab",
-    src: img3613,
-    location: "Tech Innovation Pavilion",
-    tag: "STRIKER LAB",
-    stat: "3D Printers & AI",
+    title: "15th August Independence Day March-Past & Drill Parade",
+    category: "Cultural & Events",
+    src: gImg1,
+    location: "Central Parade Ground",
+    tag: "INDEPENDENCE DAY",
+    stat: "15th August Parade",
     resolution: "4K UHD",
-    description: "Hands-on stem workspace equipping students with robotics kits, 3D printers, and artificial intelligence simulation modules."
+    description: "Annual 15th August Independence Day celebration featuring student scout & guide march-past parade, drill formations, and national flag salute."
   },
   {
     id: 3,
-    title: "Football & Athletic Playgrounds",
+    title: "Main Entrance Gate & Cambridge Academic Partner Wall",
+    category: "Campus Infrastructure",
+    src: img3616,
+    location: "Front Entrance",
+    tag: "GLOBAL PARTNER",
+    stat: "Cambridge UK Partner",
+    resolution: "4K UHD",
+    description: "Main campus security gate entrance with Cambridge English Assessment partner wall and surrounding greenery."
+  },
+  {
+    id: 4,
+    title: "Cohen International School Main Campus Signboard & Front Lawn",
+    category: "Campus Infrastructure",
+    src: img3605,
+    location: "Main Entrance",
+    tag: "CAMPUS SIGNBOARD",
+    stat: "Eco Infrastructure",
+    resolution: "4K UHD",
+    description: "Architectural black stone signboard of Cohen International School surrounded by manicured botanical lawns."
+  },
+  {
+    id: 5,
+    title: "Football & Outdoor Athletic Playgrounds",
     category: "Sports Arena",
     src: img3653,
     location: "Athletics Complex",
@@ -60,7 +90,7 @@ const galleryItems = [
     description: "Lush green grass football field and athletic playground supporting soccer matches, athletic training, and physical conditioning."
   },
   {
-    id: 4,
+    id: 6,
     title: "Interactive Smart Tech Studio",
     category: "Academics",
     src: img3611,
@@ -71,10 +101,10 @@ const galleryItems = [
     description: "Technology-enabled classrooms fitted with interactive smart boards, dual display setups, and ergonomic modular seating."
   },
   {
-    id: 5,
+    id: 7,
     title: "Advanced Physics & Science Research Lab",
     category: "Innovation Lab",
-    src: img3616,
+    src: img3612,
     location: "Science Complex",
     tag: "RESEARCH WING",
     stat: "National Olympiad",
@@ -82,7 +112,7 @@ const galleryItems = [
     description: "Precision-calibrated lab equipment fostering scientific inquiry, practical experiments, and national research olympiads."
   },
   {
-    id: 6,
+    id: 8,
     title: "Cohen Talks Grand Auditorium",
     category: "Cultural & Events",
     src: img3660,
@@ -93,29 +123,18 @@ const galleryItems = [
     description: "State-of-the-art 1,000-seater acoustic theater hosting TEDx-style summits, theatrical plays, and annual galas."
   },
   {
-    id: 7,
-    title: "Vidwan JEE & NEET Integrated Prep Wing",
-    category: "Academics",
-    src: img3625,
-    location: "Excellence Center",
-    tag: "TOP RANKERS",
-    stat: "Expert IIT Faculty",
-    resolution: "4K UHD",
-    description: "Rigorous academic environment where expert faculties guide students through competitive entrance preparation."
-  },
-  {
-    id: 8,
-    title: "Robotics Hardware Assembly Station",
-    category: "Innovation Lab",
-    src: img3612,
-    location: "STEM Studio",
-    tag: "HARDWARE HUB",
-    stat: "Robo Kits",
-    resolution: "4K UHD",
-    description: "Specialized micro-controller programming and hardware prototyping workbench for aspiring engineers."
-  },
-  {
     id: 9,
+    title: "Primary School Outdoor Activity & Athletic Playground",
+    category: "Sports Arena",
+    src: img3625,
+    location: "Junior Sports Ground",
+    tag: "JUNIOR SQUAD",
+    stat: "Outdoor Fun",
+    resolution: "4K UHD",
+    description: "Young primary scholars engaging in outdoor athletic drills, team-building fun, and physical conditioning."
+  },
+  {
+    id: 10,
     title: "Cambridge Phonetics & Speech Lab",
     category: "Academics",
     src: img3624,
@@ -126,7 +145,7 @@ const galleryItems = [
     description: "Audio-assisted linguistic training suite enhancing public speaking, global accent mastery, and elocution."
   },
   {
-    id: 10,
+    id: 11,
     title: "Indoor Badminton & Sports Arena",
     category: "Sports Arena",
     src: img3620,
@@ -137,7 +156,7 @@ const galleryItems = [
     description: "Indoor wooden courts for badminton, table tennis, and yoga sessions supervised by certified athletic coaches."
   },
   {
-    id: 11,
+    id: 12,
     title: "Luxury Boarding Residence & Lounge",
     category: "Campus Infrastructure",
     src: img3604,
@@ -148,7 +167,7 @@ const galleryItems = [
     description: "Hygienic, climate-controlled residential quarters with chef-curated nutritious dining for resident scholars."
   },
   {
-    id: 12,
+    id: 13,
     title: "Collaborative Learning Studio Space",
     category: "Academics",
     src: img3671,
@@ -159,18 +178,18 @@ const galleryItems = [
     description: "Flexible, modern study pods designed to encourage peer brainstorming, group projects, and creative workshops."
   },
   {
-    id: 13,
-    title: "Digital E-Library & Knowledge Commons",
-    category: "Campus Infrastructure",
+    id: 14,
+    title: "STEAM & Space Model Innovation Lab",
+    category: "Innovation Lab",
     src: img3681,
-    location: "Knowledge Hub",
-    tag: "20K+ BOOKS",
-    stat: "Digital Access",
+    location: "AeroSpace Lab",
+    tag: "SPACE INNOVATION",
+    stat: "Hands-on Building",
     resolution: "4K UHD",
-    description: "Quiet research haven featuring over 20,000 physical volumes alongside digital access to global research journals."
+    description: "Students collaborating in the aerospace innovation lab, designing and assembling rocket propulsion and satellite prototypes."
   },
   {
-    id: 14,
+    id: 15,
     title: "Archway Walkway & Botanical Lawn",
     category: "Campus Infrastructure",
     src: img3622,
@@ -181,15 +200,81 @@ const galleryItems = [
     description: "Serene shaded pathways connecting academic blocks, surrounded by native flora and peaceful seating nooks."
   },
   {
-    id: 15,
-    title: "RouteSafe Fleet & Transit Terminal",
-    category: "Campus Infrastructure",
+    id: 16,
+    title: "Aerospace Drone & RC Aircraft Engineering Lab",
+    category: "Innovation Lab",
     src: img3684,
-    location: "Transit Hub",
-    tag: "GPS ROUTE",
-    stat: "AC Buses",
-    resolution: "HD 1080p",
-    description: "GPS-monitored, air-conditioned bus fleet managed with real-time app tracking for parent peace of mind."
+    location: "Aero Innovation Hub",
+    tag: "DRONE LAB",
+    stat: "RC & Flight Control",
+    resolution: "4K UHD",
+    description: "Students testing radio controllers, propellers, and electronic flight systems for autonomous RC airplanes and drones."
+  },
+  {
+    id: 17,
+    title: "15th August Independence Day House March-Past Parade",
+    category: "Cultural & Events",
+    src: gImg2,
+    location: "Central Sports Ground",
+    tag: "INDEPENDENCE DAY",
+    stat: "15th August Drill",
+    resolution: "4K UHD",
+    description: "Independence Day house captain march-past parade, drill squad salute, and sports ground assembly."
+  },
+  {
+    id: 18,
+    title: "High-Tech 3D Printing & Prototyping Workbench",
+    category: "Innovation Lab",
+    src: gImg3,
+    location: "Aerobay Lab",
+    tag: "3D PRINTING",
+    stat: "Rapid Prototyping",
+    resolution: "4K UHD",
+    description: "Precision 3D printing equipment enabling students to design, slice, and manufacture custom aerodynamic components and prototypes."
+  },
+  {
+    id: 19,
+    title: "Aero Flying & Drone Banner Demonstration",
+    category: "Cultural & Events",
+    src: gImg4,
+    location: "Central Sports Ground",
+    tag: "AERO FLYING",
+    stat: "Live Demonstration",
+    resolution: "4K UHD",
+    description: "Live outdoor flying demonstration of custom-built radio-controlled airplanes and banner-towing drones on the campus sports field."
+  },
+  {
+    id: 20,
+    title: "15th August Freedom Fighters Fancy Dress & Role Play Competition",
+    category: "Cultural & Events",
+    src: gImg5,
+    location: "Main Auditorium Stage",
+    tag: "FANCY DRESS",
+    stat: "15th August Role Play",
+    resolution: "4K UHD",
+    description: "Young primary scholars portraying national freedom fighters including Mahatma Gandhi, Netaji Subhas Chandra Bose, and Mother Teresa in the 15th August Fancy Dress Competition."
+  },
+  {
+    id: 21,
+    title: "Fixed-Wing Aircraft Prototyping & Assembly",
+    category: "Innovation Lab",
+    src: gImg6,
+    location: "Aerobay Workbench",
+    tag: "AERODYNAMICS",
+    stat: "RC Aircraft Kits",
+    resolution: "4K UHD",
+    description: "Hands-on assembly of fixed-wing radio-controlled aircraft models, instilling core principles of aerodynamics, lift, and thrust."
+  },
+  {
+    id: 22,
+    title: "15th August Independence Day & Flag Hoisting Ceremony",
+    category: "Cultural & Events",
+    src: gImg2,
+    location: "Main Flag Hoisting Lawn",
+    tag: "INDEPENDENCE DAY",
+    stat: "15th August Celebration",
+    resolution: "4K UHD",
+    description: "Annual 15th August Independence Day celebration featuring tri-color flag hoisting, student march-past parade, and patriotic choir performances."
   }
 ];
 
@@ -559,7 +644,7 @@ export default function Gallery() {
                     onClick={() => {
                       if (isLeft) handlePrevSquad();
                       else if (isRight) handleNextSquad();
-                      else setSelectedIdx(squadIdx);
+                      else setSelectedIdx(idx);
                     }}
                     className={`absolute w-[220px] sm:w-[380px] md:w-[440px] aspect-[4/3] rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer shadow-2xl border-2 transition-all ${isCenter
                         ? "border-gold-500 shadow-[0_25px_70px_rgba(201,162,39,0.35)]"

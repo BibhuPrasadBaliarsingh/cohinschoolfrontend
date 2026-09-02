@@ -77,27 +77,24 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
   }, [megaMenuOpen]);
 
   const navLinkClass = ({ isActive }) =>
-    `nav-link text-sm font-semibold transition-colors duration-300 ${
-      scrolled
-        ? isActive
-          ? 'text-gold-600 font-bold active'
-          : 'text-navy-950 hover:text-gold-600'
-        : isActive
+    `nav-link text-sm font-semibold transition-colors duration-300 ${scrolled
+      ? isActive
+        ? 'text-gold-600 font-bold active'
+        : 'text-navy-950 hover:text-gold-600'
+      : isActive
         ? 'text-gold-400 font-bold active'
         : 'text-white hover:text-gold-400'
     }`;
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'bg-white border-b border-gray-200 shadow-lg' : 'bg-transparent'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-white border-b border-gray-200 shadow-lg' : 'bg-transparent'
+        }`}
     >
       {/* Top Notification Bar */}
       <div
-        className={`bg-navy-950/90 backdrop-blur-md text-white/80 border-b border-white/10 text-xs transition-all duration-300 transform origin-top overflow-hidden ${
-          scrolled ? 'max-h-0 opacity-0 -translate-y-full py-0 border-transparent pointer-events-none' : 'max-h-24 opacity-100 translate-y-0 py-1.5'
-        }`}
+        className={`bg-navy-950/90 backdrop-blur-md text-white/80 border-b border-white/10 text-xs transition-all duration-300 transform origin-top overflow-hidden ${scrolled ? 'max-h-0 opacity-0 -translate-y-full py-0 border-transparent pointer-events-none' : 'max-h-24 opacity-100 translate-y-0 py-1.5'
+          }`}
       >
         <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-4">
@@ -258,10 +255,9 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
               <NavLink
                 to="/aerospace-programme"
                 className={({ isActive }) =>
-                  `px-3 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wide transition flex items-center gap-1.5 shadow-md border ${
-                    isActive
-                      ? 'bg-gold-500 text-navy-950 border-gold-400 font-black scale-105'
-                      : scrolled
+                  `px-3 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wide transition flex items-center gap-1.5 shadow-md border ${isActive
+                    ? 'bg-gold-500 text-navy-950 border-gold-400 font-black scale-105'
+                    : scrolled
                       ? 'bg-blue-600 text-white border-blue-500 hover:bg-blue-700'
                       : 'bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white border-blue-400/50 hover:brightness-110'
                   }`
@@ -319,11 +315,10 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
               <button
                 type="button"
                 onClick={() => setMegaMenuOpen((prev) => !prev)}
-                className={`lg:hidden p-2.5 rounded-xl transition border flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-gold-500 ${
-                  scrolled
+                className={`lg:hidden p-2.5 rounded-xl transition border flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-gold-500 ${scrolled
                     ? 'bg-navy-950 text-white hover:bg-gold-500 hover:text-navy-950 border-navy-900 shadow-md'
                     : 'bg-white/10 text-white hover:bg-white/20 border-white/30 backdrop-blur-md'
-                }`}
+                  }`}
                 aria-label="Toggle Navigation Menu"
                 title="Toggle Navigation Menu"
               >
@@ -337,7 +332,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
       {/* ULTRA-POLISHED MODERN MOBILE NAVIGATION MENU OVERLAY */}
       {megaMenuOpen && (
         <div className="fixed inset-0 z-[100] bg-gradient-to-b from-[#030914] via-[#091B30] to-[#030914] text-white flex flex-col overflow-y-auto animate-fadeIn font-sans transition-all duration-300 selection:bg-gold-500 selection:text-navy-950">
-          
+
           <div className="w-full px-5 py-4 flex items-center justify-between border-b border-white/10 sticky top-0 bg-[#030914]/95 backdrop-blur-xl z-30 shadow-md">
             <Link to="/" onClick={() => setMegaMenuOpen(false)} className="flex items-center gap-2">
               <div className="bg-white px-3 py-1.5 rounded-xl shadow border border-white/20">
@@ -354,7 +349,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                 <LogIn className="w-3.5 h-3.5" />
                 <span>Login</span>
               </Link>
-              
+
               <button
                 type="button"
                 onClick={() => setMegaMenuOpen(false)}
@@ -367,14 +362,13 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
           </div>
 
           <div className="w-full max-w-md mx-auto px-5 py-6 flex-1 space-y-3.5">
-            
+
             {/* 0. AEROSPACE PROGRAMME (HIGHLIGHTED) */}
             <Link
               to="/aerospace-programme"
               onClick={() => setMegaMenuOpen(false)}
-              className={`flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white shadow-xl font-bold border border-blue-400/40 transition min-h-[52px] ${
-                location.pathname === '/aerospace-programme' ? 'ring-2 ring-gold-400' : ''
-              }`}
+              className={`flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white shadow-xl font-bold border border-blue-400/40 transition min-h-[52px] ${location.pathname === '/aerospace-programme' ? 'ring-2 ring-gold-400' : ''
+                }`}
             >
               <div className="flex items-center gap-3">
                 <div className="p-2 rounded-xl bg-white/20 text-gold-300 flex-shrink-0">
@@ -487,17 +481,17 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
             </div>
 
             <Link to="/admissions" onClick={() => setMegaMenuOpen(false)} className={`flex items-center justify-between p-4 rounded-2xl bg-white/[0.04] border border-white/10 shadow-lg text-base font-bold transition min-h-[52px] ${location.pathname === '/admissions' ? 'bg-gold-500/20 text-gold-400 border-gold-500/40' : 'text-white hover:text-gold-400 hover:bg-white/10'}`}>
-              <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><Sparkles className="w-4 h-4"/></div><span>Admissions</span></div>
+              <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><Sparkles className="w-4 h-4" /></div><span>Admissions</span></div>
               <ArrowRight className="w-4 h-4 text-gold-400" />
             </Link>
 
             <Link to="/careers" onClick={() => setMegaMenuOpen(false)} className={`flex items-center justify-between p-4 rounded-2xl bg-white/[0.04] border border-white/10 shadow-lg text-base font-bold transition min-h-[52px] ${location.pathname === '/careers' ? 'bg-gold-500/20 text-gold-400 border-gold-500/40' : 'text-white hover:text-gold-400 hover:bg-white/10'}`}>
-              <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><BookOpen className="w-4 h-4"/></div><span>Careers</span></div>
+              <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><BookOpen className="w-4 h-4" /></div><span>Careers</span></div>
               <ArrowRight className="w-4 h-4 text-gold-400" />
             </Link>
 
             <Link to="/contact" onClick={() => setMegaMenuOpen(false)} className={`flex items-center justify-between p-4 rounded-2xl bg-white/[0.04] border border-white/10 shadow-lg text-base font-bold transition min-h-[52px] ${location.pathname === '/contact' ? 'bg-gold-500/20 text-gold-400 border-gold-500/40' : 'text-white hover:text-gold-400 hover:bg-white/10'}`}>
-              <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><Phone className="w-4 h-4"/></div><span>Contact Us</span></div>
+              <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><Phone className="w-4 h-4" /></div><span>Contact Us</span></div>
               <ArrowRight className="w-4 h-4 text-gold-400" />
             </Link>
           </div>

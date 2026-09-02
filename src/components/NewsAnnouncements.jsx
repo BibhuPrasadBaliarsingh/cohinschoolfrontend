@@ -12,6 +12,7 @@ import officialBanner1 from "../assets/jeeadvance3.jpeg";
 import officialBanner2 from "../assets/jeeadvance6.jpeg";
 import officialBanner3 from "../assets/jeeadvance5.jpeg";
 import chessImg from "../assets/chess.png";
+import indepImg from "../assets/galary/image.png";
 
 import {
   Calendar,
@@ -164,6 +165,24 @@ const defaultEventsData = [
     fullNotice:
       "Admissions for Academic Session AY 2027-2028 are now open. Parents can submit online applications for Nursery to Grade XII with integrated IIT-JEE & NEET coaching options.",
     pdfUrl: "https://drive.google.com/file/d/1gQa9u2EHouQNeoMaA7HTFnNi7pBrRwDt/view"
+  },
+  {
+    id: "evt-indep-15aug",
+    day: "15",
+    month: "August",
+    year: "2026",
+    title: "79th Independence Day & Flag Hoisting Ceremony",
+    studentName: "CIS Cultural Committee & Student Council",
+    rank: "Patriotic Parade & Flag Hoisting",
+    category: "Cultural & Events",
+    image: indepImg,
+    fallbackUrl: officialLogo,
+    posterBadge: "15th August • Independence Day",
+    summary:
+      "Cohen International School celebrated 79th Independence Day with patriotic fervor, march-past parade, tri-color flag hoisting, and cultural musical tributes.",
+    fullNotice:
+      "Dear Parents and Students,\n\nCohen International School celebrated 79th Independence Day on 15th August with solemn patriotic pride and fervor across campus.\n\nThe tri-color National Flag was unfurled by school dignitaries followed by the National Anthem, march-past parade by student house captain squads, patriotic choir performances, and leadership message.\n\nHappy Independence Day!\n\nRegards,\nCohen International School",
+    pdfUrl: "#"
   }
 ];
 

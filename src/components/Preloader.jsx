@@ -50,11 +50,11 @@ export default function Preloader({ onComplete }) {
             style={{ animationDuration: '1.6s', animationDirection: 'reverse' }}
           />
 
-          <div className="absolute inset-4 rounded-full bg-navy-900/90 backdrop-blur-md border border-gold-500/40 flex items-center justify-center shadow-2xl p-3 sm:p-4">
+          <div className="absolute inset-3 rounded-full bg-white p-2.5 sm:p-3 border-2 border-gold-400 flex items-center justify-center shadow-[0_0_30px_rgba(255,255,255,0.4)] overflow-hidden">
             <img
               src="/logo.png"
               alt="Cohen International School Logo"
-              className="h-12 sm:h-16 w-auto object-contain animate-pulse"
+              className="h-10 sm:h-14 w-auto object-contain animate-pulse"
               style={{ animationDuration: '2s' }}
             />
           </div>

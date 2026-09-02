@@ -57,7 +57,7 @@ export default function PageLoadingSpinner({ message = 'Loading page...' }) {
         <div className="relative w-20 h-20 flex items-center justify-center mb-5">
           <div className="absolute inset-0 rounded-full border-3 border-transparent border-t-gold-400 border-r-amber-500 animate-spin" />
           <div className="absolute inset-1.5 rounded-full border-3 border-transparent border-b-gold-300 border-l-amber-400 animate-spin [animation-duration:1.5s] [animation-direction:reverse]" />
-          <div className="w-12 h-12 rounded-full bg-navy-950 p-2 border border-gold-400/40 flex items-center justify-center shadow-inner">
+          <div className="w-12 h-12 rounded-full bg-white p-1.5 border-2 border-gold-400 flex items-center justify-center shadow-md overflow-hidden">
             <img src="/logo.png" alt="Cohen Logo" className="w-full h-full object-contain animate-pulse" />
           </div>
         </div>
