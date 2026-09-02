@@ -153,7 +153,7 @@ const defaultEventsData = [
     day: "10",
     month: "August",
     year: "2026",
-    title: "Admissions Open for AY 2027-2028 : Nursery to Grade XII",
+    title: "Admissions Open for AY 2027-2028 : Nursery to Class XI",
     studentName: "CIS Admissions Directorate",
     rank: "Integrated IIT-JEE | NEET | IISER | Olympiads",
     category: "Admissions",
@@ -163,7 +163,7 @@ const defaultEventsData = [
     summary:
       "Registrations open for Day Boarding & Residential Hostels with integrated competitive coaching.",
     fullNotice:
-      "Admissions for Academic Session AY 2027-2028 are now open. Parents can submit online applications for Nursery to Grade XII with integrated IIT-JEE & NEET coaching options.",
+      "Admissions for Academic Session AY 2027-2028 are now open. Parents can submit online applications for Nursery to Class XI with integrated IIT-JEE & NEET coaching options.",
     pdfUrl: "https://drive.google.com/file/d/1gQa9u2EHouQNeoMaA7HTFnNi7pBrRwDt/view"
   },
   {

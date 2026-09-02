@@ -251,20 +251,18 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                 </div>
               </div>
 
-              {/* Highlighted Aerospace Programme Link */}
+              {/* Highlighted Aerospace Programme Link (Blinking Animation) */}
               <NavLink
                 to="/aerospace-programme"
                 className={({ isActive }) =>
-                  `px-3 py-1.5 rounded-full text-xs font-extrabold uppercase tracking-wide transition flex items-center gap-1.5 shadow-md border ${isActive
-                    ? 'bg-gold-500 text-navy-950 border-gold-400 font-black scale-105'
-                    : scrolled
-                      ? 'bg-blue-600 text-white border-blue-500 hover:bg-blue-700'
-                      : 'bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white border-blue-400/50 hover:brightness-110'
+                  `px-3.5 py-1.5 rounded-full text-xs font-black uppercase tracking-wide transition flex items-center gap-1.5 shadow-lg border animate-pulse ${isActive
+                    ? 'bg-gold-500 text-navy-950 border-gold-400 font-black scale-105 shadow-[0_0_20px_rgba(201,162,39,0.9)]'
+                    : 'bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white border-blue-400/80 shadow-[0_0_18px_rgba(37,99,235,0.8)] hover:brightness-125'
                   }`
                 }
               >
-                <Rocket className="w-3.5 h-3.5 text-gold-300 animate-pulse" />
-                <span>Aerospace Programme</span>
+                <Rocket className="w-3.5 h-3.5 text-gold-300 animate-bounce" />
+                <span className="tracking-wider">Aerospace Programme</span>
               </NavLink>
 
               <NavLink to="/admissions" className={navLinkClass}>
@@ -479,6 +477,17 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                 </div>
               )}
             </div>
+
+            {/* Blinking Mobile Aerospace Link */}
+            <Link to="/aerospace-programme" onClick={() => setMegaMenuOpen(false)} className="flex items-center justify-between p-4 rounded-2xl bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 text-white border border-blue-400/60 shadow-[0_0_20px_rgba(37,99,235,0.7)] text-base font-extrabold transition min-h-[52px] animate-pulse">
+              <div className="flex items-center gap-3">
+                <div className="p-2 rounded-xl bg-gold-400/20 text-gold-300">
+                  <Rocket className="w-4 h-4 animate-bounce" />
+                </div>
+                <span className="uppercase tracking-wider text-sm font-black">Aerospace Programme</span>
+              </div>
+              <ArrowRight className="w-4 h-4 text-gold-300" />
+            </Link>
 
             <Link to="/admissions" onClick={() => setMegaMenuOpen(false)} className={`flex items-center justify-between p-4 rounded-2xl bg-white/[0.04] border border-white/10 shadow-lg text-base font-bold transition min-h-[52px] ${location.pathname === '/admissions' ? 'bg-gold-500/20 text-gold-400 border-gold-500/40' : 'text-white hover:text-gold-400 hover:bg-white/10'}`}>
               <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><Sparkles className="w-4 h-4" /></div><span>Admissions</span></div>
