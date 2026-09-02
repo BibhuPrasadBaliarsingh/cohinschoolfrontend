@@ -296,15 +296,10 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                 Contact
               </NavLink>
 
-              {isAuthenticated && user ? (
+              {isAuthenticated && user && (
                 <Link to={`/${(user?.role || 'student').toLowerCase()}/dashboard`} className={`px-3.5 py-1.5 rounded-full text-xs font-semibold transition flex items-center gap-1.5 shadow ${scrolled ? 'bg-navy-900 text-white hover:bg-gold-500 hover:text-navy-950' : 'bg-gold-500/20 border border-gold-400/40 text-gold-400 hover:bg-gold-500 hover:text-navy-950'}`}>
                   <UserCheck className="w-3.5 h-3.5 text-gold-400" />
                   <span>{(user?.name ? user.name.split(' ')[0] : 'User')} ({user?.role || 'Portal'})</span>
-                </Link>
-              ) : (
-                <Link to="/login" className={`nav-link text-sm font-semibold transition-colors duration-300 inline-flex items-center gap-1.5 ${scrolled ? 'text-navy-950 hover:text-gold-600' : 'text-white/90 hover:text-gold-400'}`}>
-                  <LogIn className={`w-3.5 h-3.5 ${scrolled ? 'text-gold-600' : 'text-gold-400'}`} />
-                  <span>Login</span>
                 </Link>
               )}
             </div>
@@ -313,11 +308,11 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
             <div className="flex items-center gap-2 sm:gap-2.5">
               <button
                 type="button"
-                onClick={() => navigate('/contact')}
+                onClick={() => navigate('/login')}
                 className={`hidden sm:inline-flex items-center gap-1.5 px-4 py-2 font-semibold text-xs sm:text-sm rounded-full transition shadow-sm ${scrolled ? 'bg-navy-900 text-white hover:bg-navy-800 border border-navy-900' : 'bg-white/10 text-white hover:bg-white/20 border border-white/25'}`}
               >
-                <HelpCircle className="w-4 h-4 text-gold-400" />
-                Enquire Now
+                <LogIn className="w-4 h-4 text-gold-400" />
+                Login
               </button>
               <button
                 type="button"
@@ -553,8 +548,8 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
             <button type="button" onClick={() => { setMegaMenuOpen(false); openAdmissionModal('apply'); }} className="btn-premium flex items-center justify-center gap-2 py-3.5 w-full bg-gold-500 text-navy-950 font-bold text-sm rounded-2xl shadow-xl hover:bg-gold-400 transition">
               <Sparkles className="w-4 h-4" /><span>Apply for Admissions</span>
             </button>
-            <button type="button" onClick={() => { setMegaMenuOpen(false); navigate('/contact'); }} className="flex items-center justify-center gap-2 py-3 w-full bg-white/10 text-white font-semibold text-xs rounded-2xl border border-white/20 hover:bg-white/20 transition">
-              <HelpCircle className="w-3.5 h-3.5 text-gold-400" /><span>Enquire Now</span>
+            <button type="button" onClick={() => { setMegaMenuOpen(false); navigate('/login'); }} className="flex items-center justify-center gap-2 py-3 w-full bg-white/10 text-white font-semibold text-xs rounded-2xl border border-white/20 hover:bg-white/20 transition">
+              <LogIn className="w-3.5 h-3.5 text-gold-400" /><span>Login</span>
             </button>
           </div>
         </div>

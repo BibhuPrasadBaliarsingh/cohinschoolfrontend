@@ -1,7 +1,8 @@
 import React from 'react';
-import { Tv, FlaskConical, Trophy, ArrowRight, ShieldCheck, BookOpen, Cpu, Sparkles, Building, Atom, GraduationCap } from 'lucide-react';
+import { Tv, FlaskConical, Trophy, ArrowRight, ShieldCheck, BookOpen, Cpu, Sparkles, Building, Atom, GraduationCap, BedDouble, Bus } from 'lucide-react';
 import img3604 from '../assets/DSC03604.JPG';
 import img3612 from '../assets/DSC03612.JPG';
+import img3613 from '../assets/DSC03613.JPG';
 import img3620 from '../assets/DSC03620.JPG';
 import img3622 from '../assets/DSC03622.JPG';
 import img3625 from '../assets/DSC03625.JPG';
@@ -100,6 +101,26 @@ export default function Facilities({ openDedicatedTopic }) {
       img: img3612,
       icon: ShieldCheck,
       badgeColor: "bg-navy-800 text-gold-400 border border-gold-500/30",
+      topic: "facilities"
+    },
+    {
+      id: "boarding-hostel",
+      title: "Boarding Hostel & Nutritious Dining",
+      desc: "Hygienic, climate-controlled residences with chef-curated nutritious meals, 24x7 warden support, and Wi-Fi enabled study rooms.",
+      tag: "Hostel & Boarding",
+      img: img3604,
+      icon: BedDouble,
+      badgeColor: "bg-amber-500/90 text-navy-950",
+      topic: "facilities"
+    },
+    {
+      id: "bus-transport",
+      title: "Safe School Bus Transport Network",
+      desc: "GPS-tracked, AC school buses covering all major routes with trained drivers, lady attendants, and real-time parent tracking.",
+      tag: "Transport Facility",
+      img: img3613,
+      icon: Bus,
+      badgeColor: "bg-sky-600/90 text-white",
       topic: "facilities"
     }
   ];

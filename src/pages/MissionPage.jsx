@@ -146,16 +146,16 @@ export default function MissionPage({ openAdmissionModal }) {
             </p>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 items-start">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             
             {/* Feature 1 */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
+            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col group h-[300px] overflow-hidden">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-gold-500/20 text-gold-400 flex items-center justify-center font-bold mb-4 group-hover:bg-gold-500 group-hover:text-navy-950 transition">
                   <BookOpen className="w-5 h-5" />
                 </div>
                 <span className="text-gold-400 font-bold text-xs uppercase tracking-widest block mb-1.5">01. Academic Core</span>
-                <h3 className="font-display text-lg text-white font-bold mb-2">Holistic Education</h3>
+                <h3 className="font-display text-lg text-white font-bold mb-2 min-h-[56px] flex items-start line-clamp-2">Holistic Education</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
                   {expandedCards[1] ? (
                     "We aim at becoming a world-class teaching institution, one that will lay the foundation stone for intellectual minds and a compassionate heart."
@@ -175,13 +175,13 @@ export default function MissionPage({ openAdmissionModal }) {
             </div>
 
             {/* Feature 2 */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
+            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col group h-[300px] overflow-hidden">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold mb-4 group-hover:bg-emerald-500 group-hover:text-navy-950 transition">
                   <Heart className="w-5 h-5" />
                 </div>
                 <span className="text-emerald-400 font-bold text-xs uppercase tracking-widest block mb-1.5">02. Health &amp; Yoga</span>
-                <h3 className="font-display text-lg text-white font-bold mb-2">Physical and Mental Wellness</h3>
+                <h3 className="font-display text-lg text-white font-bold mb-2 min-h-[56px] flex items-start line-clamp-2">Physical and Mental Wellness</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
                   {expandedCards[2] ? (
                     "A sound mind resides in a sound body. We value the importance of physical fitness and mental wellness. CIS curriculum will include sports, Yoga activities and sessions for catering to the emotional needs of each child."
@@ -201,13 +201,13 @@ export default function MissionPage({ openAdmissionModal }) {
             </div>
 
             {/* Feature 3 */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
+            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col group h-[300px] overflow-hidden">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-purple-500/20 text-purple-400 flex items-center justify-center font-bold mb-4 group-hover:bg-purple-500 group-hover:text-navy-950 transition">
                   <Award className="w-5 h-5" />
                 </div>
                 <span className="text-purple-400 font-bold text-xs uppercase tracking-widest block mb-1.5">03. Moral Values</span>
-                <h3 className="font-display text-lg text-white font-bold mb-2">Intellectual Development</h3>
+                <h3 className="font-display text-lg text-white font-bold mb-2 min-h-[56px] flex items-start line-clamp-2">Intellectual Development</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
                   {expandedCards[3] ? (
                     "We aim at imparting knowledge that not only kindles the minds but also touches their heart. Our curriculum will include human values, gender equality, outreach activities, moral education in addition to the formal education."
@@ -227,13 +227,13 @@ export default function MissionPage({ openAdmissionModal }) {
             </div>
 
             {/* Feature 4 */}
-            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col justify-between group">
+            <div className="p-5 sm:p-6 rounded-2xl bg-white/5 border border-white/15 hover:border-gold-400/60 transition shadow-xl flex flex-col group h-[300px] overflow-hidden">
               <div>
                 <div className="w-10 h-10 rounded-xl bg-sky-500/20 text-sky-400 flex items-center justify-center font-bold mb-4 group-hover:bg-sky-500 group-hover:text-navy-950 transition">
                   <Sun className="w-5 h-5" />
                 </div>
                 <span className="text-sky-400 font-bold text-xs uppercase tracking-widest block mb-1.5">04. Talent Platform</span>
-                <h3 className="font-display text-lg text-white font-bold mb-2">Follow Your Dream</h3>
+                <h3 className="font-display text-lg text-white font-bold mb-2 min-h-[56px] flex items-start line-clamp-2">Follow Your Dream</h3>
                 <p className="text-white/75 text-xs sm:text-sm leading-relaxed">
                   {expandedCards[4] ? (
                     "CIS offers the right platform to harness the unique talents of each kid, and groom them to be excel in the fields of their choice, be it academics, fine arts, sports."
