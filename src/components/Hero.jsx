@@ -118,50 +118,15 @@ function StatItem({ stat, animate }) {
   const count = useCountUp(stat.value, 1800, animate);
   const { Icon } = stat;
   return (
-    <div style={{
-      display: "flex",
-      alignItems: "center",
-      justifyContent: "center",
-      gap: "16px",
-      padding: "16px 20px",
-      borderRadius: "16px",
-      background: "rgba(255,255,255,0.03)",
-      border: "1px solid rgba(255,255,255,0.06)",
-      backdropFilter: "blur(10px)",
-      transition: "all 0.3s ease",
-    }}
-      className="hero-stat-card"
-    >
-      <div style={{
-        width: 48, height: 48, borderRadius: "14px",
-        background: "linear-gradient(135deg, rgba(201,162,39,0.25) 0%, rgba(201,162,39,0.08) 100%)",
-        border: "1px solid rgba(201,162,39,0.4)",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        flexShrink: 0,
-        boxShadow: "0 4px 15px rgba(201,162,39,0.15)",
-      }}>
-        <Icon size={22} color="#E8C547" />
+    <div className="hero-stat-card flex items-center justify-start sm:justify-center gap-3 sm:gap-4 p-3.5 sm:p-5 rounded-2xl bg-white/[0.03] border border-white/[0.08] backdrop-blur-md transition-all duration-300 hover:border-gold-500/40 hover:bg-white/[0.06]">
+      <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-gradient-to-br from-gold-500/25 to-gold-500/10 border border-gold-500/40 flex items-center justify-center flex-shrink-0 shadow-[0_4px_15px_rgba(201,162,39,0.15)]">
+        <Icon className="w-5 h-5 sm:w-6 sm:h-6 text-gold-400" />
       </div>
       <div>
-        <div style={{
-          fontSize: "1.65rem",
-          fontWeight: 900,
-          background: "linear-gradient(135deg, #FFFFFF 40%, #E8C547 100%)",
-          WebkitBackgroundClip: "text",
-          WebkitTextFillColor: "transparent",
-          lineHeight: 1.1,
-          letterSpacing: "-0.02em"
-        }}>
+        <div className="text-lg sm:text-2xl font-black bg-gradient-to-r from-white via-white to-gold-400 bg-clip-text text-transparent leading-tight tracking-tight">
           {animate ? count : 0}{stat.suffix}
         </div>
-        <div style={{
-          fontSize: "0.75rem",
-          fontWeight: 600,
-          color: "rgba(255,255,255,0.65)",
-          textTransform: "uppercase",
-          letterSpacing: "0.08em",
-          marginTop: 4
-        }}>
+        <div className="text-[10px] sm:text-xs font-bold text-white/65 uppercase tracking-widest mt-0.5 sm:mt-1">
           {stat.label}
         </div>
       </div>
@@ -576,25 +541,9 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
       {/* ── Stats bar ─────────────────────────────────── */}
       <div
         id="hero-stats"
-        style={{
-          position: "relative",
-          width: "100%",
-          zIndex: 11,
-          background: "linear-gradient(180deg, rgba(7,15,26,0.85) 0%, rgba(7,15,26,0.96) 100%)",
-          backdropFilter: "blur(20px)",
-          borderTop: "1px solid rgba(201,162,39,0.25)",
-          padding: "24px 20px",
-          boxShadow: "0 -10px 40px rgba(0,0,0,0.5)",
-        }}
+        className="relative w-full z-10 bg-gradient-to-b from-[#070f1a]/85 to-[#070f1a]/96 backdrop-blur-xl border-t border-gold-500/25 px-4 sm:px-6 py-4 sm:py-6 shadow-[0_-10px_40px_rgba(0,0,0,0.5)]"
       >
-        <div style={{
-          maxWidth: "1280px",
-          margin: "0 auto",
-          display: "grid",
-          gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))",
-          gap: "16px",
-          alignItems: "center",
-        }}>
+        <div className="max-w-7xl mx-auto grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 lg:gap-6 items-center">
           {stats.map((s, i) => (
             <StatItem key={i} stat={s} animate={statsActive} />
           ))}
