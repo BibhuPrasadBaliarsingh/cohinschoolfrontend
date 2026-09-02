@@ -121,16 +121,24 @@ export default function Careers({ openCareerModal, isHomePage = false }) {
             <div>
               <h3 className="font-display text-xl sm:text-2xl font-bold mb-1.5">Don't see your specific role listed?</h3>
               <p className="text-white/70 text-xs sm:text-sm">
-                We are always eager to meet exceptional educators, administrators, and mentors. Send your CV to our HR portal.
+                We are always eager to meet exceptional educators, administrators, and mentors. Send your resume directly to <a href="mailto:hr@coheninternationalschool.com" className="text-gold-400 font-bold hover:underline">hr@coheninternationalschool.com</a>.
               </p>
             </div>
-            <button
-              type="button"
-              onClick={() => openCareerModal?.('General Faculty & Staff Application')}
-              className="btn-premium px-6 py-3 bg-gold-500 text-navy-950 font-bold text-xs sm:text-sm rounded-full shadow-lg hover:bg-gold-400 transition flex-shrink-0 flex items-center gap-2"
-            >
-              <Send className="w-4 h-4" /> Submit General Resume
-            </button>
+            <div className="flex flex-col sm:flex-row gap-3 flex-shrink-0">
+              <a
+                href="mailto:hr@coheninternationalschool.com?subject=General%20Faculty%20%26%20Staff%20Application"
+                className="px-5 py-3 bg-white/10 text-gold-400 font-bold text-xs sm:text-sm rounded-full border border-gold-500/40 hover:bg-white/20 transition flex items-center justify-center gap-2"
+              >
+                Direct Email HR
+              </a>
+              <button
+                type="button"
+                onClick={() => openCareerModal?.('General Faculty & Staff Application')}
+                className="btn-premium px-6 py-3 bg-gold-500 text-navy-950 font-bold text-xs sm:text-sm rounded-full shadow-lg hover:bg-gold-400 transition flex items-center justify-center gap-2"
+              >
+                <Send className="w-4 h-4" /> Submit Application Form
+              </button>
+            </div>
           </div>
         )}
       </div>

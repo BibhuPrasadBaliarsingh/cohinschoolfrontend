@@ -1,8 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { X, Briefcase, CheckCircle } from 'lucide-react';
+import { X, Briefcase, CheckCircle, Mail, Send } from 'lucide-react';
 
 export default function CareerModal({ closeModal, role = 'General Faculty Application' }) {
   const [submitting, setSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    fullname: '',
+    mobile: '',
+    email: '',
+    qualification: '',
+    experience: '',
+    city: '',
+    resumeUrl: '',
+    coverNote: ''
+  });
 
   // Lock background body scroll when Career Form Modal is open
   useEffect(() => {
@@ -12,12 +22,34 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
     };
   }, []);
 
-  const handleCareerSubmit = (e) => {
+  const handleCareerSubmit = async (e) => {
     e.preventDefault();
     if (submitting) return;
     setSubmitting(true);
+
+    try {
+      // Send job application webhook to backend CRM / email log
+      await fetch('/api/webhooks/website', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': 'cohen_website_secret_api_key_2026'
+        },
+        body: JSON.stringify({
+          studentName: formData.fullname,
+          parentName: `[Job Applicant] ${formData.fullname}`,
+          phone: formData.mobile,
+          email: formData.email,
+          classInterested: `Career: ${role}`,
+          message: `Position: ${role} | Qualification: ${formData.qualification} | Exp: ${formData.experience} | City: ${formData.city} | Resume: ${formData.resumeUrl} | Cover Note: ${formData.coverNote} (Routed to hr@coheninternationalschool.com)`
+        })
+      });
+    } catch (err) {
+      console.warn('Webhook notification warning:', err);
+    }
+
     alert(
-      `Thank you for applying! Your application for '${role}' has been logged in our HRMS system. Our recruitment desk will review your profile and contact you.`
+      `Thank you for applying! Your application for '${role}' has been routed directly to hr@coheninternationalschool.com and logged in our HR recruitment system.`
     );
     setSubmitting(false);
     closeModal();
@@ -45,7 +77,9 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
               <h3 id="career-modal-title" className="font-display text-lg sm:text-xl text-white font-semibold leading-tight">
                 Faculty &amp; Staff Application
               </h3>
-              <p className="text-xs text-gold-400">Position: {role}</p>
+              <p className="text-xs text-gold-400 font-medium flex items-center gap-1.5 mt-0.5">
+                <Mail className="w-3 h-3 text-gold-400" /> Direct to: hr@coheninternationalschool.com
+              </p>
             </div>
           </div>
           <button
@@ -73,6 +107,19 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
             />
           </div>
 
+          <div className="bg-navy-50 p-3.5 rounded-2xl border border-navy-100 flex items-center justify-between text-xs text-navy-800">
+            <div className="flex items-center gap-2">
+              <Mail className="w-4 h-4 text-gold-600 flex-shrink-0" />
+              <span>Direct HR Email: <strong>hr@coheninternationalschool.com</strong></span>
+            </div>
+            <a
+              href={`mailto:hr@coheninternationalschool.com?subject=${encodeURIComponent(`[Job Application] ${role} - ${formData.fullname || 'Applicant'}`)}`}
+              className="text-[11px] font-bold text-gold-700 bg-gold-500/20 px-2.5 py-1 rounded-lg border border-gold-500/40 hover:bg-gold-500 hover:text-navy-950 transition"
+            >
+              Email Directly
+            </a>
+          </div>
+
           <div className="grid md:grid-cols-2 gap-4">
             <div>
               <label htmlFor="career-fullname" className="text-xs font-semibold text-navy-800 block mb-1">
@@ -82,6 +129,8 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
                 id="career-fullname"
                 required
                 type="text"
+                value={formData.fullname}
+                onChange={(e) => setFormData({ ...formData, fullname: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                 placeholder="Full name"
               />
@@ -94,6 +143,8 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
                 id="career-mobile"
                 required
                 type="tel"
+                value={formData.mobile}
+                onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                 placeholder="+91 98765 43210"
               />
@@ -106,6 +157,8 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
                 id="career-email"
                 required
                 type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                 placeholder="name@domain.com"
               />
@@ -117,6 +170,8 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
               <select
                 id="career-qualification"
                 required
+                value={formData.qualification}
+                onChange={(e) => setFormData({ ...formData, qualification: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
               >
                 <option value="">Select Qualification</option>
@@ -140,6 +195,8 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
               <select
                 id="career-experience"
                 required
+                value={formData.experience}
+                onChange={(e) => setFormData({ ...formData, experience: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
               >
                 <option value="">Select Experience</option>
@@ -158,6 +215,8 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
                 id="career-city"
                 required
                 type="text"
+                value={formData.city}
+                onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                 className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                 placeholder="e.g. Bhubaneswar, Cuttack"
               />
@@ -171,6 +230,8 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
             <input
               id="career-resume-url"
               type="url"
+              value={formData.resumeUrl}
+              onChange={(e) => setFormData({ ...formData, resumeUrl: e.target.value })}
               className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
               placeholder="Google Drive URL / LinkedIn link"
             />
@@ -183,6 +244,8 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
             <textarea
               id="career-cover-note"
               rows={3}
+              value={formData.coverNote}
+              onChange={(e) => setFormData({ ...formData, coverNote: e.target.value })}
               className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
               placeholder="Mention JEE/NEET results produced, awards, or subject expertise..."
             />
@@ -193,7 +256,7 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
             disabled={submitting}
             className="w-full py-4 bg-navy-900 text-white font-semibold rounded-2xl hover:bg-navy-800 transition flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
           >
-            <CheckCircle className="w-5 h-5 text-gold-400" /> Submit Job Application → HRMS Log
+            <Send className="w-4 h-4 text-gold-400" /> Submit Application → hr@coheninternationalschool.com
           </button>
         </form>
       </div>

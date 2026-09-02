@@ -241,6 +241,9 @@ export default function Footer({ openLoginModal, openPortalFrame }) {
                   <a href="mailto:principal@coheninternationalschool.com" className="hover:text-gold-400 hover:underline transition">
                     principal@coheninternationalschool.com
                   </a>
+                  <a href="mailto:hr@coheninternationalschool.com" className="hover:text-gold-400 hover:underline transition text-gold-300 font-medium flex items-center gap-1.5">
+                    hr@coheninternationalschool.com 
+                  </a>
                 </div>
               </li>
             </ul>

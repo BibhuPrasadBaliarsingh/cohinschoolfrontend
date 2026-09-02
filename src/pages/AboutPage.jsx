@@ -3,7 +3,7 @@ import PageWrapper from '../components/PageWrapper';
 import HeaderBanner from '../components/HeaderBanner';
 import About from '../components/About';
 import StartYourJourney from '../components/StartYourJourney';
-import { Target, Compass, Award, BookOpen, Users, ArrowRight, Sparkles } from 'lucide-react';
+import { Target, Compass, Award, BookOpen, Users, ArrowRight, Sparkles, Atom } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export default function AboutPage({ openChairmanModal, openViceChairmanModal, openSecretaryModal, openPrincipalModal, openAdmissionModal }) {
@@ -234,6 +234,128 @@ export default function AboutPage({ openChairmanModal, openViceChairmanModal, op
                 <p className="text-white/80 text-xs sm:text-sm font-medium mt-1">
                   M.Sc Botany &amp; Gold Medalist - M.A. Sociology, B.Ed (Kurukshetra University)
                 </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── SCIENTIFIC ADVISORY BOARD SECTION ── */}
+      <section id="scientific-advisory-board" className="py-16 sm:py-20 bg-white border-t border-slate-200">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-14">
+            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-navy-900/5 text-navy-900 text-xs font-bold uppercase tracking-widest mb-3 border border-navy-900/10">
+              <Atom className="w-4 h-4 text-gold-600" /> Research &amp; Scientific Mentorship
+            </span>
+            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-navy-950 font-bold tracking-tight">
+              Scientific Advisory Board
+            </h2>
+            <p className="text-slate-600 text-sm sm:text-base mt-3 leading-relaxed">
+              Eminent scientists and professors guiding research, STEM innovation, and scientific inquiry at Cohen International School.
+            </p>
+            <div className="w-20 h-1 bg-gold-500 mx-auto mt-4 rounded-full" />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            {/* Member 1: Prof. Ajit Mohan Srivastava */}
+            <div className="bg-slate-50 rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start mb-6">
+                  <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-2xl overflow-hidden bg-navy-950 border-2 border-gold-500/40 shadow-lg flex-shrink-0">
+                    <img
+                      src="/images/prof_ajit_srivastava.png"
+                      alt="Professor Ajit Mohan Srivastava"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/images/about_banner.png";
+                      }}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-navy-900 text-gold-400 text-[11px] font-extrabold uppercase tracking-wider mb-2">
+                      PHYSICS &amp; COSMOLOGY
+                    </span>
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-navy-950 leading-snug">
+                      Professor Ajit Mohan Srivastava
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-slate-700 mt-1">
+                      Professor at Institute of Physics, Bhubaneswar
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-2 border-t border-slate-200 pt-4 text-xs sm:text-sm text-slate-700">
+                  <p className="font-semibold text-navy-900">Academic &amp; Research Credentials:</p>
+                  <ul className="space-y-1.5 list-disc list-inside text-slate-600">
+                    <li>Ph.D. in Theoretical High Energy Physics (Syracuse University, NY, USA)</li>
+                    <li>Research Associate at UC Santa Barbara &amp; TPI Univ of Minnesota, USA</li>
+                    <li>M.Sc. Physics (IIT Kanpur) &amp; B.Sc. (Allahabad University)</li>
+                  </ul>
+                  <p className="text-slate-500 italic text-[11px] pt-1">
+                    Research: Elementary particle physics, cosmology, quark gluon plasma, LHC.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-slate-200">
+                <Link
+                  to="/scientific-advisory-board"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 hover:text-gold-600 transition"
+                >
+                  View Full Credentials <ArrowRight className="w-3.5 h-3.5 text-gold-500" />
+                </Link>
+              </div>
+            </div>
+
+            {/* Member 2: Dr. Seema Bahinipati */}
+            <div className="bg-slate-50 rounded-3xl border border-slate-200 p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+              <div>
+                <div className="flex flex-col sm:flex-row gap-6 items-center sm:items-start mb-6">
+                  <div className="w-36 h-36 sm:w-40 sm:h-40 rounded-2xl overflow-hidden bg-navy-950 border-2 border-gold-500/40 shadow-lg flex-shrink-0">
+                    <img
+                      src="/images/dr_seema_bahinipati.png"
+                      alt="Dr. Seema Bahinipati"
+                      onError={(e) => {
+                        e.currentTarget.onerror = null;
+                        e.currentTarget.src = "/images/about_banner.png";
+                      }}
+                      className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-emerald-950 text-emerald-400 text-[11px] font-extrabold uppercase tracking-wider mb-2">
+                      EXPERIMENTAL PHYSICS
+                    </span>
+                    <h3 className="font-display text-xl sm:text-2xl font-bold text-navy-950 leading-snug">
+                      Dr. Seema Bahinipati
+                    </h3>
+                    <p className="text-xs sm:text-sm font-semibold text-slate-700 mt-1">
+                      Assistant Professor, School of Basic Sciences, IIT Bhubaneswar
+                    </p>
+                  </div>
+                </div>
+
+                <div className="space-y-2 border-t border-slate-200 pt-4 text-xs sm:text-sm text-slate-700">
+                  <p className="font-semibold text-navy-900">Academic &amp; Research Credentials:</p>
+                  <ul className="space-y-1.5 list-disc list-inside text-slate-600">
+                    <li>Ph.D. in Experimental High Energy Physics (Univ of Cincinnati, Ohio, USA)</li>
+                    <li>Postdoctoral Fellow at National Central Univ Taiwan &amp; Univ of Alberta Canada</li>
+                    <li>M.Sc. Physics (Utkal University, Odisha)</li>
+                  </ul>
+                  <p className="text-slate-500 italic text-[11px] pt-1">
+                    Research: Experimental High Energy Physics, B Physics, CP violation.
+                  </p>
+                </div>
+              </div>
+
+              <div className="mt-6 pt-4 border-t border-slate-200">
+                <Link
+                  to="/scientific-advisory-board"
+                  className="inline-flex items-center gap-1.5 text-xs font-bold text-navy-900 hover:text-gold-600 transition"
+                >
+                  View Full Credentials <ArrowRight className="w-3.5 h-3.5 text-gold-500" />
+                </Link>
               </div>
             </div>
           </div>

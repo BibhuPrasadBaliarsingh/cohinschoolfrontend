@@ -7,11 +7,13 @@ import AIChatbot from '../components/AIChatbot';
 import Modals from '../components/Modals';
 import ScrollToTop from '../components/ScrollToTop';
 import { TopRouteLoader } from '../components/PageLoadingSpinner';
+import EnquiryPopupModal from '../components/modals/EnquiryPopupModal';
 
 export default function MainLayout() {
   const location = useLocation();
   const [modalState, setModalState] = useState(null);
   const [chatbotOpen, setChatbotOpen] = useState(false);
+  const [showAutoEnquiry, setShowAutoEnquiry] = useState(false);
 
   const isDashboardOrAuthPage =
     location.pathname.startsWith('/admin') ||
@@ -20,6 +22,20 @@ export default function MainLayout() {
     location.pathname.includes('/dashboard') ||
     location.pathname === '/login' ||
     location.pathname === '/unauthorized';
+
+  // Auto-open Enquiry Popup Modal on site load
+  useEffect(() => {
+    if (!isDashboardOrAuthPage) {
+      const timer = setTimeout(() => {
+        setShowAutoEnquiry(true);
+      }, 1000);
+      return () => clearTimeout(timer);
+    }
+  }, [isDashboardOrAuthPage]);
+
+  const handleCloseAutoEnquiry = useCallback(() => {
+    setShowAutoEnquiry(false);
+  }, []);
 
   useEffect(() => {
     const activate = () => {
@@ -133,6 +149,11 @@ export default function MainLayout() {
         openLoginModal={openLoginModal}
         openPortalFrame={openPortalFrame}
         openAdmissionModal={openAdmissionModal}
+      />
+
+      <EnquiryPopupModal
+        isOpen={showAutoEnquiry}
+        onClose={handleCloseAutoEnquiry}
       />
     </div>
   );
