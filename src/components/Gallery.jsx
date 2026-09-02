@@ -6,7 +6,10 @@ import {
   X,
   ChevronLeft,
   ChevronRight,
-  MapPin
+  MapPin,
+  Filter,
+  Grid,
+  Sparkles
 } from 'lucide-react';
 
 import img3604 from '../assets/DSC03604.JPG';
@@ -25,13 +28,30 @@ import img3671 from '../assets/DSC03671.JPG';
 import img3681 from '../assets/DSC03681.JPG';
 import img3684 from '../assets/DSC03684.JPG';
 
-// Imports from galary assets folder
+// Imports from galary assets folder (All 23 images)
 import gImg1 from '../assets/galary/image.png';
 import gImg2 from '../assets/galary/image copy.png';
 import gImg3 from '../assets/galary/image copy 2.png';
 import gImg4 from '../assets/galary/image copy 3.png';
 import gImg5 from '../assets/galary/image copy 4.png';
 import gImg6 from '../assets/galary/image copy 5.png';
+import gImg7 from '../assets/galary/image copy 6.png';
+import gImg8 from '../assets/galary/image copy 7.png';
+import gImg9 from '../assets/galary/image copy 8.png';
+import gImg10 from '../assets/galary/image copy 9.png';
+import gImg11 from '../assets/galary/image copy 10.png';
+import gImg12 from '../assets/galary/image copy 11.png';
+import gImg13 from '../assets/galary/image copy 12.png';
+import gImg14 from '../assets/galary/image copy 13.png';
+import gImg15 from '../assets/galary/image copy 14.png';
+import gImg16 from '../assets/galary/image copy 15.png';
+import gImg17 from '../assets/galary/image copy 16.png';
+import gImg18 from '../assets/galary/image copy 17.png';
+import gImg19 from '../assets/galary/image copy 18.png';
+import gImg20 from '../assets/galary/image copy 19.png';
+import gImg21 from '../assets/galary/image copy 20.png';
+import gImg22 from '../assets/galary/image copy 21.png';
+import gImg23 from '../assets/galary/image copy 22.png';
 
 const galleryItems = [
   {
@@ -48,7 +68,7 @@ const galleryItems = [
   {
     id: 2,
     title: "15th August Independence Day March-Past & Drill Parade",
-    category: "Cultural & Events",
+    category: "Events & Celebrations",
     src: gImg1,
     location: "Central Parade Ground",
     tag: "INDEPENDENCE DAY",
@@ -81,7 +101,7 @@ const galleryItems = [
   {
     id: 5,
     title: "Football & Outdoor Athletic Playgrounds",
-    category: "Sports Arena",
+    category: "Sports & Athletics",
     src: img3653,
     location: "Athletics Complex",
     tag: "CHAMPION TURF",
@@ -92,7 +112,7 @@ const galleryItems = [
   {
     id: 6,
     title: "Interactive Smart Tech Studio",
-    category: "Academics",
+    category: "Innovation & Tech",
     src: img3611,
     location: "Academic Block A",
     tag: "SMART CLASS",
@@ -103,7 +123,7 @@ const galleryItems = [
   {
     id: 7,
     title: "Advanced Physics & Science Research Lab",
-    category: "Innovation Lab",
+    category: "Innovation & Tech",
     src: img3612,
     location: "Science Complex",
     tag: "RESEARCH WING",
@@ -114,7 +134,7 @@ const galleryItems = [
   {
     id: 8,
     title: "Cohen Talks Grand Auditorium",
-    category: "Cultural & Events",
+    category: "Events & Celebrations",
     src: img3660,
     location: "Cultural Pavilion",
     tag: "CENTER STAGE",
@@ -125,7 +145,7 @@ const galleryItems = [
   {
     id: 9,
     title: "Primary School Outdoor Activity & Athletic Playground",
-    category: "Sports Arena",
+    category: "Sports & Athletics",
     src: img3625,
     location: "Junior Sports Ground",
     tag: "JUNIOR SQUAD",
@@ -136,7 +156,7 @@ const galleryItems = [
   {
     id: 10,
     title: "Cambridge Phonetics & Speech Lab",
-    category: "Academics",
+    category: "Innovation & Tech",
     src: img3624,
     location: "Language Center",
     tag: "GLOBAL ACCENT",
@@ -147,7 +167,7 @@ const galleryItems = [
   {
     id: 11,
     title: "Indoor Badminton & Sports Arena",
-    category: "Sports Arena",
+    category: "Sports & Athletics",
     src: img3620,
     location: "Indoor Sports Center",
     tag: "SMASH COURT",
@@ -169,7 +189,7 @@ const galleryItems = [
   {
     id: 13,
     title: "Collaborative Learning Studio Space",
-    category: "Academics",
+    category: "Innovation & Tech",
     src: img3671,
     location: "Innovation Hall",
     tag: "PEER BRAINSTORM",
@@ -180,7 +200,7 @@ const galleryItems = [
   {
     id: 14,
     title: "STEAM & Space Model Innovation Lab",
-    category: "Innovation Lab",
+    category: "Innovation & Tech",
     src: img3681,
     location: "AeroSpace Lab",
     tag: "SPACE INNOVATION",
@@ -202,7 +222,7 @@ const galleryItems = [
   {
     id: 16,
     title: "Aerospace Drone & RC Aircraft Engineering Lab",
-    category: "Innovation Lab",
+    category: "Innovation & Tech",
     src: img3684,
     location: "Aero Innovation Hub",
     tag: "DRONE LAB",
@@ -213,7 +233,7 @@ const galleryItems = [
   {
     id: 17,
     title: "15th August Independence Day House March-Past Parade",
-    category: "Cultural & Events",
+    category: "Events & Celebrations",
     src: gImg2,
     location: "Central Sports Ground",
     tag: "INDEPENDENCE DAY",
@@ -224,7 +244,7 @@ const galleryItems = [
   {
     id: 18,
     title: "High-Tech 3D Printing & Prototyping Workbench",
-    category: "Innovation Lab",
+    category: "Innovation & Tech",
     src: gImg3,
     location: "Aerobay Lab",
     tag: "3D PRINTING",
@@ -235,7 +255,7 @@ const galleryItems = [
   {
     id: 19,
     title: "Aero Flying & Drone Banner Demonstration",
-    category: "Cultural & Events",
+    category: "Events & Celebrations",
     src: gImg4,
     location: "Central Sports Ground",
     tag: "AERO FLYING",
@@ -246,7 +266,7 @@ const galleryItems = [
   {
     id: 20,
     title: "15th August Freedom Fighters Fancy Dress & Role Play Competition",
-    category: "Cultural & Events",
+    category: "Events & Celebrations",
     src: gImg5,
     location: "Main Auditorium Stage",
     tag: "FANCY DRESS",
@@ -257,7 +277,7 @@ const galleryItems = [
   {
     id: 21,
     title: "Fixed-Wing Aircraft Prototyping & Assembly",
-    category: "Innovation Lab",
+    category: "Innovation & Tech",
     src: gImg6,
     location: "Aerobay Workbench",
     tag: "AERODYNAMICS",
@@ -267,24 +287,214 @@ const galleryItems = [
   },
   {
     id: 22,
-    title: "15th August Independence Day & Flag Hoisting Ceremony",
-    category: "Cultural & Events",
-    src: gImg2,
-    location: "Main Flag Hoisting Lawn",
-    tag: "INDEPENDENCE DAY",
-    stat: "15th August Celebration",
+    title: "Dignitaries Keynote & Inaugural Address",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg7,
+    location: "Auditorium Main Stage",
+    tag: "KEYNOTE ADDRESS",
+    stat: "Eminent Guests",
     resolution: "4K UHD",
-    description: "Annual 15th August Independence Day celebration featuring tri-color flag hoisting, student march-past parade, and patriotic choir performances."
+    description: "Eminent guest speaker and school leadership delivering inspiring inaugural address to students and parents."
+  },
+  {
+    id: 23,
+    title: "Leadership & VIP Felicitation Ceremony",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg8,
+    location: "Central Stage",
+    tag: "FELICITATION",
+    stat: "VIP Guests",
+    resolution: "4K UHD",
+    description: "Felicitation of distinguished educationists and chief guests with traditional honors and mementos."
+  },
+  {
+    id: 24,
+    title: "Grand Stage Inauguration & Lamp Lighting",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg9,
+    location: "Grand Auditorium Stage",
+    tag: "LAMP LIGHTING",
+    stat: "Auspicious Start",
+    resolution: "4K UHD",
+    description: "Auspicious lamp lighting ceremony marking the formal inauguration of new academic and innovation wings."
+  },
+  {
+    id: 25,
+    title: "Executive Director & Founders Honor Tributes",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg10,
+    location: "Auditorium Podium",
+    tag: "FOUNDERS SPEECH",
+    stat: "School Vision",
+    resolution: "4K UHD",
+    description: "Founders and managing director sharing the strategic roadmap and future academic milestones for Cohen International School."
+  },
+  {
+    id: 26,
+    title: "Grand Inauguration Arch Welcome & Procession",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg11,
+    location: "Front Entrance Arch",
+    tag: "WELCOME PROCESSION",
+    stat: "Red Carpet",
+    resolution: "4K UHD",
+    description: "Grand welcome arch decorated for the arrival of chief guests, parents, and education dignitaries."
+  },
+  {
+    id: 27,
+    title: "Interactive Press & Media Conclave",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg12,
+    location: "Press Room",
+    tag: "MEDIA CORNER",
+    stat: "Press Briefing",
+    resolution: "4K UHD",
+    description: "Press conference and media interaction session showcasing school academic achievements and infrastructure."
+  },
+  {
+    id: 28,
+    title: "Modern Architectural Academic Block",
+    category: "Campus Infrastructure",
+    src: gImg13,
+    location: "Academic Quadrangle",
+    tag: "SMART INFRA",
+    stat: "Modern Block",
+    resolution: "4K UHD",
+    description: "Architectural view of modern multi-story academic wings featuring climate-controlled classrooms."
+  },
+  {
+    id: 29,
+    title: "Campus Main Gate & Security Plaza",
+    category: "Campus Infrastructure",
+    src: gImg14,
+    location: "Main Gate Plaza",
+    tag: "SECURITY HUB",
+    stat: "CCTV Monitored",
+    resolution: "4K UHD",
+    description: "Spacious campus security gate plaza managed by 24/7 security personnel and app-linked access control."
+  },
+  {
+    id: 30,
+    title: "VIP Memento Presentation Ceremony",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg15,
+    location: "Main Stage",
+    tag: "HONOR & AWARD",
+    stat: "Guest Honor",
+    resolution: "4K UHD",
+    description: "Presentation of ceremonial honors and mementos to distinguished guest speakers."
+  },
+  {
+    id: 31,
+    title: "Dignitary Guest Honor Tributes",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg16,
+    location: "Auditorium Stage",
+    tag: "GUEST FELICITATION",
+    stat: "Eminent Guests",
+    resolution: "4K UHD",
+    description: "Felicitation of government officers, university professors, and distinguished educationists."
+  },
+  {
+    id: 32,
+    title: "Felicitation of Chief Guest & Advisory Board",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg17,
+    location: "Stage Front",
+    tag: "ADVISORY HONOR",
+    stat: "Scientific Board",
+    resolution: "4K UHD",
+    description: "Chairman honoring scientific advisory board members and distinguished keynote dignitaries."
+  },
+  {
+    id: 33,
+    title: "Stage Address by Renowned Academician",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg18,
+    location: "Keynote Podium",
+    tag: "ACADEMIC SUMMIT",
+    stat: "Keynote Talk",
+    resolution: "4K UHD",
+    description: "Inspiring keynote presentation on future tech, AI integration, and holistic schooling."
+  },
+  {
+    id: 34,
+    title: "Foundation Stone & Plaque Ceremony",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg19,
+    location: "Plaza Lawn",
+    tag: "FOUNDATION PLAQUE",
+    stat: "Historic Moment",
+    resolution: "4K UHD",
+    description: "Unveiling of the foundation plaque commemorating the inauguration of Cohen International School."
+  },
+  {
+    id: 35,
+    title: "Auditorium Inauguration Ribbon Cutting",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg20,
+    location: "Auditorium Entrance",
+    tag: "RIBBON CUTTING",
+    stat: "Grand Opening",
+    resolution: "4K UHD",
+    description: "Formal ribbon cutting ceremony inaugurating the grand 1,000-seater acoustic theater."
+  },
+  {
+    id: 36,
+    title: "Student Cultural Dance Performance",
+    category: "Events & Celebrations",
+    src: gImg21,
+    location: "Stage Arena",
+    tag: "CULTURAL DANCE",
+    stat: "Student Talent",
+    resolution: "4K UHD",
+    description: "Vibrant traditional and contemporary dance performance by student cultural troupe."
+  },
+  {
+    id: 37,
+    title: "Annual Day Sports & Athletic Prize Distribution",
+    category: "Events & Celebrations",
+    src: gImg22,
+    location: "Sports Ground Podium",
+    tag: "PRIZE DISTRIBUTION",
+    stat: "Champion Medals",
+    resolution: "4K UHD",
+    description: "Distribution of athletic trophies, championship shields, and medals at the annual sports meet."
+  },
+  {
+    id: 38,
+    title: "Leadership & Faculty Group Portrait",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg23,
+    location: "Central Pavilion Lawn",
+    tag: "LEADERSHIP TEAM",
+    stat: "CIS Mentors",
+    resolution: "4K UHD",
+    description: "Commemorative group portrait of school management, executive directors, and senior academic faculty."
   }
 ];
 
-export default function Gallery() {
+const categories = [
+  "All Photos",
+  "Campus Infrastructure",
+  "Events & Celebrations",
+  "Inauguration & VIP Dignitaries",
+  "Innovation & Tech",
+  "Sports & Athletics"
+];
+
+export default function Gallery({ isHomePage = false }) {
   const [squadIdx, setSquadIdx] = useState(0);
   const [selectedIdx, setSelectedIdx] = useState(null);
   const [likes, setLikes] = useState({});
   const [copied, setCopied] = useState(false);
   const [isPaused, setIsPaused] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+
+  // Filter & Pagination State for Photo Gallery Grid
+  const [activeCategory, setActiveCategory] = useState("All Photos");
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
 
   // Check window width for mobile responsive 3D card spacing
   useEffect(() => {
@@ -293,6 +503,23 @@ export default function Gallery() {
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
   }, []);
+
+  // Filter items based on selected category
+  const filteredItems = activeCategory === "All Photos"
+    ? galleryItems
+    : galleryItems.filter(item => item.category === activeCategory);
+
+  // Pagination calculation
+  const totalPages = Math.ceil(filteredItems.length / itemsPerPage);
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentGridItems = filteredItems.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Reset to page 1 on category change
+  const handleCategoryChange = (cat) => {
+    setActiveCategory(cat);
+    setCurrentPage(1);
+  };
 
   // Automatic Smooth Carousel Scroll (Autoplay every 3.5s)
   useEffect(() => {
@@ -368,198 +595,15 @@ export default function Gallery() {
   return (
     <section className="py-12 lg:py-16 bg-white text-navy-950 border-t border-cream-200 relative overflow-hidden selection:bg-rose-500 selection:text-white">
 
-      {/* Floating Animated CSS Keyframes */}
-      <style>{`
-        @keyframes floatCapG {
-          0% { transform: translateY(0px) rotate(-8deg); }
-          50% { transform: translateY(-30px) rotate(10deg); }
-          100% { transform: translateY(0px) rotate(-8deg); }
-        }
-        @keyframes floatFlowerG {
-          0% { transform: translateY(0px) rotate(0deg) scale(1); }
-          50% { transform: translateY(-35px) rotate(120deg) scale(1.15); }
-          100% { transform: translateY(0px) rotate(240deg) scale(1); }
-        }
-        @keyframes floatBubbleG1 {
-          0% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.6; }
-          50% { transform: translateY(-45px) translateX(15px) scale(1.2); opacity: 0.95; }
-          100% { transform: translateY(0px) translateX(0px) scale(1); opacity: 0.6; }
-        }
-        @keyframes floatBubbleG2 {
-          0% { transform: translateY(0px) translateX(0px) scale(1.1); opacity: 0.5; }
-          50% { transform: translateY(40px) translateX(-20px) scale(0.9); opacity: 0.95; }
-          100% { transform: translateY(0px) translateX(0px) scale(1.1); opacity: 0.5; }
-        }
-        /* Infinite Flying Rockets behind images */
-        @keyframes flyRocketL2R {
-          0% {
-            transform: translate(-150px, 500px) rotate(42deg) scale(0.7);
-            opacity: 0;
-          }
-          8% { opacity: 0.95; }
-          92% { opacity: 0.95; }
-          100% {
-            transform: translate(1450px, -450px) rotate(42deg) scale(0.95);
-            opacity: 0;
-          }
-        }
-        @keyframes flyRocketR2L {
-          0% {
-            transform: translate(1450px, 550px) rotate(-42deg) scale(0.7);
-            opacity: 0;
-          }
-          8% { opacity: 0.95; }
-          92% { opacity: 0.95; }
-          100% {
-            transform: translate(-200px, -450px) rotate(-42deg) scale(0.95);
-            opacity: 0;
-          }
-        }
-        .animate-float-cap { animation: floatCapG 7s ease-in-out infinite; }
-        .animate-float-flower { animation: floatFlowerG 11s ease-in-out infinite; }
-        .animate-float-bubble-1 { animation: floatBubbleG1 8s ease-in-out infinite; }
-        .animate-float-bubble-2 { animation: floatBubbleG2 9.5s ease-in-out infinite; }
-        .animate-rocket-l2r { animation: flyRocketL2R 13s linear infinite; }
-        .animate-rocket-r2l { animation: flyRocketR2L 15s linear infinite; animation-delay: 4.5s; }
-      `}</style>
-
-      {/* Floating Elements Container (Left & Right Margins) */}
-      <div className="absolute inset-0 pointer-events-none z-10 hidden sm:block overflow-hidden">
-
-        {/* LEFT MARGIN FLOATING ITEMS */}
-
-        {/* 1. Graduation Cap (Left Top) */}
-        <div className="absolute top-[12%] left-[3%] w-14 animate-float-cap opacity-90 filter drop-shadow-lg">
-          <svg viewBox="0 0 100 80" className="w-full h-auto">
-            {/* Cap Top Diamond */}
-            <polygon points="50,10 95,30 50,50 5,30" fill="#0B1C2C" />
-            <polygon points="50,15 88,30 50,45 12,30" fill="#12283A" />
-            {/* Cap Skull Base */}
-            <path d="M25,38 L25,58 C25,68 75,68 75,58 L75,38 Z" fill="#0B1C2C" />
-            {/* Gold Tassel */}
-            <path d="M50,30 Q30,35 22,50" fill="none" stroke="#E8C547" strokeWidth="3.5" strokeLinecap="round" />
-            <circle cx="22" cy="52" r="4" fill="#C9A227" />
-          </svg>
-        </div>
-
-        {/* 2. Math Formula Pill (Left Mid) */}
-        <div className="absolute top-[45%] left-[2%] px-3.5 py-2.5 rounded-2xl bg-navy-900 text-gold-400 font-serif text-xs font-bold shadow-xl border border-gold-400/40 animate-float-bubble-1 flex items-center gap-2">
-          <span className="text-sm font-extrabold text-gold-300">π</span>
-          <span className="text-xs text-white/50">•</span>
-          <span className="text-sm font-extrabold text-gold-400">β</span>
-          <span className="text-xs text-white/50">•</span>
-          <span className="text-xs font-mono bg-white/10 px-2 py-0.5 rounded text-gold-300">+ − × ÷</span>
-        </div>
-
-        {/* 3. Floating Atom Icon (Left Bottom) */}
-        <div className="absolute top-[75%] left-[4%] p-3.5 rounded-2xl bg-white/90 shadow-xl border border-cyan-400/40 text-cyan-600 animate-float-bubble-2 flex items-center gap-2">
-          <span className="text-sm font-bold text-navy-900 font-mono">E = mc²</span>
-        </div>
-
-
-        {/* RIGHT MARGIN FLOATING ITEMS */}
-
-        {/* 4. Science Atom Orbit (Right Top) */}
-        <div className="absolute top-[15%] right-[3%] p-3.5 rounded-2xl bg-white/90 shadow-xl border border-gold-400/40 text-gold-600 animate-float-flower flex items-center gap-2">
-          <span className="text-base font-serif font-extrabold text-gold-600">α + β = γ</span>
-        </div>
-
-        {/* 5. Math Symbol Badge (Right Mid) */}
-        <div className="absolute top-[48%] right-[2%] px-3.5 py-2.5 rounded-2xl bg-navy-900 text-gold-400 font-serif text-xs font-bold shadow-xl border border-gold-400/40 animate-float-bubble-2 flex items-center gap-2">
-          <span className="text-sm font-bold text-gold-300">√x</span>
-          <span className="text-xs text-white/50">•</span>
-          <span className="text-sm font-bold text-gold-400">∫ dx</span>
-          <span className="text-xs text-white/50">•</span>
-          <span className="text-sm font-bold text-gold-300">∞</span>
-        </div>
-
-        {/* 6. Graduation Cap 2 (Right Bottom) */}
-        <div className="absolute top-[72%] right-[3.5%] w-14 animate-float-cap opacity-90 filter drop-shadow-lg" style={{ animationDelay: '2s' }}>
-          <svg viewBox="0 0 100 80" className="w-full h-auto">
-            <polygon points="50,10 95,30 50,50 5,30" fill="#0B1C2C" />
-            <polygon points="50,15 88,30 50,45 12,30" fill="#E8C547" opacity="0.3" />
-            <path d="M25,38 L25,58 C25,68 75,68 75,58 L75,38 Z" fill="#0B1C2C" />
-            <path d="M50,30 Q70,35 78,50" fill="none" stroke="#FF4D6D" strokeWidth="3.5" strokeLinecap="round" />
-            <circle cx="78" cy="52" r="4" fill="#FF4D6D" />
-          </svg>
-        </div>
-
-      </div>
-
-      {/* Background Arena & Flying Rockets Layer (BEHIND IMAGES AT Z-0) */}
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
-
-        {/* Rocket 1: Flying Left to Right, Bottom to Top */}
-        <div className="absolute bottom-0 left-0 w-24 sm:w-28 animate-rocket-l2r filter drop-shadow-[0_0_20px_rgba(225,29,72,0.6)]">
-          <svg viewBox="0 0 100 120" className="w-full h-auto">
-            <defs>
-              <linearGradient id="rocketFlameL2R" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#FFB703" />
-                <stop offset="50%" stopColor="#FF4D6D" />
-                <stop offset="100%" stopColor="transparent" />
-              </linearGradient>
-            </defs>
-            {/* Fire Exhaust Trail */}
-            <path d="M40,90 Q50,125 60,90 Z" fill="url(#rocketFlameL2R)" />
-            <path d="M44,90 Q50,115 56,90 Z" fill="#FFE600" />
-            {/* Rocket Body */}
-            <path d="M50,10 Q70,40 68,90 L32,90 Q30,40 50,10 Z" fill="#0B1C2C" />
-            {/* Crimson Nosecone */}
-            <path d="M50,10 Q65,35 66,45 L34,45 Q35,35 50,10 Z" fill="#E11D48" />
-            {/* Gold Porthole Window */}
-            <circle cx="50" cy="58" r="10" fill="#E8C547" stroke="#0B1C2C" strokeWidth="2.5" />
-            <circle cx="50" cy="58" r="5" fill="#38BDF8" />
-            {/* Side Wings / Fins */}
-            <path d="M32,70 L15,92 L32,90 Z" fill="#BE123C" />
-            <path d="M68,70 L85,92 L68,90 Z" fill="#BE123C" />
-          </svg>
-        </div>
-
-        {/* Rocket 2: Flying Right to Left, Bottom to Top */}
-        <div className="absolute bottom-0 right-0 w-24 sm:w-28 animate-rocket-r2l filter drop-shadow-[0_0_20px_rgba(201,162,39,0.6)]">
-          <svg viewBox="0 0 100 120" className="w-full h-auto">
-            <defs>
-              <linearGradient id="rocketFlameR2L" x1="0%" y1="0%" x2="0%" y2="100%">
-                <stop offset="0%" stopColor="#00F5D4" />
-                <stop offset="60%" stopColor="#3A86EF" />
-                <stop offset="100%" stopColor="transparent" />
-              </linearGradient>
-            </defs>
-            {/* Fire Exhaust Trail */}
-            <path d="M40,90 Q50,125 60,90 Z" fill="url(#rocketFlameR2L)" />
-            <path d="M44,90 Q50,115 56,90 Z" fill="#80E9FF" />
-            {/* Rocket Body */}
-            <path d="M50,10 Q70,40 68,90 L32,90 Q30,40 50,10 Z" fill="#12283A" />
-            {/* Gold Accent Nosecone */}
-            <path d="M50,10 Q65,35 66,45 L34,45 Q35,35 50,10 Z" fill="#C9A227" />
-            {/* Cyan Porthole Window */}
-            <circle cx="50" cy="58" r="10" fill="#0B1C2C" stroke="#C9A227" strokeWidth="2.5" />
-            <circle cx="50" cy="58" r="5" fill="#00F5D4" />
-            {/* Side Wings / Fins */}
-            <path d="M32,70 L15,92 L32,90 Z" fill="#A8861F" />
-            <path d="M68,70 L85,92 L68,90 Z" fill="#A8861F" />
-          </svg>
-        </div>
-
-        {/* Stadium Floodlight Grid Overlay */}
-        <svg viewBox="0 0 1440 900" className="w-full h-full object-cover text-navy-900/10 stroke-current fill-none opacity-15">
-          <g strokeWidth="0.8">
-            <path d="M-100,250 Q720,-50 1540,250" />
-            <path d="M-100,320 Q720,20 1540,320" />
-            <path d="M-100,400 Q720,100 1540,400" />
-            <path d="M-100,500 Q720,200 1540,500" />
-            <line x1="120" y1="0" x2="120" y2="400" strokeWidth="1.5" stroke="#C9A227" opacity="0.4" />
-            <line x1="1320" y1="0" x2="1320" y2="400" strokeWidth="1.5" stroke="#C9A227" opacity="0.4" />
-          </g>
-        </svg>
-
+      {/* Floating Animated Background Effects */}
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden opacity-30">
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[60rem] h-[35rem] bg-gradient-to-b from-rose-500/5 via-gold-500/10 to-transparent rounded-full blur-[140px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* Clean Centered Header */}
-        <div className="flex flex-col items-center text-center mb-3 sm:mb-6">
+        <div className="flex flex-col items-center text-center mb-6 sm:mb-8">
           <motion.h2
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -567,30 +611,6 @@ export default function Gallery() {
           >
             CAMPUS <span className="bg-gradient-to-r from-gold-600 via-gold-500 to-amber-600 bg-clip-text text-transparent italic">GALLERY</span>
           </motion.h2>
-
-          {/* Active Photo Info Header Above Image */}
-          {galleryItems[squadIdx] && (
-            <motion.div
-              key={galleryItems[squadIdx].id}
-              initial={{ opacity: 0, y: 5 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="mt-3 text-center max-w-xl mx-auto px-4"
-            >
-              <span className="text-[10px] sm:text-xs font-black uppercase tracking-widest text-gold-700 bg-gold-100/80 px-3 py-1 rounded-full border border-gold-300/50 inline-block mb-1 shadow-xs">
-                {galleryItems[squadIdx].category}
-              </span>
-              <h3 className="text-base sm:text-2xl font-extrabold text-navy-950 font-display leading-tight">
-                {galleryItems[squadIdx].title}
-              </h3>
-              <div className="flex items-center justify-center gap-2 text-[11px] sm:text-xs text-navy-700 font-medium mt-1">
-                <span className="flex items-center gap-1">
-                  <MapPin className="w-3 h-3 text-rose-500" /> {galleryItems[squadIdx].location}
-                </span>
-                <span>•</span>
-                <span className="text-emerald-700 font-semibold">{galleryItems[squadIdx].resolution}</span>
-              </div>
-            </motion.div>
-          )}
         </div>
 
         {/* 3D STAGE CAROUSEL */}
@@ -653,40 +673,9 @@ export default function Gallery() {
                   >
                     <img
                       src={item.src}
-                      alt={item.title}
+                      alt="Campus Photo"
                       className="w-full h-full object-cover"
                     />
-
-                    {/* Dark Overlay with Title & Info */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/10 to-transparent p-3 sm:p-6 flex flex-col justify-between">
-                      <div className="flex justify-between items-center">
-                        <span className="text-[9px] sm:text-[11px] font-black uppercase tracking-widest bg-rose-600 text-white px-2.5 sm:px-3 py-0.5 sm:py-1 rounded-full shadow-lg">
-                          {item.tag}
-                        </span>
-                        <span className="text-[9px] sm:text-xs font-mono font-bold text-gold-400 bg-navy-950/80 px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-full border border-gold-400/30">
-                          {item.stat}
-                        </span>
-                      </div>
-
-                      {isCenter && (
-                        <div className="text-left hidden sm:block">
-                          <span className="text-xs font-extrabold text-gold-400 uppercase tracking-widest block">
-                            {item.category}
-                          </span>
-                          <h3 className="text-2xl font-black text-white font-display leading-tight mt-0.5">
-                            {item.title}
-                          </h3>
-                          <div className="flex items-center justify-between mt-2 pt-2 border-t border-white/10">
-                            <span className="text-xs text-slate-300 flex items-center gap-1">
-                              <MapPin className="w-3 h-3 text-rose-500" /> {item.location}
-                            </span>
-                            <span className="text-xs font-bold text-gold-400 flex items-center gap-1">
-                              <Maximize2 className="w-3 h-3" /> Fullscreen HD
-                            </span>
-                          </div>
-                        </div>
-                      )}
-                    </div>
                   </motion.div>
                 );
               })}
@@ -694,6 +683,119 @@ export default function Gallery() {
           </div>
 
         </div>
+
+        {/* ---------------------------------------------------------------- */}
+        {/* NEW PHOTO GALLERY GRID SECTION WITH CATEGORIES & PAGINATION     */}
+        {/* ---------------------------------------------------------------- */}
+        {!isHomePage && (
+          <div id="photo-gallery-grid" className="mt-16 pt-12 border-t border-gray-200">
+            
+            <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+              <div>
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-100 text-gold-800 text-xs font-bold uppercase tracking-wider mb-2">
+                  <Sparkles className="w-3.5 h-3.5 text-gold-600" /> Photo &amp; Event Archive
+                </div>
+                <h3 className="text-3xl sm:text-4xl font-extrabold text-navy-950 font-display">
+                  Campus Events &amp; Celebrations Gallery
+                </h3>
+                <p className="text-slate-600 text-sm mt-1">
+                  Explore memories, inauguration ceremonies, sports matches, and student achievements.
+                </p>
+              </div>
+
+              {/* Category Filter Tabs */}
+              <div className="flex flex-wrap gap-2">
+                {categories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => handleCategoryChange(cat)}
+                    className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${
+                      activeCategory === cat
+                        ? "bg-navy-950 text-gold-400 shadow-md scale-105"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                    }`}
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Photo Cards Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+              {currentGridItems.map((item) => {
+                const globalIdx = galleryItems.findIndex(g => g.id === item.id);
+                return (
+                  <motion.div
+                    key={item.id}
+                    layout
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 15 }}
+                    transition={{ duration: 0.3 }}
+                    onClick={() => setSelectedIdx(globalIdx >= 0 ? globalIdx : 0)}
+                    className="group relative bg-white rounded-2xl overflow-hidden shadow-lg border border-gray-200 cursor-pointer hover:shadow-2xl hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <div className="aspect-[4/3] w-full overflow-hidden bg-gray-100 relative">
+                      <img
+                        src={item.src}
+                        alt={item.title}
+                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                        loading="lazy"
+                      />
+                      <div className="absolute inset-0 bg-navy-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+                        <span className="p-3 rounded-full bg-white/90 text-navy-950 shadow-xl group-hover:scale-110 transition-transform">
+                          <Maximize2 className="w-5 h-5" />
+                        </span>
+                      </div>
+                    </div>
+                  </motion.div>
+                );
+              })}
+            </div>
+
+            {/* Clean Pagination Bar (Matching User Screenshot 1, 2, 3, >) */}
+            {totalPages > 1 && (
+              <div className="mt-10 flex items-center justify-end gap-1.5 font-sans">
+                {/* Prev Button */}
+                <button
+                  onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
+                  disabled={currentPage === 1}
+                  className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 disabled:opacity-40 disabled:hover:bg-transparent transition text-xs font-semibold"
+                  aria-label="Previous Page"
+                >
+                  ‹
+                </button>
+
+                {/* Page Number Pills */}
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+                  <button
+                    key={pageNum}
+                    onClick={() => setCurrentPage(pageNum)}
+                    className={`w-9 h-9 flex items-center justify-center rounded-lg text-xs font-bold transition-all ${
+                      currentPage === pageNum
+                        ? "bg-[#007BFF] text-white shadow-md"
+                        : "border border-gray-200 text-gray-700 hover:bg-gray-100"
+                    }`}
+                  >
+                    {pageNum}
+                  </button>
+                ))}
+
+                {/* Next Button */}
+                <button
+                  onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
+                  disabled={currentPage === totalPages}
+                  className="w-9 h-9 flex items-center justify-center rounded-lg border border-gray-200 text-gray-500 hover:bg-gray-100 disabled:opacity-40 disabled:hover:bg-transparent transition text-xs font-semibold"
+                  aria-label="Next Page"
+                >
+                  ›
+                </button>
+              </div>
+            )}
+
+          </div>
+        )}
 
       </div>
 
@@ -711,44 +813,19 @@ export default function Gallery() {
               initial={{ scale: 0.9 }}
               animate={{ scale: 1 }}
               exit={{ scale: 0.9 }}
-              className="relative max-w-5xl w-full bg-navy-900 rounded-3xl overflow-hidden border border-gold-500/40 shadow-2xl flex flex-col lg:flex-row"
+              className="relative max-w-5xl w-full bg-black/90 rounded-3xl overflow-hidden border border-gold-500/40 shadow-2xl flex flex-col items-center justify-center p-2 sm:p-4"
               onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={() => setSelectedIdx(null)}
-                className="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-navy-950/80 text-white hover:bg-gold-500 hover:text-navy-950 transition border border-white/20"
+                className="absolute top-4 right-4 z-30 p-2.5 rounded-full bg-navy-950/80 text-white hover:bg-gold-500 hover:text-navy-950 transition border border-white/20 shadow-xl"
+                aria-label="Close"
               >
                 <X className="w-5 h-5" />
               </button>
 
-              <div className="flex-1 bg-black flex items-center justify-center min-h-[350px]">
-                <img src={selectedImg.src} alt={selectedImg.title} className="w-full h-full object-contain max-h-[75vh]" />
-              </div>
-
-              <div className="w-full lg:w-[360px] bg-navy-950 p-6 flex flex-col justify-between">
-                <div>
-                  <span className="text-[10px] font-black uppercase text-navy-950 bg-gold-400 px-3 py-1 rounded-full">
-                    {selectedImg.tag}
-                  </span>
-                  <h3 className="text-2xl font-extrabold text-white font-display mt-3">{selectedImg.title}</h3>
-                  <p className="text-slate-300 text-sm font-light mt-3">{selectedImg.description}</p>
-                </div>
-
-                <div className="mt-6 flex items-center gap-3">
-                  <button
-                    onClick={(e) => toggleLike(e, selectedImg.id)}
-                    className="flex-1 py-3 rounded-xl bg-white/10 hover:bg-rose-500 text-white font-bold text-xs transition flex items-center justify-center gap-2"
-                  >
-                    <Heart className={`w-4 h-4 ${likes[selectedImg.id] ? 'fill-rose-500 text-rose-500' : 'text-white'}`} />
-                    <span>Like ({likes[selectedImg.id] || 0})</span>
-                  </button>
-                  <button
-                    onClick={copyShareLink}
-                    className="py-3 px-4 rounded-xl bg-gold-500 text-navy-950 font-bold text-xs hover:bg-gold-400 transition"
-                  >
-                    {copied ? "Copied!" : "Share"}
-                  </button>
-                </div>
+              <div className="w-full flex items-center justify-center min-h-[300px] max-h-[85vh]">
+                <img src={selectedImg.src} alt="Campus Photo" className="w-full h-full object-contain max-h-[82vh] rounded-2xl" />
               </div>
             </motion.div>
           </motion.div>

@@ -26,6 +26,8 @@ const ScientificAdvisoryBoardPage = lazy(() => import('../pages/ScientificAdviso
 const ClubPage = lazy(() => import('../pages/ClubPage'));
 const OlympiadSchoolPage = lazy(() => import('../pages/OlympiadSchoolPage'));
 const AerospaceProgrammePage = lazy(() => import('../pages/AerospaceProgrammePage'));
+const GalleryPage = lazy(() => import('../pages/GalleryPage'));
+const PressCornerPage = lazy(() => import('../pages/PressCornerPage'));
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const UnauthorizedPage = lazy(() => import('../pages/UnauthorizedPage'));
@@ -106,6 +108,10 @@ export const router = createBrowserRouter([
       { path: 'club', element: <RouteAdapter Component={ClubPage} /> },
       { path: 'aerospace', element: <RouteAdapter Component={AerospaceProgrammePage} /> },
       { path: 'aerospace-programme', element: <RouteAdapter Component={AerospaceProgrammePage} /> },
+      { path: 'gallery', element: <RouteAdapter Component={GalleryPage} /> },
+      { path: 'photo-gallery', element: <RouteAdapter Component={GalleryPage} /> },
+      { path: 'press-corner', element: <RouteAdapter Component={PressCornerPage} /> },
+      { path: 'press', element: <RouteAdapter Component={PressCornerPage} /> },
       { path: 'clup', element: <RouteAdapter Component={ClubPage} /> },
 
       { path: 'login', element: <RouteAdapter Component={LoginPage} /> },

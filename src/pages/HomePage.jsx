@@ -37,7 +37,7 @@ export default function HomePage({
       <Academics isHomePage={true} />
       <Facilities openDedicatedTopic={openDedicatedTopic} />
       <Admissions openAdmissionModal={openAdmissionModal} />
-      <Gallery />
+      <Gallery isHomePage={true} />
       <Testimonials />
       <Careers openCareerModal={openCareerModal} isHomePage={true} />
       <Contact openChatbot={openChatbot} />

@@ -265,9 +265,28 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                 <span className="tracking-wider">Aerospace Programme</span>
               </NavLink>
 
-              <NavLink to="/admissions" className={navLinkClass}>
-                Admissions
-              </NavLink>
+              {/* Gallery Dropdown (Replaced Admissions) */}
+              <div className="relative group py-2">
+                <NavLink to="/gallery" className={navLinkClass}>
+                  <span>Gallery</span>
+                </NavLink>
+
+                {/* Dropdown Menu */}
+                <div className="absolute top-full left-0 w-60 py-2.5 px-2 bg-white text-navy-950 rounded-2xl shadow-2xl border border-gray-100 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
+                  <Link
+                    to="/gallery"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    Photo Gallery
+                  </Link>
+                  <Link
+                    to="/press-corner"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    Press Corner
+                  </Link>
+                </div>
+              </div>
 
               <NavLink to="/careers" className={navLinkClass}>
                 Careers
@@ -314,8 +333,8 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                 type="button"
                 onClick={() => setMegaMenuOpen((prev) => !prev)}
                 className={`lg:hidden p-2.5 rounded-xl transition border flex items-center justify-center cursor-pointer focus-visible:ring-2 focus-visible:ring-gold-500 ${scrolled
-                    ? 'bg-navy-950 text-white hover:bg-gold-500 hover:text-navy-950 border-navy-900 shadow-md'
-                    : 'bg-white/10 text-white hover:bg-white/20 border-white/30 backdrop-blur-md'
+                  ? 'bg-navy-950 text-white hover:bg-gold-500 hover:text-navy-950 border-navy-900 shadow-md'
+                  : 'bg-white/10 text-white hover:bg-white/20 border-white/30 backdrop-blur-md'
                   }`}
                 aria-label="Toggle Navigation Menu"
                 title="Toggle Navigation Menu"
@@ -489,10 +508,35 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
               <ArrowRight className="w-4 h-4 text-gold-300" />
             </Link>
 
-            <Link to="/admissions" onClick={() => setMegaMenuOpen(false)} className={`flex items-center justify-between p-4 rounded-2xl bg-white/[0.04] border border-white/10 shadow-lg text-base font-bold transition min-h-[52px] ${location.pathname === '/admissions' ? 'bg-gold-500/20 text-gold-400 border-gold-500/40' : 'text-white hover:text-gold-400 hover:bg-white/10'}`}>
-              <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><Sparkles className="w-4 h-4" /></div><span>Admissions</span></div>
-              <ArrowRight className="w-4 h-4 text-gold-400" />
-            </Link>
+            {/* GALLERY ACCORDION */}
+            <div className="rounded-2xl bg-white/[0.04] border border-white/10 overflow-hidden shadow-lg transition-all">
+              <button
+                type="button"
+                onClick={() => toggleSubmenu('gallery')}
+                className="w-full flex items-center justify-between p-4 text-left font-bold text-base text-white hover:text-gold-400 transition cursor-pointer min-h-[52px]"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2 rounded-xl bg-gold-500/20 text-gold-400">
+                    <Sparkles className="w-4 h-4" />
+                  </div>
+                  <span>Gallery</span>
+                </div>
+                <ChevronDown className={`w-4 h-4 transition-transform duration-300 ${openSubmenu.gallery ? 'rotate-180 text-gold-400' : 'text-white/50'}`} />
+              </button>
+
+              {openSubmenu.gallery && (
+                <div className="px-4 pb-4 pt-1 space-y-1.5 border-t border-white/10 bg-black/20">
+                  <Link to="/gallery" onClick={() => setMegaMenuOpen(false)} className={`flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium transition ${location.pathname === '/gallery' ? 'bg-gold-500/20 text-gold-400 font-bold border-l-2 border-gold-400' : 'text-white/80 hover:text-gold-400 hover:bg-white/5'}`}>
+                    <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                    <span className="truncate">Photo Gallery</span>
+                  </Link>
+                  <Link to="/press-corner" onClick={() => setMegaMenuOpen(false)} className={`flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium transition ${location.pathname === '/press-corner' ? 'bg-gold-500/20 text-gold-400 font-bold border-l-2 border-gold-400' : 'text-white/80 hover:text-gold-400 hover:bg-white/5'}`}>
+                    <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
+                    <span className="truncate">Press Corner</span>
+                  </Link>
+                </div>
+              )}
+            </div>
 
             <Link to="/careers" onClick={() => setMegaMenuOpen(false)} className={`flex items-center justify-between p-4 rounded-2xl bg-white/[0.04] border border-white/10 shadow-lg text-base font-bold transition min-h-[52px] ${location.pathname === '/careers' ? 'bg-gold-500/20 text-gold-400 border-gold-500/40' : 'text-white hover:text-gold-400 hover:bg-white/10'}`}>
               <div className="flex items-center gap-3"><div className="p-2 rounded-xl bg-gold-500/20 text-gold-400"><BookOpen className="w-4 h-4" /></div><span>Careers</span></div>
