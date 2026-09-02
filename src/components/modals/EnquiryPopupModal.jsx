@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Sparkles, Send, CheckCircle2, Phone, User, BookOpen, MessageSquare } from 'lucide-react';
+import { X, Sparkles, Send, CheckCircle2, Phone, User, BookOpen, MessageSquare, Maximize2 } from 'lucide-react';
 import enquiryImg from '../../assets/enquiry.png';
 
 export default function EnquiryPopupModal({ isOpen, onClose }) {
@@ -15,6 +15,7 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isImageZoomed, setIsImageZoomed] = useState(false);
 
   if (!isOpen) return null;
 
@@ -80,30 +81,36 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
           <div className="grid md:grid-cols-12 overflow-y-auto">
 
             {/* LEFT SIDE: Poster / Image */}
-            <div className="md:col-span-5 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 p-4 sm:p-8 flex flex-col justify-between relative border-b md:border-b-0 md:border-r border-white/10">
+            <div className="md:col-span-5 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 p-4 sm:p-6 flex flex-col justify-between relative border-b md:border-b-0 md:border-r border-white/10">
               <div>
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-4">
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3">
                   <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Admissions Open 2027-28
                 </div>
-                <h3 className="font-display text-lg sm:text-3xl font-extrabold text-white leading-tight mb-1 sm:mb-2">
+                <h3 className="font-display text-lg sm:text-2xl font-extrabold text-white leading-tight mb-1">
                   Cohen International <span className="text-gold-400">School</span>
                 </h3>
-                <p className="text-white/70 text-[11px] sm:text-sm leading-relaxed mb-3 sm:mb-6 hidden xs:block">
+                <p className="text-white/70 text-[11px] sm:text-xs leading-relaxed mb-2 hidden xs:block">
                   Nurturing Future Leaders with Cambridge Curriculum, High-Tech STEM Aerospace Labs &amp; 10-Acre Eco-Green Campus.
                 </p>
               </div>
 
-              {/* Banner Image */}
-              <div className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-gold-500/30 shadow-xl my-1 sm:my-2 bg-navy-950 group">
+              {/* Banner Image - Clickable for Full view & displaying full poster without cropping */}
+              <div 
+                onClick={() => setIsImageZoomed(true)}
+                className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl my-2 bg-navy-950/80 group cursor-pointer p-1 flex items-center justify-center transition-all duration-300 hover:border-gold-400"
+                title="Click to expand poster image"
+              >
                 <img
                   src={enquiryImg}
                   alt="Cohen International School Admission Enquiry"
-                  className="w-full h-auto max-h-[110px] sm:max-h-[220px] object-cover group-hover:scale-105 transition-transform duration-500"
+                  className="w-full h-auto max-h-[220px] sm:max-h-[300px] object-contain rounded-lg group-hover:scale-[1.02] transition-transform duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-navy-950/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-xs font-bold text-gold-400 backdrop-blur-[2px] rounded-xl">
+                  <Maximize2 className="w-4 h-4" /> Expand Flyer
+                </div>
               </div>
 
-              <div className="mt-2 sm:mt-4 pt-2 sm:pt-4 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between text-[11px] sm:text-xs text-white/60 gap-1">
+              <div className="mt-1 pt-2 border-t border-white/10 flex flex-col sm:flex-row sm:items-center justify-between text-[11px] sm:text-xs text-white/60 gap-1">
                 <span>📍 Near IIT Bhubaneswar</span>
                 <a href="mailto:info@coheninternationalschool.com" className="text-gold-400 hover:underline">
                   ✉️ info@coheninternationalschool.com
@@ -266,6 +273,39 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
           </div>
         </motion.div>
       </div>
+
+      {/* Lightbox / Fullscreen Image Zoom Modal */}
+      {isImageZoomed && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          className="fixed inset-0 z-[350] bg-navy-950/95 backdrop-blur-2xl flex items-center justify-center p-3 sm:p-6 cursor-zoom-out"
+          onClick={() => setIsImageZoomed(false)}
+        >
+          <motion.div
+            initial={{ scale: 0.9 }}
+            animate={{ scale: 1 }}
+            exit={{ scale: 0.9 }}
+            className="relative max-w-5xl w-full max-h-[92vh] flex flex-col items-center justify-center"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              type="button"
+              onClick={() => setIsImageZoomed(false)}
+              className="absolute -top-3 -right-3 sm:top-2 sm:right-2 z-30 p-2 sm:p-2.5 rounded-full bg-navy-900 border border-gold-500/50 text-white hover:bg-gold-500 hover:text-navy-950 transition shadow-2xl"
+              aria-label="Close full view"
+            >
+              <X className="w-5 h-5" />
+            </button>
+            <img
+              src={enquiryImg}
+              alt="Cohen International School Admission Enquiry Poster Full View"
+              className="w-full h-full max-h-[88vh] object-contain rounded-2xl border border-gold-500/40 shadow-2xl bg-navy-950"
+            />
+          </motion.div>
+        </motion.div>
+      )}
     </AnimatePresence>
   );
 }

@@ -477,8 +477,8 @@ export default function NewsAnnouncements({ openAdmissionModal, isPage = false }
 
             {/* Modal Scrollable Body */}
             <div className="overflow-y-auto space-y-4 py-4 pr-1 flex-1 custom-scrollbar">
-              <div className="rounded-2xl overflow-hidden bg-[#06121E] w-full border border-gold-500/20 shadow-md">
-                <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-[240px] sm:h-[300px] object-fill rounded-2xl" />
+              <div className="rounded-2xl overflow-hidden bg-[#06121E] w-full border border-gold-500/20 shadow-md flex items-center justify-center p-1">
+                <img src={selectedEvent.image} alt={selectedEvent.title} className="w-full h-auto max-h-[350px] object-contain rounded-xl" />
               </div>
 
               <div className="space-y-3 text-xs sm:text-sm text-gray-700 dark:text-white/80 leading-relaxed">
