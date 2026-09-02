@@ -5,6 +5,7 @@ import ModuleModal from './modals/ModuleModal';
 import PortalFrameModal from './modals/PortalFrameModal';
 import ChairmanModal from './modals/ChairmanModal';
 import ViceChairmanModal from './modals/ViceChairmanModal';
+import SecretaryModal from './modals/SecretaryModal';
 import PrincipalModal from './modals/PrincipalModal';
 import CareerModal from './modals/CareerModal';
 import TopicModal from './modals/TopicModal';
@@ -50,6 +51,10 @@ export default function Modals({ modalState, closeModal, openLoginModal, openPor
 
   if (type === 'viceChairman' || type === 'vc') {
     return <ViceChairmanModal closeModal={closeModal} />;
+  }
+
+  if (type === 'secretary' || type === 'sec') {
+    return <SecretaryModal closeModal={closeModal} />;
   }
 
   if (type === 'principal') {

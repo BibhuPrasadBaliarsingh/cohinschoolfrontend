@@ -6,7 +6,7 @@ import StartYourJourney from '../components/StartYourJourney';
 import { Target, Compass, Award, BookOpen, Users, ArrowRight, Sparkles } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
-export default function AboutPage({ openChairmanModal, openViceChairmanModal, openPrincipalModal, openAdmissionModal }) {
+export default function AboutPage({ openChairmanModal, openViceChairmanModal, openSecretaryModal, openPrincipalModal, openAdmissionModal }) {
   return (
     <PageWrapper>
       <HeaderBanner
@@ -128,33 +128,66 @@ export default function AboutPage({ openChairmanModal, openViceChairmanModal, op
         </div>
       </section>
 
-      {/* Principal's Desk Section */}
-      <section id="principal-desk" className="py-14 sm:py-16 lg:py-20 bg-[#f4f6f8] border-t border-slate-200">
+      {/* Secretary's Desk Section */}
+      <section id="secretary-desk" className="py-14 sm:py-16 lg:py-20 bg-[#efefef] border-t border-slate-200">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-[1.05fr_1fr] gap-8 lg:gap-12 items-center">
-            {/* Left Column: Principal Image with Name & Education Overlay */}
+            {/* Left Column: Secretary Image with Name & Education Overlay */}
             <div className="relative w-full h-[340px] sm:h-[420px] lg:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200 bg-navy-950 group">
               <img
-                src="/images/about_principal.jpg"
-                alt="Principal Jagjeevan R.D. Dash"
+                src="/images/about_seceratry.jpg"
+                alt="Secretary Mr. Janmejay Mandal"
                 className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
               <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 text-white z-10">
-                <div className="inline-block px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-400 text-[11px] font-extrabold uppercase tracking-wider mb-1.5">
-                  PRINCIPAL
+                <div className="inline-block px-3 py-1 rounded-full bg-gold-500/20 border border-gold-400/30 text-gold-400 text-[11px] font-extrabold uppercase tracking-wider mb-1.5">
+                  SECRETARY
                 </div>
                 <h3 className="font-display text-xl sm:text-2xl font-bold text-white leading-tight">
-                  Jagjeevan R.D. Dash
+                  Mr. Janmejay Mandal
                 </h3>
                 <p className="text-white/80 text-xs sm:text-sm font-medium mt-1">
-                  M.Sc Botany &amp; Gold Medalist - M.A. Sociology, B.Ed (Kurukshetra University)
+                  MBA from Utkal University, Bhubaneswar
                 </p>
               </div>
             </div>
 
             {/* Right Column: Text Content */}
             <div className="flex flex-col justify-center">
+              <p className="text-[#2d7d55] font-medium text-xl sm:text-2xl lg:text-3xl font-display leading-none">
+                From
+              </p>
+              <h2 className="font-display text-4xl sm:text-5xl lg:text-[4rem] leading-[0.95] text-navy-900 mt-2">
+                Secretary's Desk
+              </h2>
+
+              <p className="mt-6 text-base sm:text-lg leading-relaxed text-navy-700/80 max-w-xl">
+                Mr. Janmejay Mandal brings over 16 years of experience in the field of Education, Student Counselling, and academic administration across major Indian metropolitan cities with strong relationships with institutions of national repute.
+              </p>
+
+              <p className="mt-4 text-base sm:text-lg leading-relaxed text-navy-700/80 max-w-xl">
+                As Co-Convenor of the "Science Movement" (a science and technology program for students of Odisha), he leads initiatives that bring practical STEM exposures, Olympiad training, and digital governance to Cohen International School.
+              </p>
+
+              <button
+                onClick={openSecretaryModal || openChairmanModal}
+                className="mt-8 inline-flex items-center justify-between gap-4 w-full max-w-[260px] rounded-lg bg-[#2e9e4b] px-6 py-4 text-left text-white shadow-[0_10px_25px_rgba(46,158,75,0.28)] hover:bg-[#288d43] transition-colors duration-200"
+              >
+                <span className="font-semibold text-lg">Know more</span>
+                <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white/15 text-xl leading-none">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Principal's Desk Section */}
+      <section id="principal-desk" className="py-14 sm:py-16 lg:py-20 bg-[#f4f6f8] border-t border-slate-200">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_1.05fr] gap-8 lg:gap-12 items-center">
+            {/* Left Column: Text Content */}
+            <div className="flex flex-col justify-center order-2 lg:order-1">
               <p className="text-[#2d7d55] font-medium text-xl sm:text-2xl lg:text-3xl font-display leading-none">
                 From
               </p>
@@ -181,6 +214,27 @@ export default function AboutPage({ openChairmanModal, openViceChairmanModal, op
                 <span className="font-semibold text-lg">Know more</span>
                 <span className="flex h-9 w-9 items-center justify-center rounded-md bg-white/15 text-xl leading-none">→</span>
               </button>
+            </div>
+
+            {/* Right Column: Principal Image with Name & Education Overlay */}
+            <div className="relative w-full h-[340px] sm:h-[420px] lg:h-[460px] rounded-2xl overflow-hidden shadow-2xl border border-slate-200 order-1 lg:order-2 bg-navy-950 group">
+              <img
+                src="/images/about_principal.jpg"
+                alt="Principal Jagjeevan R.D. Dash"
+                className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/40 to-transparent"></div>
+              <div className="absolute bottom-0 left-0 right-0 p-5 sm:p-6 text-white z-10">
+                <div className="inline-block px-3 py-1 rounded-full bg-amber-500/20 border border-amber-400/30 text-amber-400 text-[11px] font-extrabold uppercase tracking-wider mb-1.5">
+                  PRINCIPAL
+                </div>
+                <h3 className="font-display text-xl sm:text-2xl font-bold text-white leading-tight">
+                  Jagjeevan R.D. Dash
+                </h3>
+                <p className="text-white/80 text-xs sm:text-sm font-medium mt-1">
+                  M.Sc Botany &amp; Gold Medalist - M.A. Sociology, B.Ed (Kurukshetra University)
+                </p>
+              </div>
             </div>
           </div>
         </div>

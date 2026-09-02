@@ -23,19 +23,19 @@ const administrators = [
   },
   {
     id: 3,
+    title: 'Secretary, Mr. Janmejay Mandal',
+    subtitle: 'MBA from Utkal University, Bhubaneswar',
+    image: '/images/about_seceratry.jpg',
+    bio: 'Mr. Janmejay Mandal, MBA from Utkal University, Bhubaneswar with over 16 years of experience in the field of Education and Student Counselling. Work experience in major cities of India with good working relationships with various academic institutions of repute in the country. Co-Convenor of "Science Movement", a science and technology program for students of Odisha.',
+    email: 'secretary@coheninternationalschool.com',
+  },
+  {
+    id: 4,
     title: 'Principal, Jagjeevan R.D. Dash',
     subtitle: 'M.Sc Botany & Gold Medalist - M.A. Sociology, B.Ed (Kurukshetra University)',
     image: '/images/about_principal.jpg',
     bio: 'Jagjeevan R.D. Dash, Principal - Cohen International School. M.Sc Botany & Gold Medalist - M.A. Sociology, B.Ed from Kurukshetra University. Dedicated academician committed to guiding students towards personal excellence, holistic development, and strong moral values.',
     email: 'principal@coheninternationalschool.com',
-  },
-  {
-    id: 4,
-    title: 'Secretary, Mr. Janmejay Mandal',
-    subtitle: 'MBA from Utkal University, Bhubaneswar',
-    image: '/images/about_banner.png',
-    bio: 'Mr. Janmejay Mandal, MBA from Utkal University, Bhubaneswar with over 16 years of experience in the field of Education and Student Counselling. Work experience in major cities of India with good working relationships with various academic institutions of repute in the country. Co-Convenor of "Science Movement", a science and technology program for students of Odisha.',
-    email: 'secretary@coheninternationalschool.com',
   },
 ];
 

@@ -130,7 +130,7 @@ export default function Footer({ openLoginModal, openPortalFrame }) {
                 <Link to="/news" className="hover:text-gold-400 transition">News &amp; Events</Link>
               </li>
               <li>
-                <Link to="/cohentalk" className="hover:text-gold-400 transition font-medium text-gold-400/90">Cohen Talks</Link>
+                <Link to="/cohentalk" className="hover:text-gold-400 transition">Cohen Talks</Link>
               </li>
               <li>
                 <a href="https://www.eduqfix.com/PayDirect/#/student/pay/9u3Ik7RvISUPS+FAt5Vw0mfbWsL0LSABcb0Dwea4EuWIcoB0DJulKNCM0J8ImcKt/4592" target="_blank" rel="noreferrer" className="hover:text-gold-400 transition">
