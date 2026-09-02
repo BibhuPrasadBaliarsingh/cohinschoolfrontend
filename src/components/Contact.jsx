@@ -88,13 +88,13 @@ export default function Contact({ openChatbot }) {
             <div className="rounded-3xl overflow-hidden h-96 lg:h-full min-h-[400px] border border-white/10">
               <iframe
                 title="Cohen International School Location Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3743.5!2d85.67!3d20.15!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDA5JzAwLjAiTiA4NcKwNDAnMTIuMCJF!5e0!3m2!1sen!2sin!4v1620000000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3745.7237285797105!2d85.64413447553629!3d20.145570281291796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a190b30c772c4d5%3A0x1e2b07a7e0d0685e!2sCOHEN%20INTERNATIONAL%20SCHOOL!5e0!3m2!1sen!2sin!4v1788344493936!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen=""
                 loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
+                referrerPolicy="strict-origin-when-cross-origin"
                 className="grayscale hover:grayscale-0 transition duration-700"
               ></iframe>
             </div>
