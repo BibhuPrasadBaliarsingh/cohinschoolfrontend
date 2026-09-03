@@ -232,7 +232,7 @@ export default function AboutPage({ openChairmanModal, openViceChairmanModal, op
                   Jagjeevan R.D. Dash
                 </h3>
                 <p className="text-white/80 text-xs sm:text-sm font-medium mt-1">
-                  M.Sc Botany &amp; Gold Medalist - M.A. Sociology, B.Ed (Kurukshetra University)
+                  M.Sc Botany, M.A. Sociology &amp; Gold Medalist B.Ed (Kurukshetra University)
                 </p>
               </div>
             </div>

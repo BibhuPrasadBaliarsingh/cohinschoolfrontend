@@ -31,9 +31,9 @@ const administrators = [
   {
     id: 4,
     title: 'Principal, Jagjeevan R.D. Dash',
-    subtitle: 'M.Sc Botany & Gold Medalist - M.A. Sociology, B.Ed (Kurukshetra University)',
+    subtitle: 'M.Sc Botany, M.A. Sociology & Gold Medalist B.Ed (Kurukshetra University)',
     image: '/images/about_principal.jpg',
-    bio: 'Jagjeevan R.D. Dash, Principal - Cohen International School. M.Sc Botany & Gold Medalist - M.A. Sociology, B.Ed from Kurukshetra University. Dedicated academician committed to guiding students towards personal excellence, holistic development, and strong moral values.',
+    bio: 'Jagjeevan R.D. Dash, Principal - Cohen International School. M.Sc Botany, M.A. Sociology & Gold Medalist B.Ed from Kurukshetra University. Dedicated academician committed to guiding students towards personal excellence, holistic development, and strong moral values.',
     email: 'principal@coheninternationalschool.com',
   },
 ];

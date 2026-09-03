@@ -58,7 +58,7 @@ export default function PrincipalModal({ closeModal }) {
                 Principal, Cohen International School
               </p>
               <p className="text-xs text-navy-700 font-semibold mb-2">
-                M.Sc Botany &amp; Gold Medalist - M.A. Sociology, B.Ed (Kurukshetra University)
+                M.Sc Botany, M.A. Sociology &amp; Gold Medalist B.Ed (Kurukshetra University)
               </p>
               <p className="text-xs text-navy-700 leading-relaxed font-medium">principal@coheninternationalschool.com</p>
             </div>
@@ -96,7 +96,7 @@ export default function PrincipalModal({ closeModal }) {
               <p className="font-display text-lg text-navy-900 font-bold">Best Wishes</p>
               <p className="text-sm font-bold text-navy-900">Jagjeevan R.D. Dash</p>
               <p className="text-xs font-semibold text-navy-700">Principal, Cohen International School</p>
-              <p className="text-xs text-navy-500">M.Sc Botany &amp; Gold Medalist - M.A. Sociology, B.Ed (Kurukshetra University)</p>
+              <p className="text-xs text-navy-500">M.Sc Botany, M.A. Sociology &amp; Gold Medalist B.Ed (Kurukshetra University)</p>
               <a href="mailto:principal@coheninternationalschool.com" className="text-xs text-gold-600 font-semibold hover:underline">
                 principal@coheninternationalschool.com
               </a>
