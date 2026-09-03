@@ -21,7 +21,7 @@ import {
 } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 
-export default function Navbar({ openLoginModal, openAdmissionModal, openChairmanModal, openPrincipalModal, openCsatModal }) {
+export default function Navbar({ openLoginModal, openAdmissionModal, openChairmanModal, openViceChairmanModal, openPrincipalModal, openCsatModal }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, isAuthenticated } = useAuth();
@@ -165,7 +165,21 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
 
                 {/* Dropdown Menu */}
                 <div className="absolute top-full left-0 w-60 py-2.5 px-2 bg-white text-navy-950 rounded-2xl shadow-2xl border border-gray-100 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                 
+                  
+                  <button
+                    type="button"
+                    onClick={() => openChairmanModal ? openChairmanModal() : navigate('/about')}
+                    className="w-full text-left block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors cursor-pointer"
+                  >
+                    Chairman's Desk
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => openViceChairmanModal ? openViceChairmanModal() : navigate('/about')}
+                    className="w-full text-left block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors cursor-pointer"
+                  >
+                    Vice Chairman's Desk
+                  </button>
                   <Link
                     to="/mission"
                     className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
@@ -438,13 +452,13 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                     <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
                     <span className="truncate">Chairman's Desk Message</span>
                   </button>
-                  <button type="button" onClick={() => { setMegaMenuOpen(false); openPrincipalModal ? openPrincipalModal() : navigate('/about'); }} className="w-full flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium text-white/80 hover:text-gold-400 hover:bg-white/5 transition text-left cursor-pointer">
+                  <button type="button" onClick={() => { setMegaMenuOpen(false); openViceChairmanModal ? openViceChairmanModal() : navigate('/about'); }} className="w-full flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium text-white/80 hover:text-gold-400 hover:bg-white/5 transition text-left cursor-pointer">
                     <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
-                    <span className="truncate">Principal's Executive Desk</span>
+                    <span className="truncate">Vice Chairman's Desk Message</span>
                   </button>
                   <Link to="/faculty" onClick={() => setMegaMenuOpen(false)} className={`flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium transition ${location.pathname === '/faculty' ? 'bg-gold-500/20 text-gold-400 font-bold border-l-2 border-gold-400' : 'text-white/80 hover:text-gold-400 hover:bg-white/5'}`}>
                     <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
-                    <span className="truncate">Faculty &amp; Mentors</span>
+                    <span className="truncate">Administrators</span>
                   </Link>
                 </div>
               )}
