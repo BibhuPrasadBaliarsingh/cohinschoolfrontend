@@ -85,9 +85,7 @@ export default function MainLayout() {
   }, []);
 
   const openVirtualTour = useCallback(() => {
-    alert(
-      'Virtual Campus Tour: In the full production version this opens an immersive 360° / video tour of the 10-acre campus, smart classrooms, labs, hostels and sports facilities. For this demo, please visit the campus or contact admissions.'
-    );
+    setModalState({ type: 'virtualTour' });
   }, []);
 
   const openChatbot = useCallback(() => {

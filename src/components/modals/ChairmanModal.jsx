@@ -58,7 +58,7 @@ export default function ChairmanModal({ closeModal }) {
                 Founder &amp; Chairman, Cohen International School
               </p>
               <p className="text-xs text-navy-700 leading-relaxed">
-                B.Tech (Honours), IIT Kharagpur | Educationist &amp; Visionary behind integrated schooling models in Odisha.
+                B.Tech (Mechanical Engineering), IIT Kharagpur | Educationist &amp; Visionary behind integrated schooling models in Odisha.
               </p>
             </div>
           </div>

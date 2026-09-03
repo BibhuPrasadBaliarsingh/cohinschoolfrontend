@@ -338,7 +338,7 @@ export const topicData = {
   sports: {
     title: 'Sports Complex, Swimming & Fitness',
     tag: 'Physical Excellence',
-    badge: '10-Acre Sports Infrastructure',
+    badge: '10-Acres Sports Infrastructure',
     image: img3671,
     intro:
       'We believe strong minds thrive in fit bodies. CIS features expansive grounds for cricket, football, basketball, lawn tennis, swimming, and indoor sports.',
@@ -393,7 +393,7 @@ export const topicData = {
     badge: 'Zero Carbon Campus',
     image: img3604,
     intro:
-      'Safety and environmental stewardship are core values at CIS. The 10-acre campus is designed with smart security and green sustainability initiatives.',
+      'Safety and environmental stewardship are core values at CIS. The 10-acres campus is designed with smart security and green sustainability initiatives.',
     sections: [
       {
         head: '24×7 CCTV Surveillance & AI Perimeter Guard',

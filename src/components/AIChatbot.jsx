@@ -7,11 +7,11 @@ const botReplies = {
   fee:
     'Fees vary by class and whether the student is a day scholar or boarder. You can use our Fee Estimator on the Admissions page for an indicative amount. Scholarships and sibling discounts are available. Final fee structure is shared during personal counselling.',
   hostel:
-    'Yes, we offer separate, well-supervised hostels for boys and girls on our 10-acre campus. Facilities include hygienic meals, 24×7 medical support, laundry, study halls and recreational areas. Hostel attendance and visitor management are fully digital.',
+    'Yes, we offer separate, well-supervised hostels for boys and girls on our 10-acres campus. Facilities include hygienic meals, 24×7 medical support, laundry, study halls and recreational areas. Hostel attendance and visitor management are fully digital.',
   transport:
     'Safe and GPS-tracked transport is available on major routes. Parents can track the bus live through the Parent App. Routes and pickup points are optimized every year based on demand.',
   facilities:
-    'Our campus features smart classrooms, modern science labs, a 2.5-acre sports complex, AC auditorium, digital library, robotics lab, health centre with in-house doctor, and high-security CCTV coverage.',
+    'Our campus features smart classrooms, modern science labs, a over 2.5-acres sports complex, AC auditorium, digital library, robotics lab, health centre with in-house doctor, and high-security CCTV coverage.',
   default:
     'Thank you for your question. For detailed information, I recommend speaking with our admission counsellor or booking a campus visit. You can also call us at +91 70777 75311 or WhatsApp +91 94386 73777.'
 };

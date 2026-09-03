@@ -67,9 +67,9 @@ const galleryItems = [
     src: img3613,
     location: "Central Campus Quad",
     tag: "CAPTAIN SQUAD",
-    stat: "10-Acre Sanctuary",
+    stat: "10-Acres Sanctuary",
     resolution: "4K UHD",
-    description: "Expansive 10-acre eco-conscious architectural landscape with lush green lawns, modern academic wings, and state-of-the-art security entrances."
+    description: "Expansive 10-acres eco-conscious architectural landscape with lush green lawns, modern academic wings, and state-of-the-art security entrances."
   },
   {
     id: 2,

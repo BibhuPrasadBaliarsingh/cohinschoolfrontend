@@ -17,7 +17,7 @@ export default function Facilities({ openDedicatedTopic }) {
       id: "sports-court",
       title: "Basketball & Outdoor Sports Complex",
       desc: "Synthetic basketball court, tennis courts, and multi-sport outdoor arenas.",
-      tag: "2.5 Acre Sports Arena",
+      tag: "2.5 Acres Sports Arena",
       img: img3620,
       icon: Trophy,
       badgeColor: "bg-amber-500/90 text-navy-950",
@@ -55,7 +55,7 @@ export default function Facilities({ openDedicatedTopic }) {
     },
     {
       id: "green-campus",
-      title: "10-Acre Eco-Green Campus",
+      title: "10-Acres Eco-Green Campus",
       desc: "Pollution-free, lush green environment at Barunei Hills beside IIT Bhubaneswar.",
       tag: "Green Environment",
       img: img3622,

@@ -165,7 +165,6 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
 
                 {/* Dropdown Menu */}
                 <div className="absolute top-full left-0 w-60 py-2.5 px-2 bg-white text-navy-950 rounded-2xl shadow-2xl border border-gray-100 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                  
                   <button
                     type="button"
                     onClick={() => openChairmanModal ? openChairmanModal() : navigate('/about')}
@@ -330,7 +329,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                 <button
                   type="button"
                   onClick={() => openCsatModal?.()}
-                  className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-gradient-to-r from-amber-400 via-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-navy-950 font-extrabold text-xs sm:text-sm rounded-full transition shadow-md hover:scale-105 cursor-pointer whitespace-nowrap"
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-gradient-to-r from-amber-400 via-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-navy-950 font-extrabold text-xs sm:text-sm rounded-full transition shadow-md hover:scale-105 cursor-pointer whitespace-nowrap animate-csat-blink"
                 >
                   <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-navy-950" />
                   <span>CSAT</span>
@@ -578,7 +577,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
 
           <div className="w-full max-w-md mx-auto px-5 py-5 border-t border-white/10 space-y-3 bg-[#030914]/95 backdrop-blur-md sticky bottom-0 z-30">
             {isCsatActive ? (
-              <button type="button" onClick={() => { setMegaMenuOpen(false); openCsatModal?.(); }} className="flex items-center justify-center gap-2 py-3.5 w-full bg-gradient-to-r from-amber-400 to-gold-500 text-navy-950 font-extrabold text-xs sm:text-sm rounded-2xl shadow-xl hover:brightness-110 transition cursor-pointer">
+              <button type="button" onClick={() => { setMegaMenuOpen(false); openCsatModal?.(); }} className="flex items-center justify-center gap-2 py-3.5 w-full bg-gradient-to-r from-amber-400 to-gold-500 text-navy-950 font-extrabold text-xs sm:text-sm rounded-2xl shadow-xl hover:brightness-110 transition cursor-pointer animate-csat-blink">
                 <Sparkles className="w-4 h-4 text-navy-950" /><span>CSAT 2026 Registration</span>
               </button>
             ) : (

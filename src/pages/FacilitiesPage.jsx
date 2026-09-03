@@ -51,7 +51,7 @@ export default function FacilitiesPage({ openDedicatedTopic, openAdmissionModal 
 
             <div className="p-6 rounded-3xl bg-white border border-cream-200 shadow-sm">
               <Trophy className="w-8 h-8 text-gold-600 mb-3" />
-              <h3 className="font-semibold text-navy-900 mb-1 text-lg">2.5-Acre Sports Complex</h3>
+              <h3 className="font-semibold text-navy-900 mb-1 text-lg">over 2.5-Acres Sports Complex</h3>
               <p className="text-xs text-navy-700/70 leading-relaxed">
                 Cricket turf, football ground, basketball court, lawn tennis, badminton & professional coaches.
               </p>
@@ -71,7 +71,7 @@ export default function FacilitiesPage({ openDedicatedTopic, openAdmissionModal 
       {/* CTA */}
       <section className="py-16 bg-navy-900 text-white text-center">
         <div className="max-w-4xl mx-auto px-4">
-          <h2 className="font-display text-3xl font-bold mb-3">Want to Tour Our 10-Acre Campus?</h2>
+          <h2 className="font-display text-3xl font-bold mb-3">Want to Tour Our 10-Acres Campus?</h2>
           <p className="text-white/70 mb-6 text-sm">
             Visit us near Barunei Hills, Jatani or request a personalized counselling session.
           </p>

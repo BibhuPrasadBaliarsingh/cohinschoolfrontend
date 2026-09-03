@@ -36,7 +36,7 @@ export default function Admissions({ openAdmissionModal }) {
               <div>
                 <p className="font-semibold text-navy-900 text-base">Counselling &amp; Campus Visit</p>
                 <p className="text-sm text-navy-700/70 mt-1 leading-relaxed">
-                  Our team schedules personal counselling and a guided tour of our 10-acre green campus.
+                  Our team schedules personal counselling and a guided tour of our 10-acres green campus.
                 </p>
               </div>
             </div>

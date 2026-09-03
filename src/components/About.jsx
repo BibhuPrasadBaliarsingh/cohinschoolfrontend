@@ -198,7 +198,7 @@ export default function About({ openChairmanModal }) {
                 Subhadra Charitable Trust
               </a>
               <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">
-                10 Acre Campus
+                10 Acres Campus
               </span>
               <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">
                 Boarding Available
@@ -267,7 +267,7 @@ export default function About({ openChairmanModal }) {
                     <AnimatedCounter end={10} suffix="+" duration={2000} />
                   </p>
                   <p className="text-navy-950/80 text-sm mt-1">
-                    Acre Green Campus
+                    Acres Green Campus
                   </p>
                 </div>
                 <div className="text-center sm:text-left">

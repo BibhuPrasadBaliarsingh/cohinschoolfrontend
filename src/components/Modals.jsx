@@ -9,6 +9,7 @@ import SecretaryModal from './modals/SecretaryModal';
 import PrincipalModal from './modals/PrincipalModal';
 import CareerModal from './modals/CareerModal';
 import TopicModal from './modals/TopicModal';
+import VirtualTourModal from './modals/VirtualTourModal';
 
 export default function Modals({ modalState, closeModal, openLoginModal, openPortalFrame, openAdmissionModal }) {
   if (!modalState) return null;
@@ -67,6 +68,10 @@ export default function Modals({ modalState, closeModal, openLoginModal, openPor
 
   if (type === 'topic') {
     return <TopicModal closeModal={closeModal} openAdmissionModal={openAdmissionModal} topicKey={data?.topicKey} />;
+  }
+
+  if (type === 'virtualTour') {
+    return <VirtualTourModal closeModal={closeModal} openAdmissionModal={openAdmissionModal} />;
   }
 
   return null;

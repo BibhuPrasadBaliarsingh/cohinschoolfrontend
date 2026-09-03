@@ -73,7 +73,7 @@ export default function SecretaryModal({ closeModal }) {
               With over 16 years of experience in student counselling and academic administration across major Indian metropolitan cities, I take great pride in facilitating strong student-parent-school partnerships. As Co-Convenor of the "Science Movement", we actively organize state-level science conclaves, Olympiad mentorships, and practical STEM exposures.
             </p>
             <p>
-              We ensure that our 10-acre campus is backed by seamless digital administration, responsive parent portals, transparent admissions, and world-class student welfare systems.
+              We ensure that our 10-acres campus is backed by seamless digital administration, responsive parent portals, transparent admissions, and world-class student welfare systems.
             </p>
             <p className="italic font-medium text-navy-900">
               "Dedicated to empowering young minds with knowledge, values, and unwavering confidence to outshine the world."

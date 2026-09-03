@@ -88,7 +88,7 @@ const heroSlides = [
     fit: "fill",
     accent: "10 Acres of Green Learning",
     headline: ["A Campus", "Like No", "Other"],
-    sub: "Pollution-free, lush 10-acre campus nestled beside IIT Bhubaneswar at Barunei Hills.",
+    sub: "Pollution-free, lush 10-acres campus nestled beside IIT Bhubaneswar at Barunei Hills.",
   },
   {
     id: 7,
@@ -105,7 +105,7 @@ const stats = [
   { Icon: Award, value: 2015, suffix: "", label: "Founded" },
   { Icon: Users, value: 1200, suffix: "+", label: "Students" },
   { Icon: BookOpen, value: 55, suffix: "+", label: "Expert Faculty" },
-  { Icon: MapPin, value: 10, suffix: " Acre", label: "Green Campus" },
+  { Icon: MapPin, value: 10, suffix: " Acres", label: "Green Campus" },
 ];
 
 function useCountUp(target, duration, active) {
