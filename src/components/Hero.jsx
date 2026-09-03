@@ -16,6 +16,7 @@ import img3660 from "../assets/DSC03660.JPG";
 import img3622 from "../assets/DSC03622.JPG";
 import img3684 from "../assets/DSC03684.JPG";
 import jeetopers from "../assets/jeetopers.png";
+import neetresult from "../assets/neetresult.png";
 
 import mobCoursol1 from "../assets/mobileimage/coursol1.png";
 import mobCoursol2 from "../assets/mobileimage/coursol2.png";
@@ -23,6 +24,7 @@ import mobCoursol3 from "../assets/mobileimage/coursol3.png";
 import mobCoursol4 from "../assets/mobileimage/coursol4.png";
 import mobCoursol5 from "../assets/mobileimage/coursol5.png";
 import mobCoursol6 from "../assets/mobileimage/coursol6.png";
+import mobCoursol7 from "../assets/mobileimage/coursol7.png";
 
 const heroSlides = [
   {
@@ -62,7 +64,16 @@ const heroSlides = [
     sub: "Comprehensive integrated school batch program for JEE (Main & Advanced) and NEET.",
   },
   {
-    id:  4,
+    id: 4,
+    src: neetresult,
+    mobileSrc: mobCoursol7,
+    fit: "fill",
+    accent: "",
+    headline: [],
+    sub: "",
+  },
+  {
+    id: 5,
     src: img3660,
     mobileSrc: mobCoursol3,
     fit: "fill",
@@ -71,7 +82,7 @@ const heroSlides = [
     sub: "Holistic development through world-class sports infrastructure and guided athletics.",
   },
   {
-    id: 5,
+    id: 6,
     src: img3622,
     mobileSrc: mobCoursol5,
     fit: "fill",
@@ -80,7 +91,7 @@ const heroSlides = [
     sub: "Pollution-free, lush 10-acre campus nestled beside IIT Bhubaneswar at Barunei Hills.",
   },
   {
-    id: 6,
+    id: 7,
     src: img3684,
     mobileSrc: mobCoursol4,
     fit: "fill",

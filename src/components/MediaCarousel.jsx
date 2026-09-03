@@ -3,6 +3,7 @@ import { ChevronLeft, ChevronRight, PlayCircle } from "lucide-react";
 import img3604 from "../assets/DSC03604.JPG";
 import img3612 from "../assets/DSC03612.JPG";
 import img3624 from "../assets/DSC03624.JPG";
+import neetresult from "../assets/neetresult.png";
 
 const defaultSlides = [
   {
@@ -15,13 +16,20 @@ const defaultSlides = [
   },
   {
     id: 2,
+    title: "NEET Medical Ranks & Results",
+    subtitle: "Outstanding NEET qualifying ranks with Vidwan integrated coaching.",
+    type: "image",
+    src: neetresult,
+  },
+  {
+    id: 3,
     title: "STEM and Robotics",
     subtitle: "Hands-on learning with AI, robotics and labs.",
     type: "image",
     src: img3624,
   },
   {
-    id: 3,
+    id: 4,
     title: "Sports & Wellness",
     subtitle: "Balanced growth through sports, yoga and outdoor learning.",
     type: "image",

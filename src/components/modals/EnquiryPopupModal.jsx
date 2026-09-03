@@ -1,16 +1,17 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Sparkles, Send, CheckCircle2, Phone, User, BookOpen, MessageSquare, Maximize2 } from 'lucide-react';
+import { X, Sparkles, Send, CheckCircle2, Phone, User, School, MapPin, Calendar, BookOpen, AlertCircle, Maximize2 } from 'lucide-react';
 import enquiryImg from '../../assets/enquiry.png';
 
 export default function EnquiryPopupModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     studentName: '',
+    currentSchool: '',
     parentName: '',
     phone: '',
-    email: '',
-    grade: 'Class I',
-    message: ''
+    city: '',
+    coachingInterest: '',
+    testDate: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -36,12 +37,16 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
           'x-api-key': 'cohen_website_secret_api_key_2026'
         },
         body: JSON.stringify({
+          formType: 'CSAT Online Registration',
           studentName: formData.studentName,
+          currentSchool: formData.currentSchool,
           parentName: formData.parentName,
           phone: formData.phone,
-          email: formData.email || '',
-          classInterested: formData.grade,
-          message: `${formData.message || 'Enquiry form submitted via website popup'} (Routed to info@coheninternationalschool.com)`
+          city: formData.city,
+          coachingInterest: formData.coachingInterest,
+          testDate: formData.testDate,
+          grade: 'Grade 10',
+          message: `CSAT Registration submitted via website auto-popup: Test Date: ${formData.testDate}, Stream: ${formData.coachingInterest}`
         })
       });
     } catch (err) {
@@ -54,21 +59,21 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
 
   return (
     <AnimatePresence>
-      <div className="fixed inset-0 z-[250] flex items-center justify-center p-3 sm:p-6 overflow-y-auto bg-navy-950/80 backdrop-blur-md">
+      <div className="fixed inset-0 z-[250] flex items-center justify-center p-2 sm:p-5 overflow-y-auto bg-navy-950/85 backdrop-blur-md">
         {/* Modal Outer Container */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
           transition={{ type: 'spring', damping: 25, stiffness: 300 }}
-          className="relative w-full max-w-4xl bg-navy-900 border border-gold-500/30 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden my-auto max-h-[92vh] flex flex-col"
+          className="relative w-full max-w-4xl bg-navy-900 border border-gold-500/40 rounded-2xl sm:rounded-3xl shadow-2xl overflow-hidden my-auto max-h-[94vh] flex flex-col"
         >
           {/* Close Button */}
           <button
             onClick={onClose}
             type="button"
-            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 p-2 sm:p-2.5 rounded-full bg-navy-950/80 text-white/80 hover:text-white hover:bg-gold-500 hover:text-navy-950 transition border border-white/10 shadow-lg"
-            aria-label="Close Enquiry Modal"
+            className="absolute top-3 right-3 sm:top-4 sm:right-4 z-20 p-2 sm:p-2.5 rounded-full bg-navy-950/80 text-white/80 hover:text-white hover:bg-gold-500 hover:text-navy-950 transition border border-white/10 shadow-lg cursor-pointer"
+            aria-label="Close CSAT Registration Modal"
           >
             <X className="w-4 h-4 sm:w-5 sm:h-5" />
           </button>
@@ -83,30 +88,30 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
             {/* LEFT SIDE: Poster / Image */}
             <div className="md:col-span-5 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 p-4 sm:p-6 flex flex-col justify-between relative border-b md:border-b-0 md:border-r border-white/10">
               <div>
-                <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3">
-                  <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5" /> Admissions Open 2027-28
+                <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3">
+                  <Sparkles className="w-3.5 h-3.5" /> CSAT 2026 Registration Open
                 </div>
                 <h3 className="font-display text-lg sm:text-2xl font-extrabold text-white leading-tight mb-1">
                   Cohen International <span className="text-gold-400">School</span>
                 </h3>
-                <p className="text-white/70 text-[11px] sm:text-xs leading-relaxed mb-2 hidden xs:block">
-                  Nurturing Future Leaders with Cambridge Curriculum, High-Tech STEM Aerospace Labs &amp; 10-Acre Eco-Green Campus.
+                <p className="text-white/70 text-[11px] sm:text-xs leading-relaxed mb-2 hidden xs:block font-medium">
+                  Cohen Scholastic Aptitude Test (CSAT) — Integrated Schooling &amp; Entrance Coaching Program.
                 </p>
               </div>
 
-              {/* Banner Image - Clickable for Full view & displaying full poster without cropping */}
+              {/* Banner Image - Clickable for Full view */}
               <div 
                 onClick={() => setIsImageZoomed(true)}
                 className="relative rounded-xl sm:rounded-2xl overflow-hidden border border-gold-500/40 shadow-xl my-2 bg-navy-950/80 group cursor-pointer p-1 flex items-center justify-center transition-all duration-300 hover:border-gold-400"
-                title="Click to expand poster image"
+                title="Click to expand CSAT flyer poster"
               >
                 <img
                   src={enquiryImg}
-                  alt="Cohen International School Admission Enquiry"
-                  className="w-full h-auto max-h-[220px] sm:max-h-[300px] object-contain rounded-lg group-hover:scale-[1.02] transition-transform duration-300"
+                  alt="Cohen International School CSAT Registration"
+                  className="w-full h-auto max-h-[220px] sm:max-h-[280px] object-contain rounded-lg group-hover:scale-[1.02] transition-transform duration-300"
                 />
                 <div className="absolute inset-0 bg-navy-950/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-1.5 text-xs font-bold text-gold-400 backdrop-blur-[2px] rounded-xl">
-                  <Maximize2 className="w-4 h-4" /> Expand Flyer
+                  <Maximize2 className="w-4 h-4" /> Expand Flyer Poster
                 </div>
               </div>
 
@@ -118,8 +123,8 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
               </div>
             </div>
 
-            {/* RIGHT SIDE: Enquiry Form */}
-            <div className="md:col-span-7 p-4 sm:p-8 flex flex-col justify-center bg-navy-900/90 relative">
+            {/* RIGHT SIDE: CSAT Online Registration Form */}
+            <div className="md:col-span-7 p-4 sm:p-7 flex flex-col justify-center bg-navy-900/90 relative">
               {isSubmitted ? (
                 <motion.div
                   initial={{ opacity: 0, scale: 0.95 }}
@@ -129,72 +134,103 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
                   <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 flex items-center justify-center mx-auto mb-3 sm:mb-4">
                     <CheckCircle2 className="w-6 h-6 sm:w-8 sm:h-8" />
                   </div>
-                  <h4 className="font-display text-xl sm:text-2xl font-bold text-white mb-2">Enquiry Submitted!</h4>
-                  <p className="text-white/75 text-xs sm:text-sm max-w-md mx-auto mb-5 sm:mb-6">
-                    Thank you! Your enquiry has been sent to <span className="text-gold-400 font-semibold">info@coheninternationalschool.com</span>. Our admissions team will contact you shortly on <span className="text-gold-400 font-semibold">{formData.phone}</span>.
+                  <h4 className="font-display text-xl sm:text-2xl font-bold text-white mb-2">CSAT Registration Submitted!</h4>
+                  <p className="text-white/80 text-xs sm:text-sm max-w-md mx-auto mb-4 leading-relaxed">
+                    Thank you! Your registration for <span className="text-gold-400 font-semibold">{formData.studentName}</span> (Test Date: <span className="text-gold-400 font-semibold">{formData.testDate}</span>) has been received.
+                  </p>
+                  <p className="text-white/60 text-xs max-w-md mx-auto mb-6">
+                    Our team will contact you shortly on <span className="text-gold-300 font-semibold">{formData.phone}</span> with hall ticket and test center details.
                   </p>
                   <button
                     type="button"
                     onClick={onClose}
-                    className="px-5 py-2 sm:px-6 sm:py-2.5 bg-gold-500 text-navy-950 font-bold rounded-xl hover:bg-gold-400 transition shadow-lg text-xs sm:text-sm"
+                    className="px-6 py-2.5 bg-gold-500 text-navy-950 font-bold rounded-xl hover:bg-gold-400 transition shadow-lg text-xs sm:text-sm cursor-pointer"
                   >
                     Close Window
                   </button>
                 </motion.div>
               ) : (
                 <>
-                  <div className="mb-3 sm:mb-5">
-                    <h4 className="font-display text-lg sm:text-2xl font-bold text-white">
-                      Enquire for <span className="text-gold-400">Admissions</span>
+                  <div className="mb-3">
+                    <h4 className="font-display text-lg sm:text-xl font-bold text-white">
+                      CSAT Online <span className="text-gold-400">Registration Form</span>
                     </h4>
-                    <p className="text-white/60 text-[11px] sm:text-sm mt-0.5 sm:mt-1">
-                      Directly routed to <span className="text-gold-300 font-semibold">info@coheninternationalschool.com</span>
-                    </p>
+                    
+                    {/* Important Eligibility Notice Box */}
+                    <div className="mt-2 p-2.5 sm:p-3 rounded-xl bg-amber-500/15 border border-amber-400/40 text-amber-200 text-[11px] sm:text-xs flex items-start gap-2 leading-relaxed">
+                      <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
+                      <span>
+                        This CSAT online registration form for Test dates 4 Oct &amp; 1 Nov is applicable for <strong>current Grade 10 studying students only</strong>.
+                      </span>
+                    </div>
                   </div>
 
-                  <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-3.5">
-                    {/* Student Name */}
-                    <div>
-                      <label className="block text-[11px] sm:text-xs font-semibold text-white/80 mb-1">
-                        Student Full Name <span className="text-rose-400">*</span>
-                      </label>
-                      <div className="relative">
-                        <User className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
-                        <input
-                          type="text"
-                          name="studentName"
-                          required
-                          value={formData.studentName}
-                          onChange={handleChange}
-                          placeholder="e.g. Aarav Sharma"
-                          className="w-full pl-9 pr-3 py-2 sm:pl-10 sm:pr-4 sm:py-2.5 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:border-gold-400 transition placeholder:text-white/30"
-                        />
+                  <form onSubmit={handleSubmit} className="space-y-2.5 sm:space-y-3">
+                    {/* 1. Students name & 2. Current School (2 Cols) */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                      <div>
+                        <label className="block text-[11px] sm:text-xs font-semibold text-white/90 mb-1">
+                          1. Students name <span className="text-rose-400">*</span>
+                        </label>
+                        <div className="relative">
+                          <User className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
+                          <input
+                            type="text"
+                            name="studentName"
+                            required
+                            value={formData.studentName}
+                            onChange={handleChange}
+                            placeholder="Enter student's full name"
+                            className="w-full pl-9 pr-3 py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs focus:outline-none focus:border-gold-400 transition placeholder:text-white/30"
+                          />
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] sm:text-xs font-semibold text-white/90 mb-1">
+                          2. Current School <span className="text-rose-400">*</span>
+                        </label>
+                        <div className="relative">
+                          <School className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
+                          <input
+                            type="text"
+                            name="currentSchool"
+                            required
+                            value={formData.currentSchool}
+                            onChange={handleChange}
+                            placeholder="Enter current school name"
+                            className="w-full pl-9 pr-3 py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs focus:outline-none focus:border-gold-400 transition placeholder:text-white/30"
+                          />
+                        </div>
                       </div>
                     </div>
 
-                    {/* Parent Name & Phone (2 Cols) */}
+                    {/* 3. Parents name & 4. Mobile/Whatsapp no (2 Cols) */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
                       <div>
-                        <label className="block text-[11px] sm:text-xs font-semibold text-white/80 mb-1">
-                          Parent / Guardian Name <span className="text-rose-400">*</span>
+                        <label className="block text-[11px] sm:text-xs font-semibold text-white/90 mb-1">
+                          3. Parents name <span className="text-rose-400">*</span>
                         </label>
-                        <input
-                          type="text"
-                          name="parentName"
-                          required
-                          value={formData.parentName}
-                          onChange={handleChange}
-                          placeholder="e.g. Rajesh Sharma"
-                          className="w-full px-3 py-2 sm:px-3.5 sm:py-2.5 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:border-gold-400 transition placeholder:text-white/30"
-                        />
+                        <div className="relative">
+                          <User className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
+                          <input
+                            type="text"
+                            name="parentName"
+                            required
+                            value={formData.parentName}
+                            onChange={handleChange}
+                            placeholder="Enter parent / guardian name"
+                            className="w-full pl-9 pr-3 py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs focus:outline-none focus:border-gold-400 transition placeholder:text-white/30"
+                          />
+                        </div>
                       </div>
 
                       <div>
-                        <label className="block text-[11px] sm:text-xs font-semibold text-white/80 mb-1">
-                          Phone Number <span className="text-rose-400">*</span>
+                        <label className="block text-[11px] sm:text-xs font-semibold text-white/90 mb-1">
+                          4. Mobile/Whatsapp no <span className="text-rose-400">*</span>
                         </label>
                         <div className="relative">
-                          <Phone className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
+                          <Phone className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
                           <input
                             type="tel"
                             name="phone"
@@ -202,51 +238,72 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
                             pattern="[0-9]{10}"
                             value={formData.phone}
                             onChange={handleChange}
-                            placeholder="10-digit Mobile"
-                            className="w-full pl-9 pr-3 py-2 sm:pl-10 sm:pr-4 sm:py-2.5 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:border-gold-400 transition placeholder:text-white/30"
+                            placeholder="10-digit Mobile / WhatsApp"
+                            className="w-full pl-9 pr-3 py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs focus:outline-none focus:border-gold-400 transition placeholder:text-white/30"
                           />
                         </div>
                       </div>
                     </div>
 
-                    {/* Class Applying For */}
+                    {/* 5. City */}
                     <div>
-                      <label className="block text-[11px] sm:text-xs font-semibold text-white/80 mb-1">
-                        Class / Grade Applying For <span className="text-rose-400">*</span>
+                      <label className="block text-[11px] sm:text-xs font-semibold text-white/90 mb-1">
+                        5. City <span className="text-rose-400">*</span>
                       </label>
                       <div className="relative">
-                        <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
-                        <select
-                          name="grade"
-                          value={formData.grade}
+                        <MapPin className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
+                        <input
+                          type="text"
+                          name="city"
+                          required
+                          value={formData.city}
                           onChange={handleChange}
-                          className="w-full pl-9 pr-3 py-2 sm:pl-10 sm:pr-4 sm:py-2.5 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:border-gold-400 transition"
+                          placeholder="Enter your city"
+                          className="w-full pl-9 pr-3 py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs focus:outline-none focus:border-gold-400 transition placeholder:text-white/30"
+                        />
+                      </div>
+                    </div>
+
+                    {/* 6. Interested for integrated schooling & coaching for */}
+                    <div>
+                      <label className="block text-[11px] sm:text-xs font-semibold text-white/90 mb-1">
+                        6. Interested for integrated schooling &amp; coaching for <span className="text-rose-400">*</span>
+                      </label>
+                      <div className="relative">
+                        <BookOpen className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
+                        <select
+                          name="coachingInterest"
+                          required
+                          value={formData.coachingInterest}
+                          onChange={handleChange}
+                          className="w-full pl-9 pr-3 py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs focus:outline-none focus:border-gold-400 transition font-medium"
                         >
-                          <option value="Nursery / LKG / UKG">Nursery / LKG / UKG</option>
-                          <option value="Class I - V (Primary)">Class I - V (Primary)</option>
-                          <option value="Class VI - VIII (Middle)">Class VI - VIII (Middle)</option>
-                          <option value="Class IX - X (Secondary)">Class IX - X (Secondary)</option>
-                          <option value="Class XI - XII (Senior Secondary)">Class XI - XII (Senior Secondary)</option>
-                          <option value="Vidwan Integrated (JEE / NEET)">Vidwan Integrated (JEE / NEET)</option>
+                          <option value="">-- Select Integrated Option --</option>
+                          <option value="IIT JEE">IIT JEE</option>
+                          <option value="NEET/Medical">NEET/Medical</option>
+                          <option value="Pure Sciences (NISER, IISER, IISC, ISI etc)">Pure Sciences (NISER, IISER, IISC, ISI etc)</option>
                         </select>
                       </div>
                     </div>
 
-                    {/* Additional Message */}
+                    {/* 7. Test date for */}
                     <div>
-                      <label className="block text-[11px] sm:text-xs font-semibold text-white/80 mb-1">
-                        Any Specific Query? (Optional)
+                      <label className="block text-[11px] sm:text-xs font-semibold text-white/90 mb-1">
+                        7. Test date for <span className="text-rose-400">*</span>
                       </label>
                       <div className="relative">
-                        <MessageSquare className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-white/40 absolute left-3 top-2.5" />
-                        <textarea
-                          name="message"
-                          rows="2"
-                          value={formData.message}
+                        <Calendar className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
+                        <select
+                          name="testDate"
+                          required
+                          value={formData.testDate}
                           onChange={handleChange}
-                          placeholder="Ask about hostel, transportation, fee structure..."
-                          className="w-full pl-9 pr-3 py-1.5 sm:pl-10 sm:pr-4 sm:py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs sm:text-sm focus:outline-none focus:border-gold-400 transition placeholder:text-white/30 resize-none"
-                        />
+                          className="w-full pl-9 pr-3 py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs focus:outline-none focus:border-gold-400 transition font-medium text-gold-300 font-semibold"
+                        >
+                          <option value="">-- Select Test Date --</option>
+                          <option value="4 Oct’26">4 Oct’26</option>
+                          <option value="1 Nov’26">1 Nov’26</option>
+                        </select>
                       </div>
                     </div>
 
@@ -254,14 +311,14 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-2.5 sm:py-3 bg-gradient-to-r from-gold-500 via-amber-500 to-gold-600 text-navy-950 font-extrabold text-xs sm:text-sm rounded-xl hover:brightness-110 transition shadow-xl flex items-center justify-center gap-2 mt-1 sm:mt-2 disabled:opacity-50"
+                      className="w-full py-2.5 sm:py-3 bg-gradient-to-r from-gold-500 via-amber-500 to-gold-600 text-navy-950 font-extrabold text-xs sm:text-sm rounded-xl hover:brightness-110 transition shadow-xl flex items-center justify-center gap-2 mt-2 disabled:opacity-50 cursor-pointer"
                     >
                       {isSubmitting ? (
-                        <span>Submitting Enquiry...</span>
+                        <span>Submitting CSAT Registration...</span>
                       ) : (
                         <>
                           <Send className="w-4 h-4" />
-                          <span>Submit Admission Enquiry</span>
+                          <span>Submit CSAT Registration</span>
                         </>
                       )}
                     </button>
@@ -300,7 +357,7 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
             </button>
             <img
               src={enquiryImg}
-              alt="Cohen International School Admission Enquiry Poster Full View"
+              alt="Cohen International School CSAT Poster Full View"
               className="w-full h-full max-h-[88vh] object-contain rounded-2xl border border-gold-500/40 shadow-2xl bg-navy-950"
             />
           </motion.div>

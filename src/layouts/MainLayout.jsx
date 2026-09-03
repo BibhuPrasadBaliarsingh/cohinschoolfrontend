@@ -23,15 +23,10 @@ export default function MainLayout() {
     location.pathname === '/login' ||
     location.pathname === '/unauthorized';
 
-  // Auto-open Enquiry Popup Modal on site load
-  useEffect(() => {
-    if (!isDashboardOrAuthPage) {
-      const timer = setTimeout(() => {
-        setShowAutoEnquiry(true);
-      }, 1000);
-      return () => clearTimeout(timer);
-    }
-  }, [isDashboardOrAuthPage]);
+  // CSAT Enquiry Popup Modal Handler (Opens on CSAT Navbar button click)
+  const openCsatModal = useCallback(() => {
+    setShowAutoEnquiry(true);
+  }, []);
 
   const handleCloseAutoEnquiry = useCallback(() => {
     setShowAutoEnquiry(false);
@@ -117,6 +112,7 @@ export default function MainLayout() {
           openViceChairmanModal={openViceChairmanModal}
           openSecretaryModal={openSecretaryModal}
           openPrincipalModal={openPrincipalModal}
+          openCsatModal={openCsatModal}
         />
       )}
 
@@ -124,6 +120,7 @@ export default function MainLayout() {
         <Outlet
           context={{
             openAdmissionModal,
+            openCsatModal,
             openVirtualTour,
             openChairmanModal,
             openViceChairmanModal,

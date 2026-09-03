@@ -1,8 +1,7 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import PageWrapper from '../components/PageWrapper';
 import HeaderBanner from '../components/HeaderBanner';
-import { GraduationCap, Mail, Award, BookOpen, Sparkles, UserCheck, ShieldCheck } from 'lucide-react';
+import { Mail } from 'lucide-react';
 
 const administrators = [
   {
@@ -36,63 +35,6 @@ const administrators = [
     image: '/images/about_principal.jpg',
     bio: 'Jagjeevan R.D. Dash, Principal - Cohen International School. M.Sc Botany & Gold Medalist - M.A. Sociology, B.Ed from Kurukshetra University. Dedicated academician committed to guiding students towards personal excellence, holistic development, and strong moral values.',
     email: 'principal@coheninternationalschool.com',
-  },
-];
-
-const facultyMembers = [
-  {
-    name: 'Dr. Rajesh Kumar Mohanty',
-    role: 'Senior Physics & IIT-JEE Faculty Lead',
-    dept: 'Physics & Applied Science',
-    qualification: 'Ph.D. in Applied Physics (IIT BBS)',
-    experience: '14+ Years Teaching Experience',
-    avatarBg: 'from-amber-500 to-orange-600',
-    initials: 'RM',
-  },
-  {
-    name: 'Dr. Ananya Pattnaik',
-    role: 'Chemistry Department Head & NEET Specialist',
-    dept: 'Organic & Inorganic Chemistry',
-    qualification: 'Ph.D. in Chemistry (Utkal University)',
-    experience: '12+ Years Teaching Experience',
-    avatarBg: 'from-emerald-500 to-teal-700',
-    initials: 'AP',
-  },
-  {
-    name: 'Prof. Subhranshu Sekhar Ray',
-    role: 'Senior Mathematics Faculty & Olympiad Mentor',
-    dept: 'Mathematics & Computing',
-    qualification: 'M.Sc. Mathematics (NISER)',
-    experience: '11+ Years Teaching Experience',
-    avatarBg: 'from-blue-600 to-indigo-800',
-    initials: 'SR',
-  },
-  {
-    name: 'Mrs. Sunita Samantray',
-    role: 'Head of English & Humanities',
-    dept: 'English Literature & Oration',
-    qualification: 'M.A. English, B.Ed (Utkal)',
-    experience: '15+ Years Teaching Experience',
-    avatarBg: 'from-purple-600 to-pink-700',
-    initials: 'SS',
-  },
-  {
-    name: 'Dr. Soumya Ranjan Dash',
-    role: 'Senior Biology & NEET Faculty',
-    dept: 'Botany & Zoology',
-    qualification: 'Ph.D. Life Sciences',
-    experience: '10+ Years Teaching Experience',
-    avatarBg: 'from-emerald-600 to-green-800',
-    initials: 'SD',
-  },
-  {
-    name: 'Er. Debasis Mishra',
-    role: 'Computer Science & AI Robotics Mentor',
-    dept: 'STEM & Robotics Lab',
-    qualification: 'M.Tech Computer Science (VSSUT)',
-    experience: '9+ Years Industry & Academic Exp.',
-    avatarBg: 'from-cyan-600 to-blue-700',
-    initials: 'DM',
   },
 ];
 
@@ -165,72 +107,6 @@ export default function FacultyPage({ openAdmissionModal }) {
                     </a>
                   </div>
                 )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── SECTION 2: ACADEMIC FACULTY DIRECTORY ── */}
-      <section className="py-16 sm:py-20 bg-slate-50 border-t border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
-            <span className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-gold-500/10 text-gold-700 text-xs font-bold uppercase tracking-widest mb-3">
-              <GraduationCap className="w-4 h-4 text-gold-600" /> Academic Excellence
-            </span>
-            <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl text-navy-900 font-bold">
-              Faculty &amp; Academic Mentors
-            </h2>
-            <p className="mt-4 text-base sm:text-lg text-slate-600 font-sans">
-              Dedicated IITians, Doctorates, and seasoned educators committed to shaping future champions.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {facultyMembers.map((faculty, idx) => (
-              <div
-                key={idx}
-                className="bg-white p-6 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center gap-4 mb-4">
-                    <div
-                      className={`w-14 h-14 rounded-2xl bg-gradient-to-tr ${faculty.avatarBg} text-white font-bold text-lg flex items-center justify-center shadow-md flex-shrink-0`}
-                    >
-                      {faculty.initials}
-                    </div>
-                    <div>
-                      <h4 className="font-display font-bold text-navy-950 text-lg leading-tight">
-                        {faculty.name}
-                      </h4>
-                      <p className="text-xs font-semibold text-gold-600 mt-0.5">
-                        {faculty.dept}
-                      </p>
-                    </div>
-                  </div>
-
-                  <p className="text-xs font-semibold text-navy-800 mb-1">
-                    {faculty.role}
-                  </p>
-                  <p className="text-xs text-slate-600 mb-2">
-                    🎓 {faculty.qualification}
-                  </p>
-                  <p className="text-xs text-slate-500">
-                    ⭐ {faculty.experience}
-                  </p>
-                </div>
-
-                <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                  <span className="inline-flex items-center gap-1 text-[11px] text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-full font-medium">
-                    <UserCheck className="w-3 h-3 text-emerald-600" /> Full-Time Faculty
-                  </span>
-                  <button
-                    onClick={() => openAdmissionModal && openAdmissionModal('apply')}
-                    className="text-xs text-navy-900 font-bold hover:text-gold-600 transition"
-                  >
-                    Inquire Mentorship →
-                  </button>
-                </div>
               </div>
             ))}
           </div>

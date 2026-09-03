@@ -21,12 +21,15 @@ import {
 } from 'lucide-react';
 import useAuth from '../hooks/useAuth';
 
-export default function Navbar({ openLoginModal, openAdmissionModal, openChairmanModal, openPrincipalModal }) {
+export default function Navbar({ openLoginModal, openAdmissionModal, openChairmanModal, openPrincipalModal, openCsatModal }) {
   const navigate = useNavigate();
   const location = useLocation();
   const { user, isAuthenticated } = useAuth();
   const [scrolled, setScrolled] = useState(false);
   const [megaMenuOpen, setMegaMenuOpen] = useState(false);
+
+  // CSAT Registration active until November 2, 2026. After Nov 2, 2026, CSAT hides & Apply Now shows automatically.
+  const isCsatActive = new Date() < new Date('2026-11-02T00:00:00');
 
   // Accordion state for mobile menu subcategories (About closed by default)
   const [openSubmenu, setOpenSubmenu] = useState({
@@ -306,6 +309,26 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
 
             {/* CTA Buttons + Mobile Hamburger */}
             <div className="flex items-center gap-2 sm:gap-2.5">
+              {isCsatActive && (
+                <button
+                  type="button"
+                  onClick={() => openCsatModal?.()}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-gradient-to-r from-amber-400 via-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-navy-950 font-extrabold text-xs sm:text-sm rounded-full transition shadow-md hover:scale-105 cursor-pointer whitespace-nowrap"
+                >
+                  <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-navy-950" />
+                  <span>CSAT</span>
+                </button>
+              )}
+
+              <button
+                type="button"
+                onClick={() => openAdmissionModal('apply')}
+                className="hidden sm:inline-flex btn-premium items-center gap-1.5 sm:gap-2 px-3.5 sm:px-5 py-2 sm:py-2.5 bg-gold-500 text-navy-950 font-bold text-xs sm:text-sm rounded-full hover:bg-gold-400 transition shadow-md whitespace-nowrap"
+              >
+                <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
+                <span>Apply Now</span>
+              </button>
+
               <button
                 type="button"
                 onClick={() => navigate('/login')}
@@ -313,14 +336,6 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
               >
                 <LogIn className="w-4 h-4 text-gold-400" />
                 Login
-              </button>
-              <button
-                type="button"
-                onClick={() => openAdmissionModal('apply')}
-                className="btn-premium inline-flex items-center gap-2 px-5 py-2.5 bg-gold-500 text-navy-950 font-bold text-xs sm:text-sm rounded-full hover:bg-gold-400 transition shadow-md"
-              >
-                <Sparkles className="w-4 h-4" />
-                Apply Now
               </button>
 
               {/* 3-Bar Hamburger Button */}
@@ -545,9 +560,15 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
           </div>
 
           <div className="w-full max-w-md mx-auto px-5 py-5 border-t border-white/10 space-y-3 bg-[#030914]/95 backdrop-blur-md sticky bottom-0 z-30">
-            <button type="button" onClick={() => { setMegaMenuOpen(false); openAdmissionModal('apply'); }} className="btn-premium flex items-center justify-center gap-2 py-3.5 w-full bg-gold-500 text-navy-950 font-bold text-sm rounded-2xl shadow-xl hover:bg-gold-400 transition">
-              <Sparkles className="w-4 h-4" /><span>Apply for Admissions</span>
-            </button>
+            {isCsatActive ? (
+              <button type="button" onClick={() => { setMegaMenuOpen(false); openCsatModal?.(); }} className="flex items-center justify-center gap-2 py-3.5 w-full bg-gradient-to-r from-amber-400 to-gold-500 text-navy-950 font-extrabold text-xs sm:text-sm rounded-2xl shadow-xl hover:brightness-110 transition cursor-pointer">
+                <Sparkles className="w-4 h-4 text-navy-950" /><span>CSAT 2026 Registration</span>
+              </button>
+            ) : (
+              <button type="button" onClick={() => { setMegaMenuOpen(false); openAdmissionModal('apply'); }} className="btn-premium flex items-center justify-center gap-2 py-3.5 w-full bg-gold-500 text-navy-950 font-bold text-sm rounded-2xl shadow-xl hover:bg-gold-400 transition">
+                <Sparkles className="w-4 h-4" /><span>Apply for Admissions</span>
+              </button>
+            )}
             <button type="button" onClick={() => { setMegaMenuOpen(false); navigate('/login'); }} className="flex items-center justify-center gap-2 py-3 w-full bg-white/10 text-white font-semibold text-xs rounded-2xl border border-white/20 hover:bg-white/20 transition">
               <LogIn className="w-3.5 h-3.5 text-gold-400" /><span>Login</span>
             </button>

@@ -2,17 +2,16 @@ import React from "react";
 import PageWrapper from "../components/PageWrapper";
 import Hero from "../components/Hero";
 import About from "../components/About";
+import NewsAnnouncements from "../components/NewsAnnouncements";
 import WhyChoose from "../components/WhyChoose";
-import Academics from "../components/Academics";
-import Facilities from "../components/Facilities";
+import CohenTalks from "../components/CohenTalks";
+import StartYourJourney from "../components/StartYourJourney";
 import Admissions from "../components/Admissions";
-import MediaCarousel from "../components/MediaCarousel";
 import Gallery from "../components/Gallery";
 import Testimonials from "../components/Testimonials";
 import Careers from "../components/Careers";
-import Contact from "../components/Contact";
-import NewsAnnouncements from "../components/NewsAnnouncements";
 import AdmissionBanner from "../components/AdmissionBanner";
+import Contact from "../components/Contact";
 
 export default function HomePage({
   openAdmissionModal,
@@ -26,20 +25,39 @@ export default function HomePage({
 }) {
   return (
     <PageWrapper>
+      {/* 1. Carousel / Hero */}
       <Hero
         openAdmissionModal={openAdmissionModal}
         openVirtualTour={openVirtualTour}
       />
-      <AdmissionBanner openAdmissionModal={openAdmissionModal} />
+    <AdmissionBanner openAdmissionModal={openAdmissionModal} />
+      {/* 2. About & Chairman Message */}
       <About openChairmanModal={openChairmanModal} />
+
+      {/* 3. Latest News & Events */}
       <NewsAnnouncements openAdmissionModal={openAdmissionModal} />
+
+      {/* 4. What Makes Us Different (Why Choose CIS) */}
       <WhyChoose openDedicatedTopic={openDedicatedTopic} />
-      <Academics isHomePage={true} />
-      <Facilities openDedicatedTopic={openDedicatedTopic} />
+
+      {/* 5. Cohen Talks (Moved from inside About section) */}
+      <CohenTalks />
+
+      {/* 6. Begin Your Journey */}
+      {/* <StartYourJourney /> */}
       <Admissions openAdmissionModal={openAdmissionModal} />
+
+      {/* 7. Campus Gallery */}
       <Gallery isHomePage={true} />
+
+      {/* 8. Trusted By Educators / Testimonials */}
       <Testimonials />
+
+      {/* 9. Careers at Cohen */}
       <Careers openCareerModal={openCareerModal} isHomePage={true} />
+
+      {/* 10. Visit Our Campus */}
+      
       <Contact openChatbot={openChatbot} />
     </PageWrapper>
   );
