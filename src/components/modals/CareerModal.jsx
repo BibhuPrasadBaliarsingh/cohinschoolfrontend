@@ -256,7 +256,7 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
             disabled={submitting}
             className="w-full py-4 bg-navy-900 text-white font-semibold rounded-2xl hover:bg-navy-800 transition flex items-center justify-center gap-2 shadow-lg disabled:opacity-50"
           >
-            <Send className="w-4 h-4 text-gold-400" /> Submit Application → hr@coheninternationalschool.com
+            <Send className="w-4 h-4 text-gold-400" /> Submit Application
           </button>
         </form>
       </div>

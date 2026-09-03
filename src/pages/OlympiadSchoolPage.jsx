@@ -10,9 +10,9 @@ export default function OlympiadSchoolPage({ openAdmissionModal }) {
     <PageWrapper>
       {/* Header Banner - Matches Image 1 from screenshot */}
       <HeaderBanner
-        title="Olympiad School"
-        subtitle="Nurturing Logical Thinking, Analytical Mastery & Competitive Excellence at Cohen Olympiad School."
-        breadcrumb="Olympiad School"
+        title="Olympiad Preparation"
+        subtitle="Nurturing Logical Thinking, Analytical Mastery & Competitive Excellence at Cohen Olympiad Preparation."
+        breadcrumb="Olympiad Preparation"
         bgImage="/bg.png"
       />
 
@@ -23,10 +23,10 @@ export default function OlympiadSchoolPage({ openAdmissionModal }) {
           {/* Heading & Subheading from screenshot */}
           <div className="mb-12">
             <h1 className="font-serif text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1b365d] mb-2">
-              Olympiad School
+              Olympiad Preparation
             </h1>
             <p className="text-gray-600 text-base sm:text-lg font-sans">
-              Olympiad School
+              Olympiad Preparation
             </p>
           </div>
 
@@ -37,7 +37,7 @@ export default function OlympiadSchoolPage({ openAdmissionModal }) {
               <div className="p-6 bg-white rounded-3xl border border-gray-100 shadow-md max-w-sm flex items-center justify-center">
                 <img
                   src={olympiadImg}
-                  alt="Cohen Olympiad School Logo"
+                  alt="Cohen Olympiad Preparation Logo"
                   className="max-h-60 w-auto object-contain"
                 />
               </div>
@@ -46,13 +46,13 @@ export default function OlympiadSchoolPage({ openAdmissionModal }) {
             {/* Right: Overview text */}
             <div className="md:col-span-7 space-y-5 text-gray-700 text-base sm:text-lg leading-relaxed">
               <span className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider">
-                <Sparkles className="w-4 h-4" /> Cohen Olympiad School (COS)
+                <Sparkles className="w-4 h-4" /> Cohen Olympiad Preparation (COP)
               </span>
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-navy-950">
                 Building Early Analytical &amp; Competitive Foundation
               </h2>
               <p>
-                Cohen Olympiad School (COS) is a dedicated wing within Cohen International School designed to ignite young minds, foster deep logical thinking, and prepare students for prestigious national and international competitive olympiads.
+                Cohen Olympiad Preparation (COP) is a dedicated wing within Cohen International School designed to ignite young minds, foster deep logical thinking, and prepare students for prestigious national and international competitive olympiads.
               </p>
               <p>
                 Through specialized mentorship, problem-solving workshops, and interactive reasoning drills, students from Class 1 onwards develop high-order thinking skills (HOTS) that lay a robust foundation for future competitive examinations like IIT-JEE, NEET, NTSE, and KVPY.
@@ -117,7 +117,7 @@ export default function OlympiadSchoolPage({ openAdmissionModal }) {
           {/* CTA Section */}
           <div className="p-8 sm:p-12 rounded-3xl bg-gradient-to-r from-navy-950 via-navy-900 to-navy-800 text-white text-center shadow-xl">
             <h2 className="font-display text-2xl sm:text-4xl font-bold mb-4">
-              Enroll Your Child in Cohen Olympiad School
+              Enroll Your Child in Cohen Olympiad Preparition
             </h2>
             <p className="text-white/70 max-w-2xl mx-auto text-sm sm:text-base mb-8">
               Give your child an early competitive advantage with our expert faculty and specialized Olympiad curriculum.

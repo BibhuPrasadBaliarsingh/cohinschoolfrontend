@@ -239,7 +239,7 @@ export default function MissionPage({ openAdmissionModal }) {
       <section className="py-16 bg-gold-500 text-navy-950 text-center">
         <div className="max-w-4xl mx-auto px-4">
           <h2 className="font-display text-3xl sm:text-4xl font-bold mb-3">
-            Experience Enabling Excellence, Through Harmony
+            Enabling Excellence, Through Harmony
           </h2>
           <p className="text-navy-900/80 mb-6 text-sm sm:text-base max-w-2xl mx-auto font-medium">
             Join the AY 2027-2028 batch at Cohen International School and empower your child's future.

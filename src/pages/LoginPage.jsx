@@ -182,7 +182,7 @@ export default function LoginPage() {
             <div className="grid grid-cols-3 gap-3 w-full max-w-md pt-2">
               <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-center">
                 <Award className="w-5 h-5 text-gold-400 mx-auto mb-1" />
-                <span className="block text-xs font-bold text-white">Top CBSE</span>
+                <span className="block text-xs font-bold text-white">Top CBSE School</span>
                 <span className="text-[10px] text-white/50">Excellence</span>
               </div>
               <div className="p-3 rounded-2xl bg-white/5 border border-white/10 backdrop-blur-md text-center">

@@ -99,12 +99,6 @@ export default function AcademicsPage({ openAdmissionModal }) {
             >
               Apply Online Now
             </button>
-            <Link
-              to="/admissions"
-              className="px-8 py-3.5 bg-gold-500 text-navy-900 font-semibold rounded-full hover:bg-gold-400 transition"
-            >
-              Check Fee Estimator
-            </Link>
           </div>
         </div>
       </section>

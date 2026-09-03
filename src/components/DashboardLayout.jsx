@@ -125,7 +125,7 @@ export default function DashboardLayout({ children }) {
               </div>
               {!sidebarCollapsed && (
                 <div className="truncate">
-                  <h2 className="font-display font-bold text-sm text-white truncate">Cohen International</h2>
+                  <h2 className="font-display font-bold text-sm text-white truncate">Cohen International School</h2>
                   <p className="text-[10px] text-gold-400 uppercase font-semibold tracking-wider">Digital Campus</p>
                 </div>
               )}

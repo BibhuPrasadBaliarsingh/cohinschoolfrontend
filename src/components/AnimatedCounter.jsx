@@ -11,6 +11,7 @@ export default function AnimatedCounter({
   prefix = '',
   suffix = '',
   decimals = 0,
+  useGrouping = true,
   className = ''
 }) {
   const [count, setCount] = useState(start);
@@ -74,10 +75,13 @@ export default function AnimatedCounter({
     };
   }, [hasAnimated, start, end, duration]);
 
+  const rawVal = Math.floor(count);
   const formattedCount =
     decimals > 0
       ? count.toFixed(decimals)
-      : Math.floor(count).toLocaleString();
+      : useGrouping
+      ? rawVal.toLocaleString()
+      : rawVal.toString();
 
   return (
     <span ref={ref} className={className}>

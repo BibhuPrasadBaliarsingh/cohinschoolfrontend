@@ -101,10 +101,18 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
       >
         <div className="w-full px-4 sm:px-6 lg:px-10 xl:px-12 flex items-center justify-between flex-wrap gap-2">
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1 text-gold-400 font-medium">
+             <span className="flex items-center gap-1 text-gold-400 font-medium">
               <Phone className="w-3 h-3 flex-shrink-0" />
               <a href="tel:+917077775310" className="hover:underline hover:text-gold-300 transition">
                 +91 70777 75310
+              </a>
+              <span className="text-white/40">/</span>
+              <a href="tel:+917077775311" className="hover:underline hover:text-gold-300 transition">
+                11
+              </a>
+              <span className="text-white/40">/</span>
+              <a href="tel:+917077775312" className="hover:underline hover:text-gold-300 transition">
+                12
               </a>
             </span>
             <a
@@ -157,12 +165,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
 
                 {/* Dropdown Menu */}
                 <div className="absolute top-full left-0 w-60 py-2.5 px-2 bg-white text-navy-950 rounded-2xl shadow-2xl border border-gray-100 opacity-0 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-200 z-50">
-                  <Link
-                    to="/about"
-                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
-                  >
-                    About Cohen International
-                  </Link>
+                 
                   <Link
                     to="/mission"
                     className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
@@ -179,7 +182,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                     to="/faculty"
                     className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
                   >
-                    Faculty &amp; Mentors
+                    Administrators
                   </Link>
                 </div>
               </div>
@@ -214,7 +217,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                     to="/olympiad-school"
                     className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
                   >
-                    Olympiad &amp; Reasoning School
+                    Olympiad &amp; Reasoning Preparation
                   </Link>
                 </div>
               </div>
@@ -429,7 +432,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                 <div className="px-4 pb-4 pt-1 space-y-1.5 border-t border-white/10 bg-black/20">
                   <Link to="/about" onClick={() => setMegaMenuOpen(false)} className={`flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium transition ${location.pathname === '/about' ? 'bg-gold-500/20 text-gold-400 font-bold border-l-2 border-gold-400' : 'text-white/80 hover:text-gold-400 hover:bg-white/5'}`}>
                     <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
-                    <span className="truncate">About Cohen International</span>
+                    <span className="truncate">About Cohen International School</span>
                   </Link>
                   <button type="button" onClick={() => { setMegaMenuOpen(false); openChairmanModal ? openChairmanModal() : navigate('/about'); }} className="w-full flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium text-white/80 hover:text-gold-400 hover:bg-white/5 transition text-left cursor-pointer">
                     <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
@@ -471,7 +474,7 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                   </Link>
                   <Link to="/olympiad-school" onClick={() => setMegaMenuOpen(false)} className={`flex items-center gap-2.5 py-2.5 px-3 rounded-xl text-sm font-medium transition ${location.pathname === '/olympiad-school' ? 'bg-gold-500/20 text-gold-400 font-bold border-l-2 border-gold-400' : 'text-white/80 hover:text-gold-400 hover:bg-white/5'}`}>
                     <ArrowRight className="w-3.5 h-3.5 text-gold-400 flex-shrink-0" />
-                    <span className="truncate">Olympiad &amp; Reasoning School</span>
+                    <span className="truncate">Olympiad &amp; Reasoning Preparation</span>
                   </Link>
                 </div>
               )}

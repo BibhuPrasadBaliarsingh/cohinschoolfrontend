@@ -50,7 +50,7 @@ const heroSlides = [
     src: img3613,
     mobileSrc: mobCoursol6,
     fit: "fill",
-    accent: "Welcome to Cohen International",
+    accent: "Welcome to Cohen International School",
     headline: ["Excellence", "Without", "Boundaries"],
     sub: "CBSE Affiliated • Nursery to Class XII • Cambridge English Partner",
   },

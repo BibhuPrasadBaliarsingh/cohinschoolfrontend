@@ -275,12 +275,12 @@ export default function About({ openChairmanModal }) {
                     <AnimatedCounter end={1} prefix="#" duration={1500} />
                   </p>
                   <p className="text-navy-950/80 text-sm mt-1">
-                    CBSE in Bhubaneswar
+                    CBSE School in Bhubaneswar
                   </p>
                 </div>
                 <div className="text-center sm:text-left">
                   <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
-                    <AnimatedCounter start={2000} end={2015} duration={2200} />
+                    <AnimatedCounter start={2000} end={2015} duration={2200} useGrouping={false} />
                   </p>
                   <p className="text-navy-950/80 text-sm mt-1">
                     Year of Foundation

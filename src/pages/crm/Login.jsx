@@ -51,7 +51,7 @@ export default function Login() {
         <div className="text-center mb-8">
           <span className="text-5xl inline-block mb-3 drop-shadow-lg">🎓</span>
           <h2 className="text-3xl font-extrabold font-sans bg-gradient-to-r from-white via-slate-200 to-indigo-200 bg-clip-text text-transparent">
-            Cohen International
+            Cohen International School
           </h2>
           <p className="text-sm text-slate-500 mt-2 font-medium">CRM & Lead Conversion Portal</p>
         </div>

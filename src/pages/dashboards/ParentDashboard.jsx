@@ -1273,7 +1273,7 @@ export default function ParentDashboard() {
                 <div className="relative pl-6">
                   <span className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white animate-ping"></span>
                   <span className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-emerald-500 border-2 border-white"></span>
-                  <p className="font-bold text-emerald-700">Stop 4: Cohen International Campus Arrival</p>
+                  <p className="font-bold text-emerald-700">Stop 4: Cohen International School Campus Arrival</p>
                   <p className="text-emerald-600 text-[11px]">07:42 AM • Completed Safe Arrival</p>
                 </div>
               </div>

@@ -250,7 +250,7 @@ export default function ClubPage() {
               <Sparkles className="w-3.5 h-3.5" /> Student Societies
             </span>
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-navy-950">
-              Explore All Clubs at Cohen International
+              Explore All Clubs at Cohen International School
             </h2>
           </div>
 
