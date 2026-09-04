@@ -263,7 +263,7 @@ export default function CohenTalkPage({ openAdmissionModal }) {
 
   return (
     <PageWrapper>
-      <div className="min-h-screen bg-slate-50 text-navy-950 font-sans pb-20">
+      <div className="min-h-screen bg-slate-50 text-navy-950 font-sans">
         {/* Header Banner */}
         <HeaderBanner
           title="Cohen Talks"

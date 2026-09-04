@@ -7,10 +7,55 @@ import { Send, CheckCircle2 } from 'lucide-react';
 export default function ContactPage({ openChatbot }) {
   const [submitted, setSubmitted] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    const formData = new FormData(e.currentTarget);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      // 1. Send email directly via FormSubmit.co AJAX API from frontend
+      await fetch('https://formsubmit.co/ajax/info@coheninternationalschool.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Contact Website Enquiry - ${data.fullName || 'Visitor'}`,
+          _template: 'table',
+          _captcha: 'false',
+          'Form Type': 'Contact Page Direct Message',
+          'Full Name': data.fullName,
+          'Mobile Number': data.phone,
+          'Email Address': data.email,
+          'Query Topic': data.topic,
+          'Message': data.message,
+          'Submitted At': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        })
+      });
+
+      // 2. Forward lead to backend API
+      fetch('/api/webhooks/website', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': 'cohen_website_secret_api_key_2026'
+        },
+        body: JSON.stringify({
+          studentName: data.fullName,
+          parentName: data.fullName,
+          phone: data.phone,
+          email: data.email,
+          classInterested: data.topic || 'General Enquiry',
+          message: data.message
+        })
+      }).catch((err) => console.warn('Backend sync note:', err));
+    } catch (err) {
+      console.warn('FormSubmit AJAX note:', err);
+    } finally {
+      setSubmitted(true);
+      setTimeout(() => setSubmitted(false), 5000);
+    }
   };
 
   return (
@@ -46,6 +91,7 @@ export default function ContactPage({ openChatbot }) {
                     <input
                       required
                       type="text"
+                      name="fullName"
                       className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                       placeholder="Full Name"
                     />
@@ -55,6 +101,7 @@ export default function ContactPage({ openChatbot }) {
                     <input
                       required
                       type="tel"
+                      name="phone"
                       className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                       placeholder="+91 98765 43210"
                     />
@@ -67,20 +114,21 @@ export default function ContactPage({ openChatbot }) {
                     <input
                       required
                       type="email"
+                      name="email"
                       className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                       placeholder="name@domain.com"
                     />
                   </div>
                   <div>
                     <label className="text-xs font-semibold text-navy-800 block mb-1">Subject / Query Topic *</label>
-                    <select required className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50">
+                    <select required name="topic" className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50">
                       <option value="">Select Topic</option>
-                      <option>Admission Enquiry AY 2027-2028</option>
-                      <option>Fee Structure & Scholarships</option>
-                      <option>Hostel & Residential Boarding</option>
-                      <option>Integrated JEE / NEET Coaching</option>
-                      <option>Transport & Route Info</option>
-                      <option>General Enquiry</option>
+                      <option value="Admission Enquiry AY 2027-2028">Admission Enquiry AY 2027-2028</option>
+                      <option value="Fee Structure & Scholarships">Fee Structure &amp; Scholarships</option>
+                      <option value="Hostel & Residential Boarding">Hostel &amp; Residential Boarding</option>
+                      <option value="Integrated JEE / NEET Coaching">Integrated JEE / NEET Coaching</option>
+                      <option value="Transport & Route Info">Transport &amp; Route Info</option>
+                      <option value="General Enquiry">General Enquiry</option>
                     </select>
                   </div>
                 </div>
@@ -89,6 +137,7 @@ export default function ContactPage({ openChatbot }) {
                   <label className="text-xs font-semibold text-navy-800 block mb-1">Your Message / Questions *</label>
                   <textarea
                     required
+                    name="message"
                     rows="4"
                     className="w-full px-4 py-3 rounded-xl border border-cream-300 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500/50"
                     placeholder="Type your questions here..."

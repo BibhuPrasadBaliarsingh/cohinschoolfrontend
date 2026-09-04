@@ -4,7 +4,9 @@ import Hero from "../components/Hero";
 import About from "../components/About";
 import NewsAnnouncements from "../components/NewsAnnouncements";
 import WhyChoose from "../components/WhyChoose";
+import CvapSection from "../components/CvapSection";
 import CohenTalks from "../components/CohenTalks";
+import ClubsShortcut from "../components/ClubsShortcut";
 import StartYourJourney from "../components/StartYourJourney";
 import Admissions from "../components/Admissions";
 import Gallery from "../components/Gallery";
@@ -40,7 +42,13 @@ export default function HomePage({
       {/* 4. What Makes Us Different (Why Choose CIS) */}
       <WhyChoose openDedicatedTopic={openDedicatedTopic} />
 
-      {/* 5. Cohen Talks (Moved from inside About section) */}
+      {/* 4b. CVAP - Cohen Value Addition Programs */}
+      <CvapSection />
+
+      {/* 5. Clubs & Co-Curricular Activities Shortcut */}
+      <ClubsShortcut />
+
+      {/* 6. Cohen Talks */}
       <CohenTalks />
 
       {/* 6. Begin Your Journey */}

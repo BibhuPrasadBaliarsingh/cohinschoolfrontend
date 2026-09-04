@@ -28,6 +28,7 @@ const OlympiadSchoolPage = lazy(() => import('../pages/OlympiadSchoolPage'));
 const AerospaceProgrammePage = lazy(() => import('../pages/AerospaceProgrammePage'));
 const GalleryPage = lazy(() => import('../pages/GalleryPage'));
 const PressCornerPage = lazy(() => import('../pages/PressCornerPage'));
+const CvapPage = lazy(() => import('../pages/CvapPage'));
 
 const LoginPage = lazy(() => import('../pages/LoginPage'));
 const UnauthorizedPage = lazy(() => import('../pages/UnauthorizedPage'));
@@ -112,6 +113,9 @@ export const router = createBrowserRouter([
       { path: 'photo-gallery', element: <RouteAdapter Component={GalleryPage} /> },
       { path: 'press-corner', element: <RouteAdapter Component={PressCornerPage} /> },
       { path: 'press', element: <RouteAdapter Component={PressCornerPage} /> },
+      { path: 'cvap', element: <RouteAdapter Component={CvapPage} /> },
+      { path: 'cvap-program', element: <RouteAdapter Component={CvapPage} /> },
+      { path: 'cohen-value-addition-programs', element: <RouteAdapter Component={CvapPage} /> },
       { path: 'clup', element: <RouteAdapter Component={ClubPage} /> },
 
       { path: 'login', element: <RouteAdapter Component={LoginPage} /> },

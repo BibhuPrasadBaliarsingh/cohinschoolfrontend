@@ -232,6 +232,12 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                   >
                     Olympiad &amp; Reasoning Preparation
                   </Link>
+                  <Link
+                    to="/cvap"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    CVAP Value Addition Programs
+                  </Link>
                 </div>
               </div>
 
@@ -254,6 +260,12 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                     className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
                   >
                     Smart Campus &amp; Tech Labs
+                  </Link>
+                  <Link
+                    to="/cvap"
+                    className="block px-3.5 py-2 rounded-xl text-xs font-bold text-navy-900 hover:bg-gold-500/10 hover:text-gold-600 transition-colors"
+                  >
+                    CVAP Value Addition Ecosystem
                   </Link>
                   <Link
                     to="/club"

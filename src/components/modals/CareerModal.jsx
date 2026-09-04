@@ -28,8 +28,33 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
     setSubmitting(true);
 
     try {
-      // Send job application webhook to backend CRM / email log
-      await fetch('/api/webhooks/website', {
+      // 1. Send email directly via FormSubmit.co AJAX API from frontend
+      await fetch('https://formsubmit.co/ajax/hr@coheninternationalschool.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Job Application: ${role} - ${formData.fullname}`,
+          _template: 'table',
+          _captcha: 'false',
+          'Form Type': 'Faculty & Staff Career Application',
+          'Position Applied For': role,
+          'Applicant Name': formData.fullname,
+          'Mobile / WhatsApp': formData.mobile,
+          'Email ID': formData.email,
+          'Highest Qualification': formData.qualification,
+          'Years of Experience': formData.experience,
+          'City': formData.city,
+          'Resume Link': formData.resumeUrl || 'Not provided',
+          'Cover Note': formData.coverNote || 'None',
+          'Submitted At': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        })
+      });
+
+      // 2. Forward webhook notification
+      fetch('/api/webhooks/website', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,15 +66,16 @@ export default function CareerModal({ closeModal, role = 'General Faculty Applic
           phone: formData.mobile,
           email: formData.email,
           classInterested: `Career: ${role}`,
-          message: `Position: ${role} | Qualification: ${formData.qualification} | Exp: ${formData.experience} | City: ${formData.city} | Resume: ${formData.resumeUrl} | Cover Note: ${formData.coverNote} (Routed to hr@coheninternationalschool.com)`
+          message: `Position: ${role} | Qualification: ${formData.qualification} | Exp: ${formData.experience} | City: ${formData.city} | Resume: ${formData.resumeUrl} | Cover Note: ${formData.coverNote}`
         })
-      });
+      }).catch((err) => console.warn('Webhook notification warning:', err));
+
     } catch (err) {
-      console.warn('Webhook notification warning:', err);
+      console.warn('FormSubmit error:', err);
     }
 
     alert(
-      `Thank you for applying! Your application for '${role}' has been routed directly to hr@coheninternationalschool.com and logged in our HR recruitment system.`
+      `Thank you for applying! Your application for '${role}' has been submitted successfully and routed directly to info@coheninternationalschool.com.`
     );
     setSubmitting(false);
     closeModal();

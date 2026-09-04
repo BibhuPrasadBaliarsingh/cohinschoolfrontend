@@ -13,6 +13,9 @@ import officialBanner2 from "../assets/jeeadvance6.jpeg";
 import officialBanner3 from "../assets/jeeadvance5.jpeg";
 import chessImg from "../assets/chess.png";
 import indepImg from "../assets/galary/image.png";
+import saimunImg from "../assets/galary/image copy 26.png";
+import phonicsImg from "../assets/galary/image copy 28.png";
+import juliusImg from "../assets/galary/image copy 24.png";
 
 import {
   Calendar,
@@ -39,24 +42,23 @@ import { useAuth } from "../context/AuthContext";
 
 const defaultEventsData = [
   {
-    id: "evt-chess-001",
-    day: "28",
+    id: "evt-indep-15aug",
+    day: "15",
     month: "August",
     year: "2026",
-    title: "Introduction of Chess in Curriculum (Grades 1 to 6)",
-    studentName: "CIS & THINK TURF Collaboration",
-    rank: "FREE for First 2 Months",
-    category: "Academic & Sports",
-    image: chessImg,
+    title: "80th Independence Day & Flag Hoisting Ceremony",
+    studentName: "CIS Cultural Committee & Student Council",
+    rank: "Patriotic Parade & Flag Hoisting",
+    category: "Cultural & Events",
+    image: indepImg,
     fallbackUrl: officialLogo,
-    posterBadge: "THINK TURF Chess Program • Grades 1–6",
+    posterBadge: "15th August • Independence Day",
     summary:
-      "Cohen International School in collaboration with THINK TURF introduces Chess into the curriculum for Grades 1 to 6 to boost concentration, logic & cognitive mastery. FREE for 2 months!",
+      "Cohen International School celebrated 80th Independence Day with patriotic fervor, march-past parade, tri-color flag hoisting, and cultural musical tributes.",
     fullNotice:
-      "Dear Parents,\n\nWe are pleased to inform you that Cohen International School, in collaboration with THINK TURF, is introducing Chess as part of the school curriculum for Grades 1 to 6.\n\nChess will help students develop concentration, logical and cognitive thinking, speed, accuracy, problem-solving, and decision-making skills, which can also contribute to improved examination performance.\n\nThe programme will be FREE for the first two months. Thereafter, students may continue the programme by paying a nominal course fee.\n\nWe encourage all students to actively participate.\n\nRegards,\nCohen International School",
+      "Dear Parents and Students,\n\nCohen International School celebrated 80th Independence Day on 15th August with solemn patriotic pride and fervor across campus.\n\nThe tri-color National Flag was unfurled by school dignitaries followed by the National Anthem, march-past parade by student house captain squads, patriotic choir performances, and leadership message.\n\nHappy Independence Day!\n\nRegards,\nCohen International School",
     pdfUrl: "#"
   },
-  
   {
     id: "evt-001",
     day: "26",
@@ -93,7 +95,114 @@ const defaultEventsData = [
       "Cohen International School proudly congratulates Aryasmman Pradhan for achieving AIR 314 and Odisha State Rank 2 in JEE (Advanced) 2026. As a student of the Cohen Vidwan Integrated Batch, Aryasmman attributes his success to regular mock tests, 1-on-1 faculty mentorship, and state-of-the-art campus learning environment.",
     pdfUrl: "https://drive.google.com/file/d/1gQa9u2EHouQNeoMaA7HTFnNi7pBrRwDt/view"
   },
-  
+  {
+    id: "evt-saimun-2026",
+    day: "24",
+    month: "July",
+    year: "2026",
+    title: "Cohenites won accolades at SAIMUN 2026",
+    studentName: "Cohen International School MUN Delegation",
+    rank: "Outstanding Performance & Accolades",
+    category: "MUN & Leadership",
+    image: saimunImg,
+    fallbackUrl: officialLogo,
+    posterBadge: "SAIMUN 2026 • Model UN Accolades",
+    summary:
+      "Proud Moment for Cohen International School! Cohenites won accolades at SAIMUN 2026 (SAI Model United Nations Conference) for their remarkable performance, confidence, and diplomatic leadership.",
+    fullNotice:
+      "Proud Moment for Cohen International School!\n\nHearty Congratulations to our talented students for their remarkable performance at SAIMUN 2026 (SAI Model United Nations Conference) and for making COHEN INTERNATIONAL SCHOOL proud on this prestigious platform!\n\nHonoring Voices. Inspiring Change. Leading Tomorrow.\n\nYour dedication, confidence, and commitment reflect the true spirit of Cohen. Well Done, Champions!\n\nKeep Shining!",
+    pdfUrl: "#"
+  },
+  {
+    id: "evt-phonics-preprimary",
+    day: "18",
+    month: "August",
+    year: "2026",
+    title: "Phonics Show by Cohenites of our Pre-Primary wing",
+    studentName: "Pre-Primary Wing Scholars",
+    rank: "Phonetics & Spoken Fluency Showcase",
+    category: "Pre-Primary & Academics",
+    image: phonicsImg,
+    fallbackUrl: officialLogo,
+    posterBadge: "Pre-Primary Wing • Phonics Show",
+    summary:
+      "Little Cohenites of our Pre-Primary wing delivered an enchanting Phonics Show, demonstrating phonetics, pronunciation, and early literacy skills through interactive rhymes, flashcards, and storytelling.",
+    fullNotice:
+      "Cohen International School celebrated the Phonics Show organized by our Pre-Primary Wing.\n\nOur youngest scholars captivated the audience with confident phonetics pronunciation, sound-spelling mastery, rhythmic rhymes, and interactive vocabulary games.\n\nHearty congratulations to our little learners, pre-primary teachers, and supportive parents!",
+    pdfUrl: "#"
+  },
+  {
+    id: "evt-julius-caesar",
+    day: "12",
+    month: "August",
+    year: "2026",
+    title: "Outstanding performance by Cohenites in English play “Julius Caesar”",
+    studentName: "CIS Dramatic Society & Literary Club",
+    rank: "Theatrical Drama & Public Speaking",
+    category: "Cultural & Drama",
+    image: juliusImg,
+    fallbackUrl: officialLogo,
+    posterBadge: "Literary & Drama • Julius Caesar",
+    summary:
+      "Student actors of Cohen International School delivered a spellbinding theatrical performance of Shakespearean masterpiece 'Julius Caesar', winning high praise for voice modulation, stage presence, and elocution.",
+    fullNotice:
+      "Cohen International School's Literary Club and Drama Troupe presented an outstanding theatrical staging of William Shakespeare's 'Julius Caesar'.\n\nStudents showcased exceptional stage confidence, eloquent dialogue delivery, classical attire, and dramatic expression, captivating an audience of parents, guests, and fellow scholars.\n\nKudos to our talented student actors and drama directors!",
+    pdfUrl: "#"
+  },
+  {
+    id: "evt-rath-yatra-2026",
+    day: "07",
+    month: "July",
+    year: "2026",
+    title: "Rath Yatra 2026 - Celebrations",
+    studentName: "CIS Cultural Association",
+    rank: "Cultural Heritage & Festivities",
+    category: "Cultural & Events",
+    image: officialBanner2,
+    fallbackUrl: officialLogo,
+    posterBadge: "Rath Yatra 2026 • Sacred Celebrations",
+    summary:
+      "Cohen International School celebrated the auspicious Rath Yatra 2026 with traditional devotion, student chariot pulling, devotional songs, and cultural presentations reflecting Odisha's rich heritage.",
+    fullNotice:
+      "Dear Parents and Students,\n\nCohen International School celebrated the holy occasion of Rath Yatra 2026 on campus with spiritual devotion and cultural grandeur.\n\nScholars participated in chariot pulling, traditional Odissi music and dance performances, and art exhibitions depicting Lord Jagannath's divine journey.\n\nJai Jagannath!\n\nRegards,\nCohen International School",
+    pdfUrl: "#"
+  },
+  {
+    id: "evt-yoga-day-2026",
+    day: "21",
+    month: "June",
+    year: "2026",
+    title: "International Yoga Day Celebration",
+    studentName: "CIS Sports & Wellness Department",
+    rank: "Mindfulness & Physical Wellness",
+    category: "Health & Wellness",
+    image: img3625,
+    fallbackUrl: officialLogo,
+    posterBadge: "21st June • International Yoga Day",
+    summary:
+      "Students and faculty of Cohen International School observed International Yoga Day with mass Surya Namaskar, pranayama breathing exercises, and yoga posture demonstrations promoting mental clarity and wellness.",
+    fullNotice:
+      "Cohen International School celebrated International Yoga Day on 21st June across campus.\n\nLed by certified yoga instructors, students from Nursery to Grade XII along with faculty members engaged in morning pranayama, meditation, and posture drills emphasizing physical fitness, mental harmony, and emotional well-being.\n\nYoga for Harmony & Peace!",
+    pdfUrl: "#"
+  },
+  {
+    id: "evt-chess-001",
+    day: "28",
+    month: "August",
+    year: "2026",
+    title: "Introduction of Chess in Curriculum (Grades 1 to 6)",
+    studentName: "CIS & THINK TURF Collaboration",
+    rank: "FREE for First 2 Months",
+    category: "Academic & Sports",
+    image: chessImg,
+    fallbackUrl: officialLogo,
+    posterBadge: "THINK TURF Chess Program • Grades 1–6",
+    summary:
+      "Cohen International School in collaboration with THINK TURF introduces Chess into the curriculum for Grades 1 to 6 to boost concentration, logic & cognitive mastery. FREE for 2 months!",
+    fullNotice:
+      "Dear Parents,\n\nWe are pleased to inform you that Cohen International School, in collaboration with THINK TURF, is introducing Chess as part of the school curriculum for Grades 1 to 6.\n\nChess will help students develop concentration, logical and cognitive thinking, speed, accuracy, problem-solving, and decision-making skills, which can also contribute to improved examination performance.\n\nThe programme will be FREE for the first two months. Thereafter, students may continue the programme by paying a nominal course fee.\n\nWe encourage all students to actively participate.\n\nRegards,\nCohen International School",
+    pdfUrl: "#"
+  },
   {
     id: "evt-003",
     day: "14",
@@ -165,24 +274,6 @@ const defaultEventsData = [
     fullNotice:
       "Admissions for Academic Session AY 2027-2028 are now open. Parents can submit online applications for Nursery to Class XI with integrated IIT-JEE & NEET coaching options.",
     pdfUrl: "https://drive.google.com/file/d/1gQa9u2EHouQNeoMaA7HTFnNi7pBrRwDt/view"
-  },
-  {
-    id: "evt-indep-15aug",
-    day: "15",
-    month: "August",
-    year: "2026",
-    title: "79th Independence Day & Flag Hoisting Ceremony",
-    studentName: "CIS Cultural Committee & Student Council",
-    rank: "Patriotic Parade & Flag Hoisting",
-    category: "Cultural & Events",
-    image: indepImg,
-    fallbackUrl: officialLogo,
-    posterBadge: "15th August • Independence Day",
-    summary:
-      "Cohen International School celebrated 79th Independence Day with patriotic fervor, march-past parade, tri-color flag hoisting, and cultural musical tributes.",
-    fullNotice:
-      "Dear Parents and Students,\n\nCohen International School celebrated 79th Independence Day on 15th August with solemn patriotic pride and fervor across campus.\n\nThe tri-color National Flag was unfurled by school dignitaries followed by the National Anthem, march-past parade by student house captain squads, patriotic choir performances, and leadership message.\n\nHappy Independence Day!\n\nRegards,\nCohen International School",
-    pdfUrl: "#"
   }
 ];
 

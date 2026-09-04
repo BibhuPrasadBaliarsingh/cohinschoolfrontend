@@ -37,6 +37,12 @@ const cvapPrograms = [
     category: "Experiential Learning"
   },
   {
+    icon: BookMarked,
+    title: "Theme Based Learning",
+    desc: "Connecting interdisciplinary concepts for real-world contextual understanding",
+    category: "Thematic Pedagogy"
+  },
+  {
     icon: Cpu,
     title: "Design Thinking & STEAM Learning",
     desc: "Inspiring innovation and shaping leaders: Where design thinking meets STEAM",
@@ -275,56 +281,6 @@ export default function WhyChoose() {
               <span className="flex items-center gap-1">Available for PCM &amp; PCB Streams <ArrowRight className="w-3.5 h-3.5" /></span>
             </div>
           </div>
-        </div>
-
-        {/* ── PILLAR 3: CVAP (COHEN VALUE ADDITION PROGRAMS) ── */}
-        <div className="text-center mb-10 reveal">
-          <h3 className="font-display text-2xl sm:text-3xl text-white font-bold mb-2">
-            CVAP - Cohen Value Addition Programs
-          </h3>
-          <p className="text-white/60 max-w-2xl mx-auto text-xs sm:text-sm">
-            13 signature programs fostering global communication, AI tech, sports, space science, and public speaking.
-          </p>
-        </div>
-
-        {/* 13 CVAP Program Cards Grid (Without Grade Numbers) */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {cvapPrograms.map((item, idx) => {
-            const IconComp = item.icon;
-            return (
-              <div
-                key={idx}
-                onClick={() => navigate('/academics')}
-                className="card-cube cursor-pointer p-6 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_35px_rgba(201,162,39,0.25)] group flex flex-col justify-between"
-              >
-                <div>
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-12 h-12 rounded-2xl bg-gold-500/20 group-hover:bg-gold-500 group-hover:scale-110 transition-all duration-300 flex items-center justify-center overflow-hidden">
-                      {item.image ? (
-                        <img src={item.image} alt={item.title} className="w-full h-full object-cover" />
-                      ) : (
-                        <IconComp className="w-6 h-6 text-gold-400 group-hover:text-navy-900 transition-colors" />
-                      )}
-                    </div>
-                    <span className="text-[10px] font-bold text-gold-400/90 uppercase tracking-wider bg-gold-500/10 px-2.5 py-1 rounded-full border border-gold-500/20">
-                      {item.category}
-                    </span>
-                  </div>
-
-                  <h4 className="font-display text-base sm:text-lg text-white mb-2 group-hover:text-gold-400 transition-colors font-bold leading-snug">
-                    {item.title}
-                  </h4>
-                  <p className="text-white/70 text-xs sm:text-sm leading-relaxed mb-4">
-                    {item.desc}
-                  </p>
-                </div>
-
-                <div className="flex items-center gap-1.5 text-xs font-semibold text-gold-400 group-hover:translate-x-1.5 transition-transform mt-2">
-                  <span>Explore Academics</span> <ArrowRight className="w-3.5 h-3.5" />
-                </div>
-              </div>
-            );
-          })}
         </div>
       </div>
     </section>

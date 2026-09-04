@@ -58,6 +58,15 @@ import gImg20 from '../assets/galary/image copy 19.png';
 import gImg21 from '../assets/galary/image copy 20.png';
 import gImg22 from '../assets/galary/image copy 21.png';
 import gImg23 from '../assets/galary/image copy 22.png';
+import gImg24 from '../assets/galary/image copy 23.png';
+import gImg25 from '../assets/galary/image copy 24.png';
+import gImg26 from '../assets/galary/image copy 25.png';
+import gImg27 from '../assets/galary/image copy 26.png';
+import gImg28 from '../assets/galary/image copy 27.png';
+import gImg29 from '../assets/galary/image copy 28.png';
+import gImg30 from '../assets/galary/image copy 29.png';
+import gImg31 from '../assets/galary/image copy 30.png';
+import gImg32 from '../assets/galary/image copy 31.png';
 
 const galleryItems = [
   {
@@ -477,6 +486,105 @@ const galleryItems = [
     stat: "CIS Mentors",
     resolution: "4K UHD",
     description: "Commemorative group portrait of school management, executive directors, and senior academic faculty."
+  },
+  {
+    id: 39,
+    title: "Campus Cultural Program & Student Celebrations",
+    category: "Events & Celebrations",
+    src: gImg24,
+    location: "Auditorium Main Stage",
+    tag: "CULTURAL CELEBRATIONS",
+    stat: "Student Showcase",
+    resolution: "4K UHD",
+    description: "Vibrant cultural performance and festive celebrations by Cohen International School scholars."
+  },
+  {
+    id: 40,
+    title: "Academic Conclave & Guest Dignitary Felicitation",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg25,
+    location: "Main Stage Arena",
+    tag: "GUEST FELICITATION",
+    stat: "Eminent Guests",
+    resolution: "4K UHD",
+    description: "Felicitation ceremony of distinguished educationists and chief guests at Cohen International School."
+  },
+  {
+    id: 41,
+    title: "Sports Meet & Athletic Championship Showcase",
+    category: "Sports & Athletics",
+    src: gImg26,
+    location: "Central Sports Turf",
+    tag: "ATHLETIC MEET",
+    stat: "Sports Excellence",
+    resolution: "4K UHD",
+    description: "Scholars participating in annual sports meet athletic events and inter-house competitions."
+  },
+  {
+    id: 42,
+    title: "Science & STEAM Innovation Exhibition",
+    category: "Innovation & Tech",
+    src: gImg27,
+    location: "Science Complex",
+    tag: "STEAM EXHIBITION",
+    stat: "Hands-on Science",
+    resolution: "4K UHD",
+    description: "Interactive science conclave and STEAM project demonstrations built by young student innovators."
+  },
+  {
+    id: 43,
+    title: "Campus Infrastructure & Lush Green Lawns",
+    category: "Campus Infrastructure",
+    src: gImg28,
+    location: "Central Quadrangle",
+    tag: "GREEN CAMPUS",
+    stat: "10-Acres Sanctuary",
+    resolution: "4K UHD",
+    description: "Panoramic view of modern academic blocks surrounded by manicured green lawns and botanical gardens."
+  },
+  {
+    id: 44,
+    title: "Student Leadership & Award Ceremony",
+    category: "Events & Celebrations",
+    src: gImg29,
+    location: "Grand Auditorium",
+    tag: "STUDENT LEADERSHIP",
+    stat: "Merit Awards",
+    resolution: "4K UHD",
+    description: "Honoring academic toppers, house captains, and student council members during the annual award ceremony."
+  },
+  {
+    id: 45,
+    title: "Special Celebrations & Interactive Campus Activity",
+    category: "Events & Celebrations",
+    src: gImg30,
+    location: "Auditorium Complex",
+    tag: "CAMPUS LIFE",
+    stat: "Interactive Fun",
+    resolution: "4K UHD",
+    description: "Memorable moments from student activities, club workshops, and co-curricular celebrations."
+  },
+  {
+    id: 46,
+    title: "Chief Guest Keynote & Dignitary Welcome",
+    category: "Inauguration & VIP Dignitaries",
+    src: gImg31,
+    location: "Podium Arena",
+    tag: "VIP WELCOME",
+    stat: "Keynote Address",
+    resolution: "4K UHD",
+    description: "Chief guest delivering an inspiring inaugural speech to parents, faculty, and scholars."
+  },
+  {
+    id: 47,
+    title: "Cohen Campus Life & Academic Quad",
+    category: "Campus Infrastructure",
+    src: gImg32,
+    location: "Academic Block",
+    tag: "SMART CAMPUS",
+    stat: "Modern Facilities",
+    resolution: "4K UHD",
+    description: "High-tech smart campus facilities fostering academic excellence and holistic development."
   }
 ];
 

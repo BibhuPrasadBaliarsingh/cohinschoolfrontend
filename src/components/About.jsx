@@ -197,6 +197,22 @@ export default function About({ openChairmanModal }) {
               >
                 Subhadra Charitable Trust
               </a>
+              <a
+                href="https://sciencemovement.org/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-full bg-emerald-500/15 text-emerald-700 hover:bg-emerald-500/25 hover:text-emerald-800 text-sm font-medium transition cursor-pointer flex items-center gap-1"
+              >
+                Science Movement
+              </a>
+              <a
+                href="http://vidwanclasses.com/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-4 py-2 rounded-full bg-purple-500/15 text-purple-700 hover:bg-purple-500/25 hover:text-purple-800 text-sm font-medium transition cursor-pointer flex items-center gap-1"
+              >
+                Vidwan Classes
+              </a>
               <span className="px-4 py-2 rounded-full bg-gold-500/15 text-gold-700 text-sm font-medium">
                 10 Acres Campus
               </span>

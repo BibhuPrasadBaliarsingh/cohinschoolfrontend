@@ -3,6 +3,30 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Sparkles, Send, CheckCircle2, Phone, User, School, MapPin, Calendar, BookOpen, AlertCircle, Maximize2 } from 'lucide-react';
 import enquiryImg from '../../assets/enquiry.png';
 
+const TEST_CENTRE_CITIES = [
+  'Bhubaneswar',
+  'Jatani',
+  'Cuttack',
+  'Nayagarh',
+  'Jajpur',
+  'Balasore',
+  'Jaleswar',
+  'Bhadrak',
+  'Dhenkanal',
+  'Anugul',
+  'Jharsuguda',
+  'Rourkela',
+  'Sambalpur',
+  'Berhampur',
+  'Keonjhar',
+  'Kendrapara',
+  'Paradeep',
+  'Jeypore(Koraput)',
+  'Rayagada',
+  'Bolangir',
+  'Bhawanipatna'
+];
+
 export default function EnquiryPopupModal({ isOpen, onClose }) {
   const [formData, setFormData] = useState({
     studentName: '',
@@ -11,7 +35,8 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
     phone: '',
     city: '',
     coachingInterest: '',
-    testDate: ''
+    testDate: '',
+    testCentreCity: ''
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -29,8 +54,32 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
     setIsSubmitting(true);
 
     try {
-      // Submit lead directly to backend website webhook (routed to info@coheninternationalschool.com)
-      await fetch('/api/webhooks/website', {
+      // Send email directly via FormSubmit.co AJAX API from frontend
+      await fetch('https://formsubmit.co/ajax/info@coheninternationalschool.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New CSAT 2026 Online Registration - ${formData.studentName}`,
+          _template: 'table',
+          _captcha: 'false',
+          'Form Type': 'CSAT 2026 Online Registration (Grade 10)',
+          'Student Name': formData.studentName,
+          'Current School': formData.currentSchool,
+          'Parent Name': formData.parentName,
+          'Mobile / WhatsApp': formData.phone,
+          'City': formData.city,
+          'Integrated Stream': formData.coachingInterest,
+          'Test Date': formData.testDate,
+          'Test Centre City': formData.testCentreCity,
+          'Submitted At': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        })
+      });
+
+      // Also forward to local backend API for future CRM integration
+      fetch('/api/webhooks/website', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,12 +94,14 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
           city: formData.city,
           coachingInterest: formData.coachingInterest,
           testDate: formData.testDate,
+          testCentreCity: formData.testCentreCity,
           grade: 'Grade 10',
-          message: `CSAT Registration submitted via website auto-popup: Test Date: ${formData.testDate}, Stream: ${formData.coachingInterest}`
+          message: `CSAT Registration submitted: Test Date: ${formData.testDate}, Stream: ${formData.coachingInterest}, Test Centre City: ${formData.testCentreCity}`
         })
-      });
+      }).catch((err) => console.warn('Backend CRM sync note:', err));
+
     } catch (err) {
-      console.warn('Backend webhook warning:', err);
+      console.warn('FormSubmit AJAX note:', err);
     } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
@@ -286,24 +337,49 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
                       </div>
                     </div>
 
-                    {/* 7. Test date for */}
-                    <div>
-                      <label className="block text-[11px] sm:text-xs font-semibold text-white/90 mb-1">
-                        7. Test date for <span className="text-rose-400">*</span>
-                      </label>
-                      <div className="relative">
-                        <Calendar className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2" />
-                        <select
-                          name="testDate"
-                          required
-                          value={formData.testDate}
-                          onChange={handleChange}
-                          className="w-full pl-9 pr-3 py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs focus:outline-none focus:border-gold-400 transition font-medium text-gold-300 font-semibold"
-                        >
-                          <option value="">-- Select Test Date --</option>
-                          <option value="4 Oct’26">4 Oct’26</option>
-                          <option value="1 Nov’26">1 Nov’26</option>
-                        </select>
+                    {/* 7. Test date for & 8. Test Centre City opted */}
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5 sm:gap-3">
+                      <div>
+                        <label className="block text-[11px] sm:text-xs font-semibold text-white/90 mb-1">
+                          7. Test date for <span className="text-rose-400">*</span>
+                        </label>
+                        <div className="relative">
+                          <Calendar className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                          <select
+                            name="testDate"
+                            required
+                            value={formData.testDate}
+                            onChange={handleChange}
+                            className="w-full pl-9 pr-3 py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs focus:outline-none focus:border-gold-400 transition font-medium text-gold-300 font-semibold"
+                          >
+                            <option value="">-- Select Test Date --</option>
+                            <option value="4 Oct’26">4 Oct’26</option>
+                            <option value="1 Nov’26">1 Nov’26</option>
+                          </select>
+                        </div>
+                      </div>
+
+                      <div>
+                        <label className="block text-[11px] sm:text-xs font-semibold text-white/90 mb-1">
+                          8. Test Centre City opted <span className="text-rose-400">*</span>
+                        </label>
+                        <div className="relative">
+                          <MapPin className="w-3.5 h-3.5 text-white/40 absolute left-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                          <select
+                            name="testCentreCity"
+                            required
+                            value={formData.testCentreCity}
+                            onChange={handleChange}
+                            className="w-full pl-9 pr-3 py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs focus:outline-none focus:border-gold-400 transition font-medium text-gold-300 font-semibold"
+                          >
+                            <option value="">-- Select Test Centre City --</option>
+                            {TEST_CENTRE_CITIES.map((c) => (
+                              <option key={c} value={c}>
+                                {c}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
                       </div>
                     </div>
 

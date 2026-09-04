@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { ArrowRight, Sparkles, ChevronLeft, ChevronRight, GraduationCap, Cpu } from "lucide-react";
 import img3620 from "../assets/DSC03620.JPG";
+import cambridgeLogo from "../assets/partener/CAMBRIDGE.png";
+import iitMadrasLogo from "../assets/partener/iitmadras.png";
 
 const partnerSlides = [
   {
@@ -8,7 +10,7 @@ const partnerSlides = [
     type: "cambridge",
     title: "CAMBRIDGE",
     subtitle: "English Educational Partner",
-    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSaEraxQx1v-Lh1VjgS42JWliHK4qq8h7jY0xkfkNS6qFqRkrYDxFimRXk&s=10",
+    logoUrl: cambridgeLogo,
     badgeType: "logo",
     badgeValue: "/logo.png"
   },
@@ -17,9 +19,9 @@ const partnerSlides = [
     type: "iit-madras",
     title: "IIT Madras",
     subtitle: "SchoolConnect program",
-    logoUrl: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRb1FYrHxMuDS9yjiKKMOuYXa-oBc5i8wswHhen_16K9CT85ATq_GgBVnA&s=10",
+    logoUrl: iitMadrasLogo,
     badgeType: "text",
-    badgeValue: "Partner With Cohen International School"
+    badgeValue: "Join the IIT Madras SchoolConnect Program"
   }
 ];
 
@@ -179,11 +181,11 @@ export default function AdmissionBanner({ openAdmissionModal }) {
                 {/* Logo / Icon Header */}
                 <div className="flex items-center justify-center gap-3">
                   {currentPartner.logoUrl ? (
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white border-2 border-[#D4AF37] shadow-md flex items-center justify-center p-1.5 overflow-hidden flex-shrink-0">
+                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-[#D4AF37] shadow-lg flex items-center justify-center p-1 overflow-hidden flex-shrink-0">
                       <img
                         src={currentPartner.logoUrl}
                         alt={currentPartner.title}
-                        className="w-full h-full object-contain"
+                        className="w-full h-full object-contain transform scale-105"
                       />
                     </div>
                   ) : (

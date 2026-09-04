@@ -72,30 +72,60 @@ export default function AdmissionModal({ closeModal, mode = 'apply' }) {
         'Sent automatically from Cohen International School Online Portal'
       ];
 
-      try {
-        await fetch('/api/webhooks/website', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'x-api-key': 'cohen_website_secret_api_key_2026'
-          },
-          body: JSON.stringify({
-            studentName: data.studentName,
-            parentName: data.fatherName || data.motherName || data.guardianName || 'Parent',
-            phone: data.fatherMobile || data.motherMobile || data.guardianMobile || '',
-            email: data.fatherEmail || data.motherEmail || data.guardianEmail || '',
-            classInterested: data.applyingGrade || 'Class 1',
-            academicYear: data.academicYear || '2027-2028'
-          })
-        });
-      } catch (err) {
-        console.warn('Webhook payload omitted:', err);
-      }
+      // 1. Send email automatically via FormSubmit.co AJAX API from frontend
+      await fetch('https://formsubmit.co/ajax/info@coheninternationalschool.com', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          _subject: `New Admission Application: ${data.studentName || 'Student'} (AY ${data.academicYear || '2027-2028'})`,
+          _template: 'table',
+          _captcha: 'false',
+          'Form Type': isRegister ? 'Student Registration Form' : 'Online Admission Application',
+          'Student Name': data.studentName || '',
+          'Date of Birth': data.dob || '',
+          'Gender': data.gender || '',
+          'Nationality': data.nationality || '',
+          'City': data.city || '',
+          'State': data.state || '',
+          'Father Name': data.fatherName || '',
+          'Father Mobile': data.fatherMobile || '',
+          'Father Email': data.fatherEmail || '',
+          'Father Profession': data.fatherProfession || '',
+          'Mother Name': data.motherName || '',
+          'Mother Mobile': data.motherMobile || '',
+          'Mother Email': data.motherEmail || '',
+          'Correspondence Address': data.address || '',
+          'Current School': data.currentSchool || '',
+          'Curriculum': data.curriculum || '',
+          'Current Grade': data.currentGrade || '',
+          'Grade Applying For': data.applyingGrade || '',
+          'Academic Year': data.academicYear || '',
+          'Preferred Visit Date': data.preferredDate || '',
+          'Submitted At': new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })
+        })
+      });
 
-      const mailtoUrl = `mailto:${targetEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(bodyLines.join('\n'))}`;
-      window.location.href = mailtoUrl;
+      // 2. Also forward to local backend API for CRM ingestion
+      fetch('/api/webhooks/website', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': 'cohen_website_secret_api_key_2026'
+        },
+        body: JSON.stringify({
+          studentName: data.studentName,
+          parentName: data.fatherName || data.motherName || data.guardianName || 'Parent',
+          phone: data.fatherMobile || data.motherMobile || data.guardianMobile || '',
+          email: data.fatherEmail || data.motherEmail || data.guardianEmail || '',
+          classInterested: data.applyingGrade || 'Class 1',
+          academicYear: data.academicYear || '2027-2028'
+        })
+      }).catch((err) => console.warn('Webhook payload omitted:', err));
 
-      alert('Thank you for submitting your admission application! Your email client has been opened to complete sending. Our admissions team will reach out to you shortly.');
+      alert('Thank you! Your admission application has been submitted successfully. Our admissions team will reach out to you shortly.');
       closeModal();
     } catch (err) {
       console.error(err);
