@@ -4,6 +4,8 @@ import {
   UserPlus,
   PlayCircle,
   ChevronDown,
+  ChevronLeft,
+  ChevronRight,
   Award,
   Users,
   BookOpen,
@@ -332,6 +334,16 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
           .hero-cta-secondary:hover { background: rgba(255,255,255,0.18) !important; transform: translateY(-2px); }
           .hero-bullet-dot:hover { background: rgba(201,162,39,0.5) !important; }
           .hero-stat-card:hover { border-color: rgba(201,162,39,0.4) !important; background: rgba(201,162,39,0.08) !important; transform: translateY(-2px); }
+          .hero-arrow-btn:hover {
+            background: rgba(201, 162, 39, 0.92) !important;
+            color: #070f1a !important;
+            border-color: #E8C547 !important;
+            transform: translateY(-50%) scale(1.12) !important;
+            box-shadow: 0 12px 32px rgba(201, 162, 39, 0.5) !important;
+          }
+          .hero-arrow-btn:active {
+            transform: translateY(-50%) scale(0.95) !important;
+          }
 
           @media (max-width: 768px) {
             .hero-banner-viewport {
@@ -349,8 +361,77 @@ export default function Hero({ openAdmissionModal, openVirtualTour }) {
               object-position: center center !important;
               animation: none !important;
             }
+            .hero-arrow-btn {
+              width: 40px !important;
+              height: 40px !important;
+            }
+            .hero-arrow-left {
+              left: 10px !important;
+            }
+            .hero-arrow-right {
+              right: 10px !important;
+            }
           }
         `}</style>
+
+        {/* ── Left & Right Carousel Navigation Arrows ────────────────── */}
+        <button
+          type="button"
+          onClick={() => advance((active - 1 + heroSlides.length) % heroSlides.length)}
+          aria-label="Previous Slide"
+          className="hero-arrow-btn hero-arrow-left"
+          style={{
+            position: "absolute",
+            left: "24px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 25,
+            width: "52px",
+            height: "52px",
+            borderRadius: "50%",
+            background: "rgba(7, 15, 26, 0.6)",
+            border: "1.5px solid rgba(201, 162, 39, 0.5)",
+            color: "#C9A227",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            backdropFilter: "blur(12px)",
+            boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+        >
+          <ChevronLeft size={28} />
+        </button>
+
+        <button
+          type="button"
+          onClick={() => advance((active + 1) % heroSlides.length)}
+          aria-label="Next Slide"
+          className="hero-arrow-btn hero-arrow-right"
+          style={{
+            position: "absolute",
+            right: "24px",
+            top: "50%",
+            transform: "translateY(-50%)",
+            zIndex: 25,
+            width: "52px",
+            height: "52px",
+            borderRadius: "50%",
+            background: "rgba(7, 15, 26, 0.6)",
+            border: "1.5px solid rgba(201, 162, 39, 0.5)",
+            color: "#C9A227",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            cursor: "pointer",
+            backdropFilter: "blur(12px)",
+            boxShadow: "0 8px 30px rgba(0,0,0,0.5)",
+            transition: "all 0.3s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+        >
+          <ChevronRight size={28} />
+        </button>
 
         {[...Array(14)].map((_, i) => (
           <div
