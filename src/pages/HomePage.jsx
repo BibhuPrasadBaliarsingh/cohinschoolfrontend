@@ -34,7 +34,7 @@ export default function HomePage({
       />
     <AdmissionBanner openAdmissionModal={openAdmissionModal} />
       {/* 2. About & Chairman Message */}
-      <About openChairmanModal={openChairmanModal} />
+      <About openChairmanModal={openChairmanModal} hideChairmanCard={false} />
 
       {/* 3. Latest News & Events */}
       <NewsAnnouncements openAdmissionModal={openAdmissionModal} />

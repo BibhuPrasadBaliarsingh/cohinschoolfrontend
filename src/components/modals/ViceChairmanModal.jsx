@@ -58,7 +58,7 @@ export default function ViceChairmanModal({ closeModal }) {
                 Vice Chairman, Cohen International School
               </p>
               <p className="text-xs text-navy-700 leading-relaxed font-medium">
-                MBA from Maastricht School of Management, The Netherlands | 25+ Years Corporate &amp; Academic Leadership
+                MBA from Maastricht School of Management, The Netherlands | 25+ Years Corporate &amp; Academic Leadership in Africa, Middle East &amp; Asia
               </p>
               <p className="text-xs text-navy-600 mt-1 font-semibold">vicechairman@coheninternationalschool.com</p>
             </div>

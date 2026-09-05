@@ -232,7 +232,7 @@ export const modulesData = {
 
 export const topicData = {
   academics: {
-    title: 'Academic Programs & Integrated JEE/NEET',
+    title: 'Academic Programs & Integrated JEE/NEET, NISER, IISER, IISc & Olympiads Coaching',
     tag: 'Curriculum & Pedagogy',
     badge: 'CBSE + Vidwan Classes',
     image: img3681,

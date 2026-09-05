@@ -9,7 +9,7 @@ export default function AcademicsPage({ openAdmissionModal }) {
   return (
     <PageWrapper>
       <HeaderBanner
-        title="Academics & Integrated JEE/NEET Coaching"
+        title="Academics & Integrated JEE/NEET, NISER, IISER, IISc & Olympiads Coaching"
         subtitle="CBSE Senior Secondary Curriculum integrated with Vidwan Classes competitive mentorship — with zero hidden coaching fees."
        
         breadcrumb="Academics"

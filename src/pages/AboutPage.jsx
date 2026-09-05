@@ -19,7 +19,7 @@ export default function AboutPage({ openChairmanModal, openViceChairmanModal, op
 
       <StartYourJourney />
 
-      <About openChairmanModal={openChairmanModal} />
+      <About openChairmanModal={openChairmanModal} hideChairmanCard={true} />
 
       {/* Chairman's Desk Section */}
       <section className="py-14 sm:py-16 lg:py-20 bg-[#efefef]">

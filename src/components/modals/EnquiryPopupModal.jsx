@@ -211,7 +211,7 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
                     <div className="mt-2 p-2.5 sm:p-3 rounded-xl bg-amber-500/15 border border-amber-400/40 text-amber-200 text-[11px] sm:text-xs flex items-start gap-2 leading-relaxed">
                       <AlertCircle className="w-4 h-4 text-amber-400 shrink-0 mt-0.5" />
                       <span>
-                        This CSAT online registration form for Test dates 4 Oct &amp; 1 Nov is applicable for <strong>current Grade 10 studying students only</strong>.
+                        This CSAT online registration form for Test dates 4 Oct &amp; 1 Nov is applicable for <strong>students seeking admission from Nursery to Class 11</strong>.
                       </span>
                     </div>
                   </div>
@@ -329,10 +329,23 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
                           onChange={handleChange}
                           className="w-full pl-9 pr-3 py-2 bg-navy-950/80 border border-white/15 rounded-xl text-white text-xs focus:outline-none focus:border-gold-400 transition font-medium"
                         >
-                          <option value="">-- Select Integrated Option --</option>
-                          <option value="IIT JEE">IIT JEE</option>
-                          <option value="NEET/Medical">NEET/Medical</option>
-                          <option value="Pure Sciences (NISER, IISER, IISC, ISI etc)">Pure Sciences (NISER, IISER, IISC, ISI etc)</option>
+                          <option value="">-- Select Option --</option>
+                          <option value="Nursery">Nursery</option>
+                          <option value="LKG">LKG</option>
+                          <option value="UKG">UKG</option>
+                          <option value="Class 1">Class 1</option>
+                          <option value="Class 2">Class 2</option>
+                          <option value="Class 3">Class 3</option>
+                          <option value="Class 4">Class 4</option>
+                          <option value="Class 5">Class 5</option>
+                          <option value="Class 6">Class 6</option>
+                          <option value="Class 7">Class 7</option>
+                          <option value="Class 8">Class 8</option>
+                          <option value="Class 9">Class 9</option>
+                          <option value="Class 10">Class 10</option>
+                          <option value="Class 11 (Integrated IIT-JEE)">Class 11 (Integrated IIT-JEE)</option>
+                          <option value="Class 11 (Integrated NEET)">Class 11 (Integrated NEET)</option>
+                          <option value="Class 11 (Pure Sciences - NISER, IISER, IISc, ISI)">Class 11 (Pure Sciences - NISER, IISER, IISc, ISI)</option>
                         </select>
                       </div>
                     </div>

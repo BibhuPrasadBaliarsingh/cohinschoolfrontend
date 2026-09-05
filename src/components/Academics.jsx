@@ -33,7 +33,7 @@ export default function Academics({ isHomePage = false }) {
                   : 'text-white border-transparent hover:bg-white/10'
                   }`}
               >
-                Grade VI - Grade XI
+                Grade VI - Grade XII
               </button>
             </div>
 
@@ -91,7 +91,7 @@ export default function Academics({ isHomePage = false }) {
               ) : (
                 <div className="animate-fadeIn">
                   <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1b365d] text-center mb-10">
-                    Grade VI - Grade XI
+                    Grade VI - Grade XII
                   </h1>
                   <div className="grid lg:grid-cols-12 gap-8 items-start">
                     <div className="lg:col-span-7 space-y-5 text-gray-700 text-sm sm:text-base leading-relaxed font-sans">

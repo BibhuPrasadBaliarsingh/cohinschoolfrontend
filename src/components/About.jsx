@@ -5,7 +5,7 @@ import AnimatedCounter from "./AnimatedCounter";
 
 
 
-export default function About({ openChairmanModal }) {
+export default function About({ openChairmanModal, hideChairmanCard = false }) {
   const [showFullVision, setShowFullVision] = useState(false);
   const [showFullMission, setShowFullMission] = useState(false);
 
@@ -85,8 +85,8 @@ export default function About({ openChairmanModal }) {
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className="reveal-left">
+        <div className={hideChairmanCard ? "max-w-5xl mx-auto text-left space-y-6" : "grid lg:grid-cols-2 gap-16 items-center"}>
+          <div className={hideChairmanCard ? "w-full" : "reveal-left"}>
             <p className="text-gold-600 font-medium tracking-widest uppercase text-sm mb-3">
               About the School
             </p>
@@ -222,97 +222,100 @@ export default function About({ openChairmanModal }) {
             </div>
           </div>
 
-          <div className="relative reveal-right">
-            <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-cream-200 group">
-              <img
-                src="/chairman.jpg"
-                alt="Founder Chairman Er. Jyoti Ranjan Tripathy"
-                loading="lazy"
-                decoding="async"
-                width="600"
-                height="540"
-                className="w-full h-[540px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-900/60 to-transparent"></div>
-              <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-400 text-xs font-medium mb-3">
-                  <Quote className="w-3.5 h-3.5" /> Founder Chairman's Vision
+          {!hideChairmanCard && (
+            <div className="relative reveal-right">
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-cream-200 group mb-12">
+                <img
+                  src="/chairman.jpg"
+                  alt="Founder Chairman Er. Jyoti Ranjan Tripathy"
+                  loading="lazy"
+                  decoding="async"
+                  width="600"
+                  height="540"
+                  className="w-full h-[540px] object-cover object-center group-hover:scale-105 transition-transform duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-900/60 to-transparent"></div>
+                <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-400 text-xs font-medium mb-3">
+                    <Quote className="w-3.5 h-3.5" /> Founder Chairman's Vision
+                  </div>
+                  <h3 className="font-display text-2xl lg:text-3xl text-white mb-2">
+                    Chairman’s Message
+                  </h3>
+                  <p className="text-white/80 text-sm leading-relaxed mb-4 italic">
+                    “Cohen International School is built as a temple of learning
+                    where curiosity is nurtured, values are instilled, and every
+                    student is empowered to lead.”
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <p className="text-gold-400 text-sm font-semibold">
+                        — Er. Jyoti Ranjan Tripathy
+                      </p>
+                      <p className="text-white/60 text-xs">
+                        Alumnus, IIT Kharagpur | Founder Chairman, CIS
+                      </p>
+                    </div>
+                    <button
+                      onClick={openChairmanModal}
+                      className="px-4 py-2 bg-gold-500 text-navy-900 text-xs font-semibold rounded-full hover:bg-gold-400 transition shadow-lg flex items-center gap-1.5 cursor-pointer"
+                    >
+                      Read Full Message <ArrowRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
                 </div>
-                <h3 className="font-display text-2xl lg:text-3xl text-white mb-2">
-                  Chairman’s Message
-                </h3>
-                <p className="text-white/80 text-sm leading-relaxed mb-4 italic">
-                  “Cohen International School is built as a temple of learning
-                  where curiosity is nurtured, values are instilled, and every
-                  student is empowered to lead.”
-                </p>
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-gold-400 text-sm font-semibold">
-                      — Er. Jyoti Ranjan Tripathy
+              </div>
+
+              {/* Floating Gold Circular Stamp Seal */}
+              <div className="absolute -top-7 -right-7 sm:-top-8 sm:-right-8 w-36 h-36 sm:w-40 sm:h-40 animate-float z-20 select-none group cursor-pointer">
+                <div className="relative w-full h-full -rotate-12 group-hover:rotate-0 group-hover:scale-105 transition-all duration-500">
+                  <img
+                    src="/images/over_2_decades_stamp.png"
+                    alt="Over 2 Decades of Excellence Stamp"
+                    className="w-full h-full object-contain drop-shadow-[0_12px_28px_rgba(0,0,0,0.35)]"
+                  />
+                </div>
+              </div>
+
+              {/* Stats */}
+              <div className="rounded-[2rem] bg-gold-500/10 border border-gold-400/30 p-6 sm:p-8 shadow-2xl backdrop-blur-xl reveal">
+                <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
+                  <div className="text-center sm:text-left">
+                    <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
+                      <AnimatedCounter end={10} suffix="+" duration={2000} />
                     </p>
-                    <p className="text-white/60 text-xs">
-                      Alumnus, IIT Kharagpur | Founder Chairman, CIS
+                    <p className="text-navy-950/80 text-sm mt-1">
+                      Acres Green Campus
                     </p>
                   </div>
-                  <button
-                    onClick={openChairmanModal}
-                    className="px-4 py-2 bg-gold-500 text-navy-900 text-xs font-semibold rounded-full hover:bg-gold-400 transition shadow-lg flex items-center gap-1.5"
-                  >
-                    Read Full Message <ArrowRight className="w-3.5 h-3.5" />
-                  </button>
+                  <div className="text-center sm:text-left">
+                    <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
+                      <AnimatedCounter end={1} prefix="#" duration={1500} />
+                    </p>
+                    <p className="text-navy-950/80 text-sm mt-1">
+                      CBSE School in Bhubaneswar
+                    </p>
+                  </div>
+                  <div className="text-center sm:text-left">
+                    <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
+                      <AnimatedCounter start={2000} end={2015} duration={2200} useGrouping={false} />
+                    </p>
+                    <p className="text-navy-950/80 text-sm mt-1">
+                      Year of Foundation
+                    </p>
+                  </div>
+                  <div className="text-center sm:text-left">
+                    <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
+                      <AnimatedCounter end={100} suffix="%" duration={2000} />
+                    </p>
+                    <p className="text-navy-950/80 text-sm mt-1">
+                      Smart Digital Ecosystem
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Floating Gold Circular Stamp Seal (Direct Image Reference) */}
-            <div className="absolute -top-7 -right-7 sm:-top-8 sm:-right-8 w-36 h-36 sm:w-40 sm:h-40 animate-float z-20 select-none group cursor-pointer">
-              <div className="relative w-full h-full -rotate-12 group-hover:rotate-0 group-hover:scale-105 transition-all duration-500">
-                <img
-                  src="/images/over_2_decades_stamp.png"
-                  alt="Over 2 Decades of Excellence Stamp"
-                  className="w-full h-full object-contain drop-shadow-[0_12px_28px_rgba(0,0,0,0.35)]"
-                />
-              </div>
-            </div>
-            {/* Stats */}
-            <div className="mt-16 rounded-[2rem] bg-gold-500/10 border border-gold-400/30 p-6 shadow-2xl backdrop-blur-xl reveal">
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6">
-                <div className="text-center sm:text-left">
-                  <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
-                    <AnimatedCounter end={10} suffix="+" duration={2000} />
-                  </p>
-                  <p className="text-navy-950/80 text-sm mt-1">
-                    Acres Green Campus
-                  </p>
-                </div>
-                <div className="text-center sm:text-left">
-                  <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
-                    <AnimatedCounter end={1} prefix="#" duration={1500} />
-                  </p>
-                  <p className="text-navy-950/80 text-sm mt-1">
-                    CBSE School in Bhubaneswar
-                  </p>
-                </div>
-                <div className="text-center sm:text-left">
-                  <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
-                    <AnimatedCounter start={2000} end={2015} duration={2200} useGrouping={false} />
-                  </p>
-                  <p className="text-navy-950/80 text-sm mt-1">
-                    Year of Foundation
-                  </p>
-                </div>
-                <div className="text-center sm:text-left">
-                  <p className="font-display text-3xl sm:text-4xl text-gold-500 font-semibold">
-                    <AnimatedCounter end={100} suffix="%" duration={2000} />
-                  </p>
-                  <p className="text-navy-950/80 text-sm mt-1">
-                    Smart Digital Ecosystem
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

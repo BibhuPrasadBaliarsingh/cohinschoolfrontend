@@ -11,10 +11,7 @@ import {
   Activity,
   Trophy,
   CheckCircle2,
-  Sparkles,
-  Users,
-  Calendar,
-  Award
+  Sparkles
 } from 'lucide-react';
 
 
@@ -223,21 +220,7 @@ export default function ClubPage() {
             ))}
           </div>
 
-          {/* Club Info Footer Meta */}
-          <div className="mt-12 pt-8 border-t border-gray-100 flex flex-wrap items-center justify-between gap-4 max-w-3xl mx-auto text-left text-xs sm:text-sm text-gray-600">
-            <div className="flex items-center gap-2">
-              <Calendar className="w-4 h-4 text-emerald-600" />
-              <span>
-                <strong>Session Timing:</strong> {currentClub.schedule}
-              </span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Users className="w-4 h-4 text-gold-600" />
-              <span>
-                <strong>Eligibility:</strong> Classes I to XII
-              </span>
-            </div>
-          </div>
+
         </div>
 
         {/* All Clubs Grid Overview */}
