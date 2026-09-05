@@ -153,14 +153,14 @@ export default function MainLayout() {
             type="button"
             onClick={openCsatModal}
             className="group flex items-center gap-2.5 p-2.5 sm:p-3 pr-3.5 sm:pr-4 rounded-2xl bg-gradient-to-r from-[#06121E] via-[#0B1C2C] to-[#06121E] text-white border border-gold-500/50 shadow-2xl hover:border-gold-400 hover:scale-105 transition-all duration-300 cursor-pointer text-left backdrop-blur-md max-w-[calc(100vw-5rem)] sm:max-w-none"
-            title="Register for CSAT 2026 (Cohen Scholarship Admission Test)"
+            title="Register for CSAT 2027-28 (Cohen Scholarship Admission Test)"
           >
             <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-gold-400 to-amber-500 text-navy-950 flex items-center justify-center flex-shrink-0 font-extrabold shadow-md animate-pulse">
               <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-navy-950" />
             </div>
             <div>
               <div className="flex items-center gap-1.5 sm:gap-2">
-                <span className="text-gold-400 font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">CSAT 2026</span>
+                <span className="text-gold-400 font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">CSAT 2027-28</span>
                 <span className="bg-emerald-500/20 text-emerald-300 text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full font-bold border border-emerald-500/30 whitespace-nowrap">Open</span>
               </div>
               <p className="text-white font-bold text-[11px] sm:text-xs leading-tight sm:leading-snug mt-0.5 flex items-center gap-1 group-hover:text-gold-300 transition-colors">

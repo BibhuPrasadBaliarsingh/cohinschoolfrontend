@@ -62,10 +62,10 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          _subject: `New CSAT 2026 Online Registration - ${formData.studentName}`,
+          _subject: `New CSAT 2027-28 Online Registration - ${formData.studentName}`,
           _template: 'table',
           _captcha: 'false',
-          'Form Type': 'CSAT 2026 Online Registration (Grade 10)',
+          'Form Type': 'CSAT 2027-28 Online Registration (Grade 10)',
           'Student Name': formData.studentName,
           'Current School': formData.currentSchool,
           'Parent Name': formData.parentName,
@@ -140,7 +140,7 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
             <div className="md:col-span-5 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-950 p-4 sm:p-6 flex flex-col justify-between relative border-b md:border-b-0 md:border-r border-white/10">
               <div>
                 <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-400 text-[10px] sm:text-xs font-bold uppercase tracking-wider mb-2 sm:mb-3">
-                  <Sparkles className="w-3.5 h-3.5" /> CSAT 2026 Registration Open
+                  <Sparkles className="w-3.5 h-3.5" /> CSAT 2027-28 Registration Open
                 </div>
                 <h3 className="font-display text-lg sm:text-2xl font-extrabold text-white leading-tight mb-1">
                   Cohen International <span className="text-gold-400">School</span>
