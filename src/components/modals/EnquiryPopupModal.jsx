@@ -146,7 +146,7 @@ export default function EnquiryPopupModal({ isOpen, onClose }) {
                   Cohen International <span className="text-gold-400">School</span>
                 </h3>
                 <p className="text-white/70 text-[11px] sm:text-xs leading-relaxed mb-2 hidden xs:block font-medium">
-                  Cohen Scholastic Aptitude Test (CSAT) — Integrated Schooling &amp; Entrance Coaching Program.
+                  Cohen Scholarship Admission Test (CSAT) — Integrated Schooling &amp; Entrance Coaching Program.
                 </p>
               </div>
 

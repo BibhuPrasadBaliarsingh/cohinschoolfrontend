@@ -8,6 +8,7 @@ import Modals from '../components/Modals';
 import ScrollToTop from '../components/ScrollToTop';
 import { TopRouteLoader } from '../components/PageLoadingSpinner';
 import EnquiryPopupModal from '../components/modals/EnquiryPopupModal';
+import { Sparkles, ArrowRight } from 'lucide-react';
 
 export default function MainLayout() {
   const location = useLocation();
@@ -145,6 +146,32 @@ export default function MainLayout() {
         openPortalFrame={openPortalFrame}
         openAdmissionModal={openAdmissionModal}
       />
+
+      {!isDashboardOrAuthPage && new Date() < new Date('2026-11-02T00:00:00') && (
+        <div className="fixed bottom-20 left-3 sm:bottom-6 sm:left-6 z-40 block">
+          <button
+            type="button"
+            onClick={openCsatModal}
+            className="group flex items-center gap-2.5 p-2.5 sm:p-3 pr-3.5 sm:pr-4 rounded-2xl bg-gradient-to-r from-[#06121E] via-[#0B1C2C] to-[#06121E] text-white border border-gold-500/50 shadow-2xl hover:border-gold-400 hover:scale-105 transition-all duration-300 cursor-pointer text-left backdrop-blur-md max-w-[calc(100vw-5rem)] sm:max-w-none"
+            title="Register for CSAT 2026 (Cohen Scholarship Admission Test)"
+          >
+            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-gold-400 to-amber-500 text-navy-950 flex items-center justify-center flex-shrink-0 font-extrabold shadow-md animate-pulse">
+              <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-navy-950" />
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5 sm:gap-2">
+                <span className="text-gold-400 font-extrabold text-[11px] sm:text-xs uppercase tracking-wider">CSAT 2026</span>
+                <span className="bg-emerald-500/20 text-emerald-300 text-[9px] sm:text-[10px] px-1.5 sm:px-2 py-0.5 rounded-full font-bold border border-emerald-500/30 whitespace-nowrap">Open</span>
+              </div>
+              <p className="text-white font-bold text-[11px] sm:text-xs leading-tight sm:leading-snug mt-0.5 flex items-center gap-1 group-hover:text-gold-300 transition-colors">
+                <span className="hidden sm:inline">Cohen Scholarship Admission Test</span>
+                <span className="sm:hidden">Scholarship Test</span>
+                <ArrowRight className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-gold-400 group-hover:translate-x-1 transition-transform flex-shrink-0" />
+              </p>
+            </div>
+          </button>
+        </div>
+      )}
 
       <EnquiryPopupModal
         isOpen={showAutoEnquiry}

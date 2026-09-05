@@ -26,7 +26,6 @@ import {
   Users,
   Calendar,
   Award,
-  Camera,
   Maximize2,
   Trophy as ChessIcon
 } from 'lucide-react';
@@ -35,15 +34,8 @@ import chessImg from '../assets/chess.png';
 
 import ns2022_1 from '../assets/pdf_images/nightsky2022_img_1.jpg';
 import ns2022_3 from '../assets/pdf_images/nightsky2022_img_3.jpg';
-import ns2022_6 from '../assets/pdf_images/nightsky2022_img_6.jpg';
-import ns2022_10 from '../assets/pdf_images/nightsky2022_img_10.jpg';
-import ns2022_11 from '../assets/pdf_images/nightsky2022_img_11.jpg';
 import ns2023_1 from '../assets/pdf_images/nightsky2023_img_1.jpg';
-import ns2023_3 from '../assets/pdf_images/nightsky2023_img_3.jpg';
-import ns2023_4 from '../assets/pdf_images/nightsky2023_img_4.jpg';
-import ns2023_6 from '../assets/pdf_images/nightsky2023_img_6.jpg';
-import ns2023_10 from '../assets/pdf_images/nightsky2023_img_10.jpg';
-import ns2023_13 from '../assets/pdf_images/nightsky2023_img_13.jpg';
+import ns2023_3 from '../assets/pdf_images/nightsky2022_img_10.jpg';
 
 const cvapProgramsData = [
   {
@@ -169,11 +161,11 @@ const cvapProgramsData = [
     title: "Astronomy & Astrophysics",
     desc: "Journey through the cosmos: Telescope stargazing, night sky observation camps, rocket physics, and space exploration.",
     category: "Space Science",
-    highlights: [
-      "Night Sky Telescope Stargazing Camps",
-      "Celestial mapping, constellations & astrophysics basics",
-      "Annual Night Sky Observation PDF research reports",
-      "Visits to planetariums and ISRO space centers"
+    images: [
+      { img: ns2023_1, title: "Night Sky Camp 2023" },
+      { img: ns2022_1, title: "Celestial Mapping" },
+      { img: ns2023_3, title: "Astrophysics Lab" },
+      { img: ns2022_3, title: "Telescope Tracking" }
     ]
   },
   {
@@ -389,84 +381,53 @@ export default function CvapPage({ openAdmissionModal }) {
                         {prog.desc}
                       </p>
 
-                      {/* Key Program Highlights */}
-                      <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
-                        <p className="text-xs font-bold uppercase tracking-wider text-navy-950 flex items-center gap-1.5">
-                          <Sparkles className="w-3.5 h-3.5 text-gold-600" /> Program Highlights:
-                        </p>
-                        {prog.highlights.map((h, i) => (
-                          <div key={i} className="flex items-start gap-2 text-xs text-slate-700 font-medium">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
-                            <span>{h}</span>
+                      {/* Key Program Highlights or Images */}
+                      {prog.images && prog.images.length > 0 ? (
+                        <div className="pt-3 border-t border-slate-100 mb-5">
+                          <p className="text-[11px] font-bold uppercase tracking-wider text-navy-950 flex items-center gap-1.5 mb-2.5">
+                            <Sparkles className="w-3.5 h-3.5 text-gold-600" /> Space Observation Photos:
+                          </p>
+                          <div className="grid grid-cols-2 gap-2">
+                            {prog.images.map((pic, idx) => (
+                              <div
+                                key={idx}
+                                onClick={() => setActiveLightBoxImg(pic)}
+                                className="group/img relative rounded-lg overflow-hidden h-20 sm:h-22 border border-slate-200 shadow-xs bg-navy-950 cursor-pointer hover:border-gold-500 hover:scale-[1.03] transition-all duration-300"
+                              >
+                                <img
+                                  src={pic.img}
+                                  alt={pic.title}
+                                  className="w-full h-full object-cover group-hover/img:scale-110 transition-transform duration-500"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/85 via-navy-950/20 to-transparent opacity-75 group-hover/img:opacity-90 transition-opacity p-1.5 flex flex-col justify-end">
+                                  <span className="text-[9px] font-bold text-gold-400 leading-tight">{pic.title}</span>
+                                </div>
+                                <div className="absolute top-1.5 right-1.5 p-1 rounded-full bg-navy-950/80 text-gold-400 opacity-0 group-hover/img:opacity-100 transition-opacity">
+                                  <Maximize2 className="w-3 h-3" />
+                                </div>
+                              </div>
+                            ))}
                           </div>
-                        ))}
-                      </div>
+                        </div>
+                      ) : prog.highlights ? (
+                        <div className="space-y-2.5 pt-4 border-t border-slate-100 mb-6">
+                          <p className="text-xs font-bold uppercase tracking-wider text-navy-950 flex items-center gap-1.5">
+                            <Sparkles className="w-3.5 h-3.5 text-gold-600" /> Program Highlights:
+                          </p>
+                          {prog.highlights.map((h, i) => (
+                            <div key={i} className="flex items-start gap-2 text-xs text-slate-700 font-medium">
+                              <CheckCircle2 className="w-4 h-4 text-emerald-600 flex-shrink-0 mt-0.5" />
+                              <span>{h}</span>
+                            </div>
+                          ))}
+                        </div>
+                      ) : null}
                     </div>
-
-                    {/* Footer Action Button */}
-                    <button
-                      onClick={() => openAdmissionModal && openAdmissionModal("apply")}
-                      className="w-full py-3 bg-slate-900 text-white hover:bg-gold-500 hover:text-navy-950 text-xs font-bold rounded-2xl transition-colors duration-300 flex items-center justify-center gap-2 group/btn cursor-pointer shadow-md"
-                    >
-                      <span>Inquire for Admission</span>
-                      <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
-                    </button>
                   </div>
                 );
               })}
             </div>
           )}
-
-          {/* Special Astronomy & Space Science PDF Photos Gallery */}
-          <section className="mt-20 p-8 sm:p-12 rounded-3xl bg-navy-950 text-white shadow-2xl border border-gold-500/30 text-center relative overflow-hidden">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-gold-500/10 rounded-full blur-3xl pointer-events-none" />
-
-            <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/20 border border-gold-400/40 text-gold-400 text-xs font-bold uppercase tracking-wider mb-3">
-              <Camera className="w-3.5 h-3.5" /> Space Science Photo Archive
-            </span>
-            <h2 className="font-display text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3">
-              Night Sky Observation &amp; Astrophysics Gallery
-            </h2>
-            <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto mb-10">
-              Photographs captured during Cohen International School Night Sky Observation stargazing camps, telescope celestial tracking sessions, and astrophysics workshops.
-            </p>
-
-            {/* Photo Gallery Grid */}
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6 mb-10">
-              {[
-                { img: ns2023_1, title: "Night Sky Camp 2023", sub: "Telescope Stargazing" },
-                { img: ns2022_1, title: "Night Sky Camp 2022", sub: "Celestial Mapping" },
-                { img: ns2023_3, title: "Astrophysics Workshop", sub: "Space Science Lab" },
-                { img: ns2022_3, title: "Lunar Tracking Session", sub: "Telescope Observation" },
-                { img: ns2023_4, title: "Stargazing Expedition", sub: "Night Sky Camp" },
-                { img: ns2022_6, title: "Student Astrophotography", sub: "Space Science" },
-                { img: ns2023_6, title: "Celestial Tracking", sub: "Astronomy Camp" },
-                { img: ns2022_10, title: "Observation Camp 2022", sub: "Stargazing Session" },
-                { img: ns2023_10, title: "Astrophysics Conclave", sub: "Space Research" },
-                { img: ns2022_11, title: "Night Sky Workshop 2022", sub: "Constellation Mapping" },
-                { img: ns2023_13, title: "Telescope Lab 2023", sub: "Astronomy Conclave" }
-              ].map((pic, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => setActiveLightBoxImg(pic)}
-                  className="group relative rounded-2xl overflow-hidden border border-white/15 bg-navy-900 aspect-[4/3] cursor-pointer shadow-xl hover:border-gold-400 transition-all duration-300 hover:scale-[1.03]"
-                >
-                  <img
-                    src={pic.img}
-                    alt={pic.title}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/20 to-transparent opacity-75 group-hover:opacity-95 transition-opacity p-3 flex flex-col justify-end text-left">
-                    <span className="text-[10px] font-bold uppercase tracking-wider text-gold-400">{pic.sub}</span>
-                    <p className="text-xs font-bold text-white leading-tight mt-0.5">{pic.title}</p>
-                  </div>
-                  <div className="absolute top-2.5 right-2.5 p-1.5 rounded-full bg-navy-950/80 text-gold-400 opacity-0 group-hover:opacity-100 transition-opacity">
-                    <Maximize2 className="w-3.5 h-3.5" />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
         </main>
 
         {/* Admission Banner */}
@@ -495,8 +456,7 @@ export default function CvapPage({ openAdmissionModal }) {
                 className="w-full h-full max-h-[85vh] object-contain rounded-2xl border border-gold-500/40 shadow-2xl bg-navy-950"
               />
               <div className="mt-3 text-center">
-                <span className="text-xs font-bold text-gold-400 uppercase tracking-widest">{activeLightBoxImg.sub}</span>
-                <h4 className="text-lg font-bold text-white mt-0.5">{activeLightBoxImg.title}</h4>
+                <h4 className="text-base sm:text-lg font-bold text-white mt-0.5">{activeLightBoxImg.title}</h4>
               </div>
             </div>
           </div>

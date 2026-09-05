@@ -11,7 +11,8 @@ import {
   Bus,
   Phone,
   Mail,
-  MapPin
+  MapPin,
+  MessageCircle
 } from 'lucide-react';
 
 export default function Footer({ openLoginModal, openPortalFrame }) {

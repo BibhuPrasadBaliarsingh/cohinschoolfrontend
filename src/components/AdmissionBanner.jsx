@@ -8,8 +8,8 @@ const partnerSlides = [
   {
     id: 1,
     type: "cambridge",
-    title: "CAMBRIDGE",
-    subtitle: "English Educational Partner",
+    title: "University of Cambridge",
+    subtitle: "Proud to be a Cambridge English Educational Partner",
     logoUrl: cambridgeLogo,
     badgeType: "logo",
     badgeValue: "/logo.png"
@@ -18,10 +18,10 @@ const partnerSlides = [
     id: 2,
     type: "iit-madras",
     title: "IIT Madras",
-    subtitle: "SchoolConnect program",
+    subtitle: "Proud to be Associated with Indian Institute of Technology Madras",
     logoUrl: iitMadrasLogo,
-    badgeType: "text",
-    badgeValue: "Join the IIT Madras SchoolConnect Program"
+    badgeType: "logo",
+    badgeValue: "/logo.png"
   }
 ];
 

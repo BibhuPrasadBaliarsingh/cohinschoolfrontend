@@ -68,7 +68,7 @@ export default function Contact({ openChatbot }) {
 
             <div className="mt-10 flex flex-wrap gap-3">
               <a
-                href="https://wa.me/919438673777"
+                href="https://wa.me/917077775310"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-3 bg-emerald-600 text-white rounded-full text-sm font-medium hover:bg-emerald-500 transition"

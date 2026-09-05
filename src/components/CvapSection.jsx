@@ -17,22 +17,9 @@ import {
   ArrowRight,
   Sparkles,
   BookMarked,
-  ChevronDown,
-  ChevronUp,
-  Camera,
-  Maximize2,
   Trophy as ChessIcon
 } from 'lucide-react';
 import chessImg from '../assets/chess.png';
-
-import ns2022_1 from '../assets/pdf_images/nightsky2022_img_1.jpg';
-import ns2022_3 from '../assets/pdf_images/nightsky2022_img_3.jpg';
-import ns2022_6 from '../assets/pdf_images/nightsky2022_img_6.jpg';
-import ns2023_1 from '../assets/pdf_images/nightsky2023_img_1.jpg';
-import ns2023_3 from '../assets/pdf_images/nightsky2023_img_3.jpg';
-import ns2023_4 from '../assets/pdf_images/nightsky2023_img_4.jpg';
-import ns2023_6 from '../assets/pdf_images/nightsky2023_img_6.jpg';
-import ns2023_10 from '../assets/pdf_images/nightsky2023_img_10.jpg';
 
 const cvapPrograms = [
   {
@@ -46,6 +33,12 @@ const cvapPrograms = [
     title: "Project Based Learning (PBL)",
     desc: "Empowering young minds through hands-on experiential learning with PBL.",
     category: "Experiential Learning"
+  },
+  {
+    icon: Compass,
+    title: "Astronomy & Astrophysics",
+    desc: "Journey through the cosmos: Telescope stargazing, night sky observation camps, rocket physics, and space exploration.",
+    category: "Space Science"
   },
   {
     icon: BookMarked,
@@ -70,30 +63,6 @@ const cvapPrograms = [
     title: "Cohen Model United Nations (CMUN)",
     desc: "Shaping future diplomats through critical thinking, debate, and collaboration.",
     category: "Diplomacy & Leadership"
-  },
-  {
-    icon: Volume2,
-    title: "Phonics & Communications",
-    desc: "Empowering language mastery and phonetics for effective expression.",
-    category: "Language Mastery"
-  },
-  {
-    icon: Microscope,
-    title: "Scientific Inquiry",
-    desc: "Nurturing critical thinkers through the art of scientific inquiry.",
-    category: "Research & Logic"
-  },
-  {
-    icon: MessageSquare,
-    title: "Cohen Talks",
-    desc: "Where ideas ignite and inspire change through keynotes from leaders.",
-    category: "Thought Leadership"
-  },
-  {
-    icon: Compass,
-    title: "Astronomy & Astrophysics",
-    desc: "Journey through the stars: Explore space at our science camps and observatories.",
-    category: "Space Science"
   },
   {
     icon: BookOpen,
@@ -193,83 +162,16 @@ export default function CvapSection() {
           })}
         </div>
 
-        {/* View More / Show Less Toggle Button & Link to Dedicated Page */}
-        <div className="mt-10 flex flex-wrap items-center justify-center gap-4 text-center">
-          <button
-            type="button"
-            onClick={() => {
-              setIsExpanded(!isExpanded);
-              if (isExpanded) {
-                const el = document.getElementById('cvap-section');
-                if (el) el.scrollIntoView({ behavior: 'smooth' });
-              }
-            }}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-gold-500 via-amber-500 to-gold-600 text-navy-950 font-extrabold text-sm hover:brightness-110 transition shadow-xl cursor-pointer hover:scale-105"
-          >
-            {isExpanded ? (
-              <>
-                <span>Show Less Programs</span>
-                <ChevronUp className="w-4 h-4" />
-              </>
-            ) : (
-              <>
-                <span>View All {cvapPrograms.length} CVAP Programs &amp; Astronomy Reports</span>
-                <ChevronDown className="w-4 h-4" />
-              </>
-            )}
-          </button>
-
+        {/* View More Button (Navigates to dedicated CVAP page) */}
+        <div className="mt-10 flex items-center justify-center text-center">
           <button
             type="button"
             onClick={() => navigate('/cvap')}
-            className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white/10 border border-white/20 text-white font-bold text-sm hover:bg-white/20 transition cursor-pointer hover:scale-105"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gradient-to-r from-gold-500 via-amber-500 to-gold-600 text-navy-950 font-extrabold text-sm hover:brightness-110 transition shadow-xl cursor-pointer hover:scale-105"
           >
-            <span>Open Dedicated CVAP Page</span>
-            <ArrowRight className="w-4 h-4 text-gold-400" />
+            <span>View More</span>
+            <ArrowRight className="w-4 h-4 text-navy-950" />
           </button>
-        </div>
-
-        {/* CVAP Astronomy & Night Sky Observation Photo Gallery (From PDF Publications) */}
-        <div className="mt-14 pt-10 border-t border-white/15 text-center">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold-500/10 border border-gold-400/30 text-gold-400 text-xs font-bold uppercase tracking-wider mb-3">
-            <Camera className="w-3.5 h-3.5 text-gold-400" /> Astronomy &amp; Night Sky Observation Photos
-          </div>
-          <h3 className="font-display text-xl sm:text-2xl lg:text-3xl text-white font-bold mb-3">
-            Night Sky Observation &amp; Space Science Camps
-          </h3>
-          <p className="text-white/70 text-xs sm:text-sm max-w-2xl mx-auto mb-8">
-            Glimpses of Cohen International School students participating in Night Sky Observation stargazing camps, telescope celestial tracking, and astrophysics workshops.
-          </p>
-
-          {/* Photo Gallery Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { img: ns2023_1, title: "Night Sky Camp 2023", sub: "Telescope Stargazing" },
-              { img: ns2022_1, title: "Night Sky Camp 2022", sub: "Celestial Mapping" },
-              { img: ns2023_3, title: "Astrophysics Workshop", sub: "Space Science" },
-              { img: ns2022_3, title: "Observation Session", sub: "Lunar & Planetary Tracking" },
-              { img: ns2023_4, title: "Stargazing Expedition", sub: "Night Sky Camp" },
-              { img: ns2022_6, title: "Student Astrophotography", sub: "Telescope Lab" },
-              { img: ns2023_6, title: "Celestial Observation", sub: "Space Science Camp" },
-              { img: ns2023_10, title: "Night Sky Report 2023", sub: "Astrophysics Conclave" }
-            ].map((pic, i) => (
-              <div
-                key={i}
-                onClick={() => navigate('/cvap')}
-                className="relative group rounded-2xl overflow-hidden border border-white/15 bg-navy-900 aspect-[4/3] cursor-pointer shadow-lg hover:border-gold-400 transition-all duration-300 hover:scale-[1.03]"
-              >
-                <img
-                  src={pic.img}
-                  alt={pic.title}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy-950/90 via-navy-950/30 to-transparent opacity-80 group-hover:opacity-90 transition-opacity p-3 flex flex-col justify-end text-left">
-                  <span className="text-[9px] font-bold uppercase tracking-wider text-gold-400">{pic.sub}</span>
-                  <p className="text-xs font-bold text-white leading-tight">{pic.title}</p>
-                </div>
-              </div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

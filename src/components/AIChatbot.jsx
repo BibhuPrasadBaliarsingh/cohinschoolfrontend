@@ -13,7 +13,7 @@ const botReplies = {
   facilities:
     'Our campus features smart classrooms, modern science labs, a over 2.5-acres sports complex, AC auditorium, digital library, robotics lab, health centre with in-house doctor, and high-security CCTV coverage.',
   default:
-    'Thank you for your question. For detailed information, I recommend speaking with our admission counsellor or booking a campus visit. You can also call us at +91 70777 75311 or WhatsApp +91 94386 73777.'
+    'Thank you for your question. For detailed information, I recommend speaking with our admission counsellor or booking a campus visit. You can also call us at +91 70777 75311 or WhatsApp +91 70777 75310.'
 };
 
 export default function AIChatbot({ isOpen, setIsOpen }) {
@@ -69,14 +69,16 @@ export default function AIChatbot({ isOpen, setIsOpen }) {
 
   return (
     <>
-      {/* Floating trigger button */}
-      <div id="chatbot-btn" className="fixed bottom-6 right-6 z-40">
+      {/* Floating trigger buttons */}
+      <div id="chatbot-btn" className="fixed bottom-6 right-6 z-40 flex items-center gap-3">
+       
         <button
           onClick={() => setIsOpen(!isOpen)}
           className="w-16 h-16 rounded-full bg-gradient-to-br from-gold-400 to-gold-600 text-navy-900 shadow-2xl flex items-center justify-center hover:scale-110 transition-transform"
           aria-label="Toggle AI Chatbot"
+          title="Cohen AI Assistant"
         >
-          {isOpen ? <X className="w-7 h-7" /> : <MessageCircle className="w-7 h-7" />}
+          {isOpen ? <X className="w-7 h-7" /> : <Bot className="w-7 h-7" />}
         </button>
       </div>
 

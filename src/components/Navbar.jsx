@@ -342,9 +342,10 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
                   type="button"
                   onClick={() => openCsatModal?.()}
                   className="inline-flex items-center gap-1.5 px-3.5 py-2 bg-gradient-to-r from-amber-400 via-gold-500 to-amber-500 hover:from-gold-400 hover:to-amber-400 text-navy-950 font-extrabold text-xs sm:text-sm rounded-full transition shadow-md hover:scale-105 cursor-pointer whitespace-nowrap animate-csat-blink"
+                  title="Cohen Scholarship Admission Test (CSAT 2026)"
                 >
                   <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-navy-950" />
-                  <span>CSAT</span>
+                  <span>CSAT 2026</span>
                 </button>
               )}
 

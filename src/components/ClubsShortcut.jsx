@@ -15,22 +15,12 @@ import {
   Calendar
 } from 'lucide-react';
 
-import img3681 from '../assets/DSC03681.JPG';
-import img3684 from '../assets/DSC03684.JPG';
-import acadmic2Img from '../assets/acadmic2.png';
-import olympiadImg from '../assets/olympiad.png';
-import gImg10 from '../assets/galary/image copy 9.png';
-import gImg15 from '../assets/galary/image copy 14.png';
-import gImg21 from '../assets/galary/image copy 20.png';
-import gImg22 from '../assets/galary/image copy 21.png';
-
 const CLUBS_SUMMARY = [
   {
     id: 'literature',
     name: 'Literature "Stanza"',
     tagline: 'Book Reading & Creative Writing',
     icon: BookOpen,
-    img: acadmic2Img,
     badgeBg: 'bg-amber-500/10 text-amber-600 border-amber-500/30',
     color: 'from-amber-500 to-gold-500',
     schedule: 'Every Wednesday'
@@ -40,7 +30,6 @@ const CLUBS_SUMMARY = [
     name: 'Oration "Rhetoric"',
     tagline: 'Public Speaking, Debates & Model UN',
     icon: Mic,
-    img: gImg10,
     badgeBg: 'bg-rose-500/10 text-rose-600 border-rose-500/30',
     color: 'from-rose-500 to-red-500',
     schedule: 'Every Thursday'
@@ -50,7 +39,6 @@ const CLUBS_SUMMARY = [
     name: 'Quiz "Link"',
     tagline: 'General Knowledge & Logic Bowls',
     icon: HelpCircle,
-    img: olympiadImg,
     badgeBg: 'bg-purple-500/10 text-purple-600 border-purple-500/30',
     color: 'from-purple-500 to-indigo-500',
     schedule: 'Every Tuesday'
@@ -60,7 +48,6 @@ const CLUBS_SUMMARY = [
     name: 'Science "H-Cross"',
     tagline: 'STEM Labs, Robotics & Astronomy',
     icon: FlaskConical,
-    img: img3681,
     badgeBg: 'bg-blue-500/10 text-blue-600 border-blue-500/30',
     color: 'from-blue-500 to-cyan-500',
     schedule: 'Every Friday'
@@ -70,7 +57,6 @@ const CLUBS_SUMMARY = [
     name: 'Maths "Y-Axis"',
     tagline: 'Vedic Math & Olympiad Problem Solving',
     icon: Calculator,
-    img: img3684,
     badgeBg: 'bg-emerald-500/10 text-emerald-600 border-emerald-500/30',
     color: 'from-emerald-500 to-teal-500',
     schedule: 'Every Monday'
@@ -80,7 +66,6 @@ const CLUBS_SUMMARY = [
     name: 'Music "Raaga"',
     tagline: 'Classical Vocals & Band Ensembles',
     icon: Music,
-    img: gImg15,
     badgeBg: 'bg-indigo-500/10 text-indigo-600 border-indigo-500/30',
     color: 'from-indigo-500 to-blue-600',
     schedule: 'Every Thursday'
@@ -90,7 +75,6 @@ const CLUBS_SUMMARY = [
     name: 'Dance "Rhythm"',
     tagline: 'Classical Odissi & Contemporary Dance',
     icon: Activity,
-    img: gImg21,
     badgeBg: 'bg-pink-500/10 text-pink-600 border-pink-500/30',
     color: 'from-pink-500 to-rose-500',
     schedule: 'Every Friday'
@@ -100,7 +84,6 @@ const CLUBS_SUMMARY = [
     name: 'Sports "Agility"',
     tagline: 'Basketball, Football, Chess & Athletics',
     icon: Trophy,
-    img: gImg22,
     badgeBg: 'bg-cyan-500/10 text-cyan-600 border-cyan-500/30',
     color: 'from-cyan-500 to-blue-500',
     schedule: 'Every Saturday'
@@ -135,44 +118,34 @@ export default function ClubsShortcut() {
               <Link
                 key={club.id}
                 to={`/club?tab=${club.id}`}
-                className="group relative rounded-2xl bg-white border border-cream-200 shadow-sm hover:shadow-xl hover:border-gold-500/40 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1"
+                className="group relative rounded-2xl bg-white border border-cream-200 shadow-sm hover:shadow-xl hover:border-gold-500/40 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 p-5"
               >
-                {/* Top Image Banner */}
-                <div className="relative h-36 w-full overflow-hidden bg-navy-950">
-                  <img
-                    src={club.img}
-                    alt={club.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-navy-950/80 via-transparent to-transparent" />
-                  
-                  {/* Floating Icon Badge on top left & Schedule on top right */}
-                  <div className="absolute bottom-2.5 left-3 p-2 rounded-xl bg-navy-950/90 text-gold-400 border border-gold-500/30 backdrop-blur-sm group-hover:scale-110 transition-transform duration-300">
-                    <Icon className="w-4 h-4 text-gold-400" />
+                <div>
+                  {/* Top Header Row with Icon & Schedule */}
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="w-11 h-11 rounded-xl bg-navy-950 text-gold-400 border border-gold-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
+                      <Icon className="w-5 h-5 text-gold-400" />
+                    </div>
+                    <span className="text-[10px] font-semibold text-navy-800 bg-cream-100 px-2.5 py-1 rounded-full border border-cream-200 flex items-center gap-1">
+                      <Calendar className="w-3 h-3 text-gold-600" /> {club.schedule}
+                    </span>
                   </div>
-                  <span className="absolute bottom-2.5 right-3 text-[10px] font-semibold text-white bg-navy-950/80 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/20 flex items-center gap-1">
-                    <Calendar className="w-3 h-3 text-gold-400" /> {club.schedule}
-                  </span>
+
+                  {/* Club Title */}
+                  <h3 className="font-display text-base font-bold text-navy-900 mb-1.5 group-hover:text-gold-600 transition-colors leading-snug">
+                    {club.name}
+                  </h3>
+
+                  {/* Tagline */}
+                  <p className="text-xs text-navy-700/80 leading-relaxed font-medium mb-4">
+                    {club.tagline}
+                  </p>
                 </div>
 
-                <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between">
-                  <div>
-                    {/* Club Title */}
-                    <h3 className="font-display text-base font-bold text-navy-900 mb-1 group-hover:text-gold-600 transition-colors leading-snug">
-                      {club.name}
-                    </h3>
-
-                    {/* Tagline */}
-                    <p className="text-xs text-navy-700/80 leading-relaxed font-medium mb-3">
-                      {club.tagline}
-                    </p>
-                  </div>
-
-                  {/* Footer Link Button */}
-                  <div className="flex items-center justify-between text-xs font-bold text-gold-600 pt-3 border-t border-cream-100 group-hover:text-gold-700">
-                    <span>Explore Activities</span>
-                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
-                  </div>
+                {/* Footer Link Button */}
+                <div className="flex items-center justify-between text-xs font-bold text-gold-600 pt-3 border-t border-cream-100 group-hover:text-gold-700">
+                  <span>Explore Activities</span>
+                  <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                 </div>
               </Link>
             );
