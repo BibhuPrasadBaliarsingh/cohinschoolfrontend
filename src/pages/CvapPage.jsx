@@ -37,6 +37,10 @@ import ns2022_3 from '../assets/pdf_images/nightsky2022_img_3.jpg';
 import ns2023_1 from '../assets/pdf_images/nightsky2023_img_1.jpg';
 import ns2023_3 from '../assets/pdf_images/nightsky2022_img_10.jpg';
 
+import acadmic1Img from '../assets/acadmic1.png';
+import acadmic3Img from '../assets/acadmic3.png';
+import acadmic4Img from '../assets/acadmic4.png';
+
 const cvapProgramsData = [
   {
     id: "cambridge-english",
@@ -70,11 +74,11 @@ const cvapProgramsData = [
     title: "Theme Based Learning",
     desc: "Connecting interdisciplinary concepts across subjects to construct deep thematic knowledge and holistic understanding.",
     category: "Thematic Pedagogy",
-    highlights: [
-      "Integrated cross-subject thematic modules",
-      "Contextual inquiry connecting science, math & humanities",
-      "Theme exhibitions & conceptual portfolio building",
-      "Encourages analytical synthesis and curiosity"
+    imageTitle: "Academic Theme Photos",
+    images: [
+      { img: acadmic1Img, title: "Theme Classroom Lab" },
+      { img: acadmic3Img, title: "Interactive Workshop" },
+      { img: acadmic4Img, title: "Thematic Project Exhibition" }
     ]
   },
   {
@@ -161,6 +165,7 @@ const cvapProgramsData = [
     title: "Astronomy & Astrophysics",
     desc: "Journey through the cosmos: Telescope stargazing, night sky observation camps, rocket physics, and space exploration.",
     category: "Space Science",
+    imageTitle: "Space Observation Photos",
     images: [
       { img: ns2023_1, title: "Night Sky Camp 2023" },
       { img: ns2022_1, title: "Celestial Mapping" },
@@ -385,7 +390,7 @@ export default function CvapPage({ openAdmissionModal }) {
                       {prog.images && prog.images.length > 0 ? (
                         <div className="pt-3 border-t border-slate-100 mb-5">
                           <p className="text-[11px] font-bold uppercase tracking-wider text-navy-950 flex items-center gap-1.5 mb-2.5">
-                            <Sparkles className="w-3.5 h-3.5 text-gold-600" /> Space Observation Photos:
+                            <Sparkles className="w-3.5 h-3.5 text-gold-600" /> {prog.imageTitle || "Program Photos"}:
                           </p>
                           <div className="grid grid-cols-2 gap-2">
                             {prog.images.map((pic, idx) => (
