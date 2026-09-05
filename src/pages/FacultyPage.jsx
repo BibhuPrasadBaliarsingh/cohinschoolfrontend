@@ -17,7 +17,7 @@ const administrators = [
     title: 'Vice Chairman, Mr. Vikas Bahinipati',
     subtitle: 'MBA from Maastricht School of Management, The Netherlands',
     image: '/images/about_vc.jpg',
-    bio: 'Mr. Vikas Bahinipati, MBA from Maastricht School of Management with over 18 years of corporate work experience in Africa, Middle East & Asia. Educationist and administrative experience spanning across various countries & cultures. Trained as an ISO 9001:2000 Internal Auditor and has completed Kaizen – Six Sigma, Green Belt course too.',
+    bio: 'Mr. Vikas Bahinipati, MBA from Maastricht School of Management with over 25 years of corporate work experience in Africa, Middle East & Asia. Educationist and administrative experience spanning across various countries & cultures. Trained as an ISO 9001:2000 Internal Auditor and has completed Kaizen – Six Sigma, Green Belt course too.',
     email: 'vicechairman@coheninternationalschool.com',
   },
   {

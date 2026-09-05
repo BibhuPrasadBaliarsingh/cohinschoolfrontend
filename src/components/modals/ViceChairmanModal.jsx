@@ -73,7 +73,7 @@ export default function ViceChairmanModal({ closeModal }) {
               Our state-of-the-art campus, innovative STEM curriculum, and holistic sports programs are thoughtfully designed to nurture well-rounded leaders. We are committed to fostering an environment where every child feels valued, supported, and motivated to achieve academic excellence.
             </p>
             <p>
-              Education is a collaborative journey between students, educators, and parents. With over 18 years of corporate and administrative experience spanning across global institutions, my mission is to ensure that CIS provides international standard operational excellence, cutting-edge digital infrastructure, and a nurturing environment for every student.
+              Education is a collaborative journey between students, educators, and parents. With over 25 years of corporate and administrative experience spanning across global institutions, my mission is to ensure that CIS provides international standard operational excellence, cutting-edge digital infrastructure, and a nurturing environment for every student.
             </p>
             <p className="italic font-medium text-navy-900">
               "Empowering students to think globally, act responsibly, and achieve excellence through harmony."
