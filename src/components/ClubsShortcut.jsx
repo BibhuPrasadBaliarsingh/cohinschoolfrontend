@@ -106,13 +106,13 @@ export default function ClubsShortcut() {
             Clubs &amp; Co-Curricular Activities
           </h2>
           <p className="text-navy-700/80 text-sm sm:text-base max-w-2xl mx-auto font-medium">
-            Discover 8 signature student clubs thoughtfully created to inspire creative expression, leadership, critical thinking, and physical athletic mastery.
+            Discover signature student clubs thoughtfully created to inspire creative expression, leadership, critical thinking, and physical athletic mastery.
           </p>
         </div>
 
-        {/* 8 Clubs Grid */}
+        {/* 4 Clubs Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-10">
-          {CLUBS_SUMMARY.map((club) => {
+          {CLUBS_SUMMARY.slice(0, 4).map((club) => {
             const Icon = club.icon;
             return (
               <Link

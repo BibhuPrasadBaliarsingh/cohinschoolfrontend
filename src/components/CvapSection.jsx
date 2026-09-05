@@ -35,6 +35,13 @@ const cvapPrograms = [
     category: "Experiential Learning"
   },
   {
+    icon: MessageSquare,
+    title: "Cohen Talks",
+    desc: "A signature flagship keynote series where ideas ignite: top industry leaders, CEOs, and scientists inspire students.",
+    category: "Thought Leadership",
+    link: "/cohen-talk"
+  },
+  {
     icon: Compass,
     title: "Astronomy & Astrophysics",
     desc: "Journey through the cosmos: Telescope stargazing, night sky observation camps, rocket physics, and space exploration.",
@@ -89,13 +96,6 @@ const cvapPrograms = [
     category: "Creative Arts"
   },
   {
-    icon: MessageSquare,
-    title: "Cohen Talks",
-    desc: "A signature flagship keynote series where ideas ignite: top industry leaders, CEOs, and scientists inspire students.",
-    category: "Thought Leadership",
-    link: "/cohen-talk"
-  },
-  {
     icon: ChessIcon,
     image: chessImg,
     title: "Chess in Education (THINK TURF)",
@@ -106,9 +106,8 @@ const cvapPrograms = [
 
 export default function CvapSection() {
   const navigate = useNavigate();
-  const [isExpanded, setIsExpanded] = useState(false);
 
-  const visiblePrograms = isExpanded ? cvapPrograms : cvapPrograms.slice(0, 6);
+  const visiblePrograms = cvapPrograms.slice(0, 3);
 
   return (
     <section id="cvap-section" className="py-12 lg:py-16 bg-navy-950 text-white relative overflow-hidden border-t border-gold-500/20">
