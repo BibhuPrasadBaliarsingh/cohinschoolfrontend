@@ -110,9 +110,9 @@ export default function ClubsShortcut() {
           </p>
         </div>
 
-        {/* 4 Clubs Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 mb-10">
-          {CLUBS_SUMMARY.slice(0, 4).map((club) => {
+        {/* 3 Clubs Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6 mb-10">
+          {CLUBS_SUMMARY.slice(0, 3).map((club) => {
             const Icon = club.icon;
             return (
               <Link
