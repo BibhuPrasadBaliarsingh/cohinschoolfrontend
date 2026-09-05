@@ -121,13 +121,13 @@ export default function ClubsShortcut() {
                 className="group relative rounded-2xl bg-white border border-cream-200 shadow-sm hover:shadow-xl hover:border-gold-500/40 transition-all duration-300 flex flex-col justify-between overflow-hidden hover:-translate-y-1 p-5"
               >
                 <div>
-                  {/* Top Header Row with Icon & Schedule */}
+                  {/* Top Header Row with Icon */}
                   <div className="flex items-center justify-between mb-4">
                     <div className="w-11 h-11 rounded-xl bg-navy-950 text-gold-400 border border-gold-500/30 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-md">
                       <Icon className="w-5 h-5 text-gold-400" />
                     </div>
-                    <span className="text-[10px] font-semibold text-navy-800 bg-cream-100 px-2.5 py-1 rounded-full border border-cream-200 flex items-center gap-1">
-                      <Calendar className="w-3 h-3 text-gold-600" /> {club.schedule}
+                    <span className="text-[10px] font-extrabold uppercase tracking-wider text-gold-600 bg-gold-500/10 px-2.5 py-1 rounded-full border border-gold-500/20">
+                      CIS Club
                     </span>
                   </div>
 
