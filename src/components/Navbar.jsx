@@ -150,8 +150,8 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
           <div className={`flex items-center justify-between transition-all duration-300 ${scrolled ? 'h-16 sm:h-18' : 'h-20 sm:h-22'}`}>
             {/* Logo */}
             <Link to="/" onClick={() => setMegaMenuOpen(false)} className="flex items-center group">
-              <div className="bg-white px-3 py-1.5 rounded-xl shadow border border-gray-200 group-hover:scale-105 transition-transform flex items-center h-11 sm:h-13">
-                <img src="/logo.png" alt="Cohen International School Logo" className="h-8 sm:h-10 w-auto object-contain" />
+              <div className="bg-white px-3.5 py-1.5 rounded-xl shadow border border-gray-200 group-hover:scale-105 transition-transform flex items-center h-12 sm:h-14">
+                <img src="/logo.png" alt="Cohen International School Logo" className="h-9 sm:h-11 w-auto object-contain" />
               </div>
             </Link>
 
@@ -391,8 +391,8 @@ export default function Navbar({ openLoginModal, openAdmissionModal, openChairma
 
           <div className="w-full px-5 py-4 flex items-center justify-between border-b border-white/10 sticky top-0 bg-[#030914]/95 backdrop-blur-xl z-30 shadow-md">
             <Link to="/" onClick={() => setMegaMenuOpen(false)} className="flex items-center gap-2">
-              <div className="bg-white px-3 py-1.5 rounded-xl shadow border border-white/20">
-                <img src="/logo.png" alt="Cohen Logo" className="h-8 w-auto object-contain" />
+              <div className="bg-white px-3.5 py-1.5 rounded-xl shadow border border-white/20">
+                <img src="/logo.png" alt="Cohen Logo" className="h-9.5 w-auto object-contain" />
               </div>
             </Link>
 

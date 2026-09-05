@@ -18,7 +18,7 @@ const partnerSlides = [
     id: 2,
     type: "iit-madras",
     title: "IIT Madras",
-    subtitle: "Proud to be Associated with Indian Institute of Technology Madras",
+    subtitle: "Proud to be Associated with Indian Institute of Technology, Madras",
     logoUrl: iitMadrasLogo,
     badgeType: "logo",
     badgeValue: "/logo.png"
@@ -175,13 +175,13 @@ export default function AdmissionBanner({ openAdmissionModal }) {
             </button>
 
             {/* SLIDE CONTENT AREA */}
-            <div className="px-8 sm:px-12 flex items-center justify-center min-h-[135px] sm:min-h-[140px]">
-              <div className="flex flex-col items-center justify-center w-full gap-3 text-center animate-fadeIn">
+            <div className="px-4 sm:px-12 flex items-center justify-center min-h-[160px] sm:min-h-[140px]">
+              <div className="flex flex-col items-center justify-center w-full gap-3.5 text-center animate-fadeIn">
 
                 {/* Logo / Icon Header */}
-                <div className="flex items-center justify-center gap-3">
+                <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-center sm:text-left">
                   {currentPartner.logoUrl ? (
-                    <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-full bg-white border-2 border-[#D4AF37] shadow-lg flex items-center justify-center p-1 overflow-hidden flex-shrink-0">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-white border-2 border-[#D4AF37] shadow-xl flex items-center justify-center p-2 overflow-hidden flex-shrink-0">
                       <img
                         src={currentPartner.logoUrl}
                         alt={currentPartner.title}
@@ -189,16 +189,16 @@ export default function AdmissionBanner({ openAdmissionModal }) {
                       />
                     </div>
                   ) : (
-                    <div className="w-12 h-12 sm:w-14 sm:h-14 bg-navy-900 text-gold-400 flex items-center justify-center rounded-full font-bold text-sm shadow-md border-2 border-[#D4AF37] flex-shrink-0">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-navy-900 text-gold-400 flex items-center justify-center rounded-full font-bold text-sm shadow-md border-2 border-[#D4AF37] flex-shrink-0">
                       {currentPartner.icon ? (
-                        <currentPartner.icon className="w-6 h-6 text-gold-400" />
+                        <currentPartner.icon className="w-8 h-8 text-gold-400" />
                       ) : (
                         "CIS"
                       )}
                     </div>
                   )}
 
-                  <div className="text-left">
+                  <div className="text-center sm:text-left">
                     <h4 className="font-serif text-xl sm:text-2xl md:text-3xl font-extrabold text-[#F45B69] leading-tight tracking-tight">
                       {currentPartner.title}
                     </h4>
@@ -210,11 +210,11 @@ export default function AdmissionBanner({ openAdmissionModal }) {
 
                 {/* Bottom Badge / Pill */}
                 {currentPartner.badgeType === "logo" ? (
-                  <div className="h-9 flex items-center justify-center bg-white px-4 rounded-xl border border-gray-200 shadow-sm max-w-full">
-                    <img src={currentPartner.badgeValue} alt="Cohen Logo" className="h-6 sm:h-7 w-auto object-contain" />
+                  <div className="h-11 sm:h-12 flex items-center justify-center bg-white px-5 rounded-xl border border-gray-200 shadow-md max-w-full">
+                    <img src={currentPartner.badgeValue} alt="Cohen Logo" className="h-8 sm:h-9 w-auto object-contain" />
                   </div>
                 ) : (
-                  <div className="min-h-[34px] py-1.5 px-4 sm:px-5 flex items-center justify-center bg-gradient-to-r from-gold-400 to-amber-400 text-navy-950 font-extrabold text-[11px] sm:text-xs md:text-sm rounded-full border border-gold-300 shadow-sm max-w-full text-center leading-tight">
+                  <div className="min-h-[36px] py-1.5 px-4 sm:px-5 flex items-center justify-center bg-gradient-to-r from-gold-400 to-amber-400 text-navy-950 font-extrabold text-[11px] sm:text-xs md:text-sm rounded-full border border-gold-300 shadow-sm max-w-full text-center leading-tight">
                     <span>{currentPartner.badgeValue}</span>
                   </div>
                 )}
