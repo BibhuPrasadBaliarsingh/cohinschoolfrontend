@@ -11,10 +11,10 @@ import {
   Activity,
   Trophy,
   CheckCircle2,
-  Sparkles
+  Sparkles,
+  Clock,
+  ArrowRight
 } from 'lucide-react';
-
-
 
 const CLUBS = [
   {
@@ -176,111 +176,77 @@ export default function ClubPage() {
         badge="Co-Curricular & Student Life"
       />
 
-
-
       {/* Active Club Content Section */}
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16">
-        <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-10 md:p-14 text-center animate-fadeIn overflow-hidden">
-          {/* Main Club Header Banner (without image) */}
-          <div className="relative p-6 sm:p-10 w-full rounded-2xl bg-gradient-to-br from-navy-950 via-navy-900 to-[#1b365d] text-white mb-8 shadow-md text-left overflow-hidden border border-gold-500/30">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+        
+        {/* Top Quick Club Switcher Pill Bar (Horizontal Swipeable on Mobile) */}
+        <div className="flex items-center gap-2.5 overflow-x-auto pb-4 mb-6 no-scrollbar sm:flex-wrap sm:justify-center">
+          {CLUBS.map((club) => {
+            const ClubIcon = club.icon;
+            const isSelected = activeTab === club.id;
+            return (
+              <button
+                key={club.id}
+                type="button"
+                onClick={() => setActiveTab(club.id)}
+                className={`px-4 py-2.5 rounded-full text-xs font-bold whitespace-nowrap transition-all flex items-center gap-2 cursor-pointer flex-shrink-0 active:scale-95 ${
+                  isSelected
+                    ? 'bg-navy-900 text-gold-400 shadow-md ring-2 ring-gold-500/50'
+                    : 'bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 shadow-2xs'
+                }`}
+              >
+                <ClubIcon className="w-3.5 h-3.5" />
+                <span>{club.tabLabel}</span>
+              </button>
+            );
+          })}
+        </div>
+
+        {/* Main Active Club Details Card */}
+        <div className="bg-white rounded-3xl shadow-xl border border-gray-100 p-5 sm:p-10 md:p-14 text-center animate-fadeIn overflow-hidden">
+          {/* Main Club Header Banner */}
+          <div className="relative p-5 sm:p-10 w-full rounded-2xl bg-gradient-to-br from-navy-950 via-navy-900 to-[#1b365d] text-white mb-8 shadow-md text-left overflow-hidden border border-gold-500/30">
             <div className="absolute -right-10 -bottom-10 w-48 h-48 bg-gold-500/10 rounded-full blur-2xl pointer-events-none" />
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#2ea44f] text-white rounded-full text-xs font-bold uppercase tracking-wider mb-3 shadow-sm">
-              <IconComponent className="w-4 h-4" /> {currentClub.name}
-            </span>
-            <p className="text-white text-lg sm:text-2xl font-bold leading-snug">
+            
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+              <span className="inline-flex items-center gap-1.5 px-3.5 py-1.5 bg-[#2ea44f] text-white rounded-full text-xs font-bold uppercase tracking-wider shadow-sm">
+                <IconComponent className="w-4 h-4" /> {currentClub.name}
+              </span>
+            </div>
+
+            <p className="text-white text-base sm:text-2xl font-bold leading-snug">
               {currentClub.tagline}
             </p>
           </div>
 
           {/* Main Title */}
-          <h1 className="font-serif text-3xl sm:text-4xl md:text-5xl font-bold text-[#1b365d] mb-6 tracking-wide">
+          <h1 className="font-serif text-2xl sm:text-4xl md:text-5xl font-bold text-[#1b365d] mb-4 sm:mb-6 tracking-wide">
             {currentClub.name}
           </h1>
 
-          {/* Description Text - Exact quote and format */}
-          <p className="text-gray-800 text-base sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto font-sans text-center mb-10">
+          {/* Description Text */}
+          <p className="text-gray-800 text-sm sm:text-lg md:text-xl leading-relaxed max-w-3xl mx-auto font-sans text-center mb-8 sm:mb-10">
             {currentClub.description}
           </p>
 
           {/* Decorative Divider */}
-          <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-gold-500 mx-auto rounded-full mb-10" />
+          <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-gold-500 mx-auto rounded-full mb-8 sm:mb-10" />
 
           {/* Key Club Highlights Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 text-left max-w-3xl mx-auto mt-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3.5 sm:gap-6 text-left max-w-3xl mx-auto">
             {currentClub.highlights.map((item, idx) => (
               <div
                 key={idx}
-                className="flex items-start gap-3 p-4 rounded-2xl bg-emerald-50/60 border border-emerald-100/80 hover:bg-emerald-50 transition-colors"
+                className="flex items-start gap-3 p-3.5 sm:p-4 rounded-2xl bg-emerald-50/60 border border-emerald-100/80 hover:bg-emerald-50 transition-colors"
               >
                 <CheckCircle2 className="w-5 h-5 text-emerald-600 flex-shrink-0 mt-0.5" />
-                <span className="text-sm sm:text-base font-medium text-slate-800 leading-snug">
+                <span className="text-xs sm:text-base font-medium text-slate-800 leading-snug">
                   {item}
                 </span>
               </div>
             ))}
           </div>
-
-
         </div>
-
-        {/* All Clubs Grid Overview */}
-        <section className="mt-16 sm:mt-20">
-          <div className="text-center mb-10">
-            <span className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold uppercase tracking-wider mb-2">
-              <Sparkles className="w-3.5 h-3.5" /> Student Societies
-            </span>
-            <h2 className="font-display text-2xl sm:text-3xl font-bold text-navy-950">
-              Explore All Clubs at Cohen International School
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-            {CLUBS.map((club) => {
-              const ClubIcon = club.icon;
-              const isSelected = activeTab === club.id;
-              return (
-                <button
-                  key={club.id}
-                  type="button"
-                  onClick={() => {
-                    setActiveTab(club.id);
-                    window.scrollTo({ top: 400, behavior: 'smooth' });
-                  }}
-                  className={`group rounded-2xl text-left border overflow-hidden transition-all duration-300 cursor-pointer flex flex-col justify-between p-4 ${
-                    isSelected
-                      ? 'bg-navy-900 text-white border-gold-500 shadow-xl ring-2 ring-gold-500/50 scale-[1.02]'
-                      : 'bg-white text-navy-950 border-gray-200 hover:border-emerald-500 hover:shadow-md'
-                  }`}
-                >
-                  <div>
-                    <div className="flex items-center justify-between mb-3">
-                      <div
-                        className={`w-9 h-9 rounded-xl flex items-center justify-center ${
-                          isSelected
-                            ? 'bg-gold-500 text-navy-950'
-                            : 'bg-emerald-50 text-emerald-700 border border-emerald-200'
-                        }`}
-                      >
-                        <ClubIcon className="w-4 h-4" />
-                      </div>
-                      <span className={`text-[10px] font-medium ${isSelected ? 'text-gold-300' : 'text-gray-500'}`}>
-                        {club.schedule}
-                      </span>
-                    </div>
-                    <h3 className="font-bold text-sm mb-1">{club.name}</h3>
-                    <p
-                      className={`text-xs line-clamp-2 ${
-                        isSelected ? 'text-white/80' : 'text-gray-600'
-                      }`}
-                    >
-                      {club.tagline}
-                    </p>
-                  </div>
-                </button>
-              );
-            })}
-          </div>
-        </section>
       </main>
     </div>
   );
