@@ -152,6 +152,7 @@ const cvapProgramsData = [
     title: "Cohen Talks",
     desc: "A signature flagship keynote series where ideas ignite: top industry leaders, CEOs, and scientists inspire students.",
     category: "Thought Leadership",
+    link: "/cohen-talk",
     highlights: [
       "Live keynote talks by NISER, IIT & ISRO experts",
       "Corporate career insights from TCS & Maxx Up executives",
@@ -358,10 +359,18 @@ export default function CvapPage({ openAdmissionModal }) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {filteredPrograms.map((prog) => {
                 const IconComp = prog.icon;
+                const hasLink = Boolean(prog.link);
                 return (
                   <div
                     key={prog.id}
-                    className="bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 group"
+                    onClick={() => {
+                      if (hasLink) {
+                        navigate(prog.link);
+                      }
+                    }}
+                    className={`bg-white rounded-3xl p-6 sm:p-8 border border-slate-200/80 shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col justify-between hover:-translate-y-1.5 group ${
+                      hasLink ? "cursor-pointer hover:border-gold-500/80" : ""
+                    }`}
                   >
                     <div>
                       {/* Top Header Row */}
@@ -379,8 +388,11 @@ export default function CvapPage({ openAdmissionModal }) {
                       </div>
 
                       {/* Title & Description */}
-                      <h3 className="font-display text-xl font-bold text-navy-900 mb-2 group-hover:text-gold-600 transition-colors">
-                        {prog.title}
+                      <h3 className="font-display text-xl font-bold text-navy-900 mb-2 group-hover:text-gold-600 transition-colors flex items-center justify-between">
+                        <span>{prog.title}</span>
+                        {hasLink && (
+                          <ArrowRight className="w-5 h-5 text-gold-500 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all flex-shrink-0" />
+                        )}
                       </h3>
                       <p className="text-slate-600 text-sm leading-relaxed mb-6">
                         {prog.desc}
@@ -396,7 +408,10 @@ export default function CvapPage({ openAdmissionModal }) {
                             {prog.images.map((pic, idx) => (
                               <div
                                 key={idx}
-                                onClick={() => setActiveLightBoxImg(pic)}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setActiveLightBoxImg(pic);
+                                }}
                                 className="group/img relative rounded-lg overflow-hidden h-20 sm:h-22 border border-slate-200 shadow-xs bg-navy-950 cursor-pointer hover:border-gold-500 hover:scale-[1.03] transition-all duration-300"
                               >
                                 <img
@@ -428,6 +443,17 @@ export default function CvapPage({ openAdmissionModal }) {
                         </div>
                       ) : null}
                     </div>
+
+                    {hasLink && (
+                      <div className="pt-4 border-t border-slate-100 flex items-center justify-between mt-auto">
+                        <span className="text-xs font-bold text-gold-600 group-hover:text-gold-700 flex items-center gap-1.5 transition-colors">
+                          Explore {prog.title} <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                        </span>
+                        <span className="text-[10px] font-extrabold uppercase tracking-wider bg-gold-500/10 text-gold-700 px-2.5 py-1 rounded-full border border-gold-500/20 group-hover:bg-gold-500 group-hover:text-navy-950 transition-colors">
+                          View Page &rarr;
+                        </span>
+                      </div>
+                    )}
                   </div>
                 );
               })}

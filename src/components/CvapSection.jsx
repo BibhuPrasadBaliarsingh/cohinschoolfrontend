@@ -89,6 +89,13 @@ const cvapPrograms = [
     category: "Creative Arts"
   },
   {
+    icon: MessageSquare,
+    title: "Cohen Talks",
+    desc: "A signature flagship keynote series where ideas ignite: top industry leaders, CEOs, and scientists inspire students.",
+    category: "Thought Leadership",
+    link: "/cohen-talk"
+  },
+  {
     icon: ChessIcon,
     image: chessImg,
     title: "Chess in Education (THINK TURF)",
@@ -129,7 +136,7 @@ export default function CvapSection() {
             return (
               <div
                 key={idx}
-                onClick={() => navigate('/cvap')}
+                onClick={() => navigate(item.link || '/cvap')}
                 className="card-cube cursor-pointer p-6 rounded-3xl bg-gradient-to-b from-white/10 to-white/5 border border-white/15 hover:border-gold-400/80 transition-all duration-500 hover:-translate-y-2 hover:scale-[1.02] hover:shadow-[0_15px_35px_rgba(201,162,39,0.25)] group flex flex-col justify-between"
               >
                 <div>
