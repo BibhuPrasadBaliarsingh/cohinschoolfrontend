@@ -33,9 +33,9 @@ import {
 import chessImg from '../assets/chess.png';
 
 import ns2022_1 from '../assets/pdf_images/nightsky2022_img_1.jpg';
-import ns2022_3 from '../assets/pdf_images/nightsky2022_img_3.jpg';
+import ns2022_3 from '../assets/pdf_images/nightsky2022_img_10.jpg';
 import ns2023_1 from '../assets/pdf_images/nightsky2023_img_1.jpg';
-import ns2023_3 from '../assets/pdf_images/nightsky2022_img_10.jpg';
+import ns2023_3 from '../assets/pdf_images/nightsky2022_img_7.jpg';
 
 import acadmic1Img from '../assets/acadmic1.png';
 import acadmic3Img from '../assets/acadmic3.png';
@@ -167,7 +167,7 @@ const cvapProgramsData = [
     category: "Space Science",
     imageTitle: "Space Observation Photos",
     images: [
-      { img: ns2023_1, title: "Night Sky Camp 2023" },
+      { img: ns2023_1, title: "Night Sky Camp" },
       { img: ns2022_1, title: "Celestial Mapping" },
       { img: ns2023_3, title: "Astrophysics Lab" },
       { img: ns2022_3, title: "Telescope Tracking" }
